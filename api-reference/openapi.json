@@ -10,7 +10,7 @@
   },
   "servers": [
     {
-      "url": "http://sandbox.mintlify.com"
+      "url": "https://upload.autorender.io"
     }
   ],
   "security": [
@@ -128,6 +128,89 @@
           }
         }
       }
+    },
+    "/api/v1/uploads": {
+      "post": {
+        "description": "Upload a file to your AutoRender workspace with optional transformations, tags, and folder organization",
+        "security": [
+          {
+            "apiKeyAuth": []
+          }
+        ],
+        "requestBody": {
+          "description": "File upload with optional settings",
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "required": ["file"],
+                "properties": {
+                  "file": {
+                    "type": "string",
+                    "format": "binary",
+                    "description": "The image file to upload. Must be a valid image format (JPEG, PNG, GIF, WebP, BMP, TIFF, AVIF, HEIC, HEIF) and not exceed 100MB."
+                  },
+                  "settings": {
+                    "type": "string",
+                    "description": "JSON string containing optional upload settings: tags (array), pretransformations (string), generate_random_suffix (boolean), webhook_url (string), custom_id (string), metadata (object)"
+                  },
+                  "folderPath": {
+                    "type": "string",
+                    "description": "Folder path where the file should be stored. If the folder doesn't exist, it will be created automatically."
+                  },
+                  "relativePath": {
+                    "type": "string",
+                    "description": "Optional relative path for the file. If not provided, the original filename is used."
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Upload successful",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UploadResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request - validation error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UploadError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized - invalid API key",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UploadError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UploadError"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "webhooks": {
@@ -205,12 +288,124 @@
             "type": "string"
           }
         }
+      },
+      "UploadResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Unique file record ID"
+          },
+          "file_no": {
+            "type": "string",
+            "description": "10-character file number identifier"
+          },
+          "workspace_id": {
+            "type": "string",
+            "description": "Workspace ID"
+          },
+          "name": {
+            "type": "string",
+            "description": "Final filename (may include random suffix if requested)"
+          },
+          "path": {
+            "type": "string",
+            "description": "Full path to the file including folder structure"
+          },
+          "url": {
+            "type": "string",
+            "description": "Full URL to access the uploaded file"
+          },
+          "width": {
+            "type": "integer",
+            "nullable": true,
+            "description": "Image width in pixels (null for non-image files)"
+          },
+          "height": {
+            "type": "integer",
+            "nullable": true,
+            "description": "Image height in pixels (null for non-image files)"
+          },
+          "size": {
+            "type": "integer",
+            "description": "File size in bytes (after processing)"
+          },
+          "format": {
+            "type": "string",
+            "description": "File format/extension (e.g., jpeg, png, webp)"
+          },
+          "mime_type": {
+            "type": "string",
+            "description": "MIME type of the file (e.g., image/jpeg, image/png)"
+          },
+          "hash": {
+            "type": "string",
+            "description": "SHA-256 hash of the file content (prefixed with sha256:)"
+          },
+          "tags": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Array of normalized tag strings associated with the file"
+          },
+          "metadata": {
+            "type": "object",
+            "description": "Custom metadata object attached to the file",
+            "additionalProperties": true
+          },
+          "custom_id": {
+            "type": "string",
+            "nullable": true,
+            "description": "Custom identifier for tracking the upload"
+          },
+          "folder_no": {
+            "type": "string",
+            "nullable": true,
+            "description": "Folder number identifier if file is in a folder (null for root)"
+          },
+          "is_private": {
+            "type": "boolean",
+            "description": "Whether the file is private"
+          },
+          "is_duplicate": {
+            "type": "boolean",
+            "description": "Indicates if a file with the same name already exists in the folder"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "ISO 8601 timestamp of when the file was created"
+          },
+          "upload_source": {
+            "type": "string",
+            "description": "Source of the upload (e.g., server, sdk, api)"
+          }
+        }
+      },
+      "UploadError": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "description": "Always false for errors"
+          },
+          "error": {
+            "type": "string",
+            "description": "Error message describing what went wrong"
+          }
+        }
       }
     },
     "securitySchemes": {
       "bearerAuth": {
         "type": "http",
         "scheme": "bearer"
+      },
+      "apiKeyAuth": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "x-api-key"
       }
     }
   }
