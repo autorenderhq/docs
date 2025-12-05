@@ -10,7 +10,7 @@
   },
   "servers": [
     {
-      "url": "http://sandbox.mintlify.com"
+      "url": "https://upload.autorender.io"
     }
   ],
   "security": [
@@ -129,7 +129,7 @@
         }
       }
     },
-    "/api/v1/file/upload": {
+    "/api/v1/uploads": {
       "post": {
         "description": "Upload a file to your AutoRender workspace with optional transformations, tags, and folder organization",
         "security": [
@@ -292,38 +292,29 @@
       "UploadResponse": {
         "type": "object",
         "properties": {
-          "success": {
-            "type": "boolean",
-            "description": "Always true for successful uploads"
-          },
-          "isDuplicate": {
-            "type": "boolean",
-            "description": "Indicates if a file with the same name already exists in the folder"
-          },
           "id": {
             "type": "string",
-            "format": "uuid",
             "description": "Unique file record ID"
           },
           "file_no": {
             "type": "string",
             "description": "10-character file number identifier"
           },
+          "workspace_id": {
+            "type": "string",
+            "description": "Workspace ID"
+          },
           "name": {
             "type": "string",
             "description": "Final filename (may include random suffix if requested)"
           },
+          "path": {
+            "type": "string",
+            "description": "Full path to the file including folder structure"
+          },
           "url": {
             "type": "string",
             "description": "Full URL to access the uploaded file"
-          },
-          "file_size": {
-            "type": "integer",
-            "description": "File size in bytes (after processing)"
-          },
-          "format": {
-            "type": "string",
-            "description": "File format/extension (e.g., jpg, png, webp)"
           },
           "width": {
             "type": "integer",
@@ -335,18 +326,21 @@
             "nullable": true,
             "description": "Image height in pixels (null for non-image files)"
           },
-          "created_at": {
-            "type": "string",
-            "format": "date-time",
-            "description": "ISO 8601 timestamp of when the file was created"
+          "size": {
+            "type": "integer",
+            "description": "File size in bytes (after processing)"
           },
-          "path": {
+          "format": {
             "type": "string",
-            "description": "Full path to the file including folder structure"
+            "description": "File format/extension (e.g., jpeg, png, webp)"
           },
-          "workspace_no": {
+          "mime_type": {
             "type": "string",
-            "description": "Workspace number identifier"
+            "description": "MIME type of the file (e.g., image/jpeg, image/png)"
+          },
+          "hash": {
+            "type": "string",
+            "description": "SHA-256 hash of the file content (prefixed with sha256:)"
           },
           "tags": {
             "type": "array",
@@ -355,10 +349,37 @@
             },
             "description": "Array of normalized tag strings associated with the file"
           },
+          "metadata": {
+            "type": "object",
+            "description": "Custom metadata object attached to the file",
+            "additionalProperties": true
+          },
+          "custom_id": {
+            "type": "string",
+            "nullable": true,
+            "description": "Custom identifier for tracking the upload"
+          },
           "folder_no": {
             "type": "string",
             "nullable": true,
             "description": "Folder number identifier if file is in a folder (null for root)"
+          },
+          "is_private": {
+            "type": "boolean",
+            "description": "Whether the file is private"
+          },
+          "is_duplicate": {
+            "type": "boolean",
+            "description": "Indicates if a file with the same name already exists in the folder"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "ISO 8601 timestamp of when the file was created"
+          },
+          "upload_source": {
+            "type": "string",
+            "description": "Source of the upload (e.g., server, sdk, api)"
           }
         }
       },
