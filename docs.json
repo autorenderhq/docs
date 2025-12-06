@@ -22,9 +22,10 @@
             ]
           },
           {
-            "group": "Customization",
+            "group": "Image Transformation",
             "pages": [
-              "essentials/settings",
+              "essentials/overview",
+              "essentials/image-resizing-cropping",
               "essentials/navigation"
             ]
           },
@@ -53,7 +54,8 @@
           {
             "group": "API documentation",
             "pages": [
-              "api-reference/introduction"
+              "api-reference/introduction",
+              "api-reference/authentication"
             ]
           },
           {

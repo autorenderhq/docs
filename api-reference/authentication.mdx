@@ -1,0 +1,52 @@
+---
+title: 'Authentication'
+description: 'Learn how to authenticate with the AutoRender API using Bearer tokens'
+---
+
+## Overview
+
+The AutoRender API uses token-based authentication. You can generate an API token from your AutoRender workspace settings. Once you have your token, include it in the `Authorization` header of your API requests as follows:
+
+```
+Authorization: Bearer YOUR_API_TOKEN
+```
+
+## Managing API Tokens
+
+You can manage your API tokens from your AutoRender workspace settings. Navigate to the API tokens section to create, view, and revoke your tokens.
+
+### Create an API Token
+
+To create a new API token, follow these steps:
+
+1. Navigate to your AutoRender workspace settings
+2. Click on the "API tokens" section in the sidebar
+3. Click the "Create API Token" button
+4. Enter a descriptive name for your token to help you identify its purpose
+5. Select an expiration period for the token
+6. Click "Create" to generate your new API token
+
+<Warning>
+  Make sure to copy your API token immediately after creation, as it will only be displayed once for security reasons. Store it securely and never share it publicly.
+</Warning>
+
+### Revoke an API Token
+
+To revoke an API token that you no longer need or that may have been compromised, follow these steps:
+
+1. Navigate to your AutoRender workspace settings
+2. Click on the "API tokens" section in the sidebar
+3. Find the API token you want to revoke in the list
+4. Click the "Revoke" button next to the token
+5. Confirm your password when prompted
+6. Click "Revoke API token" to permanently delete the token
+
+<Warning>
+  Once an API token is revoked, it cannot be restored. Any applications using this token will immediately lose access to the API. Make sure to update your applications with a new token before revoking the old one if you need continued access.
+</Warning>
+
+
+<Note>
+  The API token is stored securely as a SHA-256 hash in the database. The plain text token is never stored and cannot be retrieved after creation.
+</Note>
+
