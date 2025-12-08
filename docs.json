@@ -25,6 +25,7 @@
             "group": "Image Transformation",
             "pages": [
               "essentials/overview",
+              "essentials/automatic",
               "essentials/image-resizing-cropping",
               "essentials/navigation"
             ]
