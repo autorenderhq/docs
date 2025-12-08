@@ -1,0 +1,254 @@
+---
+title: 'Automatic'
+description: 'Learn about AutoRender automatic features and default behaviors'
+icon: 'sparkles'
+---
+
+## Overview
+
+AutoRender includes several automatic features that optimize image delivery without requiring explicit configuration. These features work behind the scenes to ensure optimal performance, proper transformation ordering, and device-appropriate image sizes.
+
+## Automatic Width Bucketing
+
+AutoRender automatically rounds width values to predefined buckets to improve cache efficiency and reduce storage overhead. When you specify a width, AutoRender rounds it up to the nearest bucket size.
+
+### Width Buckets
+
+AutoRender uses the following width buckets:
+
+- **320px** - Ultra-small mobile devices
+- **480px** - Small mobile devices
+- **720px** - Standard mobile devices
+- **1080px** - Tablets and high-resolution mobile devices
+- **1440px** - Desktop displays
+- **1920px** - Large desktop displays
+
+### How It Works
+
+When you specify a width value, AutoRender automatically rounds it up to the nearest bucket:
+
+```
+// Request: w_500 → Automatically rounded to w_720
+https://assets.autorender.io/LOKVTtKVGb/w_500/docs/example/porsche.jpg
+
+// Request: w_1500 → Automatically rounded to w_1920
+https://assets.autorender.io/LOKVTtKVGb/w_1500/docs/example/porsche.jpg
+
+// Request: w_1080 → Stays at w_1080 (already a bucket size)
+https://assets.autorender.io/LOKVTtKVGb/w_1080/docs/example/porsche.jpg
+```
+
+<Note>
+  Width bucketing only applies when you explicitly specify a width. If you use preset tokens or aspect ratios, the bucketing behavior may differ.
+</Note>
+
+## Automatic Default Width Detection
+
+When no width, height, or aspect ratio is specified in your transformation URL, AutoRender automatically adds an appropriate default width based on the requesting device.
+
+### Device Detection
+
+AutoRender analyzes the `User-Agent` header and `Save-Data` header to determine the optimal default width:
+
+| Device Type | Default Width |
+|------------|---------------|
+| iPhone | 1080px |
+| High-end Android (Samsung, Pixel, OnePlus) | 1080px |
+| iPad / Android Tablets | 1080px |
+| Desktop (Mac, Windows, Chrome OS) | 1080px |
+| Standard Android | 720px |
+| Mobile Browsers (Opera Mobile, Edge Android, Firefox Android) | 720px |
+| Opera Mini / UC Browser / KaiOS | 480px |
+| Save-Data mode (mobile) | 480px |
+| Default fallback | 720px |
+
+### Examples
+
+```bash
+# No width specified - AutoRender adds device-appropriate width
+# iPhone request → automatically becomes w_1080
+https://assets.autorender.io/LOKVTtKVGb/docs/example/porsche.jpg
+
+# Desktop request → automatically becomes w_1080
+https://assets.autorender.io/LOKVTtKVGb/docs/example/porsche.jpg
+
+# Mobile with Save-Data header → automatically becomes w_480
+https://assets.autorender.io/LOKVTtKVGb/docs/example/porsche.jpg
+```
+
+<Warning>
+  If you explicitly specify width, height, or aspect ratio, AutoRender will not add a default width. Always specify dimensions when you need precise control.
+</Warning>
+
+## Automatic Transformation Ordering
+
+AutoRender automatically orders transformation parameters to ensure they are applied in the correct sequence. This guarantees consistent results regardless of the order you specify parameters in your URL.
+
+### Transformation Order
+
+Transformations are applied in this order:
+
+1. **Crop mode** (`c_*`)
+2. **Aspect ratio** (`ar_*`)
+3. **Width** (`w_*`)
+4. **Height** (`h_*`)
+5. **Position** (`p_*`)
+6. **Zoom** (`z_*`)
+7. **Flip** (`flip_*`)
+8. **Rotation** (`r_*`)
+9. **Border radius** (`br_*`)
+10. **Background** (`bg_*`)
+11. **Format** (`f_*`)
+12. **Quality** (`q_*`)
+
+### Effects Order
+
+Image effects are applied in this order:
+
+1. **Auto improve** (`e_improve`)
+2. **Unsharp mask** (`e_unsharp_mask`)
+3. **Saturation** (`e_saturation`)
+4. **Contrast** (`e_contrast`)
+5. **Brightness** (`e_brightness`)
+6. **Gamma** (`e_gamma`)
+7. **Sharpen** (`e_sharpen`)
+8. **Grayscale** (`e_grayscale`)
+9. **Black & white** (`e_blackwhite`)
+
+### Example
+
+```bash
+# These URLs produce identical results due to automatic ordering:
+
+# Parameter order: quality, width, crop
+https://assets.autorender.io/LOKVTtKVGb/q_80,w_720,c_crop/docs/example/porsche.jpg
+
+# Parameter order: crop, quality, width (reordered automatically)
+https://assets.autorender.io/LOKVTtKVGb/c_crop,q_80,w_720/docs/example/porsche.jpg
+
+# Both URLs are automatically reordered to: c_crop,w_720,q_80
+```
+
+<Note>
+  AutoRender ensures transformations are always applied in the optimal order, so you don't need to worry about parameter sequence in your URLs.
+</Note>
+
+## Preset Tokens
+
+AutoRender supports preset tokens (`t_*`) that allow you to store and reuse common transformation combinations. When you use a preset token, AutoRender automatically expands it to the full transformation string.
+
+### How Presets Work
+
+Preset tokens are stored per tenant and can be referenced in transformation URLs:
+
+```bash
+# Using a preset token
+https://assets.autorender.io/LOKVTtKVGb/t_thumbnail-2/docs/example/porsche.jpg
+
+# The preset expands to: c_fill,w_200,h_200,p_c
+# Equivalent to:
+https://assets.autorender.io/LOKVTtKVGb/c_fill,w_200,h_200,p_c/docs/example/porsche.jpg
+```
+
+### Preset Examples
+
+Common preset use cases:
+
+- **Thumbnails**: `t_thumbnail` → `c_fill,w_200,h_200,p_c`
+- **Hero images**: `t_hero` → `w_1920,h_1080,c_fill,p_c`
+- **Profile pictures**: `t_profile` → `w_400,h_400,c_crop,ar_1:1,p_face`
+- **Custom effects**: `t_rolexdark` → Complex transformation with effects and overlays
+
+<Info>
+  Preset tokens are managed through AutoRender's configuration system. Contact support to set up custom presets for your workspace.
+</Info>
+
+## URL Canonicalization
+
+AutoRender automatically canonicalizes transformation URLs to ensure consistent caching and optimal performance. This includes:
+
+- **Parameter normalization**: Removes duplicate parameters, normalizes values
+- **Encoding**: Properly encodes special characters in paths and values
+- **Ordering**: Applies transformation ordering rules
+- **Formatting**: Standardizes parameter format
+
+### Benefits
+
+- **Better caching**: Identical transformations produce identical URLs
+- **Consistent results**: Same transformations always produce the same output
+- **Performance**: Optimized URL structure for faster processing
+
+## Automatic Save-Data Support
+
+AutoRender respects the `Save-Data` HTTP header, which indicates that the user prefers reduced data usage. When this header is present, AutoRender automatically:
+
+- Reduces default width to 480px (instead of device-specific defaults)
+- Optimizes for lower bandwidth consumption
+
+### Example
+
+```bash
+# Request with Save-Data: on header
+# Mobile device that would normally get w_720
+# Automatically reduced to w_480
+https://assets.autorender.io/LOKVTtKVGb/docs/example/porsche.jpg
+```
+
+## Best Practices
+
+### When to Rely on Automatic Features
+
+- **Responsive images**: Let AutoRender choose appropriate sizes for different devices
+- **Quick prototypes**: Use default widths during development
+- **Consistent transformations**: Rely on automatic ordering for complex transformations
+
+### When to Specify Explicitly
+
+- **Precise dimensions**: When you need exact pixel dimensions
+- **Performance-critical**: When you want to control cache behavior
+- **Brand consistency**: When specific sizes are part of your design system
+
+### Optimization Tips
+
+1. **Use bucket sizes**: Specify widths that match bucket sizes (320, 480, 720, 1080, 1440, 1920) for optimal caching
+2. **Leverage presets**: Create presets for commonly used transformations
+3. **Trust the ordering**: Don't worry about parameter order - AutoRender handles it
+4. **Test on devices**: Verify automatic width detection works as expected for your use case
+
+## Examples
+
+### Example 1: Automatic Width for Responsive Images
+
+```html
+<!-- AutoRender automatically adds appropriate width based on device -->
+<img src="https://assets.autorender.io/LOKVTtKVGb/docs/example/hero.jpg" 
+     alt="Hero image" />
+```
+
+### Example 2: Width Bucketing in Action
+
+```bash
+# Request with w_650
+# Automatically rounded to w_720
+https://assets.autorender.io/LOKVTtKVGb/w_650/docs/example/porsche.jpg
+```
+
+### Example 3: Automatic Ordering
+
+```bash
+# Parameters in any order - AutoRender reorders automatically
+https://assets.autorender.io/LOKVTtKVGb/q_80,c_fill,w_800,h_600/docs/example/porsche.jpg
+
+# Automatically becomes: c_fill,w_800,h_600,q_80
+```
+
+### Example 4: Using Presets
+
+```bash
+# Simple preset usage
+https://assets.autorender.io/LOKVTtKVGb/t_thumbnail-2/docs/example/porsche.jpg
+
+# Preset with additional parameters
+https://assets.autorender.io/LOKVTtKVGb/t_thumbnail-2,q_90/docs/example/porsche.jpg
+```
+
