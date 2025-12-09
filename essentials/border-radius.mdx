@@ -1,0 +1,236 @@
+---
+title: 'Border Radius'
+description: 'Learn how to add rounded corners to images using AutoRender border radius parameter'
+icon: 'circle'
+---
+
+## Overview
+
+AutoRender's border radius feature allows you to add rounded corners to images. This is perfect for creating modern, polished designs, card layouts, profile pictures, and UI elements with rounded corners.
+
+### URL Structure
+
+AutoRender URLs with border radius follow this structure:
+
+```
+https://assets.autorender.io/LOKVTtKVGb/br_20/docs/example/porsche.jpg
+```
+
+<img src="https://assets.autorender.io/LOKVTtKVGb/br_20/docs/example/porsche.jpg" alt="Rounded corners" class="ar-url-image" />
+
+## How Border Radius Works
+
+Border radius rounds the corners of an image by the specified number of pixels. The radius value determines how rounded the corners will be:
+- **Small values** (5-20px): Subtle rounding
+- **Medium values** (20-50px): Moderate rounding
+- **Large values** (50-100px): Very rounded corners
+- **Very large values** (≥ half the smallest dimension): Creates circular/oval shapes
+
+## Basic Border Radius
+
+### Small Radius (Subtle Rounding)
+
+Add subtle rounded corners:
+
+```
+// 10px border radius
+https://assets.autorender.io/LOKVTtKVGb/br_10/docs/example/porsche.jpg
+```
+
+<img src="https://assets.autorender.io/LOKVTtKVGb/br_10/docs/example/porsche.jpg" alt="Small border radius" class="ar-url-image" />
+
+### Medium Radius
+
+Add moderate rounded corners:
+
+```
+// 20px border radius
+https://assets.autorender.io/LOKVTtKVGb/br_20/docs/example/porsche.jpg
+```
+
+<img src="https://assets.autorender.io/LOKVTtKVGb/br_20/docs/example/porsche.jpg" alt="Medium border radius" class="ar-url-image" />
+
+### Large Radius
+
+Add very rounded corners:
+
+```
+// 50px border radius
+https://assets.autorender.io/LOKVTtKVGb/br_50/docs/example/porsche.jpg
+```
+
+<img src="https://assets.autorender.io/LOKVTtKVGb/br_50/docs/example/porsche.jpg" alt="Large border radius" class="ar-url-image" />
+
+## Circular Images
+
+For square images, using a border radius equal to or greater than half the image dimension creates a perfect circle:
+
+```
+// Circular image (300x300 with 150px radius)
+https://assets.autorender.io/LOKVTtKVGb/w_300,h_300,c_crop,br_150/docs/example/porsche.jpg
+```
+
+<img src="https://assets.autorender.io/LOKVTtKVGb/w_300,h_300,c_crop,br_150/docs/example/porsche.jpg" alt="Circular image" class="ar-url-image" />
+
+```
+// Circular image (400x400 with 200px radius)
+https://assets.autorender.io/LOKVTtKVGb/w_400,h_400,c_crop,br_200/docs/example/porsche.jpg
+```
+
+<img src="https://assets.autorender.io/LOKVTtKVGb/w_400,h_400,c_crop,br_200/docs/example/porsche.jpg" alt="Circular image" class="ar-url-image" />
+
+<Note>
+  For circular images, use a border radius that is at least half the smallest dimension (width or height). For example, a 300x300 image needs `br_150` or higher to be perfectly circular.
+</Note>
+
+## Combining Border Radius with Other Transformations
+
+Border radius works well when combined with resize, crop, and other transformations.
+
+### Border Radius with Resize
+
+```
+// Resize to 600px width with rounded corners
+https://assets.autorender.io/LOKVTtKVGb/w_600,br_30/docs/example/porsche.jpg
+```
+
+<img src="https://assets.autorender.io/LOKVTtKVGb/w_600,br_30/docs/example/porsche.jpg" alt="Border radius with resize" class="ar-url-image" />
+
+### Border Radius with Crop
+
+```
+// Crop to square with rounded corners
+https://assets.autorender.io/LOKVTtKVGb/w_600,h_600,c_crop,br_40/docs/example/porsche.jpg
+```
+
+<img src="https://assets.autorender.io/LOKVTtKVGb/w_600,h_600,c_crop,br_40/docs/example/porsche.jpg" alt="Border radius with crop" class="ar-url-image" />
+
+### Border Radius with Fill Mode
+
+```
+// Fill 600x600 area with rounded corners
+https://assets.autorender.io/LOKVTtKVGb/w_600,h_600,c_fill,br_50/docs/example/porsche.jpg
+```
+
+<img src="https://assets.autorender.io/LOKVTtKVGb/w_600,h_600,c_fill,br_50/docs/example/porsche.jpg" alt="Border radius with fill" class="ar-url-image" />
+
+## Common Use Cases
+
+### Profile Pictures
+
+Create circular profile pictures:
+
+```
+// Circular profile picture
+https://assets.autorender.io/LOKVTtKVGb/w_400,h_400,c_crop,ar_1:1,br_200/docs/example/porsche.jpg
+```
+
+### Card Images
+
+Add rounded corners to card layouts:
+
+```
+// Card image with rounded corners
+https://assets.autorender.io/LOKVTtKVGb/w_600,h_400,c_fill,br_20/docs/example/porsche.jpg
+```
+
+### Thumbnails
+
+Create rounded thumbnails:
+
+```
+// Rounded thumbnail
+https://assets.autorender.io/LOKVTtKVGb/w_300,h_300,c_crop,br_15/docs/example/porsche.jpg
+```
+
+### Hero Images
+
+Add subtle rounding to hero images:
+
+```
+// Hero image with subtle rounding
+https://assets.autorender.io/LOKVTtKVGb/w_1920,h_1080,c_fill,br_10/docs/example/porsche.jpg
+```
+
+## Border Radius Guidelines
+
+### Recommended Values
+
+| Use Case | Border Radius | Example |
+|----------|---------------|---------|
+| Subtle rounding | 5-15px | `br_10` |
+| Card layouts | 15-25px | `br_20` |
+| Modern UI | 20-40px | `br_30` |
+| Very rounded | 40-60px | `br_50` |
+| Circular (square images) | ≥ half dimension | `br_150` for 300x300 |
+
+### Best Practices
+
+- **Small images**: Use smaller radius values (5-20px)
+- **Large images**: Can use larger radius values (20-50px)
+- **Square images**: Use radius ≥ half dimension for circular effect
+- **Rectangular images**: Radius creates rounded rectangle effect
+
+## Best Practices
+
+### Performance
+
+- Border radius processing is fast and efficient
+- No quality loss when applying border radius
+- Cached results improve performance for repeated requests
+
+### Design Considerations
+
+- Match border radius to your design system
+- Consistent radius values create visual harmony
+- Consider the image content when choosing radius size
+- Very large radius values may crop important image content
+
+### Combining with Other Transformations
+
+- Border radius is typically applied after resize and crop
+- Works well with all crop modes
+- Can be combined with rotation and flip for creative effects
+
+## Examples
+
+### Example 1: Simple Border Radius
+
+Add 20px rounded corners:
+
+```
+https://assets.autorender.io/LOKVTtKVGb/br_20/docs/example/porsche.jpg
+```
+
+<img src="https://assets.autorender.io/LOKVTtKVGb/br_20/docs/example/porsche.jpg" alt="Simple border radius" class="ar-url-image" />
+
+### Example 2: Circular Profile Picture
+
+Create a circular profile picture:
+
+```
+https://assets.autorender.io/LOKVTtKVGb/w_400,h_400,c_crop,br_200/docs/example/porsche.jpg
+```
+
+<img src="https://assets.autorender.io/LOKVTtKVGb/w_400,h_400,c_crop,br_200/docs/example/porsche.jpg" alt="Circular profile" class="ar-url-image" />
+
+### Example 3: Rounded Card Image
+
+Create a card image with rounded corners:
+
+```
+https://assets.autorender.io/LOKVTtKVGb/w_600,h_400,c_fill,br_30/docs/example/porsche.jpg
+```
+
+<img src="https://assets.autorender.io/LOKVTtKVGb/w_600,h_400,c_fill,br_30/docs/example/porsche.jpg" alt="Rounded card" class="ar-url-image" />
+
+### Example 4: Rounded Thumbnail
+
+Create a rounded thumbnail:
+
+```
+https://assets.autorender.io/LOKVTtKVGb/w_300,h_300,c_crop,br_20/docs/example/porsche.jpg
+```
+
+<img src="https://assets.autorender.io/LOKVTtKVGb/w_300,h_300,c_crop,br_20/docs/example/porsche.jpg" alt="Rounded thumbnail" class="ar-url-image" />
+

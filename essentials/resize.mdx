@@ -1,0 +1,290 @@
+---
+title: 'Resize'
+description: 'Learn how to resize images using AutoRender width, height, and aspect ratio parameters'
+icon: 'arrows-maximize'
+---
+
+## Overview
+
+AutoRender provides powerful image resizing capabilities that allow you to change image dimensions while maintaining quality and aspect ratios. You can resize images by specifying width, height, or both, and use aspect ratios for responsive image generation.
+
+### URL Structure
+
+AutoRender URLs follow this structure:
+
+```
+https://assets.autorender.io/LOKVTtKVGb/w_720/docs/example/porsche.jpg
+```
+
+<img src="https://assets.autorender.io/LOKVTtKVGb/w_720/docs/example/porsche.jpg" alt="Resized image" class="ar-url-image" />
+
+URL components:
+- **Domain**: `https://assets.autorender.io` - AutoRender CDN domain
+- **Workspace**: `LOKVTtKVGb` - Your workspace identifier  
+- **Transformations**: `w_720` - Image transformation parameters
+- **Image Path**: `docs/example/porsche.jpg` - Your image path (can include folders)
+
+## Width and Height
+
+Resize images by specifying width and/or height dimensions. When only one dimension is specified, AutoRender automatically calculates the other to maintain the original aspect ratio.
+
+### Width Only
+
+Resize by width only - height is calculated automatically to maintain aspect ratio.
+
+```
+// Resize to 720px width
+https://assets.autorender.io/LOKVTtKVGb/w_720/docs/example/porsche.jpg
+```
+
+<img src="https://assets.autorender.io/LOKVTtKVGb/w_720/docs/example/porsche.jpg" alt="Resized image" class="ar-url-image" />
+
+### Height Only
+
+Resize by height only - width is calculated automatically to maintain aspect ratio.
+
+```
+// Resize to 540px height
+https://assets.autorender.io/LOKVTtKVGb/h_540/docs/example/porsche.jpg
+```
+
+<img src="https://assets.autorender.io/LOKVTtKVGb/h_540/docs/example/porsche.jpg" alt="Resized image" class="ar-url-image" />
+
+### Both Width and Height
+
+Specify both dimensions for exact sizing. When both dimensions are specified, AutoRender uses the appropriate crop mode to achieve the target size.
+
+```
+// Resize to exact dimensions (720x480)
+https://assets.autorender.io/LOKVTtKVGb/w_720,h_480/docs/example/porsche.jpg
+```
+
+<img src="https://assets.autorender.io/LOKVTtKVGb/w_720,h_480/docs/example/porsche.jpg" alt="Resized image" class="ar-url-image" />
+
+<Note>
+  When only one dimension is specified, AutoRender automatically calculates the other dimension to maintain the original aspect ratio. When both dimensions are specified, you may want to use crop modes (see [Crop](/essentials/crop) page) to control how the image fits the target dimensions.
+</Note>
+
+## Relative Sizing
+
+Use decimal values to resize relative to the original image dimensions. This is useful for creating proportional variations of images.
+
+### Relative Width
+
+```
+// 50% of original width (maintains aspect ratio)
+https://assets.autorender.io/LOKVTtKVGb/w_0.5/docs/example/porsche.jpg
+```
+
+<img src="https://assets.autorender.io/LOKVTtKVGb/w_0.5/docs/example/porsche.jpg" alt="Resized image" class="ar-url-image" />
+
+### Relative Height
+
+```
+// 75% of original height
+https://assets.autorender.io/LOKVTtKVGb/h_0.75/docs/example/porsche.jpg
+```
+
+<img src="https://assets.autorender.io/LOKVTtKVGb/h_0.75/docs/example/porsche.jpg" alt="Resized image" class="ar-url-image" />
+
+### Common Relative Sizes
+
+```
+// 25% of original (thumbnail)
+https://assets.autorender.io/LOKVTtKVGb/w_0.25/docs/example/porsche.jpg
+
+// 50% of original (medium)
+https://assets.autorender.io/LOKVTtKVGb/w_0.5/docs/example/porsche.jpg
+
+// 75% of original (large)
+https://assets.autorender.io/LOKVTtKVGb/w_0.75/docs/example/porsche.jpg
+
+// 150% of original (enlarged - may reduce quality)
+https://assets.autorender.io/LOKVTtKVGb/w_1.5/docs/example/porsche.jpg
+```
+
+<Warning>
+  Enlarging images beyond their original size (values > 1.0) may reduce image quality. AutoRender prevents upscaling by default to maintain quality, but you can override this behavior when needed.
+</Warning>
+
+## Aspect Ratio
+
+Crop images to specific aspect ratios without specifying exact dimensions. This is particularly useful for responsive images and maintaining consistent proportions across different screen sizes.
+
+### Common Aspect Ratios
+
+#### 16:9 (Widescreen)
+
+```
+// 16:9 aspect ratio with 720px width
+https://assets.autorender.io/LOKVTtKVGb/ar_16:9,w_720/docs/example/porsche.jpg
+```
+
+#### 1:1 (Square)
+
+```
+// 1:1 square aspect ratio with 600px width
+https://assets.autorender.io/LOKVTtKVGb/ar_1:1,w_600/docs/example/porsche.jpg
+```
+
+<img src="https://assets.autorender.io/LOKVTtKVGb/ar_1:1,w_600/docs/example/porsche.jpg" alt="Square aspect ratio" class="ar-url-image" />
+
+#### 4:3 (Standard)
+
+```
+// 4:3 aspect ratio with 800px width
+https://assets.autorender.io/LOKVTtKVGb/ar_4:3,w_800/docs/example/porsche.jpg
+```
+
+<img src="https://assets.autorender.io/LOKVTtKVGb/ar_4:3,w_800/docs/example/porsche.jpg" alt="4:3 aspect ratio" class="ar-url-image" />
+
+#### 21:9 (Ultrawide)
+
+```
+// 21:9 ultrawide aspect ratio with 1260px width
+https://assets.autorender.io/LOKVTtKVGb/ar_21:9,w_1260/docs/example/porsche.jpg
+```
+
+<img src="https://assets.autorender.io/LOKVTtKVGb/ar_21:9,w_1260/docs/example/porsche.jpg" alt="Ultrawide aspect ratio" class="ar-url-image" />
+
+### Custom Aspect Ratios
+
+You can use any aspect ratio by specifying the ratio in the format `width:height`:
+
+```
+// 3:2 aspect ratio
+https://assets.autorender.io/LOKVTtKVGb/ar_3:2,w_900/docs/example/porsche.jpg
+
+// 5:4 aspect ratio
+https://assets.autorender.io/LOKVTtKVGb/ar_5:4,w_1000/docs/example/porsche.jpg
+
+// 9:16 portrait aspect ratio
+https://assets.autorender.io/LOKVTtKVGb/ar_9:16,h_1080/docs/example/porsche.jpg
+```
+
+<Note>
+  When using aspect ratio, specify either width or height. AutoRender calculates the other dimension automatically. Aspect ratios work best when combined with crop modes (see [Crop](/essentials/crop) page) to control how the image is cropped to fit the ratio.
+</Note>
+
+## Responsive Images
+
+Create responsive images that adapt to different screen sizes by using different widths for different devices.
+
+### Mobile, Tablet, Desktop
+
+```
+// Mobile (400px width)
+https://assets.autorender.io/LOKVTtKVGb/w_400,c_fit/docs/example/porsche.jpg
+
+// Tablet (800px width)
+https://assets.autorender.io/LOKVTtKVGb/w_800,c_fit/docs/example/porsche.jpg
+
+// Desktop (1920px width)
+https://assets.autorender.io/LOKVTtKVGb/w_1920,c_fit/docs/example/porsche.jpg
+```
+
+<div class="ar-responsive-images">
+  <div>
+    <strong>Mobile:</strong>
+    <img src="https://assets.autorender.io/LOKVTtKVGb/w_400,c_fit/docs/example/porsche.jpg" alt="Mobile responsive image" class="ar-url-image" />
+  </div>
+  <div>
+    <strong>Tablet:</strong>
+    <img src="https://assets.autorender.io/LOKVTtKVGb/w_800,c_fit/docs/example/porsche.jpg" alt="Tablet responsive image" class="ar-url-image" />
+  </div>
+  <div>
+    <strong>Desktop:</strong>
+    <img src="https://assets.autorender.io/LOKVTtKVGb/w_1920,c_fit/docs/example/porsche.jpg" alt="Desktop responsive image" class="ar-url-image" />
+  </div>
+</div>
+
+### HTML srcset Example
+
+Use AutoRender URLs with HTML `srcset` for automatic responsive image selection:
+
+```html
+<img 
+  src="https://assets.autorender.io/LOKVTtKVGb/w_400/docs/example/porsche.jpg"
+  srcset="
+    https://assets.autorender.io/LOKVTtKVGb/w_400/docs/example/porsche.jpg 400w,
+    https://assets.autorender.io/LOKVTtKVGb/w_800/docs/example/porsche.jpg 800w,
+    https://assets.autorender.io/LOKVTtKVGb/w_1200/docs/example/porsche.jpg 1200w,
+    https://assets.autorender.io/LOKVTtKVGb/w_1920/docs/example/porsche.jpg 1920w
+  "
+  sizes="(max-width: 600px) 400px, (max-width: 1200px) 800px, 1200px"
+  alt="Responsive image"
+/>
+```
+
+## Best Practices
+
+### Performance Optimization
+
+- **Use bucket sizes**: Specify widths that match AutoRender's width buckets (320, 480, 720, 1080, 1440, 1920) for optimal caching
+- **Specify one dimension**: When possible, specify only width or height to let AutoRender calculate the other automatically
+- **Use aspect ratios**: For responsive images, use aspect ratios to maintain consistent proportions
+
+### Quality Considerations
+
+- **Avoid upscaling**: AutoRender prevents upscaling by default to maintain quality
+- **Use appropriate sizes**: Request images at the size you need rather than resizing in CSS
+- **Consider format**: Combine with format conversion (WebP, AVIF) for better compression
+
+### Common Use Cases
+
+**Thumbnails:**
+```
+https://assets.autorender.io/LOKVTtKVGb/w_300,h_300,c_fill/docs/example/porsche.jpg
+```
+
+**Hero Images:**
+```
+https://assets.autorender.io/LOKVTtKVGb/w_1920,h_1080,c_fill/docs/example/porsche.jpg
+```
+
+**Responsive Images:**
+```
+// Mobile
+https://assets.autorender.io/LOKVTtKVGb/w_400,c_fit/docs/example/porsche.jpg
+
+// Tablet
+https://assets.autorender.io/LOKVTtKVGb/w_800,c_fit/docs/example/porsche.jpg
+
+// Desktop
+https://assets.autorender.io/LOKVTtKVGb/w_1920,c_fit/docs/example/porsche.jpg
+```
+
+## Examples
+
+### Example 1: Simple Width Resize
+
+Resize an image to 800px width:
+
+```
+https://assets.autorender.io/LOKVTtKVGb/w_800/docs/example/porsche.jpg
+```
+
+### Example 2: Exact Dimensions
+
+Resize to exact dimensions (may require cropping - see [Crop](/essentials/crop) page):
+
+```
+https://assets.autorender.io/LOKVTtKVGb/w_600,h_400/docs/example/porsche.jpg
+```
+
+### Example 3: Aspect Ratio Resize
+
+Create a 16:9 widescreen image:
+
+```
+https://assets.autorender.io/LOKVTtKVGb/ar_16:9,w_1920/docs/example/porsche.jpg
+```
+
+### Example 4: Relative Sizing
+
+Create a thumbnail at 25% of original size:
+
+```
+https://assets.autorender.io/LOKVTtKVGb/w_0.25/docs/example/porsche.jpg
+```
+

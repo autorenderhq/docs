@@ -26,7 +26,13 @@
             "pages": [
               "essentials/overview",
               "essentials/automatic",
-              "essentials/image-resizing-cropping",
+              "essentials/resize",
+              "essentials/crop",
+              "essentials/zoom",
+              "essentials/rotate",
+              "essentials/flip",
+              "essentials/border-radius",
+              "essentials/effects",
               "essentials/navigation"
             ]
           },

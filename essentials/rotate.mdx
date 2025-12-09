@@ -1,0 +1,230 @@
+---
+title: 'Rotate'
+description: 'Learn how to rotate images using AutoRender rotation parameter'
+icon: 'rotate'
+---
+
+## Overview
+
+AutoRender's rotation feature allows you to rotate images by any angle in degrees. Rotation is useful for correcting image orientation, creating artistic effects, or adjusting images that were captured at different angles.
+
+### URL Structure
+
+AutoRender URLs with rotation follow this structure:
+
+```
+https://assets.autorender.io/LOKVTtKVGb/r_90/docs/example/porsche.jpg
+```
+
+<img src="https://assets.autorender.io/LOKVTtKVGb/r_90/docs/example/porsche.jpg" alt="Rotated image" class="ar-url-image" />
+
+## How Rotation Works
+
+Rotation rotates the image around its center point by the specified number of degrees. AutoRender normalizes rotation values to the 0-360 degree range, so you can use any value and it will be converted appropriately.
+
+- **Positive values**: Rotate clockwise
+- **Negative values**: Rotate counter-clockwise
+- **Values > 360**: Automatically normalized to 0-360 range
+
+## Common Rotations
+
+### 90 Degrees (Quarter Turn)
+
+Rotate the image 90 degrees clockwise:
+
+```
+// Rotate 90 degrees
+https://assets.autorender.io/LOKVTtKVGb/r_90/docs/example/porsche.jpg
+```
+
+<img src="https://assets.autorender.io/LOKVTtKVGb/r_90/docs/example/porsche.jpg" alt="Rotated 90 degrees" class="ar-url-image" />
+
+### 180 Degrees (Half Turn)
+
+Rotate the image 180 degrees (upside down):
+
+```
+// Rotate 180 degrees
+https://assets.autorender.io/LOKVTtKVGb/r_180/docs/example/porsche.jpg
+```
+
+<img src="https://assets.autorender.io/LOKVTtKVGb/r_180/docs/example/porsche.jpg" alt="Rotated 180 degrees" class="ar-url-image" />
+
+### 270 Degrees (Three-Quarter Turn)
+
+Rotate the image 270 degrees clockwise (or 90 degrees counter-clockwise):
+
+```
+// Rotate 270 degrees
+https://assets.autorender.io/LOKVTtKVGb/r_270/docs/example/porsche.jpg
+```
+
+<img src="https://assets.autorender.io/LOKVTtKVGb/r_270/docs/example/porsche.jpg" alt="Rotated 270 degrees" class="ar-url-image" />
+
+## Arbitrary Angles
+
+You can rotate images by any angle, not just 90-degree increments:
+
+### 45 Degrees
+
+```
+// Rotate 45 degrees
+https://assets.autorender.io/LOKVTtKVGb/r_45/docs/example/porsche.jpg
+```
+
+<img src="https://assets.autorender.io/LOKVTtKVGb/r_45/docs/example/porsche.jpg" alt="Rotated 45 degrees" class="ar-url-image" />
+
+### 15 Degrees
+
+```
+// Rotate 15 degrees
+https://assets.autorender.io/LOKVTtKVGb/r_15/docs/example/porsche.jpg
+```
+
+### 30 Degrees
+
+```
+// Rotate 30 degrees
+https://assets.autorender.io/LOKVTtKVGb/r_30/docs/example/porsche.jpg
+```
+
+### Custom Angles
+
+```
+// Rotate 23.5 degrees
+https://assets.autorender.io/LOKVTtKVGb/r_23.5/docs/example/porsche.jpg
+
+// Rotate 135 degrees
+https://assets.autorender.io/LOKVTtKVGb/r_135/docs/example/porsche.jpg
+
+// Rotate 315 degrees (same as -45 degrees)
+https://assets.autorender.io/LOKVTtKVGb/r_315/docs/example/porsche.jpg
+```
+
+<Note>
+  AutoRender automatically normalizes rotation values to the 0-360 degree range. For example, `r_450` becomes `r_90`, and `r_-45` becomes `r_315`.
+</Note>
+
+## Combining Rotation with Other Transformations
+
+Rotation works well when combined with other transformations like resize, crop, and flip.
+
+### Rotation with Resize
+
+```
+// Rotate 90 degrees, then resize to 800px width
+https://assets.autorender.io/LOKVTtKVGb/r_90,w_800/docs/example/porsche.jpg
+```
+
+<img src="https://assets.autorender.io/LOKVTtKVGb/r_90,w_800/docs/example/porsche.jpg" alt="Rotated and resized" class="ar-url-image" />
+
+### Rotation with Crop
+
+```
+// Rotate 45 degrees, then crop to 600x600
+https://assets.autorender.io/LOKVTtKVGb/r_45,w_600,h_600,c_crop/docs/example/porsche.jpg
+```
+
+<img src="https://assets.autorender.io/LOKVTtKVGb/r_45,w_600,h_600,c_crop/docs/example/porsche.jpg" alt="Rotated and cropped" class="ar-url-image" />
+
+### Rotation with Flip
+
+```
+// Rotate 90 degrees and flip horizontally
+https://assets.autorender.io/LOKVTtKVGb/r_90,flip_h/docs/example/porsche.jpg
+```
+
+## Use Cases
+
+### Correcting Image Orientation
+
+Fix images that were captured in the wrong orientation:
+
+```
+// Correct portrait orientation
+https://assets.autorender.io/LOKVTtKVGb/r_90/docs/example/porsche.jpg
+```
+
+### Creating Artistic Effects
+
+Use rotation for creative effects:
+
+```
+// Slight tilt for dynamic effect
+https://assets.autorender.io/LOKVTtKVGb/r_5/docs/example/porsche.jpg
+
+// Diagonal orientation
+https://assets.autorender.io/LOKVTtKVGb/r_45/docs/example/porsche.jpg
+```
+
+### Product Photography
+
+Adjust product images for better presentation:
+
+```
+// Rotate product for better viewing angle
+https://assets.autorender.io/LOKVTtKVGb/r_15,w_800/docs/example/porsche.jpg
+```
+
+## Best Practices
+
+### Rotation Order
+
+- Rotation is typically applied after resize and crop operations
+- Consider the final dimensions when rotating, as rotation may change the effective image bounds
+- For best results, rotate before applying effects or enhancements
+
+### Performance
+
+- Rotation processing is fast and efficient
+- Rotation with transparent backgrounds preserves transparency
+- Cached results improve performance for repeated requests
+
+### Quality Considerations
+
+- Rotation uses high-quality interpolation to maintain image quality
+- Rotated images may have slightly different dimensions due to the rotation
+- For exact dimensions, combine rotation with crop or resize
+
+## Examples
+
+### Example 1: Simple Rotation
+
+Rotate image 90 degrees:
+
+```
+https://assets.autorender.io/LOKVTtKVGb/r_90/docs/example/porsche.jpg
+```
+
+<img src="https://assets.autorender.io/LOKVTtKVGb/r_90/docs/example/porsche.jpg" alt="Simple rotation" class="ar-url-image" />
+
+### Example 2: Rotation with Resize
+
+Rotate 45 degrees and resize to 800px width:
+
+```
+https://assets.autorender.io/LOKVTtKVGb/r_45,w_800/docs/example/porsche.jpg
+```
+
+<img src="https://assets.autorender.io/LOKVTtKVGb/r_45,w_800/docs/example/porsche.jpg" alt="Rotation with resize" class="ar-url-image" />
+
+### Example 3: Rotation with Crop
+
+Rotate 90 degrees, then crop to square:
+
+```
+https://assets.autorender.io/LOKVTtKVGb/r_90,w_600,h_600,c_crop/docs/example/porsche.jpg
+```
+
+<img src="https://assets.autorender.io/LOKVTtKVGb/r_90,w_600,h_600,c_crop/docs/example/porsche.jpg" alt="Rotation with crop" class="ar-url-image" />
+
+### Example 4: Multiple Transformations
+
+Rotate, resize, and apply border radius:
+
+```
+https://assets.autorender.io/LOKVTtKVGb/r_15,w_600,h_600,c_crop,br_20/docs/example/porsche.jpg
+```
+
+<img src="https://assets.autorender.io/LOKVTtKVGb/r_15,w_600,h_600,c_crop,br_20/docs/example/porsche.jpg" alt="Multiple transformations" class="ar-url-image" />
+
