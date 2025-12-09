@@ -1,0 +1,210 @@
+---
+title: 'Flip'
+description: 'Learn how to flip images horizontally and vertically using AutoRender flip parameter'
+icon: 'arrows-left-right'
+---
+
+## Overview
+
+AutoRender's flip feature allows you to mirror images horizontally, vertically, or both. Flipping is useful for correcting mirrored images, creating symmetrical designs, or adjusting image orientation for different use cases.
+
+### URL Structure
+
+AutoRender URLs with flip follow this structure:
+
+```
+https://assets.autorender.io/LOKVTtKVGb/flip_h/docs/example/porsche.jpg
+```
+
+<img src="https://assets.autorender.io/LOKVTtKVGb/flip_h/docs/example/porsche.jpg" alt="Flipped image" class="ar-url-image" />
+
+## How Flipping Works
+
+Flipping mirrors the image along an axis:
+- **Horizontal flip** (`flip_h`): Mirrors the image left-to-right
+- **Vertical flip** (`flip_v`): Mirrors the image top-to-bottom
+- **Both** (`flip_hv`): Mirrors the image both horizontally and vertically (equivalent to 180° rotation)
+
+## Horizontal Flip
+
+Flip the image horizontally (left-to-right mirror):
+
+```
+// Flip horizontally
+https://assets.autorender.io/LOKVTtKVGb/flip_h/docs/example/porsche.jpg
+```
+
+<img src="https://assets.autorender.io/LOKVTtKVGb/flip_h/docs/example/porsche.jpg" alt="Horizontal flip" class="ar-url-image" />
+
+**Use cases:**
+- Correcting mirrored selfies
+- Creating symmetrical designs
+- Adjusting text direction
+- Product photography adjustments
+
+## Vertical Flip
+
+Flip the image vertically (top-to-bottom mirror):
+
+```
+// Flip vertically
+https://assets.autorender.io/LOKVTtKVGb/flip_v/docs/example/porsche.jpg
+```
+
+<img src="https://assets.autorender.io/LOKVTtKVGb/flip_v/docs/example/porsche.jpg" alt="Vertical flip" class="ar-url-image" />
+
+**Use cases:**
+- Creating upside-down effects
+- Correcting inverted images
+- Artistic effects
+- Reflection effects
+
+## Flip Both
+
+Flip the image both horizontally and vertically:
+
+```
+// Flip both directions
+https://assets.autorender.io/LOKVTtKVGb/flip_hv/docs/example/porsche.jpg
+```
+
+<img src="https://assets.autorender.io/LOKVTtKVGb/flip_hv/docs/example/porsche.jpg" alt="Flip both" class="ar-url-image" />
+
+<Note>
+  Flipping both horizontally and vertically (`flip_hv`) produces the same result as rotating the image 180 degrees (`r_180`).
+</Note>
+
+## Combining Flip with Other Transformations
+
+Flip works well when combined with other transformations like resize, crop, and rotation.
+
+### Flip with Resize
+
+```
+// Flip horizontally, then resize to 800px width
+https://assets.autorender.io/LOKVTtKVGb/flip_h,w_800/docs/example/porsche.jpg
+```
+
+<img src="https://assets.autorender.io/LOKVTtKVGb/flip_h,w_800/docs/example/porsche.jpg" alt="Flip with resize" class="ar-url-image" />
+
+### Flip with Crop
+
+```
+// Flip vertically, then crop to 600x600
+https://assets.autorender.io/LOKVTtKVGb/flip_v,w_600,h_600,c_crop/docs/example/porsche.jpg
+```
+
+<img src="https://assets.autorender.io/LOKVTtKVGb/flip_v,w_600,h_600,c_crop/docs/example/porsche.jpg" alt="Flip with crop" class="ar-url-image" />
+
+### Flip with Rotation
+
+```
+// Flip horizontally, then rotate 90 degrees
+https://assets.autorender.io/LOKVTtKVGb/flip_h,r_90/docs/example/porsche.jpg
+```
+
+<img src="https://assets.autorender.io/LOKVTtKVGb/flip_h,r_90/docs/example/porsche.jpg" alt="Flip with rotation" class="ar-url-image" />
+
+## Use Cases
+
+### Correcting Mirrored Images
+
+Fix images that were captured in mirror mode:
+
+```
+// Correct selfie taken in mirror
+https://assets.autorender.io/LOKVTtKVGb/flip_h/docs/example/porsche.jpg
+```
+
+### Creating Symmetrical Designs
+
+Create symmetrical patterns and designs:
+
+```
+// Horizontal symmetry
+https://assets.autorender.io/LOKVTtKVGb/flip_h,w_800/docs/example/porsche.jpg
+
+// Vertical symmetry
+https://assets.autorender.io/LOKVTtKVGb/flip_v,w_800/docs/example/porsche.jpg
+```
+
+### Product Photography
+
+Adjust product images for different viewing angles:
+
+```
+// Flip product for different perspective
+https://assets.autorender.io/LOKVTtKVGb/flip_h,w_600,h_600,c_crop/docs/example/porsche.jpg
+```
+
+### Text and Logo Adjustments
+
+Correct text direction or logo orientation:
+
+```
+// Flip text/image that was mirrored
+https://assets.autorender.io/LOKVTtKVGb/flip_h/docs/example/porsche.jpg
+```
+
+## Best Practices
+
+### When to Use Each Flip Type
+
+- **Horizontal flip** (`flip_h`): Most common, used for correcting mirrored images
+- **Vertical flip** (`flip_v`): Less common, used for artistic effects or corrections
+- **Both** (`flip_hv`): Equivalent to 180° rotation, use when you need both axes flipped
+
+### Performance
+
+- Flip processing is very fast and efficient
+- No quality loss when flipping
+- Cached results improve performance for repeated requests
+
+### Combining with Other Transformations
+
+- Flip is typically applied after resize and crop operations
+- Flip can be combined with rotation for complex orientations
+- Consider the final use case when deciding flip direction
+
+## Examples
+
+### Example 1: Simple Horizontal Flip
+
+Flip image horizontally:
+
+```
+https://assets.autorender.io/LOKVTtKVGb/flip_h/docs/example/porsche.jpg
+```
+
+<img src="https://assets.autorender.io/LOKVTtKVGb/flip_h/docs/example/porsche.jpg" alt="Simple horizontal flip" class="ar-url-image" />
+
+### Example 2: Flip with Resize
+
+Flip horizontally and resize to 800px width:
+
+```
+https://assets.autorender.io/LOKVTtKVGb/flip_h,w_800/docs/example/porsche.jpg
+```
+
+<img src="https://assets.autorender.io/LOKVTtKVGb/flip_h,w_800/docs/example/porsche.jpg" alt="Flip with resize" class="ar-url-image" />
+
+### Example 3: Flip with Crop
+
+Flip vertically, then crop to square:
+
+```
+https://assets.autorender.io/LOKVTtKVGb/flip_v,w_600,h_600,c_crop/docs/example/porsche.jpg
+```
+
+<img src="https://assets.autorender.io/LOKVTtKVGb/flip_v,w_600,h_600,c_crop/docs/example/porsche.jpg" alt="Flip with crop" class="ar-url-image" />
+
+### Example 4: Flip Both Directions
+
+Flip both horizontally and vertically:
+
+```
+https://assets.autorender.io/LOKVTtKVGb/flip_hv/docs/example/porsche.jpg
+```
+
+<img src="https://assets.autorender.io/LOKVTtKVGb/flip_hv/docs/example/porsche.jpg" alt="Flip both" class="ar-url-image" />
+

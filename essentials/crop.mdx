@@ -1,0 +1,346 @@
+---
+title: 'Crop'
+description: 'Learn how to crop images using AutoRender crop modes, positions, and position strategies'
+icon: 'crop'
+---
+
+## Overview
+
+AutoRender provides powerful cropping capabilities that allow you to extract specific regions from images, control how images fit target dimensions, and use intelligent positioning to find the best crop area. Cropping is essential when you need exact dimensions or want to focus on specific parts of an image.
+
+### URL Structure
+
+AutoRender URLs with cropping follow this structure:
+
+```
+https://assets.autorender.io/LOKVTtKVGb/w_600,h_600,c_crop/docs/example/porsche.jpg
+```
+
+<img src="https://assets.autorender.io/LOKVTtKVGb/w_600,h_600,c_crop/docs/example/porsche.jpg" alt="Cropped image" class="ar-url-image" />
+
+## Crop Modes
+
+AutoRender supports multiple crop modes that control how images are resized and cropped to fit target dimensions. Each mode has different behavior regarding aspect ratio preservation and content visibility.
+
+### Crop Mode (`c_crop`)
+
+Crops the image to exact dimensions, centering the crop area by default. This mode extracts a specific region from the image.
+
+```
+// Crop to 600x600 square
+https://assets.autorender.io/LOKVTtKVGb/w_600,h_600,c_crop/docs/example/porsche.jpg
+```
+
+<img src="https://assets.autorender.io/LOKVTtKVGb/w_600,h_600,c_crop/docs/example/porsche.jpg" alt="Cropped image" class="ar-url-image" />
+
+**Use cases:**
+- Profile pictures
+- Square thumbnails
+- Exact dimension requirements
+- Extracting specific regions
+
+### Fill Mode (`c_fill`)
+
+Resizes the image to cover the entire target area, cropping if necessary to maintain aspect ratio. The entire target area is filled, but parts of the image may be cropped.
+
+```
+// Fill 600x600 area (may crop edges)
+https://assets.autorender.io/LOKVTtKVGb/w_600,h_600,c_fill/docs/example/porsche.jpg
+```
+
+<img src="https://assets.autorender.io/LOKVTtKVGb/w_600,h_600,c_fill/docs/example/porsche.jpg" alt="Fill mode" class="ar-url-image" />
+
+**Use cases:**
+- Hero images
+- Banner images
+- Background images
+- When you need exact dimensions with no padding
+
+### Fit Mode (`c_fit`)
+
+Resizes the image to fit within the target area, preserving the entire image. May add padding if aspect ratios don't match.
+
+```
+// Fit within 600x600 (entire image visible)
+https://assets.autorender.io/LOKVTtKVGb/w_600,h_600,c_fit/docs/example/porsche.jpg
+```
+
+<img src="https://assets.autorender.io/LOKVTtKVGb/w_600,h_600,c_fit/docs/example/porsche.jpg" alt="Fit mode" class="ar-url-image" />
+
+**Use cases:**
+- Product images
+- When you need to show the entire image
+- Responsive images
+- When padding is acceptable
+
+### Scale Mode (`c_scale`)
+
+Scales the image to fit dimensions, potentially distorting the aspect ratio to match exact dimensions.
+
+```
+// Scale to exact dimensions (may distort) - 600x400
+https://assets.autorender.io/LOKVTtKVGb/w_600,h_400,c_scale/docs/example/porsche.jpg
+```
+
+<img src="https://assets.autorender.io/LOKVTtKVGb/w_600,h_400,c_scale/docs/example/porsche.jpg" alt="Scale mode" class="ar-url-image" />
+
+<Warning>
+  Scale mode may distort images if the target aspect ratio differs from the original. Use `c_fit` or `c_fill` to preserve aspect ratio.
+</Warning>
+
+**Use cases:**
+- When exact dimensions are required regardless of distortion
+- Non-photographic content
+- When aspect ratio preservation is not important
+
+## Crop Position
+
+Control where the crop area is positioned when cropping images. Position determines which part of the image is included in the crop.
+
+### Basic Position Values
+
+#### Center (Default)
+
+```
+// Center crop - 600x600
+https://assets.autorender.io/LOKVTtKVGb/w_600,h_600,c_crop,p_c/docs/example/porsche.jpg
+```
+
+#### Corner Positions
+
+```
+// Top-left corner - 600x600
+https://assets.autorender.io/LOKVTtKVGb/w_600,h_600,c_crop,p_tl/docs/example/porsche.jpg
+```
+
+<img src="https://assets.autorender.io/LOKVTtKVGb/w_600,h_600,c_crop,p_tl/docs/example/porsche.jpg" alt="Top-left crop" class="ar-url-image" />
+
+```
+// Top-right corner
+https://assets.autorender.io/LOKVTtKVGb/w_600,h_600,c_crop,p_tr/docs/example/porsche.jpg
+```
+
+<img src="https://assets.autorender.io/LOKVTtKVGb/w_600,h_600,c_crop,p_tr/docs/example/porsche.jpg" alt="Top-right crop" class="ar-url-image" />
+
+```
+// Bottom-left corner
+https://assets.autorender.io/LOKVTtKVGb/w_600,h_600,c_crop,p_bl/docs/example/porsche.jpg
+```
+
+<img src="https://assets.autorender.io/LOKVTtKVGb/w_600,h_600,c_crop,p_bl/docs/example/porsche.jpg" alt="Bottom-left crop" class="ar-url-image" />
+
+```
+// Bottom-right corner
+https://assets.autorender.io/LOKVTtKVGb/w_600,h_600,c_crop,p_br/docs/example/porsche.jpg
+```
+
+<img src="https://assets.autorender.io/LOKVTtKVGb/w_600,h_600,c_crop,p_br/docs/example/porsche.jpg" alt="Bottom-right crop" class="ar-url-image" />
+
+#### Edge Positions
+
+```
+// Top center
+https://assets.autorender.io/LOKVTtKVGb/w_600,h_600,c_crop,p_t/docs/example/porsche.jpg
+```
+
+<img src="https://assets.autorender.io/LOKVTtKVGb/w_600,h_600,c_crop,p_t/docs/example/porsche.jpg" alt="Top center crop" class="ar-url-image" />
+
+```
+// Bottom center
+https://assets.autorender.io/LOKVTtKVGb/w_600,h_600,c_crop,p_b/docs/example/porsche.jpg
+```
+
+<img src="https://assets.autorender.io/LOKVTtKVGb/w_600,h_600,c_crop,p_b/docs/example/porsche.jpg" alt="Bottom center crop" class="ar-url-image" />
+
+```
+// Left center
+https://assets.autorender.io/LOKVTtKVGb/w_600,h_600,c_crop,p_l/docs/example/porsche.jpg
+```
+
+<img src="https://assets.autorender.io/LOKVTtKVGb/w_600,h_600,c_crop,p_l/docs/example/porsche.jpg" alt="Left center crop" class="ar-url-image" />
+
+```
+// Right center
+https://assets.autorender.io/LOKVTtKVGb/w_600,h_600,c_crop,p_r/docs/example/porsche.jpg
+```
+
+<img src="https://assets.autorender.io/LOKVTtKVGb/w_600,h_600,c_crop,p_r/docs/example/porsche.jpg" alt="Right center crop" class="ar-url-image" />
+
+### Position Reference
+
+| Position Code | Description | Full Name |
+|---------------|-------------|-----------|
+| `p_c` | Center | center |
+| `p_tl` | Top-left | top-left |
+| `p_tr` | Top-right | top-right |
+| `p_bl` | Bottom-left | bottom-left |
+| `p_br` | Bottom-right | bottom-right |
+| `p_t` | Top center | top |
+| `p_b` | Bottom center | bottom |
+| `p_l` | Left center | left |
+| `p_r` | Right center | right |
+
+## Advanced Position Strategies
+
+AutoRender supports intelligent position detection that automatically finds the best crop area based on image content analysis.
+
+### Face Detection (`p_face`)
+
+Automatically detects faces in the image and centers the crop on the detected face(s).
+
+```
+// Face detection crop - 600x600
+https://assets.autorender.io/LOKVTtKVGb/w_600,h_600,c_crop,p_face/docs/example/porsche.jpg
+```
+
+<img src="https://assets.autorender.io/LOKVTtKVGb/w_600,h_600,c_crop,p_face/docs/example/porsche.jpg" alt="Face detection crop" class="ar-url-image" />
+
+**Use cases:**
+- Profile pictures
+- Portrait thumbnails
+- Social media images
+- When faces are the main subject
+
+### Entropy-Based Positioning (`p_entropy`)
+
+Finds the most interesting or information-rich area of the image and centers the crop there.
+
+```
+// Entropy-based positioning - 600x600
+https://assets.autorender.io/LOKVTtKVGb/w_600,h_600,c_crop,p_entropy/docs/example/porsche.jpg
+```
+
+<img src="https://assets.autorender.io/LOKVTtKVGb/w_600,h_600,c_crop,p_entropy/docs/example/porsche.jpg" alt="Entropy-based crop" class="ar-url-image" />
+
+**Use cases:**
+- Automatic thumbnail generation
+- When you want the most visually interesting area
+- Product images with varied content
+- Landscape photography
+
+### Attention-Based Positioning (`p_attention`)
+
+Finds the focal point or area that draws attention and centers the crop there.
+
+```
+// Attention-based positioning - 600x600
+https://assets.autorender.io/LOKVTtKVGb/w_600,h_600,c_crop,p_attention/docs/example/porsche.jpg
+```
+
+<img src="https://assets.autorender.io/LOKVTtKVGb/w_600,h_600,c_crop,p_attention/docs/example/porsche.jpg" alt="Attention-based crop" class="ar-url-image" />
+
+**Use cases:**
+- Automatic image optimization
+- When the subject location is unknown
+- Complex compositions
+- When manual positioning is not practical
+
+<Info>
+  Position strategies (`p_face`, `p_entropy`, `p_attention`) use advanced image analysis algorithms to automatically find the best crop area. These are particularly useful when you need to generate thumbnails or crops from images where the subject location varies.
+</Info>
+
+## Combining Crop with Aspect Ratio
+
+You can combine crop modes with aspect ratios for precise control:
+
+```
+// 16:9 aspect ratio with specific width and face detection
+https://assets.autorender.io/LOKVTtKVGb/ar_16:9,w_1920,c_crop,p_face/docs/example/porsche.jpg
+```
+
+<img src="https://assets.autorender.io/LOKVTtKVGb/ar_16:9,w_1920,c_crop,p_face/docs/example/porsche.jpg" alt="Aspect ratio with crop" class="ar-url-image" />
+
+## Best Practices
+
+### Choosing the Right Crop Mode
+
+- **`c_crop`**: When you need exact dimensions and can crop content
+- **`c_fill`**: When you need to fill an area completely without padding
+- **`c_fit`**: When you need to show the entire image
+- **`c_scale`**: When exact dimensions are required regardless of distortion
+
+### Position Selection
+
+- **Manual positions** (`p_tl`, `p_c`, etc.): When you know where the subject is
+- **Face detection** (`p_face`): For portraits and people
+- **Entropy** (`p_entropy`): For automatic thumbnail generation
+- **Attention** (`p_attention`): For complex compositions
+
+### Performance Considerations
+
+- Position strategies (`p_face`, `p_entropy`, `p_attention`) require additional processing time
+- Use manual positions when possible for faster processing
+- Cache cropped images to avoid repeated processing
+
+## Common Use Cases
+
+### Thumbnails
+
+```
+// Square thumbnail with face detection
+https://assets.autorender.io/LOKVTtKVGb/w_300,h_300,c_crop,p_face/docs/example/porsche.jpg
+```
+
+### Hero Images
+
+```
+// Full-width hero with fill mode
+https://assets.autorender.io/LOKVTtKVGb/w_1920,h_1080,c_fill,p_c/docs/example/porsche.jpg
+```
+
+### Profile Pictures
+
+```
+// Square profile with face detection
+https://assets.autorender.io/LOKVTtKVGb/w_400,h_400,c_crop,ar_1:1,p_face/docs/example/porsche.jpg
+```
+
+### Product Images
+
+```
+// Product image that fits within bounds
+https://assets.autorender.io/LOKVTtKVGb/w_800,h_800,c_fit/docs/example/porsche.jpg
+```
+
+## Examples
+
+### Example 1: Square Thumbnail
+
+Create a 300x300 square thumbnail, cropping from center:
+
+```
+https://assets.autorender.io/LOKVTtKVGb/w_300,h_300,c_crop/docs/example/porsche.jpg
+```
+
+<img src="https://assets.autorender.io/LOKVTtKVGb/w_300,h_300,c_crop/docs/example/porsche.jpg" alt="Square thumbnail" class="ar-url-image" />
+
+### Example 2: Banner Image
+
+Create a 1920x600 banner, filling the area:
+
+```
+https://assets.autorender.io/LOKVTtKVGb/w_1920,h_600,c_fill,p_c/docs/example/porsche.jpg
+```
+
+<img src="https://assets.autorender.io/LOKVTtKVGb/w_1920,h_600,c_fill,p_c/docs/example/porsche.jpg" alt="Banner image" class="ar-url-image" />
+
+### Example 3: Profile Picture with Face Detection
+
+Create a square profile picture with automatic face detection:
+
+```
+https://assets.autorender.io/LOKVTtKVGb/w_400,h_400,c_crop,ar_1:1,p_face/docs/example/porsche.jpg
+```
+
+<img src="https://assets.autorender.io/LOKVTtKVGb/w_400,h_400,c_crop,ar_1:1,p_face/docs/example/porsche.jpg" alt="Profile picture with face detection" class="ar-url-image" />
+
+### Example 4: Responsive Crop
+
+Create a responsive image that fits within bounds:
+
+```
+https://assets.autorender.io/LOKVTtKVGb/w_800,c_fit/docs/example/porsche.jpg
+```
+
+<img src="https://assets.autorender.io/LOKVTtKVGb/w_800,c_fit/docs/example/porsche.jpg" alt="Responsive crop" class="ar-url-image" />
+
