@@ -1,0 +1,474 @@
+---
+title: 'Layers'
+description: 'Learn how to add text and image layers to your images using AutoRender layer transformations'
+icon: 'layers'
+---
+
+## Overview
+
+AutoRender Layers allow you to composite text and images on top of or beneath your base image. Layers enable you to add watermarks, logos, text overlays, badges, and complex multi-image compositions without requiring external image editing software.
+
+### URL Structure
+
+AutoRender URLs with layers follow this structure:
+
+```bash
+https://assets.autorender.io/LOKVTtKVGb/l_text:arial_24_bold_center:Hello%20World,fl_layer_apply/docs/example/porsche.jpg
+```
+
+## Text Layers
+
+Add text overlays to your images with full control over font, size, color, position, and styling.
+
+### Basic Text Layer
+
+**Format:** `l_text:{fontFamily}_{fontSize}_{style}_{align}:{text}`
+
+Simple text overlay:
+
+```bash
+https://assets.autorender.io/LOKVTtKVGb/l_text:arial_24_bold_center:Hello%20World,fl_layer_apply/docs/example/porsche.jpg
+```
+
+**Parameters:**
+- **Font Family**: Font name (e.g., `arial`, `helvetica`, `times`)
+- **Font Size**: Size in pixels (e.g., `24`, `48`)
+- **Style**: `bold`, `italic`, `underline` (optional, can combine)
+- **Align**: `left`, `center`, `right`
+- **Text**: URL-encoded text content
+
+### Text Color
+
+Set text color using `co_` prefix:
+
+**Format:** `co_{hexColor}` or `co_rgb:{hexColor}`
+
+Red text:
+
+```bash
+https://assets.autorender.io/LOKVTtKVGb/l_text:arial_32_bold_center:Sale,co_FF0000,fl_layer_apply/docs/example/porsche.jpg
+```
+
+White text:
+
+```bash
+https://assets.autorender.io/LOKVTtKVGb/l_text:arial_48_bold_center:NEW,co_FFFFFF,fl_layer_apply/docs/example/porsche.jpg
+```
+
+### Text Position
+
+Position text using X and Y coordinates:
+
+**Format:** `x_{value},y_{value}`
+
+Position text at specific coordinates:
+
+```bash
+https://assets.autorender.io/LOKVTtKVGb/l_text:arial_24_bold_center:Watermark,x_100,y_50,fl_layer_apply/docs/example/porsche.jpg
+```
+
+### Text Placement
+
+Use automatic placement instead of manual coordinates:
+
+**Format:** `tp_{placement}`
+
+**Placement options:**
+- `tp_north` / `tp_n` - Top center
+- `tp_south` / `tp_s` - Bottom center
+- `tp_east` / `tp_e` - Right center
+- `tp_west` / `tp_w` - Left center
+- `tp_center` / `tp_c` - Center
+- `tp_north-west` / `tp_nw` - Top-left
+- `tp_north-east` / `tp_ne` - Top-right
+- `tp_south-west` / `tp_sw` - Bottom-left
+- `tp_south-east` / `tp_se` - Bottom-right
+
+Text at top center:
+
+```bash
+https://assets.autorender.io/LOKVTtKVGb/l_text:arial_32_bold_center:Title,tp_north,co_FFFFFF,fl_layer_apply/docs/example/porsche.jpg
+```
+
+Text at bottom-right:
+
+```bash
+https://assets.autorender.io/LOKVTtKVGb/l_text:arial_24_normal_left:Copyright,tp_south-east,co_FFFFFF,fl_layer_apply/docs/example/porsche.jpg
+```
+
+### Text Rotation
+
+Rotate text by degrees:
+
+**Format:** `a_{degrees}`
+
+Rotated text at 45 degrees:
+
+```bash
+https://assets.autorender.io/LOKVTtKVGb/l_text:arial_32_bold_center:DIAGONAL,a_45,tp_center,co_FF0000,fl_layer_apply/docs/example/porsche.jpg
+```
+
+### Text Styling
+
+Combine multiple text styles:
+
+```bash
+https://assets.autorender.io/LOKVTtKVGb/l_text:arial_24_bold_italic_center:Styled%20Text,co_0000FF,fl_layer_apply/docs/example/porsche.jpg
+```
+
+**Available styles:**
+- `bold` - Bold text
+- `italic` - Italic text
+- `underline` - Underlined text
+
+### Multiple Text Layers
+
+Add multiple text layers to the same image:
+
+```bash
+https://assets.autorender.io/LOKVTtKVGb/l_text:arial_32_bold_center:TOP,tp_north,co_FFFFFF,fl_layer_apply/l_text:arial_24_normal_center:BOTTOM,tp_south,co_FFFFFF,fl_layer_apply/docs/example/porsche.jpg
+```
+
+## Image Layers
+
+Add image overlays or underlays to composite multiple images together.
+
+### Basic Image Layer
+
+**Format:** `l_image:{imagePath}`
+
+Add image overlay:
+
+```bash
+https://assets.autorender.io/LOKVTtKVGb/l_image:logo.png,fl_layer_apply/docs/example/porsche.jpg
+```
+
+### Layer Type
+
+Specify whether the layer is an overlay or underlay:
+
+**Format:** `l_type:{type}`
+
+**Types:**
+- `overlay` - Layer appears on top (default)
+- `underlay` - Layer appears beneath the base image
+
+Underlay image:
+
+```bash
+https://assets.autorender.io/LOKVTtKVGb/l_image:background.jpg,l_type:underlay,fl_layer_apply/docs/example/porsche.jpg
+```
+
+Overlay image (default):
+
+```bash
+https://assets.autorender.io/LOKVTtKVGb/l_image:watermark.png,l_type:overlay,fl_layer_apply/docs/example/porsche.jpg
+```
+
+### Layer Dimensions
+
+Resize the layer image:
+
+**Format:** `lw_{width},lh_{height}`
+
+Resize layer to 200x100:
+
+```bash
+https://assets.autorender.io/LOKVTtKVGb/l_image:logo.png,lw_200,lh_100,fl_layer_apply/docs/example/porsche.jpg
+```
+
+### Layer Position
+
+Position the layer using coordinates:
+
+**Format:** `x_{value},y_{value}`
+
+Position layer at specific coordinates:
+
+```bash
+https://assets.autorender.io/LOKVTtKVGb/l_image:badge.png,x_50,y_50,fl_layer_apply/docs/example/porsche.jpg
+```
+
+### Layer Placement
+
+Use automatic placement for layers:
+
+**Format:** `ip_{placement}`
+
+**Placement options:**
+- `ip_north` / `ip_n` - Top center
+- `ip_south` / `ip_s` - Bottom center
+- `ip_east` / `ip_e` - Right center
+- `ip_west` / `ip_w` - Left center
+- `ip_center` / `ip_c` - Center
+- `ip_north-west` / `ip_nw` - Top-left
+- `ip_north-east` / `ip_ne` - Top-right
+- `ip_south-west` / `ip_sw` - Bottom-left
+- `ip_south-east` / `ip_se` - Bottom-right
+
+Logo at bottom-right:
+
+```bash
+https://assets.autorender.io/LOKVTtKVGb/l_image:logo.png,ip_south-east,lw_150,fl_layer_apply/docs/example/porsche.jpg
+```
+
+### Layer Opacity
+
+Control layer transparency:
+
+**Format:** `o_{value}`
+
+**Range:** `0` to `100` (0 = transparent, 100 = opaque)
+
+Semi-transparent watermark:
+
+```bash
+https://assets.autorender.io/LOKVTtKVGb/l_image:watermark.png,o_50,ip_center,fl_layer_apply/docs/example/porsche.jpg
+```
+
+### Layer Transformations
+
+Apply transformations to image layers:
+
+#### Layer Rotation
+
+**Format:** `lr_{degrees}`
+
+Rotated layer:
+
+```bash
+https://assets.autorender.io/LOKVTtKVGb/l_image:badge.png,lr_45,ip_center,fl_layer_apply/docs/example/porsche.jpg
+```
+
+#### Layer Crop Mode
+
+**Format:** `lc_{mode}`
+
+**Modes:** `crop`, `fill`, `fit`, `resize`, `scale`
+
+Layer with crop mode:
+
+```bash
+https://assets.autorender.io/LOKVTtKVGb/l_image:overlay.jpg,lc_fill,lw_400,lh_300,fl_layer_apply/docs/example/porsche.jpg
+```
+
+#### Layer Aspect Ratio
+
+**Format:** `lar_{ratio}`
+
+Layer with aspect ratio:
+
+```bash
+https://assets.autorender.io/LOKVTtKVGb/l_image:overlay.jpg,lar_16:9,lw_800,fl_layer_apply/docs/example/porsche.jpg
+```
+
+#### Layer Border Radius
+
+**Format:** `lbr_{radius}`
+
+Rounded layer:
+
+```bash
+https://assets.autorender.io/LOKVTtKVGb/l_image:badge.png,lbr_20,lw_200,lh_200,fl_layer_apply/docs/example/porsche.jpg
+```
+
+#### Layer Flip
+
+**Format:** `lflip_{direction}`
+
+**Directions:** `h` (horizontal), `v` (vertical), `hv` (both)
+
+Flipped layer:
+
+```bash
+https://assets.autorender.io/LOKVTtKVGb/l_image:logo.png,lflip_h,ip_center,fl_layer_apply/docs/example/porsche.jpg
+```
+
+#### Layer Zoom
+
+**Format:** `lzoom_{factor}`
+
+Zoomed layer:
+
+```bash
+https://assets.autorender.io/LOKVTtKVGb/l_image:icon.png,lzoom_1.5,ip_center,fl_layer_apply/docs/example/porsche.jpg
+```
+
+### Layer Enhancements
+
+Apply effects to image layers:
+
+**Format:** `le_{effect}`
+
+**Available layer effects:**
+- `le_saturation:{level}` - Color saturation
+- `le_contrast:{level}` - Image contrast
+- `le_brightness:{level}` - Image brightness
+- `le_sharpen:{strength}` - Sharpening
+- `le_grayscale` - Grayscale conversion
+- `le_improve:{mode}` - Scene improvement
+
+Layer with effects:
+
+```bash
+https://assets.autorender.io/LOKVTtKVGb/l_image:overlay.jpg,le_saturation:30,le_sharpen:120,lw_400,fl_layer_apply/docs/example/porsche.jpg
+```
+
+### Layer Blend Modes
+
+Control how layers blend with the base image:
+
+**Format:** `e_{blendMode}`
+
+**Blend modes:**
+- `e_screen` - Screen blend
+- `e_overlay` - Overlay blend
+- `e_multiply` - Multiply blend
+- `e_mask` - Mask blend
+
+Layer with blend mode:
+
+```bash
+https://assets.autorender.io/LOKVTtKVGb/l_image:overlay.jpg,e_screen,o_70,ip_center,fl_layer_apply/docs/example/porsche.jpg
+```
+
+## Layer Apply Flag
+
+All layers must end with `fl_layer_apply` to mark the end of layer configuration:
+
+Text layer with apply flag:
+
+```bash
+https://assets.autorender.io/LOKVTtKVGb/l_text:arial_24_bold_center:Text,fl_layer_apply/docs/example/porsche.jpg
+```
+
+Image layer with apply flag:
+
+```bash
+https://assets.autorender.io/LOKVTtKVGb/l_image:logo.png,fl_layer_apply/docs/example/porsche.jpg
+```
+
+## Combining Layers
+
+You can combine multiple layers in a single transformation:
+
+Text and image layers:
+
+```bash
+https://assets.autorender.io/LOKVTtKVGb/l_text:arial_32_bold_center:NEW,tp_north,co_FF0000,fl_layer_apply/l_image:logo.png,ip_south-east,lw_150,fl_layer_apply/docs/example/porsche.jpg
+```
+
+Multiple image layers:
+
+```bash
+https://assets.autorender.io/LOKVTtKVGb/l_image:background.jpg,l_type:underlay,fl_layer_apply/l_image:watermark.png,o_50,ip_center,fl_layer_apply/docs/example/porsche.jpg
+```
+
+## Use Cases
+
+### Watermarks
+
+Add semi-transparent watermarks to protect images:
+
+```bash
+https://assets.autorender.io/LOKVTtKVGb/l_image:watermark.png,o_30,ip_center,fl_layer_apply/docs/example/porsche.jpg
+```
+
+### Logos
+
+Add logos to images:
+
+```bash
+https://assets.autorender.io/LOKVTtKVGb/l_image:logo.png,ip_south-east,lw_200,fl_layer_apply/docs/example/porsche.jpg
+```
+
+### Text Overlays
+
+Add text captions, titles, or labels:
+
+```bash
+https://assets.autorender.io/LOKVTtKVGb/l_text:arial_48_bold_center:Product%20Name,tp_north,co_FFFFFF,fl_layer_apply/docs/example/porsche.jpg
+```
+
+### Badges and Labels
+
+Add sale badges, new product labels, or status indicators:
+
+```bash
+https://assets.autorender.io/LOKVTtKVGb/l_image:badge-sale.png,ip_north-east,lw_150,fl_layer_apply/docs/example/porsche.jpg
+```
+
+### Image Compositions
+
+Create complex multi-image compositions:
+
+```bash
+https://assets.autorender.io/LOKVTtKVGb/l_image:bg.jpg,l_type:underlay,fl_layer_apply/l_image:foreground.png,ip_center,fl_layer_apply/docs/example/porsche.jpg
+```
+
+## Best Practices
+
+### Layer Order
+
+- Text layers are applied first
+- Image layers are applied after text layers
+- Underlays are processed before overlays
+- Multiple layers are processed in sequence
+
+### Performance
+
+- Layer processing adds overhead
+- Cache layered images when possible
+- Use appropriate layer sizes to avoid unnecessary processing
+- Combine multiple layers efficiently
+
+### Positioning
+
+- Use placement (`tp_`, `ip_`) for automatic positioning
+- Use coordinates (`x_`, `y_`) for precise control
+- Consider image dimensions when positioning layers
+
+### Layer Sizing
+
+- Resize layers appropriately for the base image
+- Use aspect ratios to maintain proportions
+- Consider the final output size when sizing layers
+
+## Examples
+
+### Example 1: Simple Text Overlay
+
+Add text watermark:
+
+```bash
+https://assets.autorender.io/LOKVTtKVGb/l_text:arial_24_normal_center:Watermark,tp_south-east,co_FFFFFF,fl_layer_apply/docs/example/porsche.jpg
+```
+
+### Example 2: Logo Overlay
+
+Add logo at bottom-right:
+
+```bash
+https://assets.autorender.io/LOKVTtKVGb/l_image:logo.png,ip_south-east,lw_200,fl_layer_apply/docs/example/porsche.jpg
+```
+
+### Example 3: Text with Background
+
+Add styled text overlay:
+
+```bash
+https://assets.autorender.io/LOKVTtKVGb/l_text:arial_32_bold_center:SALE,tp_north,co_FF0000,fl_layer_apply/docs/example/porsche.jpg
+```
+
+### Example 4: Multiple Layers
+
+Combine text and image layers:
+
+```bash
+https://assets.autorender.io/LOKVTtKVGb/l_text:arial_24_bold_center:NEW,tp_north-east,co_FFFFFF,fl_layer_apply/l_image:logo.png,ip_south-west,lw_150,fl_layer_apply/docs/example/porsche.jpg
+```
+
+<Note>
+  Layers require the `fl_layer_apply` flag to mark the end of each layer configuration. Multiple layers can be combined in a single URL by separating them with additional layer definitions.
+</Note>
+

@@ -1,0 +1,466 @@
+---
+title: 'Recipes'
+description: 'Learn how to use AutoRender preset tokens (recipes) to simplify complex transformations'
+icon: 'book'
+---
+
+## Overview
+
+AutoRender Recipes (preset tokens) allow you to store and reuse common transformation combinations using simple `t_` tokens. Instead of writing long transformation strings repeatedly, you can use a short recipe name that automatically expands to the full transformation.
+
+### URL Structure
+
+AutoRender URLs with recipes follow this structure:
+
+```bash
+https://assets.autorender.io/LOKVTtKVGb/t_thumbnail-2/docs/example/porsche.jpg
+```
+
+<img src="https://assets.autorender.io/LOKVTtKVGb/t_thumbnail-2/docs/example/porsche.jpg" alt="Recipe example" class="ar-url-image" />
+
+## How Recipes Work
+
+Recipes use the `t_` prefix followed by a preset name. When AutoRender encounters a recipe token, it automatically expands it to the full transformation string stored in your workspace configuration.
+
+### Basic Usage
+
+Using a recipe:
+
+```bash
+https://assets.autorender.io/LOKVTtKVGb/t_thumbnail-2/docs/example/porsche.jpg
+```
+
+This expands to: `c_fill,w_200,h_200,p_c`
+
+Equivalent transformation:
+
+```bash
+https://assets.autorender.io/LOKVTtKVGb/c_fill,w_200,h_200,p_c/docs/example/porsche.jpg
+```
+
+### Recipe Expansion Process
+
+1. **Token Detection**: AutoRender detects `t_` prefix in the transformation string
+2. **Lookup**: Searches for the recipe in your workspace's key-value store
+3. **Expansion**: Replaces the token with the stored transformation string
+4. **Processing**: Applies the expanded transformations along with any additional parameters
+
+## Common Recipes
+
+### Thumbnail Recipe
+
+A simple thumbnail recipe that creates square thumbnails:
+
+Recipe: `t_thumbnail-2` expands to: `c_fill,w_200,h_200,p_c`
+
+```bash
+https://assets.autorender.io/LOKVTtKVGb/t_thumbnail-2/docs/example/porsche.jpg
+```
+
+<img src="https://assets.autorender.io/LOKVTtKVGb/t_thumbnail-2/docs/example/porsche.jpg" alt="Thumbnail recipe" class="ar-url-image" />
+
+### Complex Recipe Example
+
+Recipes can include multiple transformations, effects, and even layers:
+
+Recipe: `t_rolexdark` expands to: `e_grayscale,e_brightness:-93,e_extend:10:10:10:10:black,l_image:Rolex_Night/m126333-0010 copy2.webp,l_type:overlay,x_0,y_0,fl_layer_apply`
+
+```bash
+https://assets.autorender.io/LOKVTtKVGb/t_rolexdark/docs/example/porsche.jpg
+```
+
+## Combining Recipes with Additional Transformations
+
+You can combine recipes with additional transformation parameters:
+
+Recipe with additional quality parameter:
+
+```bash
+https://assets.autorender.io/LOKVTtKVGb/t_thumbnail-2,q_90/docs/example/porsche.jpg
+```
+
+Recipe with additional format conversion:
+
+```bash
+https://assets.autorender.io/LOKVTtKVGb/t_thumbnail-2,f_webp/docs/example/porsche.jpg
+```
+
+Recipe with additional effects:
+
+```bash
+https://assets.autorender.io/LOKVTtKVGb/t_thumbnail-2,e_saturation:20,e_sharpen:120/docs/example/porsche.jpg
+```
+
+<img src="https://assets.autorender.io/LOKVTtKVGb/t_thumbnail-2,e_saturation:20,e_sharpen:120/docs/example/porsche.jpg" alt="Recipe with effects" class="ar-url-image" />
+
+## Benefits of Using Recipes
+
+### 1. Simplified URLs
+
+Instead of long transformation strings, use short, memorable recipe names:
+
+Without recipe (long URL):
+
+```bash
+https://assets.autorender.io/LOKVTtKVGb/w_400,h_400,c_crop,ar_1:1,p_face,e_auto_enhance,e_warmth:25,e_shadows:30,e_structure:25/docs/example/porsche.jpg
+```
+
+With recipe (short URL):
+
+```bash
+https://assets.autorender.io/LOKVTtKVGb/t_profile-picture/docs/example/porsche.jpg
+```
+
+### 2. Consistency
+
+Ensure consistent transformations across your application:
+
+All product thumbnails use the same recipe:
+
+```bash
+https://assets.autorender.io/LOKVTtKVGb/t_product-thumbnail/product-1.jpg
+https://assets.autorender.io/LOKVTtKVGb/t_product-thumbnail/product-2.jpg
+https://assets.autorender.io/LOKVTtKVGb/t_product-thumbnail/product-3.jpg
+```
+
+### 3. Easy Updates
+
+Update transformations in one place - all URLs using the recipe automatically use the new settings:
+
+Update the recipe definition once, and all URLs using `t_product-thumbnail` automatically get the update.
+
+### 4. Reduced Errors
+
+Fewer typos and mistakes when using short recipe names instead of long transformation strings.
+
+## Creating and Managing Recipes
+
+Recipes are stored per workspace in AutoRender's key-value store. The format is:
+
+```
+{workspace_id}/t_{recipe_name} = {transformation_string}
+```
+
+### Recipe Naming
+
+- Use descriptive names: `t_product-thumbnail`, `t_hero-banner`, `t_profile-picture`
+- Use hyphens for multi-word names: `t_product-detail`, `t_category-banner`
+- Keep names concise but clear
+
+### Recipe Content
+
+Recipes can contain any valid AutoRender transformations:
+
+- Basic transformations: `w_800,h_600,c_fill`
+- Effects: `e_saturation:30,e_contrast:15`
+- Multiple parameters: `w_400,h_400,c_crop,ar_1:1,p_face`
+- Complex combinations: `e_grayscale,e_brightness:-93,e_extend:10:10:10:10:black`
+
+<Info>
+  Contact AutoRender support to create and manage custom recipes for your workspace. Recipes are workspace-specific and can be updated at any time.
+</Info>
+
+## E-commerce
+
+E-commerce websites have specific image requirements for product displays, galleries, and marketing. Recipes are perfect for standardizing these transformations across your entire product catalog.
+
+### Product Thumbnails
+
+Create consistent product thumbnails for category pages and search results:
+
+Recipe: `t_product-thumbnail` expands to: `w_300,h_300,c_fill,p_c,e_auto_enhance,e_sharpen:120`
+
+```bash
+https://assets.autorender.io/LOKVTtKVGb/t_product-thumbnail/product-123.jpg
+```
+
+<img src="https://assets.autorender.io/LOKVTtKVGb/t_product-thumbnail/product-123.jpg" alt="Product thumbnail" class="ar-url-image" />
+
+**Use cases:**
+- Product listing pages
+- Search results
+- Related products
+- Recently viewed items
+- Shopping cart thumbnails
+
+### Product Detail Images
+
+High-quality images for product detail pages:
+
+Recipe: `t_product-detail` expands to: `w_1200,h_1200,c_fit,e_auto_enhance,e_structure:30,e_sharpen:150`
+
+```bash
+https://assets.autorender.io/LOKVTtKVGb/t_product-detail/product-123.jpg
+```
+
+<img src="https://assets.autorender.io/LOKVTtKVGb/t_product-detail/product-123.jpg" alt="Product detail" class="ar-url-image" />
+
+**Use cases:**
+- Main product image
+- Product gallery
+- Zoom/lightbox views
+- Product comparison
+
+### Product Zoom Images
+
+Large, high-quality images for zoom/lightbox functionality:
+
+Recipe: `t_product-zoom` expands to: `w_1920,h_1920,c_fit,e_auto_enhance,e_structure:40,e_sharpen:180,q_95`
+
+```bash
+https://assets.autorender.io/LOKVTtKVGb/t_product-zoom/product-123.jpg
+```
+
+**Use cases:**
+- Zoom functionality
+- Lightbox/modal views
+- Full-screen product viewing
+- High-resolution previews
+
+### Category Banners
+
+Consistent banners for category pages:
+
+Recipe: `t_category-banner` expands to: `w_1920,h_600,c_fill,p_c,e_saturation:25,e_contrast:15`
+
+```bash
+https://assets.autorender.io/LOKVTtKVGb/t_category-banner/category-electronics.jpg
+```
+
+<img src="https://assets.autorender.io/LOKVTtKVGb/t_category-banner/category-electronics.jpg" alt="Category banner" class="ar-url-image" />
+
+**Use cases:**
+- Category page headers
+- Department banners
+- Collection headers
+- Promotional banners
+
+### Hero Images
+
+Eye-catching hero images for homepage and landing pages:
+
+Recipe: `t_hero-image` expands to: `w_1920,h_1080,c_fill,p_c,e_auto_enhance,e_saturation:30,e_structure:35`
+
+```bash
+https://assets.autorender.io/LOKVTtKVGb/t_hero-image/homepage-hero.jpg
+```
+
+<img src="https://assets.autorender.io/LOKVTtKVGb/t_hero-image/homepage-hero.jpg" alt="Hero image" class="ar-url-image" />
+
+**Use cases:**
+- Homepage hero sections
+- Landing page headers
+- Promotional banners
+- Marketing campaigns
+
+### Product Cards
+
+Square product cards for grid layouts:
+
+Recipe: `t_product-card` expands to: `w_400,h_400,c_fill,p_c,e_auto_enhance,br_10`
+
+```bash
+https://assets.autorender.io/LOKVTtKVGb/t_product-card/product-123.jpg
+```
+
+<img src="https://assets.autorender.io/LOKVTtKVGb/t_product-card/product-123.jpg" alt="Product card" class="ar-url-image" />
+
+**Use cases:**
+- Product grid layouts
+- Card-based designs
+- Mobile product listings
+- Featured products
+
+### Mobile Product Images
+
+Optimized images for mobile devices:
+
+Recipe: `t_product-mobile` expands to: `w_720,h_720,c_fit,e_auto_enhance,q_85`
+
+```bash
+https://assets.autorender.io/LOKVTtKVGb/t_product-mobile/product-123.jpg
+```
+
+**Use cases:**
+- Mobile product pages
+- Responsive product galleries
+- Mobile-optimized listings
+- App product displays
+
+### Social Sharing Images
+
+Optimized images for social media sharing:
+
+Recipe: `t_social-share` expands to: `w_1200,h_630,c_fill,p_c,e_auto_enhance,e_saturation:20`
+
+```bash
+https://assets.autorender.io/LOKVTtKVGb/t_social-share/product-123.jpg
+```
+
+**Use cases:**
+- Open Graph images
+- Twitter card images
+- Facebook sharing
+- Social media marketing
+
+### Product Badge Images
+
+Small badge or label images:
+
+Recipe: `t_product-badge` expands to: `w_150,h_150,c_fill,p_c,e_auto_enhance`
+
+```bash
+https://assets.autorender.io/LOKVTtKVGb/t_product-badge/badge-new.jpg
+```
+
+**Use cases:**
+- Sale badges
+- New product labels
+- Featured badges
+- Category icons
+
+## E-commerce Implementation Examples
+
+### Example 1: Product Listing Page
+
+Use recipes for consistent product thumbnails:
+
+```html
+<div class="product-grid">
+  <div class="product-item">
+    <img src="https://assets.autorender.io/LOKVTtKVGb/t_product-thumbnail/product-1.jpg" 
+         alt="Product 1" />
+  </div>
+  <div class="product-item">
+    <img src="https://assets.autorender.io/LOKVTtKVGb/t_product-thumbnail/product-2.jpg" 
+         alt="Product 2" />
+  </div>
+  <div class="product-item">
+    <img src="https://assets.autorender.io/LOKVTtKVGb/t_product-thumbnail/product-3.jpg" 
+         alt="Product 3" />
+  </div>
+</div>
+```
+
+### Example 2: Product Detail Page
+
+Use different recipes for different image sizes:
+
+```html
+<!-- Main product image -->
+<img src="https://assets.autorender.io/LOKVTtKVGb/t_product-detail/product-123.jpg" 
+     alt="Product 123" 
+     class="main-image" />
+
+<!-- Thumbnail gallery -->
+<div class="gallery-thumbnails">
+  <img src="https://assets.autorender.io/LOKVTtKVGb/t_product-thumbnail/product-123-1.jpg" />
+  <img src="https://assets.autorender.io/LOKVTtKVGb/t_product-thumbnail/product-123-2.jpg" />
+  <img src="https://assets.autorender.io/LOKVTtKVGb/t_product-thumbnail/product-123-3.jpg" />
+</div>
+```
+
+### Example 3: Responsive Product Images
+
+Use recipes with responsive image techniques:
+
+```html
+<picture>
+  <source media="(max-width: 768px)" 
+          srcset="https://assets.autorender.io/LOKVTtKVGb/t_product-mobile/product-123.jpg">
+  <source media="(min-width: 769px)" 
+          srcset="https://assets.autorender.io/LOKVTtKVGb/t_product-detail/product-123.jpg">
+  <img src="https://assets.autorender.io/LOKVTtKVGb/t_product-detail/product-123.jpg" 
+       alt="Product 123">
+</picture>
+```
+
+### Example 4: Category Page
+
+Combine category banners with product thumbnails:
+
+```html
+<!-- Category banner -->
+<div class="category-header">
+  <img src="https://assets.autorender.io/LOKVTtKVGb/t_category-banner/electronics.jpg" 
+       alt="Electronics" />
+</div>
+
+<!-- Product grid -->
+<div class="products">
+  <img src="https://assets.autorender.io/LOKVTtKVGb/t_product-thumbnail/laptop-1.jpg" />
+  <img src="https://assets.autorender.io/LOKVTtKVGb/t_product-thumbnail/laptop-2.jpg" />
+  <img src="https://assets.autorender.io/LOKVTtKVGb/t_product-thumbnail/laptop-3.jpg" />
+</div>
+```
+
+## Best Practices
+
+### Recipe Naming
+
+- Use descriptive, consistent names
+- Follow a naming convention (e.g., `t_product-{size}`, `t_category-{type}`)
+- Keep names short but clear
+- Use hyphens, not underscores
+
+### Recipe Organization
+
+- Group related recipes (e.g., all product-related recipes)
+- Document recipe purposes
+- Version recipes if needed (e.g., `t_product-thumbnail-v2`)
+
+### Performance
+
+- Recipes are cached for fast lookup
+- Combine recipes with additional parameters when needed
+- Use recipes consistently across your application
+
+### Maintenance
+
+- Review recipes periodically
+- Update recipes when design requirements change
+- Test recipe changes before deploying
+- Document recipe definitions for your team
+
+## Examples
+
+### Example 1: Simple Recipe
+
+Use a thumbnail recipe:
+
+```bash
+https://assets.autorender.io/LOKVTtKVGb/t_thumbnail-2/docs/example/porsche.jpg
+```
+
+<img src="https://assets.autorender.io/LOKVTtKVGb/t_thumbnail-2/docs/example/porsche.jpg" alt="Simple recipe" class="ar-url-image" />
+
+### Example 2: Recipe with Additional Parameters
+
+Combine recipe with quality setting:
+
+```bash
+https://assets.autorender.io/LOKVTtKVGb/t_thumbnail-2,q_90/docs/example/porsche.jpg
+```
+
+<img src="https://assets.autorender.io/LOKVTtKVGb/t_thumbnail-2,q_90/docs/example/porsche.jpg" alt="Recipe with quality" class="ar-url-image" />
+
+### Example 3: E-commerce Product Thumbnail
+
+Product thumbnail for catalog:
+
+```bash
+https://assets.autorender.io/LOKVTtKVGb/t_product-thumbnail/product-123.jpg
+```
+
+### Example 4: E-commerce Product Detail
+
+High-quality product detail image:
+
+```bash
+https://assets.autorender.io/LOKVTtKVGb/t_product-detail/product-123.jpg
+```
+
+<Note>
+  Recipes simplify your URLs and ensure consistency across your application. Contact AutoRender support to set up custom recipes tailored to your specific needs.
+</Note>
+
