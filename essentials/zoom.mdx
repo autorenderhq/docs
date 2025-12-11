@@ -12,7 +12,7 @@ AutoRender's zoom feature allows you to magnify or reduce specific regions of an
 
 AutoRender URLs with zoom follow this structure:
 
-```
+```bash
 https://assets.autorender.io/LOKVTtKVGb/z_1.5,w_720,h_720/docs/example/porsche.jpg
 ```
 
@@ -32,15 +32,17 @@ Zoom works by cropping the image to a smaller region and then resizing it back t
 
 Zoom into the center of the image:
 
-```
-// Zoom 1.5x then resize to 720x720
+Zoom 1.5x then resize to 720x720:
+
+```bash
 https://assets.autorender.io/LOKVTtKVGb/z_1.5,w_720,h_720/docs/example/porsche.jpg
 ```
 
 <img src="https://assets.autorender.io/LOKVTtKVGb/z_1.5,w_720,h_720/docs/example/porsche.jpg" alt="Zoom 1.5x" class="ar-url-image" />
 
-```
-// Zoom 2x then resize to 800x800
+Zoom 2x then resize to 800x800:
+
+```bash
 https://assets.autorender.io/LOKVTtKVGb/z_2.0,w_800,h_800/docs/example/porsche.jpg
 ```
 
@@ -50,17 +52,27 @@ https://assets.autorender.io/LOKVTtKVGb/z_2.0,w_800,h_800/docs/example/porsche.j
 
 Common zoom factors:
 
-```
-// Subtle zoom (1.2x)
+Subtle zoom (1.2x):
+
+```bash
 https://assets.autorender.io/LOKVTtKVGb/z_1.2,w_800,h_800/docs/example/porsche.jpg
+```
 
-// Moderate zoom (1.5x)
+Moderate zoom (1.5x):
+
+```bash
 https://assets.autorender.io/LOKVTtKVGb/z_1.5,w_800,h_800/docs/example/porsche.jpg
+```
 
-// Strong zoom (2.0x)
+Strong zoom (2.0x):
+
+```bash
 https://assets.autorender.io/LOKVTtKVGb/z_2.0,w_800,h_800/docs/example/porsche.jpg
+```
 
-// Extreme zoom (3.0x)
+Extreme zoom (3.0x):
+
+```bash
 https://assets.autorender.io/LOKVTtKVGb/z_3.0,w_800,h_800/docs/example/porsche.jpg
 ```
 
@@ -74,8 +86,9 @@ Control which area of the image is zoomed by combining zoom with position parame
 
 ### Zoom from Top-Left
 
-```
-// Zoom 1.5x from top-left corner - 720x720
+Zoom 1.5x from top-left corner - 720x720:
+
+```bash
 https://assets.autorender.io/LOKVTtKVGb/z_1.5,w_720,h_720,p_tl/docs/example/porsche.jpg
 ```
 
@@ -83,8 +96,9 @@ https://assets.autorender.io/LOKVTtKVGb/z_1.5,w_720,h_720,p_tl/docs/example/pors
 
 ### Zoom from Center (Default)
 
-```
-// Zoom 1.5x from center - 720x720
+Zoom 1.5x from center - 720x720:
+
+```bash
 https://assets.autorender.io/LOKVTtKVGb/z_1.5,w_720,h_720,p_c/docs/example/porsche.jpg
 ```
 
@@ -92,8 +106,9 @@ https://assets.autorender.io/LOKVTtKVGb/z_1.5,w_720,h_720,p_c/docs/example/porsc
 
 ### Zoom from Bottom-Right
 
-```
-// Zoom 1.5x from bottom-right - 720x720
+Zoom 1.5x from bottom-right - 720x720:
+
+```bash
 https://assets.autorender.io/LOKVTtKVGb/z_1.5,w_720,h_720,p_br/docs/example/porsche.jpg
 ```
 
@@ -122,8 +137,9 @@ Zoom works particularly well when combined with crop modes to create focused, de
 
 ### Zoom with Crop
 
-```
-// Zoom 1.2x, then crop to 800x800 from top-left
+Zoom 1.2x, then crop to 800x800 from top-left:
+
+```bash
 https://assets.autorender.io/LOKVTtKVGb/z_1.2,w_800,h_800,c_crop,p_tl/docs/example/porsche.jpg
 ```
 
@@ -131,8 +147,9 @@ https://assets.autorender.io/LOKVTtKVGb/z_1.2,w_800,h_800,c_crop,p_tl/docs/examp
 
 ### Zoom with Fill
 
-```
-// Zoom 1.5x, then fill 600x600 area
+Zoom 1.5x, then fill 600x600 area:
+
+```bash
 https://assets.autorender.io/LOKVTtKVGb/z_1.5,w_600,h_600,c_fill,p_c/docs/example/porsche.jpg
 ```
 
@@ -144,8 +161,9 @@ https://assets.autorender.io/LOKVTtKVGb/z_1.5,w_600,h_600,c_fill,p_c/docs/exampl
 
 Zoom is perfect for creating detail views of products or images:
 
-```
-// Product detail zoom
+Product detail zoom:
+
+```bash
 https://assets.autorender.io/LOKVTtKVGb/z_2.0,w_800,h_800,c_crop,p_c/docs/example/porsche.jpg
 ```
 
@@ -153,8 +171,9 @@ https://assets.autorender.io/LOKVTtKVGb/z_2.0,w_800,h_800,c_crop,p_c/docs/exampl
 
 Use zoom with position to focus on specific parts of an image:
 
-```
-// Focus on top-left area
+Focus on top-left area:
+
+```bash
 https://assets.autorender.io/LOKVTtKVGb/z_1.5,w_600,h_600,c_crop,p_tl/docs/example/porsche.jpg
 ```
 
@@ -162,8 +181,9 @@ https://assets.autorender.io/LOKVTtKVGb/z_1.5,w_600,h_600,c_crop,p_tl/docs/examp
 
 Create close-up portraits with zoom:
 
-```
-// Close-up portrait with face detection
+Close-up portrait with face detection:
+
+```bash
 https://assets.autorender.io/LOKVTtKVGb/z_1.8,w_600,h_600,c_crop,p_face/docs/example/porsche.jpg
 ```
 
@@ -171,8 +191,9 @@ https://assets.autorender.io/LOKVTtKVGb/z_1.8,w_600,h_600,c_crop,p_face/docs/exa
 
 Use subtle zoom to improve thumbnails:
 
-```
-// Subtle zoom for better thumbnail
+Subtle zoom for better thumbnail:
+
+```bash
 https://assets.autorender.io/LOKVTtKVGb/z_1.2,w_300,h_300,c_crop,p_entropy/docs/example/porsche.jpg
 ```
 
@@ -204,7 +225,7 @@ https://assets.autorender.io/LOKVTtKVGb/z_1.2,w_300,h_300,c_crop,p_entropy/docs/
 
 Zoom 1.5x into the center, then resize to 800x800:
 
-```
+```bash
 https://assets.autorender.io/LOKVTtKVGb/z_1.5,w_800,h_800/docs/example/porsche.jpg
 ```
 
@@ -214,7 +235,7 @@ https://assets.autorender.io/LOKVTtKVGb/z_1.5,w_800,h_800/docs/example/porsche.j
 
 Zoom 1.5x from top-left, then resize to 720x720:
 
-```
+```bash
 https://assets.autorender.io/LOKVTtKVGb/z_1.5,w_720,h_720,p_tl/docs/example/porsche.jpg
 ```
 
@@ -224,7 +245,7 @@ https://assets.autorender.io/LOKVTtKVGb/z_1.5,w_720,h_720,p_tl/docs/example/pors
 
 Zoom 1.2x, then crop to 800x800 from top-left:
 
-```
+```bash
 https://assets.autorender.io/LOKVTtKVGb/z_1.2,w_800,h_800,c_crop,p_tl/docs/example/porsche.jpg
 ```
 
@@ -234,7 +255,7 @@ https://assets.autorender.io/LOKVTtKVGb/z_1.2,w_800,h_800,c_crop,p_tl/docs/examp
 
 Zoom 1.8x focusing on detected faces:
 
-```
+```bash
 https://assets.autorender.io/LOKVTtKVGb/z_1.8,w_600,h_600,c_crop,p_face/docs/example/porsche.jpg
 ```
 

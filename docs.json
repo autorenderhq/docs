@@ -33,6 +33,8 @@
               "essentials/flip",
               "essentials/border-radius",
               "essentials/effects",
+              "essentials/layers",
+              "essentials/recipes",
               "essentials/navigation"
             ]
           },

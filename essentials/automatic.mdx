@@ -27,14 +27,21 @@ AutoRender uses the following width buckets:
 
 When you specify a width value, AutoRender automatically rounds it up to the nearest bucket:
 
-```
-// Request: w_500 → Automatically rounded to w_720
+Request: `w_500` → Automatically rounded to `w_720`:
+
+```bash
 https://assets.autorender.io/LOKVTtKVGb/w_500/docs/example/porsche.jpg
+```
 
-// Request: w_1500 → Automatically rounded to w_1920
+Request: `w_1500` → Automatically rounded to `w_1920`:
+
+```bash
 https://assets.autorender.io/LOKVTtKVGb/w_1500/docs/example/porsche.jpg
+```
 
-// Request: w_1080 → Stays at w_1080 (already a bucket size)
+Request: `w_1080` → Stays at `w_1080` (already a bucket size):
+
+```bash
 https://assets.autorender.io/LOKVTtKVGb/w_1080/docs/example/porsche.jpg
 ```
 
@@ -64,15 +71,23 @@ AutoRender analyzes the `User-Agent` header and `Save-Data` header to determine 
 
 ### Examples
 
+No width specified - AutoRender adds device-appropriate width:
+
+iPhone request → automatically becomes `w_1080`:
+
 ```bash
-# No width specified - AutoRender adds device-appropriate width
-# iPhone request → automatically becomes w_1080
 https://assets.autorender.io/LOKVTtKVGb/docs/example/porsche.jpg
+```
 
-# Desktop request → automatically becomes w_1080
+Desktop request → automatically becomes `w_1080`:
+
+```bash
 https://assets.autorender.io/LOKVTtKVGb/docs/example/porsche.jpg
+```
 
-# Mobile with Save-Data header → automatically becomes w_480
+Mobile with Save-Data header → automatically becomes `w_480`:
+
+```bash
 https://assets.autorender.io/LOKVTtKVGb/docs/example/porsche.jpg
 ```
 
@@ -117,17 +132,21 @@ Image effects are applied in this order:
 
 ### Example
 
+These URLs produce identical results due to automatic ordering:
+
+Parameter order: quality, width, crop:
+
 ```bash
-# These URLs produce identical results due to automatic ordering:
-
-# Parameter order: quality, width, crop
 https://assets.autorender.io/LOKVTtKVGb/q_80,w_720,c_crop/docs/example/porsche.jpg
-
-# Parameter order: crop, quality, width (reordered automatically)
-https://assets.autorender.io/LOKVTtKVGb/c_crop,q_80,w_720/docs/example/porsche.jpg
-
-# Both URLs are automatically reordered to: c_crop,w_720,q_80
 ```
+
+Parameter order: crop, quality, width (reordered automatically):
+
+```bash
+https://assets.autorender.io/LOKVTtKVGb/c_crop,q_80,w_720/docs/example/porsche.jpg
+```
+
+Both URLs are automatically reordered to: `c_crop,w_720,q_80`
 
 <Note>
   AutoRender ensures transformations are always applied in the optimal order, so you don't need to worry about parameter sequence in your URLs.
@@ -141,12 +160,17 @@ AutoRender supports preset tokens (`t_*`) that allow you to store and reuse comm
 
 Preset tokens are stored per tenant and can be referenced in transformation URLs:
 
-```bash
-# Using a preset token
-https://assets.autorender.io/LOKVTtKVGb/t_thumbnail-2/docs/example/porsche.jpg
+Using a preset token:
 
-# The preset expands to: c_fill,w_200,h_200,p_c
-# Equivalent to:
+```bash
+https://assets.autorender.io/LOKVTtKVGb/t_thumbnail-2/docs/example/porsche.jpg
+```
+
+The preset expands to: `c_fill,w_200,h_200,p_c`
+
+Equivalent to:
+
+```bash
 https://assets.autorender.io/LOKVTtKVGb/c_fill,w_200,h_200,p_c/docs/example/porsche.jpg
 ```
 
@@ -187,10 +211,9 @@ AutoRender respects the `Save-Data` HTTP header, which indicates that the user p
 
 ### Example
 
+Request with Save-Data: on header. Mobile device that would normally get `w_720` is automatically reduced to `w_480`:
+
 ```bash
-# Request with Save-Data: on header
-# Mobile device that would normally get w_720
-# Automatically reduced to w_480
 https://assets.autorender.io/LOKVTtKVGb/docs/example/porsche.jpg
 ```
 
@@ -227,28 +250,33 @@ https://assets.autorender.io/LOKVTtKVGb/docs/example/porsche.jpg
 
 ### Example 2: Width Bucketing in Action
 
+Request with `w_650` automatically rounded to `w_720`:
+
 ```bash
-# Request with w_650
-# Automatically rounded to w_720
 https://assets.autorender.io/LOKVTtKVGb/w_650/docs/example/porsche.jpg
 ```
 
 ### Example 3: Automatic Ordering
 
-```bash
-# Parameters in any order - AutoRender reorders automatically
-https://assets.autorender.io/LOKVTtKVGb/q_80,c_fill,w_800,h_600/docs/example/porsche.jpg
+Parameters in any order - AutoRender reorders automatically:
 
-# Automatically becomes: c_fill,w_800,h_600,q_80
+```bash
+https://assets.autorender.io/LOKVTtKVGb/q_80,c_fill,w_800,h_600/docs/example/porsche.jpg
 ```
+
+Automatically becomes: `c_fill,w_800,h_600,q_80`
 
 ### Example 4: Using Presets
 
-```bash
-# Simple preset usage
-https://assets.autorender.io/LOKVTtKVGb/t_thumbnail-2/docs/example/porsche.jpg
+Simple preset usage:
 
-# Preset with additional parameters
+```bash
+https://assets.autorender.io/LOKVTtKVGb/t_thumbnail-2/docs/example/porsche.jpg
+```
+
+Preset with additional parameters:
+
+```bash
 https://assets.autorender.io/LOKVTtKVGb/t_thumbnail-2,q_90/docs/example/porsche.jpg
 ```
 

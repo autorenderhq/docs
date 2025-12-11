@@ -12,7 +12,7 @@ AutoRender provides a comprehensive suite of image enhancement effects that allo
 
 AutoRender URLs with effects follow this structure:
 
-```
+```bash
 https://assets.autorender.io/LOKVTtKVGb/e_saturation:30,w_800/docs/example/porsche.jpg
 ```
 
@@ -31,15 +31,15 @@ Adjusts the intensity/vibrancy of colors.
 - **Negative values:** Desaturate (move toward grayscale)
 - **Positive values:** Increase color intensity
 
-```
-// Increase saturation
+```bash
 https://assets.autorender.io/LOKVTtKVGb/e_saturation:30/docs/example/porsche.jpg
 ```
 
 <img src="https://assets.autorender.io/LOKVTtKVGb/e_saturation:30/docs/example/porsche.jpg" alt="Increased saturation" class="ar-url-image" />
 
-```
-// Decrease saturation (washed out look)
+Decrease saturation (washed out look):
+
+```bash
 https://assets.autorender.io/LOKVTtKVGb/e_saturation:-50/docs/example/porsche.jpg
 ```
 
@@ -53,15 +53,15 @@ Rotates colors around the color wheel, creating dramatic color shifts.
 - **Range:** `-180` to `180` degrees
 - **Effect:** Shifts all colors by the specified degree
 
-```
-// Shift to warm tones
+```bash
 https://assets.autorender.io/LOKVTtKVGb/e_hue:30/docs/example/porsche.jpg
 ```
 
 <img src="https://assets.autorender.io/LOKVTtKVGb/e_hue:30/docs/example/porsche.jpg" alt="Hue shift warm" class="ar-url-image" />
 
-```
-// Shift to cool tones
+Shift to cool tones:
+
+```bash
 https://assets.autorender.io/LOKVTtKVGb/e_hue:-45/docs/example/porsche.jpg
 ```
 
@@ -76,15 +76,15 @@ Adjusts color temperature from cool (blue) to warm (orange/yellow).
 - **Negative values:** Cooler (more blue)
 - **Positive values:** Warmer (more orange/yellow)
 
-```
-// Add warmth
+```bash
 https://assets.autorender.io/LOKVTtKVGb/e_temperature:40/docs/example/porsche.jpg
 ```
 
 <img src="https://assets.autorender.io/LOKVTtKVGb/e_temperature:40/docs/example/porsche.jpg" alt="Warm temperature" class="ar-url-image" />
 
-```
-// Add coolness
+Add coolness:
+
+```bash
 https://assets.autorender.io/LOKVTtKVGb/e_temperature:-60/docs/example/porsche.jpg
 ```
 
@@ -99,8 +99,7 @@ Adjusts red/blue balance with saturation preservation.
 - **Negative values:** Cooler (more blue)
 - **Positive values:** Warmer (more red)
 
-```
-// Add warmth
+```bash
 https://assets.autorender.io/LOKVTtKVGb/e_warmth:30/docs/example/porsche.jpg
 ```
 
@@ -115,8 +114,7 @@ Adjusts green/magenta color balance.
 - **Negative values:** Green tint
 - **Positive values:** Magenta tint
 
-```
-// Add magenta tint
+```bash
 https://assets.autorender.io/LOKVTtKVGb/e_tint:20/docs/example/porsche.jpg
 ```
 
@@ -135,15 +133,15 @@ Adjusts overall image brightness.
 - **Negative values:** Darker
 - **Positive values:** Brighter
 
-```
-// Increase brightness
+```bash
 https://assets.autorender.io/LOKVTtKVGb/e_brightness:20/docs/example/porsche.jpg
 ```
 
 <img src="https://assets.autorender.io/LOKVTtKVGb/e_brightness:20/docs/example/porsche.jpg" alt="Increased brightness" class="ar-url-image" />
 
-```
-// Decrease brightness
+Decrease brightness:
+
+```bash
 https://assets.autorender.io/LOKVTtKVGb/e_brightness:-30/docs/example/porsche.jpg
 ```
 
@@ -158,8 +156,7 @@ Adjusts the difference between light and dark areas.
 - **Negative values:** Reduce contrast (softer)
 - **Positive values:** Increase contrast (more dramatic)
 
-```
-// Increase contrast
+```bash
 https://assets.autorender.io/LOKVTtKVGb/e_contrast:30/docs/example/porsche.jpg
 ```
 
@@ -174,8 +171,7 @@ Camera-style exposure adjustment.
 - **Negative values:** Underexpose (darker)
 - **Positive values:** Overexpose (brighter)
 
-```
-// Increase exposure
+```bash
 https://assets.autorender.io/LOKVTtKVGb/e_exposure:25/docs/example/porsche.jpg
 ```
 
@@ -190,8 +186,7 @@ Adjusts bright areas of the image.
 - **Negative values:** Darken highlights
 - **Positive values:** Brighten highlights
 
-```
-// Darken highlights
+```bash
 https://assets.autorender.io/LOKVTtKVGb/e_highlights:-40/docs/example/porsche.jpg
 ```
 
@@ -206,8 +201,7 @@ Adjusts dark areas of the image.
 - **Negative values:** Darken shadows
 - **Positive values:** Brighten shadows
 
-```
-// Brighten shadows
+```bash
 https://assets.autorender.io/LOKVTtKVGb/e_shadows:30/docs/example/porsche.jpg
 ```
 
@@ -221,8 +215,7 @@ Gamma correction for tonal adjustment.
 - **Range:** `-50` to `150`
 - **Effect:** Adjusts mid-tone brightness
 
-```
-// Gamma correction
+```bash
 https://assets.autorender.io/LOKVTtKVGb/e_gamma:5/docs/example/porsche.jpg
 ```
 
@@ -240,15 +233,15 @@ Basic image sharpening.
 - **Default strength:** `100`
 - **Range:** `1` to `2000`
 
-```
-// Default sharpening
+```bash
 https://assets.autorender.io/LOKVTtKVGb/e_sharpen/docs/example/porsche.jpg
 ```
 
 <img src="https://assets.autorender.io/LOKVTtKVGb/e_sharpen/docs/example/porsche.jpg" alt="Default sharpening" class="ar-url-image" />
 
-```
-// Custom sharpening strength
+Custom sharpening strength:
+
+```bash
 https://assets.autorender.io/LOKVTtKVGb/e_sharpen:150/docs/example/porsche.jpg
 ```
 
@@ -262,8 +255,7 @@ Professional sharpening with configurable strength.
 - **Range:** `1` to `2000`
 - **Higher values:** More aggressive sharpening
 
-```
-// Professional sharpening
+```bash
 https://assets.autorender.io/LOKVTtKVGb/e_unsharp_mask:150/docs/example/porsche.jpg
 ```
 
@@ -277,8 +269,7 @@ Enhances local contrast and texture detail.
 - **Range:** `0` to `100`
 - **Effect:** Increases texture and detail without over-sharpening
 
-```
-// Add structure/clarity
+```bash
 https://assets.autorender.io/LOKVTtKVGb/e_structure:40/docs/example/porsche.jpg
 ```
 
@@ -294,8 +285,7 @@ Converts image to grayscale.
 
 **Format:** `e_grayscale`
 
-```
-// Convert to grayscale
+```bash
 https://assets.autorender.io/LOKVTtKVGb/e_grayscale/docs/example/porsche.jpg
 ```
 
@@ -309,8 +299,7 @@ Converts to black and white with threshold control.
 - **Range:** `0` to `100`
 - **Effect:** Controls the threshold for black/white conversion
 
-```
-// Black and white conversion
+```bash
 https://assets.autorender.io/LOKVTtKVGb/e_blackwhite:50/docs/example/porsche.jpg
 ```
 
@@ -322,8 +311,7 @@ Creates a negative/inverted image.
 
 **Format:** `e_invert`
 
-```
-// Invert colors
+```bash
 https://assets.autorender.io/LOKVTtKVGb/e_invert/docs/example/porsche.jpg
 ```
 
@@ -341,8 +329,7 @@ Creates a vintage faded look.
 - **Range:** `0` to `100`
 - **Higher values:** More faded appearance
 
-```
-// Vintage fade effect
+```bash
 https://assets.autorender.io/LOKVTtKVGb/e_fade:60/docs/example/porsche.jpg
 ```
 
@@ -356,8 +343,7 @@ Darkens the edges of the image.
 - **Range:** `0` to `100`
 - **Higher values:** Stronger vignette effect
 
-```
-// Add vignette
+```bash
 https://assets.autorender.io/LOKVTtKVGb/e_vignette:45/docs/example/porsche.jpg
 ```
 
@@ -371,8 +357,7 @@ Applies Gaussian blur effect.
 - **Range:** `0.3` to `1000`
 - **Higher values:** More blur
 
-```
-// Apply blur
+```bash
 https://assets.autorender.io/LOKVTtKVGb/e_blur:5/docs/example/porsche.jpg
 ```
 
@@ -386,8 +371,7 @@ Reduces noise while preserving edges.
 - **Range:** `3` to `15` (odd numbers)
 - **Effect:** Noise reduction filter
 
-```
-// Noise reduction
+```bash
 https://assets.autorender.io/LOKVTtKVGb/e_median:5/docs/example/porsche.jpg
 ```
 
@@ -403,8 +387,7 @@ Automatically optimizes image quality.
 
 **Format:** `e_auto_enhance`
 
-```
-// Auto enhance
+```bash
 https://assets.autorender.io/LOKVTtKVGb/e_auto_enhance/docs/example/porsche.jpg
 ```
 
@@ -416,8 +399,7 @@ Auto-stretches dynamic range for better contrast.
 
 **Format:** `e_normalize`
 
-```
-// Normalize dynamic range
+```bash
 https://assets.autorender.io/LOKVTtKVGb/e_normalize/docs/example/porsche.jpg
 ```
 
@@ -431,22 +413,23 @@ Scene-specific optimization.
 - **Modes:** `indoor`, `outdoor`
 - **Blend:** `0` to `100` (optional)
 
-```
-// General improvement
+```bash
 https://assets.autorender.io/LOKVTtKVGb/e_improve/docs/example/porsche.jpg
 ```
 
 <img src="https://assets.autorender.io/LOKVTtKVGb/e_improve/docs/example/porsche.jpg" alt="Improved" class="ar-url-image" />
 
-```
-// Indoor scene optimization
+Indoor scene optimization:
+
+```bash
 https://assets.autorender.io/LOKVTtKVGb/e_improve:indoor/docs/example/porsche.jpg
 ```
 
 <img src="https://assets.autorender.io/LOKVTtKVGb/e_improve:indoor/docs/example/porsche.jpg" alt="Indoor improvement" class="ar-url-image" />
 
-```
-// Outdoor scene with blend control
+Outdoor scene with blend control:
+
+```bash
 https://assets.autorender.io/LOKVTtKVGb/e_improve:outdoor:80/docs/example/porsche.jpg
 ```
 
@@ -464,15 +447,15 @@ Mathematical pixel transformation: `output = a × input + b`
 - **`a`**: Multiplier (scaling factor)
 - **`b`**: Offset (addition factor)
 
-```
-// Increase brightness by 20%
+```bash
 https://assets.autorender.io/LOKVTtKVGb/e_linear:1.2/docs/example/porsche.jpg
 ```
 
 <img src="https://assets.autorender.io/LOKVTtKVGb/e_linear:1.2/docs/example/porsche.jpg" alt="Linear adjust" class="ar-url-image" />
 
-```
-// Brightness with offset
+Brightness with offset:
+
+```bash
 https://assets.autorender.io/LOKVTtKVGb/e_linear:1.2:10/docs/example/porsche.jpg
 ```
 
@@ -486,8 +469,7 @@ Converts to binary black/white.
 - **Range:** `0` to `255`
 - **Optional:** `:gray` for grayscale threshold
 
-```
-// Binary threshold
+```bash
 https://assets.autorender.io/LOKVTtKVGb/e_threshold:128/docs/example/porsche.jpg
 ```
 
@@ -499,8 +481,7 @@ Removes alpha channel, flattens transparency.
 
 **Format:** `e_flatten`
 
-```
-// Flatten transparency
+```bash
 https://assets.autorender.io/LOKVTtKVGb/e_flatten/docs/example/porsche.jpg
 ```
 
@@ -512,8 +493,7 @@ Adds alpha channel to image.
 
 **Format:** `e_unflatten`
 
-```
-// Add alpha channel
+```bash
 https://assets.autorender.io/LOKVTtKVGb/e_unflatten/docs/example/porsche.jpg
 ```
 
@@ -526,33 +506,132 @@ Adds padding around the image.
 **Format:** `e_extend:{top}:{right}:{bottom}:{left}:{color}`
 - **Color:** `white`, `black`, `rgb:RRGGBB`
 
-```
-// Add white padding
+```bash
 https://assets.autorender.io/LOKVTtKVGb/e_extend:10:10:10:10:white/docs/example/porsche.jpg
 ```
 
 <img src="https://assets.autorender.io/LOKVTtKVGb/e_extend:10:10:10:10:white/docs/example/porsche.jpg" alt="Extended with padding" class="ar-url-image" />
 
+### Affine Transform (`e_affine`)
+
+Applies a 2D affine transformation matrix to the image.
+
+**Format:** `e_affine:{a},{b},{c},{d}`
+- **Matrix values:** Four numbers defining the transformation matrix
+- **Effect:** Allows rotation, scaling, shearing, and reflection
+
+```bash
+https://assets.autorender.io/LOKVTtKVGb/e_affine:1,0,0.5,1/docs/example/porsche.jpg
+```
+
+<img src="https://assets.autorender.io/LOKVTtKVGb/e_affine:1,0,0.5,1/docs/example/porsche.jpg" alt="Affine transform" class="ar-url-image" />
+
+**Use cases:**
+- Advanced geometric transformations
+- Custom rotations and scaling
+- Perspective corrections
+- Image distortion effects
+
+### Extract Channel (`e_extract`)
+
+Extracts a single color channel from the image.
+
+**Format:** `e_extract:{channel}`
+- **Channels:** `red`/`r`, `green`/`g`, `blue`/`b`, `alpha`/`a`
+
+```bash
+https://assets.autorender.io/LOKVTtKVGb/e_extract:red/docs/example/porsche.jpg
+```
+
+<img src="https://assets.autorender.io/LOKVTtKVGb/e_extract:red/docs/example/porsche.jpg" alt="Extract red channel" class="ar-url-image" />
+
+Extract green channel:
+
+```bash
+https://assets.autorender.io/LOKVTtKVGb/e_extract:green/docs/example/porsche.jpg
+```
+
+Extract blue channel:
+
+```bash
+https://assets.autorender.io/LOKVTtKVGb/e_extract:blue/docs/example/porsche.jpg
+```
+
+Extract alpha channel:
+
+```bash
+https://assets.autorender.io/LOKVTtKVGb/e_extract:alpha/docs/example/porsche.jpg
+```
+
+**Use cases:**
+- Channel analysis
+- Color separation
+- Mask extraction
+- Image processing workflows
+
+### Ensure Alpha (`e_ensure_alpha`)
+
+Adds an alpha channel to the image if it doesn't already have one.
+
+**Format:** `e_ensure_alpha`
+
+```bash
+https://assets.autorender.io/LOKVTtKVGb/e_ensure_alpha/docs/example/porsche.jpg
+```
+
+<img src="https://assets.autorender.io/LOKVTtKVGb/e_ensure_alpha/docs/example/porsche.jpg" alt="Ensure alpha" class="ar-url-image" />
+
+**Use cases:**
+- Preparing images for transparency operations
+- Ensuring compatibility with layer operations
+- Alpha channel manipulation workflows
+
+### Remove Alpha (`e_remove_alpha`)
+
+Removes the alpha channel and replaces transparency with a background color.
+
+**Format:** `e_remove_alpha` or `e_remove_alpha:{color}`
+- **Color:** `white`, `black`, `rgb:RRGGBB` (optional, defaults to white)
+
+```bash
+https://assets.autorender.io/LOKVTtKVGb/e_remove_alpha/docs/example/porsche.jpg
+```
+
+<img src="https://assets.autorender.io/LOKVTtKVGb/e_remove_alpha/docs/example/porsche.jpg" alt="Remove alpha" class="ar-url-image" />
+
+Remove alpha with custom background:
+
+```bash
+https://assets.autorender.io/LOKVTtKVGb/e_remove_alpha:rgb:FF0000/docs/example/porsche.jpg
+```
+
+**Use cases:**
+- Flattening transparent images
+- Converting PNG to JPEG
+- Removing transparency for compatibility
+- Adding solid backgrounds to transparent images
+
 ## Combining Effects
 
 You can combine multiple effects for professional results:
 
-```
-// Professional portrait enhancement
+```bash
 https://assets.autorender.io/LOKVTtKVGb/w_1200,e_auto_enhance,e_warmth:25,e_shadows:30,e_highlights:-20,e_structure:25,e_vignette:40/docs/example/porsche.jpg
 ```
 
 <img src="https://assets.autorender.io/LOKVTtKVGb/w_1200,e_auto_enhance,e_warmth:25,e_shadows:30,e_highlights:-20,e_structure:25,e_vignette:40/docs/example/porsche.jpg" alt="Professional portrait" class="ar-url-image" />
 
-```
-// Vibrant landscape
+Vibrant landscape:
+
+```bash
 https://assets.autorender.io/LOKVTtKVGb/w_1920,e_normalize,e_saturation:35,e_contrast:20,e_structure:40,e_sharpen:120/docs/example/porsche.jpg
 ```
 
 <img src="https://assets.autorender.io/LOKVTtKVGb/w_1920,e_normalize,e_saturation:35,e_contrast:20,e_structure:40,e_sharpen:120/docs/example/porsche.jpg" alt="Vibrant landscape" class="ar-url-image" />
 
-```
-// Vintage effect
+Vintage effect:
+
+```bash
 https://assets.autorender.io/LOKVTtKVGb/e_fade:70,e_temperature:40,e_saturation:-20,e_vignette:60/docs/example/porsche.jpg
 ```
 
@@ -606,7 +685,7 @@ AutoRender applies effects in an optimized order for best results:
 
 Increase saturation and add warmth:
 
-```
+```bash
 https://assets.autorender.io/LOKVTtKVGb/e_saturation:30,e_warmth:25/docs/example/porsche.jpg
 ```
 
@@ -616,7 +695,7 @@ https://assets.autorender.io/LOKVTtKVGb/e_saturation:30,e_warmth:25/docs/example
 
 Auto enhance with tonal adjustments:
 
-```
+```bash
 https://assets.autorender.io/LOKVTtKVGb/e_auto_enhance,e_warmth:25,e_shadows:30,e_structure:25/docs/example/porsche.jpg
 ```
 
@@ -626,7 +705,7 @@ https://assets.autorender.io/LOKVTtKVGb/e_auto_enhance,e_warmth:25,e_shadows:30,
 
 Convert to grayscale with high contrast:
 
-```
+```bash
 https://assets.autorender.io/LOKVTtKVGb/e_grayscale,e_contrast:40,e_structure:50/docs/example/porsche.jpg
 ```
 
@@ -636,7 +715,7 @@ https://assets.autorender.io/LOKVTtKVGb/e_grayscale,e_contrast:40,e_structure:50
 
 Resize, enhance, and apply effects:
 
-```
+```bash
 https://assets.autorender.io/LOKVTtKVGb/w_800,e_saturation:25,e_contrast:15,e_sharpen:120,br_20/docs/example/porsche.jpg
 ```
 

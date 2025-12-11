@@ -12,7 +12,7 @@ AutoRender provides powerful cropping capabilities that allow you to extract spe
 
 AutoRender URLs with cropping follow this structure:
 
-```
+```bash
 https://assets.autorender.io/LOKVTtKVGb/w_600,h_600,c_crop/docs/example/porsche.jpg
 ```
 
@@ -26,8 +26,9 @@ AutoRender supports multiple crop modes that control how images are resized and 
 
 Crops the image to exact dimensions, centering the crop area by default. This mode extracts a specific region from the image.
 
-```
-// Crop to 600x600 square
+Crop to 600x600 square:
+
+```bash
 https://assets.autorender.io/LOKVTtKVGb/w_600,h_600,c_crop/docs/example/porsche.jpg
 ```
 
@@ -43,8 +44,9 @@ https://assets.autorender.io/LOKVTtKVGb/w_600,h_600,c_crop/docs/example/porsche.
 
 Resizes the image to cover the entire target area, cropping if necessary to maintain aspect ratio. The entire target area is filled, but parts of the image may be cropped.
 
-```
-// Fill 600x600 area (may crop edges)
+Fill 600x600 area (may crop edges):
+
+```bash
 https://assets.autorender.io/LOKVTtKVGb/w_600,h_600,c_fill/docs/example/porsche.jpg
 ```
 
@@ -60,8 +62,9 @@ https://assets.autorender.io/LOKVTtKVGb/w_600,h_600,c_fill/docs/example/porsche.
 
 Resizes the image to fit within the target area, preserving the entire image. May add padding if aspect ratios don't match.
 
-```
-// Fit within 600x600 (entire image visible)
+Fit within 600x600 (entire image visible):
+
+```bash
 https://assets.autorender.io/LOKVTtKVGb/w_600,h_600,c_fit/docs/example/porsche.jpg
 ```
 
@@ -77,8 +80,9 @@ https://assets.autorender.io/LOKVTtKVGb/w_600,h_600,c_fit/docs/example/porsche.j
 
 Scales the image to fit dimensions, potentially distorting the aspect ratio to match exact dimensions.
 
-```
-// Scale to exact dimensions (may distort) - 600x400
+Scale to exact dimensions (may distort) - 600x400:
+
+```bash
 https://assets.autorender.io/LOKVTtKVGb/w_600,h_400,c_scale/docs/example/porsche.jpg
 ```
 
@@ -101,36 +105,41 @@ Control where the crop area is positioned when cropping images. Position determi
 
 #### Center (Default)
 
-```
-// Center crop - 600x600
+Center crop - 600x600:
+
+```bash
 https://assets.autorender.io/LOKVTtKVGb/w_600,h_600,c_crop,p_c/docs/example/porsche.jpg
 ```
 
 #### Corner Positions
 
-```
-// Top-left corner - 600x600
+Top-left corner - 600x600:
+
+```bash
 https://assets.autorender.io/LOKVTtKVGb/w_600,h_600,c_crop,p_tl/docs/example/porsche.jpg
 ```
 
 <img src="https://assets.autorender.io/LOKVTtKVGb/w_600,h_600,c_crop,p_tl/docs/example/porsche.jpg" alt="Top-left crop" class="ar-url-image" />
 
-```
-// Top-right corner
+Top-right corner:
+
+```bash
 https://assets.autorender.io/LOKVTtKVGb/w_600,h_600,c_crop,p_tr/docs/example/porsche.jpg
 ```
 
 <img src="https://assets.autorender.io/LOKVTtKVGb/w_600,h_600,c_crop,p_tr/docs/example/porsche.jpg" alt="Top-right crop" class="ar-url-image" />
 
-```
-// Bottom-left corner
+Bottom-left corner:
+
+```bash
 https://assets.autorender.io/LOKVTtKVGb/w_600,h_600,c_crop,p_bl/docs/example/porsche.jpg
 ```
 
 <img src="https://assets.autorender.io/LOKVTtKVGb/w_600,h_600,c_crop,p_bl/docs/example/porsche.jpg" alt="Bottom-left crop" class="ar-url-image" />
 
-```
-// Bottom-right corner
+Bottom-right corner:
+
+```bash
 https://assets.autorender.io/LOKVTtKVGb/w_600,h_600,c_crop,p_br/docs/example/porsche.jpg
 ```
 
@@ -138,29 +147,33 @@ https://assets.autorender.io/LOKVTtKVGb/w_600,h_600,c_crop,p_br/docs/example/por
 
 #### Edge Positions
 
-```
-// Top center
+Top center:
+
+```bash
 https://assets.autorender.io/LOKVTtKVGb/w_600,h_600,c_crop,p_t/docs/example/porsche.jpg
 ```
 
 <img src="https://assets.autorender.io/LOKVTtKVGb/w_600,h_600,c_crop,p_t/docs/example/porsche.jpg" alt="Top center crop" class="ar-url-image" />
 
-```
-// Bottom center
+Bottom center:
+
+```bash
 https://assets.autorender.io/LOKVTtKVGb/w_600,h_600,c_crop,p_b/docs/example/porsche.jpg
 ```
 
 <img src="https://assets.autorender.io/LOKVTtKVGb/w_600,h_600,c_crop,p_b/docs/example/porsche.jpg" alt="Bottom center crop" class="ar-url-image" />
 
-```
-// Left center
+Left center:
+
+```bash
 https://assets.autorender.io/LOKVTtKVGb/w_600,h_600,c_crop,p_l/docs/example/porsche.jpg
 ```
 
 <img src="https://assets.autorender.io/LOKVTtKVGb/w_600,h_600,c_crop,p_l/docs/example/porsche.jpg" alt="Left center crop" class="ar-url-image" />
 
-```
-// Right center
+Right center:
+
+```bash
 https://assets.autorender.io/LOKVTtKVGb/w_600,h_600,c_crop,p_r/docs/example/porsche.jpg
 ```
 
@@ -188,8 +201,9 @@ AutoRender supports intelligent position detection that automatically finds the 
 
 Automatically detects faces in the image and centers the crop on the detected face(s).
 
-```
-// Face detection crop - 600x600
+Face detection crop - 600x600:
+
+```bash
 https://assets.autorender.io/LOKVTtKVGb/w_600,h_600,c_crop,p_face/docs/example/porsche.jpg
 ```
 
@@ -205,8 +219,9 @@ https://assets.autorender.io/LOKVTtKVGb/w_600,h_600,c_crop,p_face/docs/example/p
 
 Finds the most interesting or information-rich area of the image and centers the crop there.
 
-```
-// Entropy-based positioning - 600x600
+Entropy-based positioning - 600x600:
+
+```bash
 https://assets.autorender.io/LOKVTtKVGb/w_600,h_600,c_crop,p_entropy/docs/example/porsche.jpg
 ```
 
@@ -222,8 +237,9 @@ https://assets.autorender.io/LOKVTtKVGb/w_600,h_600,c_crop,p_entropy/docs/exampl
 
 Finds the focal point or area that draws attention and centers the crop there.
 
-```
-// Attention-based positioning - 600x600
+Attention-based positioning - 600x600:
+
+```bash
 https://assets.autorender.io/LOKVTtKVGb/w_600,h_600,c_crop,p_attention/docs/example/porsche.jpg
 ```
 
@@ -243,8 +259,9 @@ https://assets.autorender.io/LOKVTtKVGb/w_600,h_600,c_crop,p_attention/docs/exam
 
 You can combine crop modes with aspect ratios for precise control:
 
-```
-// 16:9 aspect ratio with specific width and face detection
+16:9 aspect ratio with specific width and face detection:
+
+```bash
 https://assets.autorender.io/LOKVTtKVGb/ar_16:9,w_1920,c_crop,p_face/docs/example/porsche.jpg
 ```
 
@@ -276,29 +293,33 @@ https://assets.autorender.io/LOKVTtKVGb/ar_16:9,w_1920,c_crop,p_face/docs/exampl
 
 ### Thumbnails
 
-```
-// Square thumbnail with face detection
+Square thumbnail with face detection:
+
+```bash
 https://assets.autorender.io/LOKVTtKVGb/w_300,h_300,c_crop,p_face/docs/example/porsche.jpg
 ```
 
 ### Hero Images
 
-```
-// Full-width hero with fill mode
+Full-width hero with fill mode:
+
+```bash
 https://assets.autorender.io/LOKVTtKVGb/w_1920,h_1080,c_fill,p_c/docs/example/porsche.jpg
 ```
 
 ### Profile Pictures
 
-```
-// Square profile with face detection
+Square profile with face detection:
+
+```bash
 https://assets.autorender.io/LOKVTtKVGb/w_400,h_400,c_crop,ar_1:1,p_face/docs/example/porsche.jpg
 ```
 
 ### Product Images
 
-```
-// Product image that fits within bounds
+Product image that fits within bounds:
+
+```bash
 https://assets.autorender.io/LOKVTtKVGb/w_800,h_800,c_fit/docs/example/porsche.jpg
 ```
 
@@ -308,7 +329,7 @@ https://assets.autorender.io/LOKVTtKVGb/w_800,h_800,c_fit/docs/example/porsche.j
 
 Create a 300x300 square thumbnail, cropping from center:
 
-```
+```bash
 https://assets.autorender.io/LOKVTtKVGb/w_300,h_300,c_crop/docs/example/porsche.jpg
 ```
 
@@ -318,7 +339,7 @@ https://assets.autorender.io/LOKVTtKVGb/w_300,h_300,c_crop/docs/example/porsche.
 
 Create a 1920x600 banner, filling the area:
 
-```
+```bash
 https://assets.autorender.io/LOKVTtKVGb/w_1920,h_600,c_fill,p_c/docs/example/porsche.jpg
 ```
 
@@ -328,7 +349,7 @@ https://assets.autorender.io/LOKVTtKVGb/w_1920,h_600,c_fill,p_c/docs/example/por
 
 Create a square profile picture with automatic face detection:
 
-```
+```bash
 https://assets.autorender.io/LOKVTtKVGb/w_400,h_400,c_crop,ar_1:1,p_face/docs/example/porsche.jpg
 ```
 
@@ -338,7 +359,7 @@ https://assets.autorender.io/LOKVTtKVGb/w_400,h_400,c_crop,ar_1:1,p_face/docs/ex
 
 Create a responsive image that fits within bounds:
 
-```
+```bash
 https://assets.autorender.io/LOKVTtKVGb/w_800,c_fit/docs/example/porsche.jpg
 ```
 
