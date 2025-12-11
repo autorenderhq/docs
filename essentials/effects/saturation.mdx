@@ -1,0 +1,83 @@
+---
+title: 'Saturation'
+description: 'Learn how to adjust color saturation using AutoRender e_saturation parameter'
+icon: 'palette'
+---
+
+## Overview
+
+The saturation effect controls the intensity and vibrancy of colors in your images. Increase saturation for vibrant, colorful images, or decrease it for a more muted, desaturated look.
+
+### URL Structure
+
+AutoRender URLs with saturation follow this structure:
+
+```bash
+https://assets.autorender.io/LOKVTtKVGb/e_saturation:30/docs/example/porsche.jpg
+```
+
+## Saturation (`e_saturation`)
+
+Adjusts the intensity/vibrancy of colors.
+
+**Format:** `e_saturation:{level}`
+- **Range:** `-100` to `100`
+- **Negative values:** Desaturate (move toward grayscale)
+- **Positive values:** Increase color intensity
+
+Compare different saturation levels:
+
+<Tabs>
+<Tab title="Original">
+```bash
+https://assets.autorender.io/LOKVTtKVGb/docs/example/porsche.jpg
+```
+
+<img src="https://assets.autorender.io/LOKVTtKVGb/docs/example/porsche.jpg" alt="Original image" class="ar-url-image" />
+</Tab>
+
+<Tab title="High (+30)">
+Increase saturation:
+
+```bash
+https://assets.autorender.io/LOKVTtKVGb/e_saturation:30/docs/example/porsche.jpg
+```
+
+<img src="https://assets.autorender.io/LOKVTtKVGb/e_saturation:30/docs/example/porsche.jpg" alt="Increased saturation" class="ar-url-image" />
+</Tab>
+
+<Tab title="Low (-50)">
+Decrease saturation (washed out look):
+
+```bash
+https://assets.autorender.io/LOKVTtKVGb/e_saturation:-50/docs/example/porsche.jpg
+```
+
+<img src="https://assets.autorender.io/LOKVTtKVGb/e_saturation:-50/docs/example/porsche.jpg" alt="Decreased saturation" class="ar-url-image" />
+</Tab>
+</Tabs>
+
+## Use Cases
+
+- **Vibrant images:** Increase saturation for colorful, eye-catching photos
+- **Muted aesthetics:** Decrease saturation for a subtle, elegant look
+- **Product photography:** Enhance colors to make products more appealing
+- **Artistic effects:** Create vintage or desaturated looks
+
+## Combining with Other Effects
+
+Saturation works well with contrast and brightness:
+
+```bash
+https://assets.autorender.io/LOKVTtKVGb/e_saturation:25,e_contrast:20,e_brightness:10/docs/example/porsche.jpg
+```
+
+<img src="https://assets.autorender.io/LOKVTtKVGb/e_saturation:25,e_contrast:20,e_brightness:10/docs/example/porsche.jpg" alt="Saturation with contrast and brightness" class="ar-url-image" />
+
+## Best Practices
+
+- Moderate saturation (20-40) usually looks most natural
+- High saturation can make images look oversaturated
+- Negative values create a desaturated, vintage look
+- Combine with other color adjustments for best results
+

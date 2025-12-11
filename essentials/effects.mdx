@@ -31,12 +31,28 @@ Adjusts the intensity/vibrancy of colors.
 - **Negative values:** Desaturate (move toward grayscale)
 - **Positive values:** Increase color intensity
 
+Compare different saturation levels:
+
+<Tabs>
+<Tab title="Original">
+```bash
+https://assets.autorender.io/LOKVTtKVGb/docs/example/porsche.jpg
+```
+
+<img src="https://assets.autorender.io/LOKVTtKVGb/docs/example/porsche.jpg" alt="Original image" class="ar-url-image" />
+</Tab>
+
+<Tab title="High (+30)">
+Increase saturation:
+
 ```bash
 https://assets.autorender.io/LOKVTtKVGb/e_saturation:30/docs/example/porsche.jpg
 ```
 
 <img src="https://assets.autorender.io/LOKVTtKVGb/e_saturation:30/docs/example/porsche.jpg" alt="Increased saturation" class="ar-url-image" />
+</Tab>
 
+<Tab title="Low (-50)">
 Decrease saturation (washed out look):
 
 ```bash
@@ -44,6 +60,8 @@ https://assets.autorender.io/LOKVTtKVGb/e_saturation:-50/docs/example/porsche.jp
 ```
 
 <img src="https://assets.autorender.io/LOKVTtKVGb/e_saturation:-50/docs/example/porsche.jpg" alt="Decreased saturation" class="ar-url-image" />
+</Tab>
+</Tabs>
 
 ### Hue Rotation (`e_hue`)
 
@@ -133,12 +151,28 @@ Adjusts overall image brightness.
 - **Negative values:** Darker
 - **Positive values:** Brighter
 
+Compare different brightness levels:
+
+<Tabs>
+<Tab title="Original">
+```bash
+https://assets.autorender.io/LOKVTtKVGb/docs/example/porsche.jpg
+```
+
+<img src="https://assets.autorender.io/LOKVTtKVGb/docs/example/porsche.jpg" alt="Original image" class="ar-url-image" />
+</Tab>
+
+<Tab title="Bright (+20)">
+Increase brightness:
+
 ```bash
 https://assets.autorender.io/LOKVTtKVGb/e_brightness:20/docs/example/porsche.jpg
 ```
 
 <img src="https://assets.autorender.io/LOKVTtKVGb/e_brightness:20/docs/example/porsche.jpg" alt="Increased brightness" class="ar-url-image" />
+</Tab>
 
+<Tab title="Dark (-30)">
 Decrease brightness:
 
 ```bash
@@ -146,6 +180,8 @@ https://assets.autorender.io/LOKVTtKVGb/e_brightness:-30/docs/example/porsche.jp
 ```
 
 <img src="https://assets.autorender.io/LOKVTtKVGb/e_brightness:-30/docs/example/porsche.jpg" alt="Decreased brightness" class="ar-url-image" />
+</Tab>
+</Tabs>
 
 ### Contrast (`e_contrast`)
 
@@ -279,17 +315,53 @@ https://assets.autorender.io/LOKVTtKVGb/e_structure:40/docs/example/porsche.jpg
 
 Convert images to different color representations.
 
-### Grayscale (`e_grayscale`)
+Compare color space transformations:
 
-Converts image to grayscale.
+<Tabs>
+<Tab title="Original">
+```bash
+https://assets.autorender.io/LOKVTtKVGb/docs/example/porsche.jpg
+```
 
-**Format:** `e_grayscale`
+<img src="https://assets.autorender.io/LOKVTtKVGb/docs/example/porsche.jpg" alt="Original image" class="ar-url-image" />
+</Tab>
+
+<Tab title="Grayscale">
+Converts image to grayscale:
 
 ```bash
 https://assets.autorender.io/LOKVTtKVGb/e_grayscale/docs/example/porsche.jpg
 ```
 
 <img src="https://assets.autorender.io/LOKVTtKVGb/e_grayscale/docs/example/porsche.jpg" alt="Grayscale" class="ar-url-image" />
+</Tab>
+
+<Tab title="Black & White">
+Converts to black and white with threshold control:
+
+```bash
+https://assets.autorender.io/LOKVTtKVGb/e_blackwhite:50/docs/example/porsche.jpg
+```
+
+<img src="https://assets.autorender.io/LOKVTtKVGb/e_blackwhite:50/docs/example/porsche.jpg" alt="Black and white" class="ar-url-image" />
+</Tab>
+
+<Tab title="Invert">
+Creates a negative/inverted image:
+
+```bash
+https://assets.autorender.io/LOKVTtKVGb/e_invert/docs/example/porsche.jpg
+```
+
+<img src="https://assets.autorender.io/LOKVTtKVGb/e_invert/docs/example/porsche.jpg" alt="Inverted image" class="ar-url-image" />
+</Tab>
+</Tabs>
+
+### Grayscale (`e_grayscale`)
+
+Converts image to grayscale.
+
+**Format:** `e_grayscale`
 
 ### Black & White (`e_blackwhite`)
 
@@ -299,23 +371,11 @@ Converts to black and white with threshold control.
 - **Range:** `0` to `100`
 - **Effect:** Controls the threshold for black/white conversion
 
-```bash
-https://assets.autorender.io/LOKVTtKVGb/e_blackwhite:50/docs/example/porsche.jpg
-```
-
-<img src="https://assets.autorender.io/LOKVTtKVGb/e_blackwhite:50/docs/example/porsche.jpg" alt="Black and white" class="ar-url-image" />
-
 ### Invert (`e_invert`)
 
 Creates a negative/inverted image.
 
 **Format:** `e_invert`
-
-```bash
-https://assets.autorender.io/LOKVTtKVGb/e_invert/docs/example/porsche.jpg
-```
-
-<img src="https://assets.autorender.io/LOKVTtKVGb/e_invert/docs/example/porsche.jpg" alt="Inverted image" class="ar-url-image" />
 
 ## Effects & Filters
 
@@ -615,12 +675,28 @@ https://assets.autorender.io/LOKVTtKVGb/e_remove_alpha:rgb:FF0000/docs/example/p
 
 You can combine multiple effects for professional results:
 
+Compare different effect combinations:
+
+<Tabs>
+<Tab title="Original">
+```bash
+https://assets.autorender.io/LOKVTtKVGb/docs/example/porsche.jpg
+```
+
+<img src="https://assets.autorender.io/LOKVTtKVGb/docs/example/porsche.jpg" alt="Original image" class="ar-url-image" />
+</Tab>
+
+<Tab title="Professional Portrait">
+Professional portrait enhancement:
+
 ```bash
 https://assets.autorender.io/LOKVTtKVGb/w_1200,e_auto_enhance,e_warmth:25,e_shadows:30,e_highlights:-20,e_structure:25,e_vignette:40/docs/example/porsche.jpg
 ```
 
 <img src="https://assets.autorender.io/LOKVTtKVGb/w_1200,e_auto_enhance,e_warmth:25,e_shadows:30,e_highlights:-20,e_structure:25,e_vignette:40/docs/example/porsche.jpg" alt="Professional portrait" class="ar-url-image" />
+</Tab>
 
+<Tab title="Vibrant Landscape">
 Vibrant landscape:
 
 ```bash
@@ -628,7 +704,9 @@ https://assets.autorender.io/LOKVTtKVGb/w_1920,e_normalize,e_saturation:35,e_con
 ```
 
 <img src="https://assets.autorender.io/LOKVTtKVGb/w_1920,e_normalize,e_saturation:35,e_contrast:20,e_structure:40,e_sharpen:120/docs/example/porsche.jpg" alt="Vibrant landscape" class="ar-url-image" />
+</Tab>
 
+<Tab title="Vintage Effect">
 Vintage effect:
 
 ```bash
@@ -636,6 +714,8 @@ https://assets.autorender.io/LOKVTtKVGb/e_fade:70,e_temperature:40,e_saturation:
 ```
 
 <img src="https://assets.autorender.io/LOKVTtKVGb/e_fade:70,e_temperature:40,e_saturation:-20,e_vignette:60/docs/example/porsche.jpg" alt="Vintage effect" class="ar-url-image" />
+</Tab>
+</Tabs>
 
 ## Effect Processing Order
 

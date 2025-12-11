@@ -24,19 +24,31 @@ Recipes use the `t_` prefix followed by a preset name. When AutoRender encounter
 
 ### Basic Usage
 
+Compare recipe vs full transformation:
+
+<Tabs>
+<Tab title="Using Recipe">
 Using a recipe:
 
 ```bash
 https://assets.autorender.io/LOKVTtKVGb/t_thumbnail-2/docs/example/porsche.jpg
 ```
 
-This expands to: `c_fill,w_200,h_200,p_c`
+<img src="https://assets.autorender.io/LOKVTtKVGb/t_thumbnail-2/docs/example/porsche.jpg" alt="Recipe example" class="ar-url-image" />
 
+This expands to: `c_fill,w_200,h_200,p_c`
+</Tab>
+
+<Tab title="Full Transformation">
 Equivalent transformation:
 
 ```bash
 https://assets.autorender.io/LOKVTtKVGb/c_fill,w_200,h_200,p_c/docs/example/porsche.jpg
 ```
+
+<img src="https://assets.autorender.io/LOKVTtKVGb/c_fill,w_200,h_200,p_c/docs/example/porsche.jpg" alt="Full transformation" class="ar-url-image" />
+</Tab>
+</Tabs>
 
 ### Recipe Expansion Process
 

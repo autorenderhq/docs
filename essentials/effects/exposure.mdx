@@ -1,0 +1,61 @@
+---
+title: 'Exposure'
+description: 'Learn how to adjust image exposure using AutoRender e_exposure parameter'
+icon: 'camera'
+---
+
+## Overview
+
+The exposure effect provides camera-style exposure adjustment, similar to adjusting the exposure setting on a camera. This is useful for correcting images that are too dark (underexposed) or too bright (overexposed).
+
+### URL Structure
+
+AutoRender URLs with exposure follow this structure:
+
+```bash
+https://assets.autorender.io/LOKVTtKVGb/e_exposure:25/docs/example/porsche.jpg
+```
+
+## Exposure (`e_exposure`)
+
+Camera-style exposure adjustment.
+
+**Format:** `e_exposure:{level}`
+- **Range:** `-100` to `100`
+- **Negative values:** Underexpose (darker)
+- **Positive values:** Overexpose (brighter)
+
+```bash
+https://assets.autorender.io/LOKVTtKVGb/e_exposure:25/docs/example/porsche.jpg
+```
+
+<img src="https://assets.autorender.io/LOKVTtKVGb/e_exposure:25/docs/example/porsche.jpg" alt="Increased exposure" class="ar-url-image" />
+
+## Use Cases
+
+- **Correcting exposure:** Fix images that are too dark or too bright
+- **Camera-style adjustments:** Mimic camera exposure settings
+- **Portrait photography:** Brighten faces in backlit situations
+- **Landscape photography:** Adjust exposure for better detail visibility
+
+## Difference from Brightness
+
+While similar to brightness, exposure provides a more camera-like adjustment that affects the overall image exposure in a way that mimics camera settings.
+
+## Combining with Other Effects
+
+Exposure works well with highlights and shadows:
+
+```bash
+https://assets.autorender.io/LOKVTtKVGb/e_exposure:20,e_highlights:-30,e_shadows:25/docs/example/porsche.jpg
+```
+
+<img src="https://assets.autorender.io/LOKVTtKVGb/e_exposure:20,e_highlights:-30,e_shadows:25/docs/example/porsche.jpg" alt="Exposure with highlights and shadows" class="ar-url-image" />
+
+## Best Practices
+
+- Use moderate values (15-30) for natural-looking results
+- Combine with highlights and shadows for better control
+- Negative values can create dramatic dark effects
+- Test different values to find optimal exposure
+

@@ -1,0 +1,70 @@
+---
+title: 'Sharpen'
+description: 'Learn how to sharpen images using AutoRender e_sharpen parameter'
+icon: 'focus'
+---
+
+## Overview
+
+The sharpen effect enhances image sharpness and detail. This is useful for making images appear crisper and more defined, especially for product photography or images that need to look professional.
+
+### URL Structure
+
+AutoRender URLs with sharpening follow this structure:
+
+```bash
+https://assets.autorender.io/LOKVTtKVGb/e_sharpen/docs/example/porsche.jpg
+```
+
+## Sharpen (`e_sharpen`)
+
+Basic image sharpening.
+
+**Format:** `e_sharpen` or `e_sharpen:{strength}`
+- **Default strength:** `100`
+- **Range:** `1` to `2000`
+
+Default sharpening:
+
+```bash
+https://assets.autorender.io/LOKVTtKVGb/e_sharpen/docs/example/porsche.jpg
+```
+
+<img src="https://assets.autorender.io/LOKVTtKVGb/e_sharpen/docs/example/porsche.jpg" alt="Default sharpening" class="ar-url-image" />
+
+Custom sharpening strength:
+
+```bash
+https://assets.autorender.io/LOKVTtKVGb/e_sharpen:150/docs/example/porsche.jpg
+```
+
+<img src="https://assets.autorender.io/LOKVTtKVGb/e_sharpen:150/docs/example/porsche.jpg" alt="Sharpened image" class="ar-url-image" />
+
+## Use Cases
+
+- **Product photography:** Make products appear crisp and detailed
+- **Portrait enhancement:** Sharpen facial features and details
+- **Landscape photography:** Enhance detail in landscapes
+- **General enhancement:** Improve overall image clarity
+
+## Advanced Sharpening
+
+For more control, use `e_unsharp_mask` which provides professional sharpening with configurable strength.
+
+## Combining with Other Effects
+
+Sharpening works well with structure and contrast:
+
+```bash
+https://assets.autorender.io/LOKVTtKVGb/e_sharpen:120,e_structure:30,e_contrast:15/docs/example/porsche.jpg
+```
+
+<img src="https://assets.autorender.io/LOKVTtKVGb/e_sharpen:120,e_structure:30,e_contrast:15/docs/example/porsche.jpg" alt="Sharpening with structure and contrast" class="ar-url-image" />
+
+## Best Practices
+
+- Use moderate values (100-150) for natural-looking results
+- Higher values can create artifacts and halos
+- Combine with structure for enhanced detail
+- Test different values to avoid over-sharpening
+
