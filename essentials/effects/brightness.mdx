@@ -1,0 +1,83 @@
+---
+title: 'Brightness'
+description: 'Learn how to adjust image brightness using AutoRender e_brightness parameter'
+icon: 'sun'
+---
+
+## Overview
+
+The brightness effect allows you to adjust the overall brightness of your images. This is useful for correcting underexposed or overexposed images, or for creating artistic effects.
+
+### URL Structure
+
+AutoRender URLs with brightness follow this structure:
+
+```bash
+https://assets.autorender.io/LOKVTtKVGb/e_brightness:20/docs/example/porsche.jpg
+```
+
+## Brightness (`e_brightness`)
+
+Adjusts overall image brightness.
+
+**Format:** `e_brightness:{level}`
+- **Range:** `-99` to `100`
+- **Negative values:** Darker
+- **Positive values:** Brighter
+
+Compare different brightness levels:
+
+<Tabs>
+<Tab title="Original">
+```bash
+https://assets.autorender.io/LOKVTtKVGb/docs/example/porsche.jpg
+```
+
+<img src="https://assets.autorender.io/LOKVTtKVGb/docs/example/porsche.jpg" alt="Original image" class="ar-url-image" />
+</Tab>
+
+<Tab title="Bright (+20)">
+Increase brightness:
+
+```bash
+https://assets.autorender.io/LOKVTtKVGb/e_brightness:20/docs/example/porsche.jpg
+```
+
+<img src="https://assets.autorender.io/LOKVTtKVGb/e_brightness:20/docs/example/porsche.jpg" alt="Increased brightness" class="ar-url-image" />
+</Tab>
+
+<Tab title="Dark (-30)">
+Decrease brightness:
+
+```bash
+https://assets.autorender.io/LOKVTtKVGb/e_brightness:-30/docs/example/porsche.jpg
+```
+
+<img src="https://assets.autorender.io/LOKVTtKVGb/e_brightness:-30/docs/example/porsche.jpg" alt="Decreased brightness" class="ar-url-image" />
+</Tab>
+</Tabs>
+
+## Use Cases
+
+- **Correcting exposure:** Fix images that are too dark or too bright
+- **Artistic effects:** Create moody or bright atmospheres
+- **Product photography:** Ensure products are well-lit and visible
+- **Portrait enhancement:** Brighten faces in backlit situations
+
+## Combining with Other Effects
+
+Brightness works well when combined with other effects:
+
+```bash
+https://assets.autorender.io/LOKVTtKVGb/e_brightness:15,e_contrast:20,e_saturation:10/docs/example/porsche.jpg
+```
+
+<img src="https://assets.autorender.io/LOKVTtKVGb/e_brightness:15,e_contrast:20,e_saturation:10/docs/example/porsche.jpg" alt="Brightness with contrast and saturation" class="ar-url-image" />
+
+## Best Practices
+
+- Use moderate values (10-30) for natural-looking results
+- Combine with contrast adjustments for better results
+- Negative values can create dramatic dark effects
+- Test different values to find the optimal brightness for your images
+

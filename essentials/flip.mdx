@@ -25,8 +25,18 @@ Flipping mirrors the image along an axis:
 - **Vertical flip** (`flip_v`): Mirrors the image top-to-bottom
 - **Both** (`flip_hv`): Mirrors the image both horizontally and vertically (equivalent to 180° rotation)
 
-## Horizontal Flip
+Compare different flip directions:
 
+<Tabs>
+<Tab title="Original">
+```bash
+https://assets.autorender.io/LOKVTtKVGb/docs/example/porsche.jpg
+```
+
+<img src="https://assets.autorender.io/LOKVTtKVGb/docs/example/porsche.jpg" alt="Original image" class="ar-url-image" />
+</Tab>
+
+<Tab title="Horizontal (flip_h)">
 Flip the image horizontally (left-to-right mirror):
 
 ```bash
@@ -34,6 +44,32 @@ https://assets.autorender.io/LOKVTtKVGb/flip_h/docs/example/porsche.jpg
 ```
 
 <img src="https://assets.autorender.io/LOKVTtKVGb/flip_h/docs/example/porsche.jpg" alt="Horizontal flip" class="ar-url-image" />
+</Tab>
+
+<Tab title="Vertical (flip_v)">
+Flip the image vertically (top-to-bottom mirror):
+
+```bash
+https://assets.autorender.io/LOKVTtKVGb/flip_v/docs/example/porsche.jpg
+```
+
+<img src="https://assets.autorender.io/LOKVTtKVGb/flip_v/docs/example/porsche.jpg" alt="Vertical flip" class="ar-url-image" />
+</Tab>
+
+<Tab title="Both (flip_hv)">
+Flip the image both horizontally and vertically:
+
+```bash
+https://assets.autorender.io/LOKVTtKVGb/flip_hv/docs/example/porsche.jpg
+```
+
+<img src="https://assets.autorender.io/LOKVTtKVGb/flip_hv/docs/example/porsche.jpg" alt="Flip both" class="ar-url-image" />
+</Tab>
+</Tabs>
+
+## Horizontal Flip
+
+Flip the image horizontally (left-to-right mirror).
 
 **Use cases:**
 - Correcting mirrored selfies
@@ -43,13 +79,7 @@ https://assets.autorender.io/LOKVTtKVGb/flip_h/docs/example/porsche.jpg
 
 ## Vertical Flip
 
-Flip the image vertically (top-to-bottom mirror):
-
-```bash
-https://assets.autorender.io/LOKVTtKVGb/flip_v/docs/example/porsche.jpg
-```
-
-<img src="https://assets.autorender.io/LOKVTtKVGb/flip_v/docs/example/porsche.jpg" alt="Vertical flip" class="ar-url-image" />
+Flip the image vertically (top-to-bottom mirror).
 
 **Use cases:**
 - Creating upside-down effects
@@ -59,13 +89,7 @@ https://assets.autorender.io/LOKVTtKVGb/flip_v/docs/example/porsche.jpg
 
 ## Flip Both
 
-Flip the image both horizontally and vertically:
-
-```bash
-https://assets.autorender.io/LOKVTtKVGb/flip_hv/docs/example/porsche.jpg
-```
-
-<img src="https://assets.autorender.io/LOKVTtKVGb/flip_hv/docs/example/porsche.jpg" alt="Flip both" class="ar-url-image" />
+Flip the image both horizontally and vertically.
 
 <Note>
   Flipping both horizontally and vertically (`flip_hv`) produces the same result as rotating the image 180 degrees (`r_180`).

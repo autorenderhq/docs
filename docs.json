@@ -18,6 +18,7 @@
             "pages": [
               "index",
               "quickstart",
+              "quick-commerce",
               "development"
             ]
           },
@@ -32,7 +33,18 @@
               "essentials/rotate",
               "essentials/flip",
               "essentials/border-radius",
-              "essentials/effects",
+              {
+                "group": "Effects",
+                "pages": [
+                  "essentials/effects",
+                  "essentials/effects/brightness",
+                  "essentials/effects/contrast",
+                  "essentials/effects/saturation",
+                  "essentials/effects/exposure",
+                  "essentials/effects/sharpen",
+                  "essentials/effects/grayscale"
+                ]
+              },
               "essentials/layers",
               "essentials/recipes",
               "essentials/navigation"
@@ -75,6 +87,17 @@
               "api-reference/endpoint/delete",
               "api-reference/endpoint/webhook",
               "api-reference/upload-api"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "Blog",
+        "groups": [
+          {
+            "group": "Articles",
+            "pages": [
+              "blog/quick-commerce-best-practices"
             ]
           }
         ]
