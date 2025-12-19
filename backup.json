@@ -7,7 +7,7 @@
     "light": "#07C983",
     "dark": "#15803D"
   },
-  "favicon": "/favicon.ico",
+  "favicon": "/favicon.svg",
   "navigation": {
     "tabs": [
       {
@@ -16,6 +16,7 @@
           {
             "group": "Image Transformation",
             "pages": [
+              "essentials/overview",
               "essentials/automatic",
               "essentials/resize",
               "essentials/crop",
@@ -59,10 +60,16 @@
     "dark": "/logo/dark.svg"
   },
   "navbar": {
+    "links": [
+      {
+        "label": "Support",
+        "href": "mailto:hi@mintlify.com"
+      }
+    ],
     "primary": {
       "type": "button",
-      "label": "Login",
-      "href": "https://production.d1r2ce5qalrpn3.amplifyapp.com"
+      "label": "Dashboard",
+      "href": "https://dashboard.mintlify.com"
     }
   },
   "contextual": {
