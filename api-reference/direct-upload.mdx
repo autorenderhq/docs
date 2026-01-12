@@ -1,0 +1,228 @@
+---
+title: 'Upload File'
+openapi: 'POST /api/v1/uploads'
+---
+
+## Overview
+
+Upload an image file directly to your AutoRender workspace. This endpoint supports multipart form data uploads with optional transformations, tags, folder organization, and metadata. Files are automatically processed and optimized during upload.
+
+## Authentication
+
+This endpoint requires API key authentication. Include your API key in the request header:
+
+```
+Authorization: Bearer YOUR_API_KEY
+```
+
+## Request
+
+### Content Type
+
+```
+Content-Type: multipart/form-data
+```
+
+### Form Fields
+
+| Field | Type | Required | Description |
+|-------|------|----------|-------------|
+| `file` | file | Yes | The image file to upload. Must be a valid image format (JPEG, PNG, GIF, WebP, BMP, TIFF, AVIF, HEIC, HEIF) and not exceed 100MB |
+| `folderPath` | string | No | Folder path where the file should be stored. If the folder doesn't exist, it will be created automatically |
+| `relativePath` | string | No | Optional relative path for the file. If not provided, the original filename is used |
+| `settings` | string | No | JSON string containing optional upload settings (see below) |
+
+### Settings JSON Object
+
+When using the `settings` field, provide a JSON string with the following optional properties:
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `tags` | array | Array of tag strings to apply to the file |
+| `pretransformations` | string | Transformation string to apply during upload (e.g., `w_800,h_600,c_crop`) |
+| `generate_random_suffix` | boolean | Whether to generate a random suffix for the filename |
+| `webhook_url` | string | URL to receive webhook notification when upload completes |
+| `custom_id` | string | Custom identifier for tracking the upload |
+| `metadata` | object | Custom metadata object to attach to the file |
+
+## Request Example
+
+```bash
+curl -X POST "https://upload.autorender.io/api/v1/uploads" \
+  -H "Authorization: Bearer YOUR_API_KEY" \
+  -F "file=@image.jpg" \
+  -F "folderPath=products/2024" \
+  -F 'settings={"tags":["product","hero"],"pretransformations":"w_1920,h_1080","custom_id":"prod_123"}'
+```
+
+## Response
+
+### Success Response (200 OK)
+
+```json
+{
+  "id": "550e8400-e29b-41d4-a716-446655440000",
+  "file_no": "FILE123456",
+  "workspace_id": "ws_123",
+  "name": "image.jpg",
+  "path": "products/2024/image.jpg",
+  "url": "https://assets.autorender.io/LOKVTtKVGb/products/2024/image.jpg",
+  "width": 1920,
+  "height": 1080,
+  "size": 245760,
+  "format": "jpeg",
+  "mime_type": "image/jpeg",
+  "hash": "sha256:abc123...",
+  "tags": ["product", "hero"],
+  "metadata": {
+    "custom_id": "prod_123"
+  },
+  "folder_no": "FOLDER789",
+  "is_private": false,
+  "is_duplicate": false,
+  "created_at": "2024-01-15T10:30:00Z",
+  "upload_source": "api"
+}
+```
+
+### Response Fields
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `id` | string | Unique file UUID |
+| `file_no` | string | 10-character file identifier |
+| `workspace_id` | string | Workspace identifier |
+| `name` | string | Final filename (may include random suffix if requested) |
+| `path` | string | Full path including folder structure |
+| `url` | string | Full CDN URL to access the uploaded file |
+| `width` | integer\|null | Image width in pixels (null for non-image files) |
+| `height` | integer\|null | Image height in pixels (null for non-image files) |
+| `size` | integer | File size in bytes (after processing) |
+| `format` | string | File format/extension (e.g., jpeg, png, webp) |
+| `mime_type` | string | MIME type of the file (e.g., image/jpeg, image/png) |
+| `hash` | string | SHA-256 hash of the file content (prefixed with sha256:) |
+| `tags` | array | Array of normalized tag strings associated with the file |
+| `metadata` | object | Custom metadata object attached to the file |
+| `custom_id` | string\|null | Custom identifier for tracking the upload |
+| `folder_no` | string\|null | Folder number identifier if file is in a folder (null for root) |
+| `is_private` | boolean | Whether the file is private |
+| `is_duplicate` | boolean | Indicates if a file with the same name already exists in the folder |
+| `created_at` | string | ISO 8601 timestamp of when the file was created |
+| `upload_source` | string | Source of the upload (e.g., server, sdk, api) |
+
+## Error Responses
+
+### 400 Bad Request
+
+```json
+{
+  "error": "File is required."
+}
+```
+
+```json
+{
+  "error": "Only image/* uploads are supported."
+}
+```
+
+```json
+{
+  "error": "Invalid transform string."
+}
+```
+
+### 401 Unauthorized
+
+```json
+{
+  "error": "Workspace context missing."
+}
+```
+
+### 500 Internal Server Error
+
+```json
+{
+  "error": "SOURCE_BUCKET not configured."
+}
+```
+
+## Examples
+
+### Example 1: Basic upload
+
+```bash
+curl -X POST "https://upload.autorender.io/api/v1/uploads" \
+  -H "Authorization: Bearer YOUR_API_KEY" \
+  -F "file=@product.jpg"
+```
+
+### Example 2: Upload with folder and tags
+
+```bash
+curl -X POST "https://upload.autorender.io/api/v1/uploads" \
+  -H "Authorization: Bearer YOUR_API_KEY" \
+  -F "file=@product.jpg" \
+  -F "folderPath=products/2024" \
+  -F 'settings={"tags":["product","hero"]}'
+```
+
+### Example 3: Upload with transformations
+
+```bash
+curl -X POST "https://upload.autorender.io/api/v1/uploads" \
+  -H "Authorization: Bearer YOUR_API_KEY" \
+  -F "file=@large-image.jpg" \
+  -F 'settings={"pretransformations":"w_1920,h_1080,c_fill"}'
+```
+
+### Example 4: Upload with metadata and webhook
+
+```bash
+curl -X POST "https://upload.autorender.io/api/v1/uploads" \
+  -H "Authorization: Bearer YOUR_API_KEY" \
+  -F "file=@avatar.jpg" \
+  -F "folderPath=avatars" \
+  -F 'settings={"tags":["user","avatar"],"metadata":{"userId":"12345"},"webhook_url":"https://your-app.com/webhooks/upload","custom_id":"avatar_12345"}'
+```
+
+### Example 5: Upload with random suffix
+
+```bash
+curl -X POST "https://upload.autorender.io/api/v1/uploads" \
+  -H "Authorization: Bearer YOUR_API_KEY" \
+  -F "file=@image.jpg" \
+  -F 'settings={"generate_random_suffix":true}'
+```
+
+---
+
+## Why
+
+**Primary method for uploading files to your workspace.** The Upload File endpoint is the core API for adding images to your AutoRender workspace. It provides comprehensive upload capabilities with automatic processing, organization, and optimization features that make it the foundation of any asset management workflow.
+
+## Features
+
+- **Multipart form upload**: Standard HTTP multipart form data for easy integration
+- **Automatic image processing**: Images are automatically processed and optimized during upload
+- **Transformations**: Apply transformations (resize, crop, effects) during upload
+- **Folder organization**: Automatically organize files into folders (folders created if needed)
+- **Tag management**: Apply tags to files for organization and filtering
+- **Custom metadata**: Attach custom metadata objects to track additional file information
+- **Random filename suffix**: Generate unique filenames to prevent collisions
+- **Webhook notifications**: Receive notifications when upload completes
+- **Format support**: Supports JPEG, PNG, GIF, WebP, BMP, TIFF, AVIF, HEIC, HEIF
+- **Size validation**: Validates file size (max 100MB) before processing
+- **Duplicate detection**: Identifies if a file with the same name already exists
+
+## Use Cases
+
+- **Direct file uploads**: Upload images directly from server-side applications
+- **Backend integrations**: Integrate AutoRender into your backend services
+- **Automated workflows**: Upload files as part of automated processes or scripts
+- **Content management**: Upload and organize content for CMS or DAM systems
+- **E-commerce**: Upload product images with automatic optimization and organization
+- **Media processing**: Upload and process images with transformations in a single request
+- **Asset migration**: Import files from other systems with metadata and organization
+- **API integrations**: Build integrations that programmatically upload files to AutoRender

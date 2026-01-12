@@ -1,0 +1,37 @@
+---
+title: 'Delete File'
+openapi: 'DELETE /api/v1/files/{fileNo}'
+---
+
+## Overview
+
+Permanently delete a file from your AutoRender workspace. This operation removes the file from both the database and S3 storage. This action cannot be undone.
+
+<Warning>
+  Deleting a file is a permanent action. The file will be removed from both the database and S3 storage. This action cannot be undone.
+</Warning>
+
+---
+
+## Why
+
+**Essential for asset lifecycle management.** The Delete File endpoint allows you to remove unwanted files, manage storage costs, and maintain a clean asset library. It's a critical operation for asset management workflows and storage optimization.
+
+## Features
+
+- **Permanent deletion**: Removes file from both database and S3 storage
+- **Atomic operation**: Ensures file is deleted from both locations or fails cleanly
+- **S3 cleanup**: Automatically removes the file from S3 storage
+- **Database cleanup**: Removes file record and associated metadata from the database
+- **Error handling**: Gracefully handles cases where file doesn't exist in S3
+- **Workspace isolation**: Only deletes files from the authenticated workspace
+
+## Use Cases
+
+- **Remove unwanted files**: Delete files that are no longer needed
+- **Manage storage**: Free up storage space by removing old or unused assets
+- **Cleanup operations**: Remove temporary files or test uploads
+- **Asset lifecycle management**: Implement workflows for archiving or removing outdated content
+- **Storage optimization**: Reduce storage costs by removing duplicate or unnecessary files
+- **Compliance**: Delete files to comply with data retention policies or user requests
+- **Bulk cleanup**: Integrate with scripts or workflows to remove multiple files programmatically

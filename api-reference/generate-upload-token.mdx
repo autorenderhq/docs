@@ -1,0 +1,34 @@
+---
+title: 'Generate Browser Upload Token'
+openapi: 'POST /api/v1/generate-token'
+---
+
+## Overview
+
+Generate a short-lived, secure token that allows client-side applications to upload files directly to AutoRender without exposing your API key. The token encodes upload constraints (folder, tags, transformations, file size limits) and expires after a configurable time period.
+
+---
+
+## Why
+
+**Enables secure client-side uploads without exposing API keys.** The Generate Browser Upload Token endpoint allows you to create time-limited, policy-constrained tokens that your frontend applications can use to upload files directly. This keeps your secret API keys on the backend while enabling rich client-side upload experiences.
+
+## Features
+
+- **Token-based authentication**: Secure JWT tokens that expire after a configurable time period
+- **Policy constraints**: Encode upload constraints (folder, tags, transformations, file size) directly in the token
+- **Override controls**: Fine-grained control over what clients can override during upload
+- **Custom metadata**: Attach custom metadata and identifiers to uploaded files
+- **Random filename suffix**: Option to generate unique filenames to prevent collisions
+- **Configurable TTL**: Set token expiration time per request (default: 300 seconds)
+- **No API key exposure**: Frontend applications never need access to your secret API key
+
+## Use Cases
+
+- **Frontend uploads**: Enable direct file uploads from web browsers or mobile apps
+- **User-generated content**: Allow users to upload avatars, profile pictures, or content without backend processing
+- **Secure uploads**: Implement secure upload workflows where API keys must remain on the server
+- **Constrained uploads**: Enforce upload policies (folder location, file size, transformations) from the backend
+- **Multi-tenant applications**: Generate tenant-specific upload tokens with appropriate constraints
+- **Temporary upload access**: Provide time-limited upload access for specific workflows
+- **Client SDK integration**: Enable SDK-based uploads without exposing credentials

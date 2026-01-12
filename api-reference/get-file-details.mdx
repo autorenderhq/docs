@@ -1,0 +1,34 @@
+---
+title: 'Get File Details'
+openapi: 'GET /api/v1/files/{fileNo}'
+---
+
+## Overview
+
+Retrieve detailed information about a specific file using its file number. This endpoint returns complete file metadata including dimensions, tags, folder information, and custom metadata.
+
+---
+
+## Why
+
+**Essential for retrieving file metadata and URLs.** The Get File Details endpoint provides complete information about a file, including its CDN URL, dimensions, tags, and custom metadata. This is crucial for displaying file information, generating transformation URLs, and managing individual assets.
+
+## Features
+
+- **Complete metadata**: Returns all file information in a single request
+- **CDN URL**: Provides the full CDN URL for direct access or transformation
+- **Image dimensions**: Includes width and height for images (null for non-images)
+- **Tag information**: Returns all tags associated with the file
+- **Custom metadata**: Access to any custom metadata stored with the file
+- **Folder context**: Includes folder number and name if the file is organized in folders
+- **Upload source**: Identifies how the file was uploaded (api, sdk, etc.)
+
+## Use Cases
+
+- **Display file information**: Show file details in user interfaces or dashboards
+- **Generate transformation URLs**: Use the base URL to create transformed image URLs
+- **Validate file existence**: Check if a file exists before performing operations
+- **Retrieve metadata**: Access custom metadata stored during upload
+- **Get file dimensions**: Obtain image dimensions for responsive layouts or validation
+- **Tag management**: View all tags associated with a file before updating them
+- **Integration workflows**: Fetch file details as part of automated workflows or webhooks
