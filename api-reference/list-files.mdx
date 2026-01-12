@@ -1,0 +1,34 @@
+---
+title: 'List Files'
+openapi: 'GET /api/v1/files'
+---
+
+## Overview
+
+Retrieve a paginated list of files from your AutoRender workspace. This endpoint supports filtering by folder, tags, and filename, as well as sorting and pagination.
+
+---
+
+## Why
+
+**Essential for browsing and managing assets.** The List Files endpoint is the primary way to discover, search, and navigate your file library. It provides comprehensive filtering and sorting capabilities that enable efficient asset management workflows.
+
+## Features
+
+- **Pagination**: Efficiently handle large file collections with configurable page size (up to 200 items per page)
+- **Filtering**: Filter by folder path, folder number, filename, and tags
+- **Sorting**: Sort by creation date (ascending/descending) or file size (ascending/descending)
+- **Search**: Case-insensitive partial matching for filenames
+- **Tag filtering**: Filter files by one or more tags using comma-separated values
+- **Path matching**: Support for partial path matching to find files in nested folder structures
+- **Comprehensive metadata**: Returns full file details including dimensions, format, tags, and custom metadata
+
+## Use Cases
+
+- **Display file library**: Build file browsers and asset management interfaces
+- **Search assets**: Implement search functionality to find specific files
+- **Paginate results**: Handle large collections efficiently with pagination
+- **Filter by category**: Use tags and folder paths to organize and filter assets
+- **Bulk operations**: Retrieve file lists for batch processing or bulk updates
+- **Analytics**: Analyze file collections by size, format, or creation date
+- **Integration**: Connect with third-party tools that need to browse your asset library

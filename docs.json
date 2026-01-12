@@ -51,6 +51,27 @@
             ]
           }
         ]
+      },
+      {
+        "tab": "API reference",
+        "groups": [
+          {
+            "group": "Upload",
+            "pages": [
+              "api-reference/direct-upload",
+              "api-reference/generate-upload-token",
+              "api-reference/upload-with-token"
+            ]
+          },
+          {
+            "group": "File Management",
+            "pages": [
+              "api-reference/list-files",
+              "api-reference/get-file-details",
+              "api-reference/delete-file"
+            ]
+          }
+        ]
       }
     ]
   },

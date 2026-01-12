@@ -1,0 +1,36 @@
+---
+title: 'Remote Upload'
+openapi: 'POST /api/v1/uploads/remote'
+---
+
+## Overview
+
+Upload an image from a remote URL to your AutoRender workspace. This endpoint fetches the image from the provided URL, applies optional transformations, and stores it in your workspace with the same features as direct uploads.
+
+---
+
+## Why
+
+**Import images from external URLs.** The Remote Upload endpoint allows you to fetch images from external sources and import them into your AutoRender workspace. This is essential for migrating assets, importing from external CDNs, and automating image acquisition workflows.
+
+## Features
+
+- **URL-based upload**: Fetch images from any HTTP or HTTPS URL
+- **Automatic filename extraction**: Extracts filename from URL or derives from content type
+- **Transformations**: Apply transformations during import (resize, crop, etc.)
+- **Folder organization**: Automatically organize imported files into folders
+- **Tag support**: Apply tags to imported files for organization
+- **Metadata**: Attach custom metadata to track import source and context
+- **Webhook notifications**: Receive notifications when remote upload completes
+- **Size validation**: Validates file size before processing
+- **Format validation**: Ensures only valid image formats are imported
+
+## Use Cases
+
+- **Import from external sources**: Fetch images from external CDNs, APIs, or websites
+- **Asset migration**: Import images when migrating from other platforms or services
+- **Bulk imports**: Automate importing large collections of images from external sources
+- **Content aggregation**: Collect images from multiple sources into a single workspace
+- **Image optimization**: Import and optimize images from external sources in one step
+- **Backup and sync**: Import images from backup locations or sync from external storage
+- **Automated workflows**: Integrate with scripts or workflows to automatically import images from external sources
