@@ -9,7 +9,17 @@ date: "2025-01-11"
 
 Quick commerce (Q-commerce) has revolutionized the e-commerce landscape, promising delivery in minutes rather than days. But this speed expectation extends beyond logistics—users demand instant page loads, especially on mobile devices where most quick commerce orders originate.
 
-In this guide, we'll explore how AutoRender's intelligent image optimization helps quick commerce platforms meet these demanding performance requirements while maintaining visual quality and reducing bandwidth costs.
+AutoRender's intelligent image optimization helps quick commerce platforms meet these demanding performance requirements while maintaining visual quality and reducing bandwidth costs.
+
+## Quick Start
+
+New to AutoRender? Start here:
+
+1. **[Getting Started](/blog/quick-commerce/getting-started)** - Step-by-step implementation guide
+2. **[Best Practices](/blog/quick-commerce/best-practices)** - Essential optimization guidelines
+3. **[Examples](/blog/quick-commerce/examples)** - Practical use case examples
+4. **[Advanced Techniques](/blog/quick-commerce/advanced)** - Performance optimization strategies
+5. **[Performance Impact](/blog/quick-commerce/performance)** - Real-world metrics and case studies
 
 ## The Quick Commerce Challenge
 
@@ -67,164 +77,29 @@ https://assets.autorender.io/LOKVTtKVGb/t_product-thumbnail/docs/example/product
 
 This ensures consistency, improves cache hit rates, and simplifies your codebase.
 
-## Best Practices for Quick Commerce
+## Documentation Sections
 
-### Optimize Product Images
+Explore our comprehensive guides:
 
-**Thumbnails (Product Grids)**
-```bash
-https://assets.autorender.io/LOKVTtKVGb/w_300,h_300,c_fill,p_c/docs/example/product.jpg
-```
-- Use 200-300px for thumbnails
-- Square aspect ratio (1:1) for consistent grids
-- Center crop to focus on product
+### [Getting Started](/blog/quick-commerce/getting-started)
 
-**Product Cards**
-```bash
-https://assets.autorender.io/LOKVTtKVGb/w_400,h_400,c_fill/docs/example/product.jpg
-```
-- 400-600px width for card layouts
-- Maintain aspect ratio or use fill mode
-- Optimize for mobile viewing
+Step-by-step implementation guide covering setup, configuration, and deployment.
 
-**Product Detail Pages**
-```bash
-https://assets.autorender.io/LOKVTtKVGb/w_1200,c_fit/docs/example/product.jpg
-```
-- 800-1200px width for detail views
-- Use fit mode to show entire product
-- Higher quality for zoom functionality
+### [Best Practices](/blog/quick-commerce/best-practices)
 
-### Implement Responsive Images
+Essential optimization guidelines for product images, responsive design, mobile optimization, and more.
 
-Use AutoRender with responsive image techniques for optimal performance:
+### [Examples](/blog/quick-commerce/examples)
 
-```html
-<img 
-  src="https://assets.autorender.io/LOKVTtKVGb/w_auto/docs/example/product.jpg"
-  srcset="
-    https://assets.autorender.io/LOKVTtKVGb/w_480/docs/example/product.jpg 480w,
-    https://assets.autorender.io/LOKVTtKVGb/w_720/docs/example/product.jpg 720w,
-    https://assets.autorender.io/LOKVTtKVGb/w_1080/docs/example/product.jpg 1080w
-  "
-  sizes="(max-width: 480px) 100vw, (max-width: 720px) 50vw, 33vw"
-  alt="Product name"
-  loading="lazy"
-/>
-```
+Comprehensive examples for all e-commerce use cases including PLP, PDP, cart, checkout, and more.
 
-### Leverage Edge Caching
+### [Advanced Techniques](/blog/quick-commerce/advanced)
 
-**Do:**
-- Use width buckets (320, 480, 720, 1080, 1440, 1920)
-- Stick to preset recipes
-- Use consistent transformation parameters
+Performance optimization strategies including preloading, progressive loading, batch optimization, and monitoring.
 
-**Don't:**
-- Use random or frequently changing dimensions
-- Generate unique URLs for each user
-- Over-parameterize transformations
+### [Performance Impact](/blog/quick-commerce/performance)
 
-### Mobile Optimization
-
-Quick commerce is mobile-first. Optimize accordingly:
-
-```bash
-# Mobile-optimized: smaller size, WebP format, optimized quality
-https://assets.autorender.io/LOKVTtKVGb/w_480,h_480,c_fill,q_80,f_webp/docs/example/product.jpg
-```
-
-**Key mobile optimizations:**
-- Smaller dimensions (480px max for thumbnails)
-- WebP format for 25-30% size reduction
-- Quality setting 80-85 (sweet spot for size/quality)
-- Lazy loading for below-the-fold images
-
-### Use Face Detection for People Products
-
-For fashion, beauty, or lifestyle products featuring people:
-
-```bash
-https://assets.autorender.io/LOKVTtKVGb/w_400,h_400,c_crop,p_face/docs/example/product.jpg
-```
-
-Face detection ensures people are always properly centered and visible, improving product appeal.
-
-## Real-World Performance Impact
-
-### Case Study: Quick Commerce Platform
-
-A leading quick commerce platform implemented AutoRender and saw:
-
-- **40% reduction** in image load times
-- **60% improvement** in cache hit rates
-- **35% reduction** in bandwidth costs
-- **15% increase** in mobile conversion rates
-
-### Before AutoRender
-- Average image load: 2.3 seconds
-- Cache hit rate: 25%
-- Bandwidth per order: 8.5 MB
-
-### After AutoRender
-- Average image load: 1.4 seconds
-- Cache hit rate: 85%
-- Bandwidth per order: 5.5 MB
-
-## Implementation Checklist
-
-For quick commerce platforms implementing AutoRender:
-
-- [ ] Set up AutoRender workspace and CDN
-- [ ] Upload product images to AutoRender
-- [ ] Create preset recipes for common sizes
-- [ ] Implement responsive image tags
-- [ ] Enable WebP format for modern browsers
-- [ ] Configure lazy loading
-- [ ] Preload critical above-the-fold images
-- [ ] Monitor performance metrics
-- [ ] Test across different network conditions
-- [ ] Optimize quality settings for your use case
-
-## Advanced Techniques
-
-### Preloading Critical Images
-
-Preload hero images and featured products:
-
-```html
-<link rel="preload" as="image" 
-  href="https://assets.autorender.io/LOKVTtKVGb/w_720/docs/example/hero-product.jpg">
-```
-
-### Progressive Image Loading
-
-Use blur-up technique with low-quality placeholders:
-
-```bash
-# Low-quality placeholder
-https://assets.autorender.io/LOKVTtKVGb/w_20,blur_100/docs/example/product.jpg
-
-# Full-quality image
-https://assets.autorender.io/LOKVTtKVGb/w_720/docs/example/product.jpg
-```
-
-### Batch Optimization
-
-Use AutoRender's API to pre-generate common image variants:
-
-```javascript
-const variants = [
-  { width: 300, height: 300, crop: 'fill' },
-  { width: 600, height: 600, crop: 'fill' },
-  { width: 1200, crop: 'fit' }
-];
-
-variants.forEach(variant => {
-  // Pre-generate and cache
-  fetch(`https://assets.autorender.io/LOKVTtKVGb/w_${variant.width}...`);
-});
-```
+Real-world metrics, case studies, and expected performance improvements.
 
 ## Conclusion
 
@@ -243,7 +118,8 @@ Ready to optimize your quick commerce platform? [Get started with AutoRender](/)
 ---
 
 **Related Resources:**
-- [Quick Commerce Best Practices Guide](/quick-commerce)
+- [Getting Started Guide](/blog/quick-commerce/getting-started)
+- [Best Practices Guide](/blog/quick-commerce/best-practices)
+- [Examples](/blog/quick-commerce/examples)
 - [Image Optimization Guide](/essentials/overview)
-- [Performance Optimization Tips](/essentials/automatic)
 

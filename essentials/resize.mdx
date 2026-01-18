@@ -13,16 +13,16 @@ AutoRender provides powerful image resizing capabilities that allow you to chang
 AutoRender URLs follow this structure:
 
 ```bash
-https://assets.autorender.io/LOKVTtKVGb/w_720/docs/example/porsche.jpg
+https://assets.autorender.io/LOKVTtKVGb/w_720/doc1/fujicam.jpg
 ```
 
-<img src="https://assets.autorender.io/LOKVTtKVGb/w_720/docs/example/porsche.jpg" alt="Resized image" class="ar-url-image" />
+<img src="https://assets.autorender.io/LOKVTtKVGb/w_720/doc1/fujicam.jpg" alt="Resized image" style={{ borderRadius: '0.5rem', maxWidth: '100%' }} />
 
 URL components:
 - **Domain**: `https://assets.autorender.io` - AutoRender CDN domain
 - **Workspace**: `LOKVTtKVGb` - Your workspace identifier  
 - **Transformations**: `w_720` - Image transformation parameters
-- **Image Path**: `docs/example/porsche.jpg` - Your image path (can include folders)
+- **Image Path**: `doc/fujicam.jpg` - Your image path (can include folders)
 
 ## Width and Height
 
@@ -34,10 +34,10 @@ Resize by width only - height is calculated automatically to maintain aspect rat
 
 ```
 // Resize to 720px width
-https://assets.autorender.io/LOKVTtKVGb/w_720/docs/example/porsche.jpg
+https://assets.autorender.io/LOKVTtKVGb/w_720/doc1/gpose.jpg
 ```
 
-<img src="https://assets.autorender.io/LOKVTtKVGb/w_720/docs/example/porsche.jpg" alt="Resized image" class="ar-url-image" />
+<img src="https://assets.autorender.io/LOKVTtKVGb/w_720/doc1/gpose.jpg" alt="Resized image" style={{ borderRadius: '0.5rem', maxWidth: '100%' }} />
 
 ### Height Only
 
@@ -45,10 +45,10 @@ Resize by height only - width is calculated automatically to maintain aspect rat
 
 ```
 // Resize to 540px height
-https://assets.autorender.io/LOKVTtKVGb/h_540/docs/example/porsche.jpg
+https://assets.autorender.io/LOKVTtKVGb/h_540/doc1/earring.jpg
 ```
 
-<img src="https://assets.autorender.io/LOKVTtKVGb/h_540/docs/example/porsche.jpg" alt="Resized image" class="ar-url-image" />
+<img src="https://assets.autorender.io/LOKVTtKVGb/h_540/doc1/earring.jpg" alt="Resized image" style={{ borderRadius: '0.5rem', maxWidth: '100%' }} />
 
 ### Both Width and Height
 
@@ -56,10 +56,10 @@ Specify both dimensions for exact sizing. When both dimensions are specified, Au
 
 ```
 // Resize to exact dimensions (720x480)
-https://assets.autorender.io/LOKVTtKVGb/w_720,h_480/docs/example/porsche.jpg
+https://assets.autorender.io/LOKVTtKVGb/w_720,h_480,c_fill/doc1/paintbrush.jpg
 ```
 
-<img src="https://assets.autorender.io/LOKVTtKVGb/w_720,h_480/docs/example/porsche.jpg" alt="Resized image" class="ar-url-image" />
+<img src="https://assets.autorender.io/LOKVTtKVGb/w_720,h_480,c_fill/doc1/paintbrush.jpg" alt="Resized image" style={{ borderRadius: '0.5rem', maxWidth: '100%' }} />
 
 <Note>
   When only one dimension is specified, AutoRender automatically calculates the other dimension to maintain the original aspect ratio. When both dimensions are specified, you may want to use crop modes (see [Crop](/essentials/crop) page) to control how the image fits the target dimensions.
@@ -73,34 +73,34 @@ Use decimal values to resize relative to the original image dimensions. This is 
 
 ```
 // 50% of original width (maintains aspect ratio)
-https://assets.autorender.io/LOKVTtKVGb/w_0.5/docs/example/porsche.jpg
+https://assets.autorender.io/LOKVTtKVGb/w_0.5/doc1/edc.jpg
 ```
 
-<img src="https://assets.autorender.io/LOKVTtKVGb/w_0.5/docs/example/porsche.jpg" alt="Resized image" class="ar-url-image" />
+<img src="https://assets.autorender.io/LOKVTtKVGb/w_0.5/doc1/edc.jpg" alt="Resized image" style={{ borderRadius: '0.5rem', maxWidth: '100%' }} />
 
 ### Relative Height
 
 ```
 // 75% of original height
-https://assets.autorender.io/LOKVTtKVGb/h_0.75/docs/example/porsche.jpg
+https://assets.autorender.io/LOKVTtKVGb/h_0.75/doc1/earring.jpg
 ```
 
-<img src="https://assets.autorender.io/LOKVTtKVGb/h_0.75/docs/example/porsche.jpg" alt="Resized image" class="ar-url-image" />
+<img src="https://assets.autorender.io/LOKVTtKVGb/h_0.75/doc1/earring.jpg" alt="Resized image" style={{ borderRadius: '0.5rem', maxWidth: '100%' }} />
 
 ### Common Relative Sizes
 
 ```
 // 25% of original (thumbnail)
-https://assets.autorender.io/LOKVTtKVGb/w_0.25/docs/example/porsche.jpg
+https://assets.autorender.io/LOKVTtKVGb/w_0.25/doc1/edc.jpg
 
 // 50% of original (medium)
-https://assets.autorender.io/LOKVTtKVGb/w_0.5/docs/example/porsche.jpg
+https://assets.autorender.io/LOKVTtKVGb/w_0.5/doc1/edc.jpg
 
 // 75% of original (large)
-https://assets.autorender.io/LOKVTtKVGb/w_0.75/docs/example/porsche.jpg
+https://assets.autorender.io/LOKVTtKVGb/w_0.75/doc1/edc.jpg
 
 // 150% of original (enlarged - may reduce quality)
-https://assets.autorender.io/LOKVTtKVGb/w_1.5/docs/example/porsche.jpg
+https://assets.autorender.io/LOKVTtKVGb/w_1.5/doc1/edc.jpg
 ```
 
 <Warning>
@@ -117,35 +117,37 @@ Crop images to specific aspect ratios without specifying exact dimensions. This 
 
 ```
 // 16:9 aspect ratio with 720px width
-https://assets.autorender.io/LOKVTtKVGb/ar_16:9,w_720/docs/example/porsche.jpg
+https://assets.autorender.io/LOKVTtKVGb/ar_16:9,w_720,c_fill/doc1/skate.jpg
 ```
+
+<img src="https://assets.autorender.io/LOKVTtKVGb/ar_16:9,w_720,c_fill/doc1/skate.jpg" alt="16:9 aspect ratio" style={{ borderRadius: '0.5rem', maxWidth: '100%' }} />
 
 #### 1:1 (Square)
 
 ```
 // 1:1 square aspect ratio with 600px width
-https://assets.autorender.io/LOKVTtKVGb/ar_1:1,w_600/docs/example/porsche.jpg
+https://assets.autorender.io/LOKVTtKVGb/ar_1:1,w_600,c_fill,p_c/doc1/gpose.jpg
 ```
 
-<img src="https://assets.autorender.io/LOKVTtKVGb/ar_1:1,w_600/docs/example/porsche.jpg" alt="Square aspect ratio" class="ar-url-image" />
+<img src="https://assets.autorender.io/LOKVTtKVGb/ar_1:1,w_600,c_fill,p_c/doc1/gpose.jpg" alt="Square aspect ratio" style={{ borderRadius: '0.5rem', maxWidth: '100%' }} />
 
 #### 4:3 (Standard)
 
 ```
 // 4:3 aspect ratio with 800px width
-https://assets.autorender.io/LOKVTtKVGb/ar_4:3,w_800/docs/example/porsche.jpg
+https://assets.autorender.io/LOKVTtKVGb/ar_4:3,w_800,c_fill/doc1/skate.jpg
 ```
 
-<img src="https://assets.autorender.io/LOKVTtKVGb/ar_4:3,w_800/docs/example/porsche.jpg" alt="4:3 aspect ratio" class="ar-url-image" />
+<img src="https://assets.autorender.io/LOKVTtKVGb/ar_4:3,w_800,c_fill/doc1/skate.jpg" alt="4:3 aspect ratio" style={{ borderRadius: '0.5rem', maxWidth: '100%' }} />
 
 #### 21:9 (Ultrawide)
 
 ```
 // 21:9 ultrawide aspect ratio with 1260px width
-https://assets.autorender.io/LOKVTtKVGb/ar_21:9,w_1260/docs/example/porsche.jpg
+https://assets.autorender.io/LOKVTtKVGb/ar_21:9,w_1260,c_fill/doc1/rotjump.jpg
 ```
 
-<img src="https://assets.autorender.io/LOKVTtKVGb/ar_21:9,w_1260/docs/example/porsche.jpg" alt="Ultrawide aspect ratio" class="ar-url-image" />
+<img src="https://assets.autorender.io/LOKVTtKVGb/ar_21:9,w_1260,c_fill/doc1/rotjump.jpg" alt="Ultrawide aspect ratio" style={{ borderRadius: '0.5rem', maxWidth: '100%' }} />
 
 ### Custom Aspect Ratios
 
@@ -153,13 +155,13 @@ You can use any aspect ratio by specifying the ratio in the format `width:height
 
 ```
 // 3:2 aspect ratio
-https://assets.autorender.io/LOKVTtKVGb/ar_3:2,w_900/docs/example/porsche.jpg
+https://assets.autorender.io/LOKVTtKVGb/ar_3:2,w_900,c_fill/doc1/fujicam.jpg
 
 // 5:4 aspect ratio
-https://assets.autorender.io/LOKVTtKVGb/ar_5:4,w_1000/docs/example/porsche.jpg
+https://assets.autorender.io/LOKVTtKVGb/ar_5:4,w_1000,c_fill/doc1/paintbrush.jpg
 
 // 9:16 portrait aspect ratio
-https://assets.autorender.io/LOKVTtKVGb/ar_9:16,h_1080/docs/example/porsche.jpg
+https://assets.autorender.io/LOKVTtKVGb/ar_9:16,h_1080,c_fill/doc1/gpose.jpg
 ```
 
 <Note>
@@ -174,27 +176,27 @@ Create responsive images that adapt to different screen sizes by using different
 
 ```
 // Mobile (400px width)
-https://assets.autorender.io/LOKVTtKVGb/w_400,c_fit/docs/example/porsche.jpg
+https://assets.autorender.io/LOKVTtKVGb/w_400,c_fit/doc1/rotjump.jpg
 
 // Tablet (800px width)
-https://assets.autorender.io/LOKVTtKVGb/w_800,c_fit/docs/example/porsche.jpg
+https://assets.autorender.io/LOKVTtKVGb/w_800,c_fit/doc1/rotjump.jpg
 
 // Desktop (1920px width)
-https://assets.autorender.io/LOKVTtKVGb/w_1920,c_fit/docs/example/porsche.jpg
+https://assets.autorender.io/LOKVTtKVGb/w_1920,c_fit/doc1/rotjump.jpg
 ```
 
-<div class="ar-responsive-images">
-  <div>
+<div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', marginTop: '1rem' }}>
+  <div style={{ flex: '1', minWidth: '200px' }}>
     <strong>Mobile:</strong>
-    <img src="https://assets.autorender.io/LOKVTtKVGb/w_400,c_fit/docs/example/porsche.jpg" alt="Mobile responsive image" class="ar-url-image" />
+    <img src="https://assets.autorender.io/LOKVTtKVGb/w_400,c_fit/doc1/rotjump.jpg" alt="Mobile responsive image" style={{ borderRadius: '0.5rem', maxWidth: '100%', marginTop: '0.5rem' }} />
   </div>
-  <div>
+  <div style={{ flex: '1', minWidth: '200px' }}>
     <strong>Tablet:</strong>
-    <img src="https://assets.autorender.io/LOKVTtKVGb/w_800,c_fit/docs/example/porsche.jpg" alt="Tablet responsive image" class="ar-url-image" />
+    <img src="https://assets.autorender.io/LOKVTtKVGb/w_800,c_fit/doc1/rotjump.jpg" alt="Tablet responsive image" style={{ borderRadius: '0.5rem', maxWidth: '100%', marginTop: '0.5rem' }} />
   </div>
-  <div>
+  <div style={{ flex: '1', minWidth: '200px' }}>
     <strong>Desktop:</strong>
-    <img src="https://assets.autorender.io/LOKVTtKVGb/w_1920,c_fit/docs/example/porsche.jpg" alt="Desktop responsive image" class="ar-url-image" />
+    <img src="https://assets.autorender.io/LOKVTtKVGb/w_1920,c_fit/doc1/rotjump.jpg" alt="Desktop responsive image" style={{ borderRadius: '0.5rem', maxWidth: '100%', marginTop: '0.5rem' }} />
   </div>
 </div>
 
@@ -204,12 +206,12 @@ Use AutoRender URLs with HTML `srcset` for automatic responsive image selection:
 
 ```html
 <img 
-  src="https://assets.autorender.io/LOKVTtKVGb/w_400/docs/example/porsche.jpg"
+  src="https://assets.autorender.io/LOKVTtKVGb/w_400/doc1/rotjump.jpg"
   srcset="
-    https://assets.autorender.io/LOKVTtKVGb/w_400/docs/example/porsche.jpg 400w,
-    https://assets.autorender.io/LOKVTtKVGb/w_800/docs/example/porsche.jpg 800w,
-    https://assets.autorender.io/LOKVTtKVGb/w_1200/docs/example/porsche.jpg 1200w,
-    https://assets.autorender.io/LOKVTtKVGb/w_1920/docs/example/porsche.jpg 1920w
+    https://assets.autorender.io/LOKVTtKVGb/w_400/doc1/rotjump.jpg 400w,
+    https://assets.autorender.io/LOKVTtKVGb/w_800/doc1/rotjump.jpg 800w,
+    https://assets.autorender.io/LOKVTtKVGb/w_1200/doc1/rotjump.jpg 1200w,
+    https://assets.autorender.io/LOKVTtKVGb/w_1920/doc1/rotjump.jpg 1920w
   "
   sizes="(max-width: 600px) 400px, (max-width: 1200px) 800px, 1200px"
   alt="Responsive image"
@@ -234,25 +236,44 @@ Use AutoRender URLs with HTML `srcset` for automatic responsive image selection:
 
 **Thumbnails:**
 ```bash
-https://assets.autorender.io/LOKVTtKVGb/w_300,h_300,c_fill/docs/example/porsche.jpg
+https://assets.autorender.io/LOKVTtKVGb/w_300,h_300,c_fill/doc1/earring.jpg
 ```
+
+<img src="https://assets.autorender.io/LOKVTtKVGb/w_300,h_300,c_fill/doc1/earring.jpg" alt="Thumbnail example" style={{ borderRadius: '0.5rem', maxWidth: '100%' }} />
 
 **Hero Images:**
 ```bash
-https://assets.autorender.io/LOKVTtKVGb/w_1920,h_1080,c_fill/docs/example/porsche.jpg
+https://assets.autorender.io/LOKVTtKVGb/w_1080,h_720,c_fill/doc1/skate.jpg
 ```
+
+<img src="https://assets.autorender.io/LOKVTtKVGb/w_1080,h_720,c_fill/doc1/skate.jpg" alt="Hero image example" style={{ borderRadius: '0.5rem', maxWidth: '100%' }} />
 
 **Responsive Images:**
 ```
 // Mobile
-https://assets.autorender.io/LOKVTtKVGb/w_400,c_fit/docs/example/porsche.jpg
+https://assets.autorender.io/LOKVTtKVGb/w_400,c_fit/doc1/rotjump.jpg
 
 // Tablet
-https://assets.autorender.io/LOKVTtKVGb/w_800,c_fit/docs/example/porsche.jpg
+https://assets.autorender.io/LOKVTtKVGb/w_800,c_fit/doc1/rotjump.jpg
 
 // Desktop
-https://assets.autorender.io/LOKVTtKVGb/w_1920,c_fit/docs/example/porsche.jpg
+https://assets.autorender.io/LOKVTtKVGb/w_1920,c_fit/doc1/rotjump.jpg
 ```
+
+<div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', marginTop: '1rem' }}>
+  <div style={{ flex: '1', minWidth: '150px' }}>
+    <strong>Mobile:</strong>
+    <img src="https://assets.autorender.io/LOKVTtKVGb/w_400,c_fit/doc1/rotjump.jpg" alt="Mobile responsive" style={{ borderRadius: '0.5rem', maxWidth: '100%', marginTop: '0.5rem' }} />
+  </div>
+  <div style={{ flex: '1', minWidth: '150px' }}>
+    <strong>Tablet:</strong>
+    <img src="https://assets.autorender.io/LOKVTtKVGb/w_800,c_fit/doc1/rotjump.jpg" alt="Tablet responsive" style={{ borderRadius: '0.5rem', maxWidth: '100%', marginTop: '0.5rem' }} />
+  </div>
+  <div style={{ flex: '1', minWidth: '150px' }}>
+    <strong>Desktop:</strong>
+    <img src="https://assets.autorender.io/LOKVTtKVGb/w_1920,c_fit/doc1/rotjump.jpg" alt="Desktop responsive" style={{ borderRadius: '0.5rem', maxWidth: '100%', marginTop: '0.5rem' }} />
+  </div>
+</div>
 
 ## Examples
 
@@ -261,30 +282,37 @@ https://assets.autorender.io/LOKVTtKVGb/w_1920,c_fit/docs/example/porsche.jpg
 Resize an image to 800px width:
 
 ```bash
-https://assets.autorender.io/LOKVTtKVGb/w_800/docs/example/porsche.jpg
+https://assets.autorender.io/LOKVTtKVGb/w_800/doc1/gpose.jpg
 ```
+
+<img src="https://assets.autorender.io/LOKVTtKVGb/w_800/doc1/gpose.jpg" alt="Simple width resize" style={{ borderRadius: '0.5rem', maxWidth: '100%' }} />
 
 ### Example 2: Exact Dimensions
 
 Resize to exact dimensions (may require cropping - see [Crop](/essentials/crop) page):
 
 ```bash
-https://assets.autorender.io/LOKVTtKVGb/w_600,h_400/docs/example/porsche.jpg
+https://assets.autorender.io/LOKVTtKVGb/w_600,h_400,c_fill/doc1/paintbrush.jpg
 ```
+
+<img src="https://assets.autorender.io/LOKVTtKVGb/w_600,h_400,c_fill/doc1/paintbrush.jpg" alt="Exact dimensions" style={{ borderRadius: '0.5rem', maxWidth: '100%' }} />
 
 ### Example 3: Aspect Ratio Resize
 
 Create a 16:9 widescreen image:
 
 ```bash
-https://assets.autorender.io/LOKVTtKVGb/ar_16:9,w_1920/docs/example/porsche.jpg
+https://assets.autorender.io/LOKVTtKVGb/ar_16:9,w_1920,c_fill/doc1/skate.jpg
 ```
+
+<img src="https://assets.autorender.io/LOKVTtKVGb/ar_16:9,w_1920,c_fill/doc1/skate.jpg" alt="16:9 widescreen" style={{ borderRadius: '0.5rem', maxWidth: '100%' }} />
 
 ### Example 4: Relative Sizing
 
 Create a thumbnail at 25% of original size:
 
 ```bash
-https://assets.autorender.io/LOKVTtKVGb/w_0.25/docs/example/porsche.jpg
+https://assets.autorender.io/LOKVTtKVGb/w_0.25/doc1/edc.jpg
 ```
 
+<img src="https://assets.autorender.io/LOKVTtKVGb/w_0.25/doc1/edc.jpg" alt="Relative sizing thumbnail" style={{ borderRadius: '0.5rem', maxWidth: '100%' }} />

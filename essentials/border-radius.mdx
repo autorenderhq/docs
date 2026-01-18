@@ -13,10 +13,10 @@ AutoRender's border radius feature allows you to add rounded corners to images. 
 AutoRender URLs with border radius follow this structure:
 
 ```bash
-https://assets.autorender.io/LOKVTtKVGb/br_20/docs/example/porsche.jpg
+https://assets.autorender.io/LOKVTtKVGb/br_20/doc1/photographer.jpg
 ```
 
-<img src="https://assets.autorender.io/LOKVTtKVGb/br_20/docs/example/porsche.jpg" alt="Rounded corners" class="ar-url-image" />
+<img src="https://assets.autorender.io/LOKVTtKVGb/br_20/doc1/photographer.jpg" alt="Rounded corners" style={{ borderRadius: '0.5rem', maxWidth: '100%' }} />
 
 ## How Border Radius Works
 
@@ -35,10 +35,10 @@ Add subtle rounded corners:
 10px border radius:
 
 ```bash
-https://assets.autorender.io/LOKVTtKVGb/br_10/docs/example/porsche.jpg
+https://assets.autorender.io/LOKVTtKVGb/br_10/doc1/photographer.jpg
 ```
 
-<img src="https://assets.autorender.io/LOKVTtKVGb/br_10/docs/example/porsche.jpg" alt="Small border radius" class="ar-url-image" />
+<img src="https://assets.autorender.io/LOKVTtKVGb/br_10/doc1/photographer.jpg" alt="Small border radius" style={{ borderRadius: '0.5rem', maxWidth: '100%' }} />
 
 ### Medium Radius
 
@@ -47,10 +47,10 @@ Add moderate rounded corners:
 20px border radius:
 
 ```bash
-https://assets.autorender.io/LOKVTtKVGb/br_20/docs/example/porsche.jpg
+https://assets.autorender.io/LOKVTtKVGb/br_20/doc1/photographer.jpg
 ```
 
-<img src="https://assets.autorender.io/LOKVTtKVGb/br_20/docs/example/porsche.jpg" alt="Medium border radius" class="ar-url-image" />
+<img src="https://assets.autorender.io/LOKVTtKVGb/br_20/doc1/photographer.jpg" alt="Medium border radius" style={{ borderRadius: '0.5rem', maxWidth: '100%' }} />
 
 ### Large Radius
 
@@ -59,10 +59,10 @@ Add very rounded corners:
 50px border radius:
 
 ```bash
-https://assets.autorender.io/LOKVTtKVGb/br_50/docs/example/porsche.jpg
+https://assets.autorender.io/LOKVTtKVGb/br_50/doc1/photographer.jpg
 ```
 
-<img src="https://assets.autorender.io/LOKVTtKVGb/br_50/docs/example/porsche.jpg" alt="Large border radius" class="ar-url-image" />
+<img src="https://assets.autorender.io/LOKVTtKVGb/br_50/doc1/photographer.jpg" alt="Large border radius" style={{ borderRadius: '0.5rem', maxWidth: '100%' }} />
 
 ## Circular Images
 
@@ -71,18 +71,18 @@ For square images, using a border radius equal to or greater than half the image
 Circular image (300x300 with 150px radius):
 
 ```bash
-https://assets.autorender.io/LOKVTtKVGb/w_300,h_300,c_crop,br_150/docs/example/porsche.jpg
+https://assets.autorender.io/LOKVTtKVGb/w_300,h_300,c_crop,br_150/doc1/photographer.jpg
 ```
 
-<img src="https://assets.autorender.io/LOKVTtKVGb/w_300,h_300,c_crop,br_150/docs/example/porsche.jpg" alt="Circular image" class="ar-url-image" />
+<img src="https://assets.autorender.io/LOKVTtKVGb/w_300,h_300,c_crop,br_150/doc1/photographer.jpg" alt="Circular image" style={{ borderRadius: '0.5rem', maxWidth: '100%' }} />
 
 Circular image (400x400 with 200px radius):
 
 ```bash
-https://assets.autorender.io/LOKVTtKVGb/w_400,h_400,c_crop,br_200/docs/example/porsche.jpg
+https://assets.autorender.io/LOKVTtKVGb/w_400,h_400,c_crop,br_200/doc1/photographer.jpg
 ```
 
-<img src="https://assets.autorender.io/LOKVTtKVGb/w_400,h_400,c_crop,br_200/docs/example/porsche.jpg" alt="Circular image" class="ar-url-image" />
+<img src="https://assets.autorender.io/LOKVTtKVGb/w_400,h_400,c_crop,br_200/doc1/photographer.jpg" alt="Circular image" style={{ borderRadius: '0.5rem', maxWidth: '100%' }} />
 
 <Note>
   For circular images, use a border radius that is at least half the smallest dimension (width or height). For example, a 300x300 image needs `br_150` or higher to be perfectly circular.
@@ -97,30 +97,30 @@ Border radius works well when combined with resize, crop, and other transformati
 Resize to 600px width with rounded corners:
 
 ```bash
-https://assets.autorender.io/LOKVTtKVGb/w_600,br_30/docs/example/porsche.jpg
+https://assets.autorender.io/LOKVTtKVGb/w_600,br_30/doc1/photographer.jpg
 ```
 
-<img src="https://assets.autorender.io/LOKVTtKVGb/w_600,br_30/docs/example/porsche.jpg" alt="Border radius with resize" class="ar-url-image" />
+<img src="https://assets.autorender.io/LOKVTtKVGb/w_600,br_30/doc1/photographer.jpg" alt="Border radius with resize" style={{ borderRadius: '0.5rem', maxWidth: '100%' }} />
 
 ### Border Radius with Crop
 
 Crop to square with rounded corners:
 
 ```bash
-https://assets.autorender.io/LOKVTtKVGb/w_600,h_600,c_crop,br_40/docs/example/porsche.jpg
+https://assets.autorender.io/LOKVTtKVGb/w_600,h_600,c_crop,br_40/doc1/photographer.jpg
 ```
 
-<img src="https://assets.autorender.io/LOKVTtKVGb/w_600,h_600,c_crop,br_40/docs/example/porsche.jpg" alt="Border radius with crop" class="ar-url-image" />
+<img src="https://assets.autorender.io/LOKVTtKVGb/w_600,h_600,c_crop,br_40/doc1/photographer.jpg" alt="Border radius with crop" style={{ borderRadius: '0.5rem', maxWidth: '100%' }} />
 
 ### Border Radius with Fill Mode
 
 Fill 600x600 area with rounded corners:
 
 ```bash
-https://assets.autorender.io/LOKVTtKVGb/w_600,h_600,c_fill,br_50/docs/example/porsche.jpg
+https://assets.autorender.io/LOKVTtKVGb/w_600,h_600,c_fill,br_50/doc1/photographer.jpg
 ```
 
-<img src="https://assets.autorender.io/LOKVTtKVGb/w_600,h_600,c_fill,br_50/docs/example/porsche.jpg" alt="Border radius with fill" class="ar-url-image" />
+<img src="https://assets.autorender.io/LOKVTtKVGb/w_600,h_600,c_fill,br_50/doc1/photographer.jpg" alt="Border radius with fill" style={{ borderRadius: '0.5rem', maxWidth: '100%' }} />
 
 ## Common Use Cases
 
@@ -131,7 +131,7 @@ Create circular profile pictures:
 Circular profile picture:
 
 ```bash
-https://assets.autorender.io/LOKVTtKVGb/w_400,h_400,c_crop,ar_1:1,br_200/docs/example/porsche.jpg
+https://assets.autorender.io/LOKVTtKVGb/w_400,h_400,c_crop,ar_1:1,br_200/doc1/photographer.jpg
 ```
 
 ### Card Images
@@ -141,7 +141,7 @@ Add rounded corners to card layouts:
 Card image with rounded corners:
 
 ```bash
-https://assets.autorender.io/LOKVTtKVGb/w_600,h_400,c_fill,br_20/docs/example/porsche.jpg
+https://assets.autorender.io/LOKVTtKVGb/w_600,h_400,c_fill,br_20/doc1/photographer.jpg
 ```
 
 ### Thumbnails
@@ -151,7 +151,7 @@ Create rounded thumbnails:
 Rounded thumbnail:
 
 ```bash
-https://assets.autorender.io/LOKVTtKVGb/w_300,h_300,c_crop,br_15/docs/example/porsche.jpg
+https://assets.autorender.io/LOKVTtKVGb/w_300,h_300,c_crop,br_15/doc1/photographer.jpg
 ```
 
 ### Hero Images
@@ -161,7 +161,7 @@ Add subtle rounding to hero images:
 Hero image with subtle rounding:
 
 ```bash
-https://assets.autorender.io/LOKVTtKVGb/w_1920,h_1080,c_fill,br_10/docs/example/porsche.jpg
+https://assets.autorender.io/LOKVTtKVGb/w_1920,h_1080,c_fill,br_10/doc1/photographer.jpg
 ```
 
 ## Border Radius Guidelines
@@ -211,38 +211,38 @@ https://assets.autorender.io/LOKVTtKVGb/w_1920,h_1080,c_fill,br_10/docs/example/
 Add 20px rounded corners:
 
 ```bash
-https://assets.autorender.io/LOKVTtKVGb/br_20/docs/example/porsche.jpg
+https://assets.autorender.io/LOKVTtKVGb/br_20/doc1/photographer.jpg
 ```
 
-<img src="https://assets.autorender.io/LOKVTtKVGb/br_20/docs/example/porsche.jpg" alt="Simple border radius" class="ar-url-image" />
+<img src="https://assets.autorender.io/LOKVTtKVGb/br_20/doc1/photographer.jpg" alt="Simple border radius" style={{ borderRadius: '0.5rem', maxWidth: '100%' }} />
 
 ### Example 2: Circular Profile Picture
 
 Create a circular profile picture:
 
 ```bash
-https://assets.autorender.io/LOKVTtKVGb/w_400,h_400,c_crop,br_200/docs/example/porsche.jpg
+https://assets.autorender.io/LOKVTtKVGb/w_400,h_400,c_crop,br_200/doc1/photographer.jpg
 ```
 
-<img src="https://assets.autorender.io/LOKVTtKVGb/w_400,h_400,c_crop,br_200/docs/example/porsche.jpg" alt="Circular profile" class="ar-url-image" />
+<img src="https://assets.autorender.io/LOKVTtKVGb/w_400,h_400,c_crop,br_200/doc1/photographer.jpg" alt="Circular profile" style={{ borderRadius: '0.5rem', maxWidth: '100%' }} />
 
 ### Example 3: Rounded Card Image
 
 Create a card image with rounded corners:
 
 ```bash
-https://assets.autorender.io/LOKVTtKVGb/w_600,h_400,c_fill,br_30/docs/example/porsche.jpg
+https://assets.autorender.io/LOKVTtKVGb/w_600,h_400,c_fill,br_30/doc1/photographer.jpg
 ```
 
-<img src="https://assets.autorender.io/LOKVTtKVGb/w_600,h_400,c_fill,br_30/docs/example/porsche.jpg" alt="Rounded card" class="ar-url-image" />
+<img src="https://assets.autorender.io/LOKVTtKVGb/w_600,h_400,c_fill,br_30/doc1/photographer.jpg" alt="Rounded card" style={{ borderRadius: '0.5rem', maxWidth: '100%' }} />
 
 ### Example 4: Rounded Thumbnail
 
 Create a rounded thumbnail:
 
 ```bash
-https://assets.autorender.io/LOKVTtKVGb/w_300,h_300,c_crop,br_20/docs/example/porsche.jpg
+https://assets.autorender.io/LOKVTtKVGb/w_300,h_300,c_crop,br_20/doc1/photographer.jpg
 ```
 
-<img src="https://assets.autorender.io/LOKVTtKVGb/w_300,h_300,c_crop,br_20/docs/example/porsche.jpg" alt="Rounded thumbnail" class="ar-url-image" />
+<img src="https://assets.autorender.io/LOKVTtKVGb/w_300,h_300,c_crop,br_20/doc1/photographer.jpg" alt="Rounded thumbnail" style={{ borderRadius: '0.5rem', maxWidth: '100%' }} />
 

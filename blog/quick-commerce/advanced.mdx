@@ -1,0 +1,252 @@
+---
+title: "Advanced Techniques"
+description: "Advanced image optimization techniques for quick commerce platforms"
+author: "AutoRender Team"
+date: "2025-01-11"
+---
+
+# Advanced Techniques
+
+Advanced techniques for maximizing performance and user experience in quick commerce platforms.
+
+## Preloading Critical Images
+
+Preload hero images and featured products to improve perceived performance:
+
+```html
+<link rel="preload" as="image" 
+  href="https://assets.autorender.io/LOKVTtKVGb/w_720/doc1/hero-product.jpg">
+```
+
+**When to preload:**
+- Above-the-fold hero images
+- Featured products on homepage
+- Critical navigation elements
+- First product in a listing
+
+**Best practices:**
+- Only preload critical images (3-5 max)
+- Use appropriate sizes (don't preload full-resolution)
+- Monitor impact on initial page load
+
+## Progressive Image Loading
+
+Use blur-up technique with low-quality placeholders for smooth loading experience:
+
+```bash
+# Low-quality placeholder (shown immediately)
+https://assets.autorender.io/LOKVTtKVGb/w_20,e_blur:50/doc1/product.jpg
+
+# Full-quality image (loaded after)
+https://assets.autorender.io/LOKVTtKVGb/w_720/doc1/product.jpg
+```
+
+**Implementation example:**
+
+```html
+<div class="image-container">
+  <img 
+    src="https://assets.autorender.io/LOKVTtKVGb/w_20,e_blur:50/doc1/product.jpg"
+    data-src="https://assets.autorender.io/LOKVTtKVGb/w_720/doc1/product.jpg"
+    class="blur-up"
+    alt="Product"
+  />
+</div>
+
+<style>
+  .blur-up {
+    filter: blur(10px);
+    transition: filter 0.3s;
+  }
+  .blur-up.loaded {
+    filter: blur(0);
+  }
+</style>
+
+<script>
+  const images = document.querySelectorAll('.blur-up');
+  images.forEach(img => {
+    const fullImage = new Image();
+    fullImage.onload = () => {
+      img.src = img.dataset.src;
+      img.classList.add('loaded');
+    };
+    fullImage.src = img.dataset.src;
+  });
+</script>
+```
+
+## Batch Optimization
+
+Use AutoRender's API to pre-generate common image variants and warm the cache:
+
+```javascript
+const variants = [
+  { width: 300, height: 300, crop: 'fill' },
+  { width: 600, height: 600, crop: 'fill' },
+  { width: 1200, crop: 'fit' }
+];
+
+async function prewarmCache(imagePath) {
+  const promises = variants.map(variant => {
+    const url = buildAutoRenderUrl(imagePath, variant);
+    return fetch(url, { method: 'HEAD' }); // HEAD request to trigger generation
+  });
+  
+  await Promise.all(promises);
+  console.log('Cache prewarmed for:', imagePath);
+}
+
+function buildAutoRenderUrl(path, variant) {
+  const base = 'https://assets.autorender.io/LOKVTtKVGb';
+  const params = [];
+  
+  if (variant.width) params.push(`w_${variant.width}`);
+  if (variant.height) params.push(`h_${variant.height}`);
+  if (variant.crop) params.push(`c_${variant.crop}`);
+  
+  return `${base}/${params.join(',')}/${path}`;
+}
+```
+
+**When to batch optimize:**
+- New product launches
+- Featured products
+- Seasonal promotions
+- High-traffic pages
+
+## Intelligent Image Selection
+
+Dynamically select image sizes based on device and network conditions:
+
+```javascript
+function getOptimalImageSize() {
+  const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+  const screenWidth = window.innerWidth;
+  
+  // Network-aware sizing
+  if (connection) {
+    if (connection.effectiveType === 'slow-2g' || connection.effectiveType === '2g') {
+      return 300; // Very small for slow networks
+    }
+    if (connection.effectiveType === '3g') {
+      return 480; // Small for 3G
+    }
+  }
+  
+  // Device-aware sizing
+  if (screenWidth <= 480) return 480;
+  if (screenWidth <= 720) return 720;
+  if (screenWidth <= 1080) return 1080;
+  return 1440;
+}
+
+const optimalSize = getOptimalImageSize();
+const imageUrl = `https://assets.autorender.io/LOKVTtKVGb/w_${optimalSize}/doc1/product.jpg`;
+```
+
+## Lazy Loading Strategies
+
+### Intersection Observer API
+
+```javascript
+const imageObserver = new IntersectionObserver((entries, observer) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const img = entry.target;
+      img.src = img.dataset.src;
+      img.classList.add('loaded');
+      observer.unobserve(img);
+    }
+  });
+}, {
+  rootMargin: '50px' // Start loading 50px before image enters viewport
+});
+
+document.querySelectorAll('img[data-src]').forEach(img => {
+  imageObserver.observe(img);
+});
+```
+
+### Native Lazy Loading
+
+```html
+<img 
+  src="https://assets.autorender.io/LOKVTtKVGb/w_400/doc1/product.jpg"
+  loading="lazy"
+  alt="Product"
+/>
+```
+
+## Format Optimization
+
+Serve optimal formats based on browser support:
+
+```html
+<picture>
+  <source 
+    srcset="https://assets.autorender.io/LOKVTtKVGb/w_720,f_avif/doc1/product.jpg" 
+    type="image/avif">
+  <source 
+    srcset="https://assets.autorender.io/LOKVTtKVGb/w_720,f_webp/doc1/product.jpg" 
+    type="image/webp">
+  <img 
+    src="https://assets.autorender.io/LOKVTtKVGb/w_720/doc1/product.jpg" 
+    alt="Product">
+</picture>
+```
+
+## CDN Edge Caching Strategy
+
+Maximize cache hit rates by:
+
+1. **Using standard width buckets**: 320, 480, 720, 1080, 1440, 1920
+2. **Consistent transformation parameters**: Use recipes instead of inline parameters
+3. **Predictable URL patterns**: Same image always uses same URL
+
+```bash
+# Good: Consistent, cacheable
+https://assets.autorender.io/LOKVTtKVGb/t_product-thumbnail/doc1/product.jpg
+
+# Bad: Random parameters, poor caching
+https://assets.autorender.io/LOKVTtKVGb/w_347,h_298,c_fill/doc1/product.jpg
+```
+
+## Performance Monitoring
+
+Track key metrics to optimize your implementation:
+
+```javascript
+// Measure image load performance
+function measureImageLoad(url) {
+  const startTime = performance.now();
+  const img = new Image();
+  
+  img.onload = () => {
+    const loadTime = performance.now() - startTime;
+    console.log(`Image loaded in ${loadTime}ms:`, url);
+    
+    // Send to analytics
+    analytics.track('image_load_time', {
+      url,
+      loadTime,
+      size: img.naturalWidth + 'x' + img.naturalHeight
+    });
+  };
+  
+  img.src = url;
+}
+```
+
+## Next Steps
+
+- Explore [E-commerce Examples](/blog/quick-commerce/examples)
+- Review [Performance Impact](/blog/quick-commerce/performance)
+- Read [Best Practices Guide](/blog/quick-commerce/best-practices)
+
+---
+
+**Related Resources:**
+- [Quick Commerce Overview](/blog/quick-commerce-best-practices)
+- [Getting Started Guide](/blog/quick-commerce/getting-started)
+- [Best Practices Guide](/blog/quick-commerce/best-practices)

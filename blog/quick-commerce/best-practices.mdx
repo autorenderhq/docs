@@ -1,0 +1,157 @@
+---
+title: "Best Practices"
+description: "Essential best practices for optimizing images in quick commerce platforms"
+author: "AutoRender Team"
+date: "2025-01-11"
+---
+
+# Best Practices
+
+Essential guidelines for optimizing image delivery in quick commerce platforms.
+
+## Optimize Product Images
+
+### Thumbnails (Product Grids)
+
+```bash
+https://assets.autorender.io/LOKVTtKVGb/w_300,h_300,c_fill,p_c/doc1/porsche.jpg
+```
+<img src="https://assets.autorender.io/LOKVTtKVGb/w_300,h_300,c_fill,p_c/doc1/porsche.jpg" alt="Product thumbnail" style={{ borderRadius: '0.5rem', maxWidth: '100%' }} />
+
+**Best practices:**
+- Use 200-300px for thumbnails
+- Square aspect ratio (1:1) for consistent grids
+- Center crop to focus on product
+
+### Product Cards
+
+```bash
+https://assets.autorender.io/LOKVTtKVGb/w_400,h_400,c_fill/doc1/blackporsche.jpg
+```
+<img src="https://assets.autorender.io/LOKVTtKVGb/w_400,h_400,c_fill/doc1/blackporsche.jpg" alt="Product card" style={{ borderRadius: '0.5rem', maxWidth: '100%' }} />
+
+**Best practices:**
+- 400-600px width for card layouts
+- Maintain aspect ratio or use fill mode
+- Optimize for mobile viewing
+
+### Product Detail Pages
+
+```bash
+https://assets.autorender.io/LOKVTtKVGb/w_1200,c_fit/doc1/porsche.jpg
+```
+<img src="https://assets.autorender.io/LOKVTtKVGb/w_1200,c_fit/doc1/porsche.jpg" alt="Product detail" style={{ borderRadius: '0.5rem', maxWidth: '100%' }} />
+
+**Best practices:**
+- 800-1200px width for detail views
+- Use fit mode to show entire product
+- Higher quality for zoom functionality
+
+## Implement Responsive Images
+
+Use AutoRender with responsive image techniques for optimal performance:
+
+```html
+<img 
+  src="https://assets.autorender.io/LOKVTtKVGb/w_auto/doc1/product.jpg"
+  srcset="
+    https://assets.autorender.io/LOKVTtKVGb/w_480/doc1/product.jpg 480w,
+    https://assets.autorender.io/LOKVTtKVGb/w_720/doc1/product.jpg 720w,
+    https://assets.autorender.io/LOKVTtKVGb/w_1080/doc1/product.jpg 1080w
+  "
+  sizes="(max-width: 480px) 100vw, (max-width: 720px) 50vw, 33vw"
+  alt="Product name"
+  loading="lazy"
+/>
+```
+
+## Leverage Edge Caching
+
+### Do:
+
+- Use width buckets (320, 480, 720, 1080, 1440, 1920)
+- Stick to preset recipes
+- Use consistent transformation parameters
+
+### Don't:
+
+- Use random or frequently changing dimensions
+- Generate unique URLs for each user
+- Over-parameterize transformations
+
+## Mobile Optimization
+
+Quick commerce is mobile-first. Optimize accordingly:
+
+```bash
+# Mobile-optimized: smaller size, WebP format, optimized quality
+https://assets.autorender.io/LOKVTtKVGb/w_480,h_480,c_fill,q_80,f_webp/doc1/product.jpg
+```
+
+**Key mobile optimizations:**
+- Smaller dimensions (480px max for thumbnails)
+- WebP format for 25-30% size reduction
+- Quality setting 80-85 (sweet spot for size/quality)
+- Lazy loading for below-the-fold images
+
+## Use Face Detection for People Products
+
+For fashion, beauty, or lifestyle products featuring people:
+
+```bash
+https://assets.autorender.io/LOKVTtKVGb/w_400,h_400,c_crop,p_face/doc1/photographer.jpg
+```
+<img src="https://assets.autorender.io/LOKVTtKVGb/w_400,h_400,c_crop,p_face/doc1/photographer.jpg" alt="Face detection" style={{ borderRadius: '0.5rem', maxWidth: '100%' }} />
+
+Face detection ensures people are always properly centered and visible, improving product appeal.
+
+## Width Bucketing Strategy
+
+AutoRender automatically rounds image widths to predefined sizes (320, 480, 720, 1080, 1440, 1920px). This provides:
+
+**Better Cache Hit Rates**: When multiple requests ask for similar sizes (e.g., 650px and 680px), AutoRender serves the same cached 720px variant.
+
+**Faster Delivery**: Pre-optimized images at standard sizes are served instantly from edge caches.
+
+**Cost Reduction**: Fewer unique transformations mean lower processing costs.
+
+```bash
+# User requests w_650, AutoRender serves w_720 (nearest bucket)
+https://assets.autorender.io/LOKVTtKVGb/w_650/doc1/product.jpg
+```
+
+## Device-Aware Default Widths
+
+AutoRender automatically detects device types and applies appropriate default widths:
+
+- **Mobile devices**: 480px default (perfect for product cards)
+- **Tablets**: 720px default (ideal for detail views)
+- **Desktop**: 1080px default (full-quality experience)
+- **High-DPI displays**: Automatically scaled for retina quality
+
+This means you don't need to maintain separate image URLs for different devices—AutoRender handles it automatically.
+
+## Transformation Recipes
+
+Quick commerce platforms often need consistent image transformations across thousands of products. AutoRender's recipe system lets you define common transformations once and reuse them everywhere:
+
+```bash
+# Define once: t_product-thumbnail → c_fill,w_300,h_300,p_c
+# Use everywhere:
+https://assets.autorender.io/LOKVTtKVGb/t_product-thumbnail/doc1/product.jpg
+```
+
+This ensures consistency, improves cache hit rates, and simplifies your codebase.
+
+## Next Steps
+
+- Explore [E-commerce Examples](/blog/quick-commerce/examples)
+- Learn [Advanced Techniques](/blog/quick-commerce/advanced)
+- Review [Performance Impact](/blog/quick-commerce/performance)
+
+---
+
+**Related Resources:**
+- [Quick Commerce Overview](/blog/quick-commerce-best-practices)
+- [Getting Started Guide](/blog/quick-commerce/getting-started)
+- [Image Optimization Guide](/essentials/overview)
