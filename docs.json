@@ -42,12 +42,22 @@
         ]
       },
       {
-        "tab": "Blog",
+        "tab": "Industries",
         "groups": [
           {
-            "group": "Articles",
+            "group": "Quick Commerce",
             "pages": [
-              "blog/quick-commerce-best-practices"
+              "blog/quick-commerce-best-practices",
+              {
+                "group": "Guides",
+                "pages": [
+                  "blog/quick-commerce/getting-started",
+                  "blog/quick-commerce/best-practices",
+                  "blog/quick-commerce/examples",
+                  "blog/quick-commerce/advanced",
+                  "blog/quick-commerce/performance"
+                ]
+              }
             ]
           }
         ]

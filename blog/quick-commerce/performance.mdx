@@ -1,0 +1,144 @@
+---
+title: "Performance Impact"
+description: "Real-world performance metrics and case studies for quick commerce platforms"
+author: "AutoRender Team"
+date: "2025-01-11"
+---
+
+# Performance Impact
+
+Real-world performance metrics and case studies demonstrating AutoRender's impact on quick commerce platforms.
+
+## Case Study: Quick Commerce Platform
+
+A leading quick commerce platform implemented AutoRender and saw significant improvements across all key metrics.
+
+### Key Results
+
+- **40% reduction** in image load times
+- **60% improvement** in cache hit rates
+- **35% reduction** in bandwidth costs
+- **15% increase** in mobile conversion rates
+
+### Before AutoRender
+
+- Average image load: 2.3 seconds
+- Cache hit rate: 25%
+- Bandwidth per order: 8.5 MB
+- Mobile conversion rate: 3.2%
+
+### After AutoRender
+
+- Average image load: 1.4 seconds
+- Cache hit rate: 85%
+- Bandwidth per order: 5.5 MB
+- Mobile conversion rate: 3.7%
+
+## Performance Metrics Explained
+
+### Image Load Time
+
+**Impact:** Directly affects user experience and conversion rates.
+
+**Improvement:** 40% reduction means users see product images 0.9 seconds faster, leading to quicker purchase decisions.
+
+### Cache Hit Rate
+
+**Impact:** Higher cache hit rates mean faster delivery and lower costs.
+
+**Improvement:** 60% improvement (from 25% to 85%) means most images are served from edge caches, eliminating processing delays.
+
+### Bandwidth Costs
+
+**Impact:** Lower bandwidth reduces costs and improves experience on slower networks.
+
+**Improvement:** 35% reduction saves significant costs at scale while improving mobile experience.
+
+### Conversion Rates
+
+**Impact:** Faster page loads directly correlate with higher conversion rates.
+
+**Improvement:** 15% increase in mobile conversion rates demonstrates the business value of optimization.
+
+## The Quick Commerce Challenge
+
+Quick commerce platforms face unique technical challenges that make image optimization critical:
+
+### Speed is Everything
+
+Every millisecond counts. Studies show that a 100ms delay can reduce conversion rates by 1%. For quick commerce, where impulse purchases are common, page load speed directly impacts revenue.
+
+### Mobile-First Reality
+
+Over 70% of quick commerce orders come from mobile devices. These users are often on slower networks and have limited data plans, making image optimization critical.
+
+### Traffic Spikes
+
+Flash sales, promotions, and peak ordering times create sudden traffic surges. Your image infrastructure must handle these spikes without degradation.
+
+### Global Reach
+
+Quick commerce platforms often serve multiple cities or regions, requiring consistent performance across different network conditions and CDN edge locations.
+
+## How AutoRender Solves These Challenges
+
+### 1. Automatic Width Bucketing
+
+AutoRender automatically rounds image widths to predefined sizes (320, 480, 720, 1080, 1440, 1920px). This intelligent bucketing system provides:
+
+**Better Cache Hit Rates**: When multiple requests ask for similar sizes (e.g., 650px and 680px), AutoRender serves the same cached 720px variant, dramatically improving cache efficiency.
+
+**Faster Delivery**: Pre-optimized images at standard sizes are served instantly from edge caches, eliminating processing delays.
+
+**Cost Reduction**: Fewer unique transformations mean lower processing costs and better resource utilization.
+
+```bash
+# User requests w_650, AutoRender serves w_720 (nearest bucket)
+https://assets.autorender.io/LOKVTtKVGb/w_650/doc1/product.jpg
+```
+
+### 2. Device-Aware Default Widths
+
+AutoRender automatically detects device types and applies appropriate default widths:
+
+- **Mobile devices**: 480px default (perfect for product cards)
+- **Tablets**: 720px default (ideal for detail views)
+- **Desktop**: 1080px default (full-quality experience)
+- **High-DPI displays**: Automatically scaled for retina quality
+
+This means you don't need to maintain separate image URLs for different devices—AutoRender handles it automatically.
+
+### 3. Transformation Recipes
+
+Quick commerce platforms often need consistent image transformations across thousands of products. AutoRender's recipe system lets you define common transformations once and reuse them everywhere:
+
+```bash
+# Define once: t_product-thumbnail → c_fill,w_300,h_300,p_c
+# Use everywhere:
+https://assets.autorender.io/LOKVTtKVGb/t_product-thumbnail/doc1/product.jpg
+```
+
+This ensures consistency, improves cache hit rates, and simplifies your codebase.
+
+## Expected Performance Improvements
+
+By following AutoRender best practices, quick commerce platforms can typically achieve:
+
+- **40-60% reduction** in image load times
+- **50-70% improvement** in cache hit rates
+- **30-40% reduction** in bandwidth costs
+- **10-20% increase** in mobile conversion rates
+- **Graceful handling** of traffic spikes
+
+## Next Steps
+
+- Review [Best Practices Guide](/blog/quick-commerce/best-practices)
+- Explore [E-commerce Examples](/blog/quick-commerce/examples)
+- Learn [Advanced Techniques](/blog/quick-commerce/advanced)
+
+---
+
+**Related Resources:**
+- [Quick Commerce Overview](/blog/quick-commerce-best-practices)
+- [Getting Started Guide](/blog/quick-commerce/getting-started)
+- [Best Practices Guide](/blog/quick-commerce/best-practices)

@@ -1,0 +1,167 @@
+---
+title: "Getting Started"
+description: "Step-by-step guide to implementing AutoRender for quick commerce platforms"
+author: "AutoRender Team"
+date: "2025-01-11"
+---
+
+# Getting Started
+
+This guide walks you through implementing AutoRender for your quick commerce platform, from initial setup to production deployment.
+
+## Implementation Checklist
+
+For quick commerce platforms implementing AutoRender:
+
+- [ ] Set up AutoRender workspace and CDN
+- [ ] Upload product images to AutoRender
+- [ ] Create preset recipes for common sizes
+- [ ] Implement responsive image tags
+- [ ] Enable WebP format for modern browsers
+- [ ] Configure lazy loading
+- [ ] Preload critical above-the-fold images
+- [ ] Monitor performance metrics
+- [ ] Test across different network conditions
+- [ ] Optimize quality settings for your use case
+
+## Step 1: Set Up AutoRender Workspace
+
+1. **Create your workspace** in the AutoRender dashboard
+2. **Configure CDN settings** for optimal edge caching
+3. **Set up API credentials** for programmatic access
+
+## Step 2: Upload Product Images
+
+Upload your product images to AutoRender. You can:
+
+- Use the web interface for initial uploads
+- Use the API for bulk uploads
+- Set up automated sync from your existing storage
+
+```bash
+# Example: Upload via API
+curl -X POST https://api.autorender.io/v1/files \
+  -H "Authorization: Bearer YOUR_API_KEY" \
+  -F "file=@product.jpg" \
+  -F "folder=products"
+```
+
+## Step 3: Create Preset Recipes
+
+Define common image transformations as recipes for consistency:
+
+```bash
+# Define recipes in AutoRender dashboard:
+# - product-thumbnail: w_300,h_300,c_fill,p_c
+# - product-card: w_400,h_400,c_fill
+# - product-detail: w_1200,c_fit
+# - hero-banner: w_1920,h_600,c_fill,p_c
+```
+
+Then use them throughout your application:
+
+```bash
+https://assets.autorender.io/LOKVTtKVGb/t_product-thumbnail/doc1/porsche.jpg
+```
+
+## Step 4: Implement Responsive Images
+
+Replace static image tags with responsive implementations:
+
+```html
+<img 
+  src="https://assets.autorender.io/LOKVTtKVGb/w_auto/doc1/product.jpg"
+  srcset="
+    https://assets.autorender.io/LOKVTtKVGb/w_480/doc1/product.jpg 480w,
+    https://assets.autorender.io/LOKVTtKVGb/w_720/doc1/product.jpg 720w,
+    https://assets.autorender.io/LOKVTtKVGb/w_1080/doc1/product.jpg 1080w
+  "
+  sizes="(max-width: 480px) 100vw, (max-width: 720px) 50vw, 33vw"
+  alt="Product name"
+  loading="lazy"
+/>
+```
+
+## Step 5: Enable Format Optimization
+
+AutoRender automatically serves WebP to supported browsers. Ensure your implementation handles format fallbacks:
+
+```html
+<picture>
+  <source 
+    srcset="https://assets.autorender.io/LOKVTtKVGb/w_720,f_webp/doc1/product.jpg" 
+    type="image/webp">
+  <img 
+    src="https://assets.autorender.io/LOKVTtKVGb/w_720/doc1/product.jpg" 
+    alt="Product">
+</picture>
+```
+
+## Step 6: Configure Lazy Loading
+
+Implement lazy loading for below-the-fold images:
+
+```html
+<img 
+  src="https://assets.autorender.io/LOKVTtKVGb/w_400/doc1/product.jpg"
+  loading="lazy"
+  alt="Product"
+/>
+```
+
+## Step 7: Preload Critical Images
+
+Preload hero images and above-the-fold content:
+
+```html
+<link rel="preload" as="image" 
+  href="https://assets.autorender.io/LOKVTtKVGb/w_720/doc1/hero-product.jpg">
+```
+
+## Step 8: Monitor Performance
+
+Track key metrics:
+
+- Image load times
+- Cache hit rates
+- Bandwidth usage
+- Conversion rates
+
+Use AutoRender analytics and your own monitoring tools to measure impact.
+
+## Step 9: Test Across Network Conditions
+
+Test your implementation on:
+
+- Fast 4G/5G networks
+- Slow 3G networks
+- Wi-Fi connections
+- Different devices (mobile, tablet, desktop)
+
+## Step 10: Optimize Quality Settings
+
+Find the sweet spot between file size and visual quality:
+
+```bash
+# High quality (larger files)
+https://assets.autorender.io/LOKVTtKVGb/w_720,q_90/doc1/product.jpg
+
+# Balanced (recommended)
+https://assets.autorender.io/LOKVTtKVGb/w_720,q_80/doc1/product.jpg
+
+# Optimized (smaller files)
+https://assets.autorender.io/LOKVTtKVGb/w_720,q_70/doc1/product.jpg
+```
+
+## Next Steps
+
+- Read the [Best Practices Guide](/blog/quick-commerce/best-practices)
+- Explore [E-commerce Examples](/blog/quick-commerce/examples)
+- Learn [Advanced Techniques](/blog/quick-commerce/advanced)
+
+---
+
+**Related Resources:**
+- [Quick Commerce Overview](/blog/quick-commerce-best-practices)
+- [Best Practices Guide](/blog/quick-commerce/best-practices)
+- [API Reference](/api-reference/direct-upload)
