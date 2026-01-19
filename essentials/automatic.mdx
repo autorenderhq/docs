@@ -1,7 +1,7 @@
 ---
-title: 'Automatic'
-description: 'Learn about AutoRender automatic features and default behaviors'
-icon: 'sparkles'
+title: "Automatic"
+description: "Learn about AutoRender automatic features and default behaviors"
+icon: "sparkles"
 ---
 
 ## Overview
@@ -30,26 +30,20 @@ When you specify a width value, AutoRender automatically rounds it up to the nea
 Request: `w_500` → Automatically rounded to `w_720`:
 
 ```bash
-https://assets.autorender.io/LOKVTtKVGb/w_500/doc1/porsche.jpg
+https://assets.autorender.io/LOKVTtKVGb/w_500/docs/example/porsche.jpg
 ```
-
-<img src="https://assets.autorender.io/LOKVTtKVGb/w_720/doc1/porsche.jpg" alt="Width 720px (rounded from 500)" style={{ borderRadius: '0.5rem', maxWidth: '100%' }} />
 
 Request: `w_1500` → Automatically rounded to `w_1920`:
 
 ```bash
-https://assets.autorender.io/LOKVTtKVGb/w_1500/doc1/porsche.jpg
+https://assets.autorender.io/LOKVTtKVGb/w_1500/docs/example/porsche.jpg
 ```
-
-<img src="https://assets.autorender.io/LOKVTtKVGb/w_1920/doc1/porsche.jpg" alt="Width 1920px (rounded from 1500)" style={{ borderRadius: '0.5rem', maxWidth: '100%' }} />
 
 Request: `w_1080` → Stays at `w_1080` (already a bucket size):
 
 ```bash
-https://assets.autorender.io/LOKVTtKVGb/w_1080/doc1/porsche.jpg
+https://assets.autorender.io/LOKVTtKVGb/w_1080/docs/example/porsche.jpg
 ```
-
-<img src="https://assets.autorender.io/LOKVTtKVGb/w_1080/doc1/porsche.jpg" alt="Width 1080px (bucket size)" style={{ borderRadius: '0.5rem', maxWidth: '100%' }} />
 
 <Note>
   Width bucketing only applies when you explicitly specify a width. If you use preset tokens or aspect ratios, the bucketing behavior may differ.
@@ -63,17 +57,17 @@ When no width, height, or aspect ratio is specified in your transformation URL, 
 
 AutoRender analyzes the `User-Agent` header and `Save-Data` header to determine the optimal default width:
 
-| Device Type | Default Width |
-|------------|---------------|
-| iPhone | 1080px |
-| High-end Android (Samsung, Pixel, OnePlus) | 1080px |
-| iPad / Android Tablets | 1080px |
-| Desktop (Mac, Windows, Chrome OS) | 1080px |
-| Standard Android | 720px |
-| Mobile Browsers (Opera Mobile, Edge Android, Firefox Android) | 720px |
-| Opera Mini / UC Browser / KaiOS | 480px |
-| Save-Data mode (mobile) | 480px |
-| Default fallback | 720px |
+| Device Type                                                   | Default Width |
+| ------------------------------------------------------------- | ------------- |
+| iPhone                                                        | 1080px        |
+| High-end Android (Samsung, Pixel, OnePlus)                    | 1080px        |
+| iPad / Android Tablets                                        | 1080px        |
+| Desktop (Mac, Windows, Chrome OS)                             | 1080px        |
+| Standard Android                                              | 720px         |
+| Mobile Browsers (Opera Mobile, Edge Android, Firefox Android) | 720px         |
+| Opera Mini / UC Browser / KaiOS                               | 480px         |
+| Save-Data mode (mobile)                                       | 480px         |
+| Default fallback                                              | 720px         |
 
 ### Examples
 
@@ -82,24 +76,20 @@ No width specified - AutoRender adds device-appropriate width:
 iPhone request → automatically becomes `w_1080`:
 
 ```bash
-https://assets.autorender.io/LOKVTtKVGb/doc1/porsche.jpg
+https://assets.autorender.io/LOKVTtKVGb/docs/example/porsche.jpg
 ```
-
-<img src="https://assets.autorender.io/LOKVTtKVGb/w_1080/doc1/porsche.jpg" alt="Auto width 1080px for iPhone/Desktop" style={{ borderRadius: '0.5rem', maxWidth: '100%' }} />
 
 Desktop request → automatically becomes `w_1080`:
 
 ```bash
-https://assets.autorender.io/LOKVTtKVGb/doc1/porsche.jpg
+https://assets.autorender.io/LOKVTtKVGb/docs/example/porsche.jpg
 ```
 
 Mobile with Save-Data header → automatically becomes `w_480`:
 
 ```bash
-https://assets.autorender.io/LOKVTtKVGb/doc1/porsche.jpg
+https://assets.autorender.io/LOKVTtKVGb/docs/example/porsche.jpg
 ```
-
-<img src="https://assets.autorender.io/LOKVTtKVGb/w_480/doc1/porsche.jpg" alt="Auto width 480px for Save-Data mode" style={{ borderRadius: '0.5rem', maxWidth: '100%' }} />
 
 <Warning>
   If you explicitly specify width, height, or aspect ratio, AutoRender will not add a default width. Always specify dimensions when you need precise control.
@@ -113,15 +103,15 @@ AutoRender automatically orders transformation parameters to ensure they are app
 
 Transformations are applied in this order:
 
-1. **Crop mode** (`c_*`)
-2. **Aspect ratio** (`ar_*`)
-3. **Width** (`w_*`)
-4. **Height** (`h_*`)
-5. **Position** (`p_*`)
-6. **Zoom** (`z_*`)
-7. **Flip** (`flip_*`)
-8. **Rotation** (`r_*`)
-9. **Border radius** (`br_*`)
+ 1. **Crop mode** (`c_*`)
+ 2. **Aspect ratio** (`ar_*`)
+ 3. **Width** (`w_*`)
+ 4. **Height** (`h_*`)
+ 5. **Position** (`p_*`)
+ 6. **Zoom** (`z_*`)
+ 7. **Flip** (`flip_*`)
+ 8. **Rotation** (`r_*`)
+ 9. **Border radius** (`br_*`)
 10. **Background** (`bg_*`)
 11. **Format** (`f_*`)
 12. **Quality** (`q_*`)
@@ -147,15 +137,13 @@ These URLs produce identical results due to automatic ordering:
 Parameter order: quality, width, crop:
 
 ```bash
-https://assets.autorender.io/LOKVTtKVGb/q_80,w_720,c_crop/doc1/porsche.jpg
+https://assets.autorender.io/LOKVTtKVGb/q_80,w_720,c_crop/docs/example/porsche.jpg
 ```
-
-<img src="https://assets.autorender.io/LOKVTtKVGb/c_crop,w_720,q_80/doc1/porsche.jpg" alt="Auto-ordered transformation" style={{ borderRadius: '0.5rem', maxWidth: '100%' }} />
 
 Parameter order: crop, quality, width (reordered automatically):
 
 ```bash
-https://assets.autorender.io/LOKVTtKVGb/c_crop,q_80,w_720/doc1/porsche.jpg
+https://assets.autorender.io/LOKVTtKVGb/c_crop,q_80,w_720/docs/example/porsche.jpg
 ```
 
 Both URLs are automatically reordered to: `c_crop,w_720,q_80`
@@ -175,17 +163,15 @@ Preset tokens are stored per tenant and can be referenced in transformation URLs
 Using a preset token:
 
 ```bash
-https://assets.autorender.io/LOKVTtKVGb/t_thumbnail-2/doc1/porsche.jpg
+https://assets.autorender.io/LOKVTtKVGb/t_thumbnail-2/docs/example/porsche.jpg
 ```
-
-<img src="https://assets.autorender.io/LOKVTtKVGb/c_fill,w_200,h_200,p_c/doc1/porsche.jpg" alt="Preset token thumbnail" style={{ borderRadius: '0.5rem', maxWidth: '100%' }} />
 
 The preset expands to: `c_fill,w_200,h_200,p_c`
 
 Equivalent to:
 
 ```bash
-https://assets.autorender.io/LOKVTtKVGb/c_fill,w_200,h_200,p_c/doc1/porsche.jpg
+https://assets.autorender.io/LOKVTtKVGb/c_fill,w_200,h_200,p_c/docs/example/porsche.jpg
 ```
 
 ### Preset Examples
@@ -228,7 +214,7 @@ AutoRender respects the `Save-Data` HTTP header, which indicates that the user p
 Request with Save-Data: on header. Mobile device that would normally get `w_720` is automatically reduced to `w_480`:
 
 ```bash
-https://assets.autorender.io/LOKVTtKVGb/doc1/porsche.jpg
+https://assets.autorender.io/LOKVTtKVGb/docs/example/porsche.jpg
 ```
 
 ## Best Practices
@@ -262,27 +248,21 @@ https://assets.autorender.io/LOKVTtKVGb/doc1/porsche.jpg
      alt="Hero image" />
 ```
 
-<img src="https://assets.autorender.io/LOKVTtKVGb/w_1080/doc1/porsche.jpg" alt="Responsive image with automatic width" style={{ borderRadius: '0.5rem', maxWidth: '100%' }} />
-
 ### Example 2: Width Bucketing in Action
 
 Request with `w_650` automatically rounded to `w_720`:
 
 ```bash
-https://assets.autorender.io/LOKVTtKVGb/w_650/doc1/porsche.jpg
+https://assets.autorender.io/LOKVTtKVGb/w_650/docs/example/porsche.jpg
 ```
-
-<img src="https://assets.autorender.io/LOKVTtKVGb/w_720/doc1/porsche.jpg" alt="Width bucketing example" style={{ borderRadius: '0.5rem', maxWidth: '100%' }} />
 
 ### Example 3: Automatic Ordering
 
 Parameters in any order - AutoRender reorders automatically:
 
 ```bash
-https://assets.autorender.io/LOKVTtKVGb/q_80,c_fill,w_800,h_600/doc1/porsche.jpg
+https://assets.autorender.io/LOKVTtKVGb/q_80,c_fill,w_800,h_600/docs/example/porsche.jpg
 ```
-
-<img src="https://assets.autorender.io/LOKVTtKVGb/c_fill,w_800,h_600,q_80/doc1/porsche.jpg" alt="Auto-ordered transformations" style={{ borderRadius: '0.5rem', maxWidth: '100%' }} />
 
 Automatically becomes: `c_fill,w_800,h_600,q_80`
 
@@ -291,15 +271,11 @@ Automatically becomes: `c_fill,w_800,h_600,q_80`
 Simple preset usage:
 
 ```bash
-https://assets.autorender.io/LOKVTtKVGb/t_thumbnail-2/doc1/porsche.jpg
+https://assets.autorender.io/LOKVTtKVGb/t_thumbnail-2/docs/example/porsche.jpg
 ```
-
-<img src="https://assets.autorender.io/LOKVTtKVGb/c_fill,w_200,h_200,p_c/doc1/porsche.jpg" alt="Preset token example" style={{ borderRadius: '0.5rem', maxWidth: '100%' }} />
 
 Preset with additional parameters:
 
 ```bash
-https://assets.autorender.io/LOKVTtKVGb/t_thumbnail-2,q_90/doc1/porsche.jpg
+https://assets.autorender.io/LOKVTtKVGb/t_thumbnail-2,q_90/docs/example/porsche.jpg
 ```
-
-<img src="https://assets.autorender.io/LOKVTtKVGb/c_fill,w_200,h_200,p_c,q_90/doc1/porsche.jpg" alt="Preset with additional parameters" style={{ borderRadius: '0.5rem', maxWidth: '100%' }} />

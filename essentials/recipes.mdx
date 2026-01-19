@@ -1,7 +1,7 @@
 ---
-title: 'Recipes'
-description: 'Learn how to use AutoRender preset tokens (recipes) to simplify complex transformations'
-icon: 'book'
+title: "Recipes"
+description: "Learn how to use AutoRender preset tokens (recipes) to simplify complex transformations"
+icon: "book"
 ---
 
 ## Overview
@@ -16,7 +16,11 @@ AutoRender URLs with recipes follow this structure:
 https://assets.autorender.io/LOKVTtKVGb/t_thumbnail-2/docs/example/porsche.jpg
 ```
 
-<img src="https://assets.autorender.io/LOKVTtKVGb/t_thumbnail-2/docs/example/porsche.jpg" alt="Recipe example" class="ar-url-image" />
+<img
+  src="https://assets.autorender.io/LOKVTtKVGb/t_thumbnail-2/docs/example/porsche.jpg"
+  alt="Recipe example"
+  class="ar-url-image"
+/>
 
 ## How Recipes Work
 
@@ -27,27 +31,34 @@ Recipes use the `t_` prefix followed by a preset name. When AutoRender encounter
 Compare recipe vs full transformation:
 
 <Tabs>
-<Tab title="Using Recipe">
-Using a recipe:
+  <Tab title="Using Recipe">
+    Using a recipe:
 
-```bash
-https://assets.autorender.io/LOKVTtKVGb/t_thumbnail-2/docs/example/porsche.jpg
-```
+    ```bash
+    https://assets.autorender.io/LOKVTtKVGb/t_thumbnail-2/docs/example/porsche.jpg
+    ```
 
-<img src="https://assets.autorender.io/LOKVTtKVGb/t_thumbnail-2/docs/example/porsche.jpg" alt="Recipe example" class="ar-url-image" />
+    <img
+      src="https://assets.autorender.io/LOKVTtKVGb/t_thumbnail-2/docs/example/porsche.jpg"
+      alt="Recipe example"
+      class="ar-url-image"
+    />
 
-This expands to: `c_fill,w_200,h_200,p_c`
-</Tab>
+    This expands to: `c_fill,w_200,h_200,p_c`
+  </Tab>
+  <Tab title="Full Transformation">
+    Equivalent transformation:
 
-<Tab title="Full Transformation">
-Equivalent transformation:
+    ```bash
+    https://assets.autorender.io/LOKVTtKVGb/c_fill,w_200,h_200,p_c/docs/example/porsche.jpg
+    ```
 
-```bash
-https://assets.autorender.io/LOKVTtKVGb/c_fill,w_200,h_200,p_c/docs/example/porsche.jpg
-```
-
-<img src="https://assets.autorender.io/LOKVTtKVGb/c_fill,w_200,h_200,p_c/docs/example/porsche.jpg" alt="Full transformation" class="ar-url-image" />
-</Tab>
+    <img
+      src="https://assets.autorender.io/LOKVTtKVGb/c_fill,w_200,h_200,p_c/docs/example/porsche.jpg"
+      alt="Full transformation"
+      class="ar-url-image"
+    />
+  </Tab>
 </Tabs>
 
 ### Recipe Expansion Process
@@ -69,7 +80,11 @@ Recipe: `t_thumbnail-2` expands to: `c_fill,w_200,h_200,p_c`
 https://assets.autorender.io/LOKVTtKVGb/t_thumbnail-2/docs/example/porsche.jpg
 ```
 
-<img src="https://assets.autorender.io/LOKVTtKVGb/t_thumbnail-2/docs/example/porsche.jpg" alt="Thumbnail recipe" class="ar-url-image" />
+<img
+  src="https://assets.autorender.io/LOKVTtKVGb/t_thumbnail-2/docs/example/porsche.jpg"
+  alt="Thumbnail recipe"
+  class="ar-url-image"
+/>
 
 ### Complex Recipe Example
 
@@ -103,7 +118,11 @@ Recipe with additional effects:
 https://assets.autorender.io/LOKVTtKVGb/t_thumbnail-2,e_saturation:20,e_sharpen:120/docs/example/porsche.jpg
 ```
 
-<img src="https://assets.autorender.io/LOKVTtKVGb/t_thumbnail-2,e_saturation:20,e_sharpen:120/docs/example/porsche.jpg" alt="Recipe with effects" class="ar-url-image" />
+<img
+  src="https://assets.autorender.io/LOKVTtKVGb/t_thumbnail-2,e_saturation:20,e_sharpen:120/docs/example/porsche.jpg"
+  alt="Recipe with effects"
+  class="ar-url-image"
+/>
 
 ## Benefits of Using Recipes
 
@@ -186,9 +205,14 @@ Recipe: `t_product-thumbnail` expands to: `w_300,h_300,c_fill,p_c,e_auto_enhance
 https://assets.autorender.io/LOKVTtKVGb/t_product-thumbnail/product-123.jpg
 ```
 
-<img src="https://assets.autorender.io/LOKVTtKVGb/t_product-thumbnail/product-123.jpg" alt="Product thumbnail" class="ar-url-image" />
+<img
+  src="https://assets.autorender.io/LOKVTtKVGb/t_product-thumbnail/product-123.jpg"
+  alt="Product thumbnail"
+  class="ar-url-image"
+/>
 
 **Use cases:**
+
 - Product listing pages
 - Search results
 - Related products
@@ -205,9 +229,14 @@ Recipe: `t_product-detail` expands to: `w_1200,h_1200,c_fit,e_auto_enhance,e_str
 https://assets.autorender.io/LOKVTtKVGb/t_product-detail/product-123.jpg
 ```
 
-<img src="https://assets.autorender.io/LOKVTtKVGb/t_product-detail/product-123.jpg" alt="Product detail" class="ar-url-image" />
+<img
+  src="https://assets.autorender.io/LOKVTtKVGb/t_product-detail/product-123.jpg"
+  alt="Product detail"
+  class="ar-url-image"
+/>
 
 **Use cases:**
+
 - Main product image
 - Product gallery
 - Zoom/lightbox views
@@ -224,6 +253,7 @@ https://assets.autorender.io/LOKVTtKVGb/t_product-zoom/product-123.jpg
 ```
 
 **Use cases:**
+
 - Zoom functionality
 - Lightbox/modal views
 - Full-screen product viewing
@@ -239,9 +269,14 @@ Recipe: `t_category-banner` expands to: `w_1920,h_600,c_fill,p_c,e_saturation:25
 https://assets.autorender.io/LOKVTtKVGb/t_category-banner/category-electronics.jpg
 ```
 
-<img src="https://assets.autorender.io/LOKVTtKVGb/t_category-banner/category-electronics.jpg" alt="Category banner" class="ar-url-image" />
+<img
+  src="https://assets.autorender.io/LOKVTtKVGb/t_category-banner/category-electronics.jpg"
+  alt="Category banner"
+  class="ar-url-image"
+/>
 
 **Use cases:**
+
 - Category page headers
 - Department banners
 - Collection headers
@@ -257,9 +292,14 @@ Recipe: `t_hero-image` expands to: `w_1920,h_1080,c_fill,p_c,e_auto_enhance,e_sa
 https://assets.autorender.io/LOKVTtKVGb/t_hero-image/homepage-hero.jpg
 ```
 
-<img src="https://assets.autorender.io/LOKVTtKVGb/t_hero-image/homepage-hero.jpg" alt="Hero image" class="ar-url-image" />
+<img
+  src="https://assets.autorender.io/LOKVTtKVGb/t_hero-image/homepage-hero.jpg"
+  alt="Hero image"
+  class="ar-url-image"
+/>
 
 **Use cases:**
+
 - Homepage hero sections
 - Landing page headers
 - Promotional banners
@@ -275,9 +315,14 @@ Recipe: `t_product-card` expands to: `w_400,h_400,c_fill,p_c,e_auto_enhance,br_1
 https://assets.autorender.io/LOKVTtKVGb/t_product-card/product-123.jpg
 ```
 
-<img src="https://assets.autorender.io/LOKVTtKVGb/t_product-card/product-123.jpg" alt="Product card" class="ar-url-image" />
+<img
+  src="https://assets.autorender.io/LOKVTtKVGb/t_product-card/product-123.jpg"
+  alt="Product card"
+  class="ar-url-image"
+/>
 
 **Use cases:**
+
 - Product grid layouts
 - Card-based designs
 - Mobile product listings
@@ -294,6 +339,7 @@ https://assets.autorender.io/LOKVTtKVGb/t_product-mobile/product-123.jpg
 ```
 
 **Use cases:**
+
 - Mobile product pages
 - Responsive product galleries
 - Mobile-optimized listings
@@ -310,6 +356,7 @@ https://assets.autorender.io/LOKVTtKVGb/t_social-share/product-123.jpg
 ```
 
 **Use cases:**
+
 - Open Graph images
 - Twitter card images
 - Facebook sharing
@@ -326,6 +373,7 @@ https://assets.autorender.io/LOKVTtKVGb/t_product-badge/badge-new.jpg
 ```
 
 **Use cases:**
+
 - Sale badges
 - New product labels
 - Featured badges
@@ -444,7 +492,11 @@ Use a thumbnail recipe:
 https://assets.autorender.io/LOKVTtKVGb/t_thumbnail-2/docs/example/porsche.jpg
 ```
 
-<img src="https://assets.autorender.io/LOKVTtKVGb/t_thumbnail-2/docs/example/porsche.jpg" alt="Simple recipe" class="ar-url-image" />
+<img
+  src="https://assets.autorender.io/LOKVTtKVGb/t_thumbnail-2/docs/example/porsche.jpg"
+  alt="Simple recipe"
+  class="ar-url-image"
+/>
 
 ### Example 2: Recipe with Additional Parameters
 
@@ -454,7 +506,11 @@ Combine recipe with quality setting:
 https://assets.autorender.io/LOKVTtKVGb/t_thumbnail-2,q_90/docs/example/porsche.jpg
 ```
 
-<img src="https://assets.autorender.io/LOKVTtKVGb/t_thumbnail-2,q_90/docs/example/porsche.jpg" alt="Recipe with quality" class="ar-url-image" />
+<img
+  src="https://assets.autorender.io/LOKVTtKVGb/t_thumbnail-2,q_90/docs/example/porsche.jpg"
+  alt="Recipe with quality"
+  class="ar-url-image"
+/>
 
 ### Example 3: E-commerce Product Thumbnail
 
@@ -475,4 +531,3 @@ https://assets.autorender.io/LOKVTtKVGb/t_product-detail/product-123.jpg
 <Note>
   Recipes simplify your URLs and ensure consistency across your application. Contact AutoRender support to set up custom recipes tailored to your specific needs.
 </Note>
-
