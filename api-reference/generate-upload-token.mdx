@@ -7,6 +7,166 @@ openapi: 'POST /api/v1/generate-token'
 
 Generate a short-lived, secure token that allows client-side applications to upload files directly to AutoRender without exposing your API key. The token encodes upload constraints (folder, tags, transformations, file size limits) and expires after a configurable time period.
 
+## Authentication
+
+This endpoint requires API key authentication. Include your API key in the Authorization header:
+
+```
+Authorization: Bearer YOUR_API_KEY
+```
+
+## Request
+
+### Content Type
+
+```
+Content-Type: application/json
+```
+
+### Request Body Fields
+
+| Field | Type | Required | Description |
+|-------|------|----------|-------------|
+| `file_name` | string | ✅ Yes | File name for the uploaded file (e.g., `avatar.jpg`) |
+| `folder` | string | ❌ No | Folder path where the file will be stored (e.g., `user-uploads/avatars/`) |
+| `tags` | string[] | ❌ No | Array of tags to attach to the file (e.g., `["user-upload", "avatar"]`) |
+| `transform` | string | ❌ No | Image transformation string (e.g., `w_400,h_400,fit_cover,q_80`) |
+| `max_file_size` | number | ❌ No | Maximum file size in bytes (default: 5MB) |
+| `ttl_seconds` | number | ❌ No | Token expiration time in seconds (default: 300 seconds / 5 minutes) |
+| `metadata` | object | ❌ No | Custom metadata object (e.g., `{"key": "value"}`) |
+| `custom_id` | string | ❌ No | Custom identifier for the file |
+| `random_prefix` | boolean | ❌ No | If `true`, adds a random suffix to the filename |
+| `allow_override` | object | ❌ No | Allow client to override certain fields during upload |
+| `allow_override.folder` | boolean | ❌ No | Allow client to override folder path |
+| `allow_override.tags` | boolean | ❌ No | Allow client to override tags |
+| `allow_override.transform` | boolean | ❌ No | Allow client to override transformation string |
+
+## Request Examples
+
+### Minimal Request (Required Fields Only)
+
+```bash
+curl -X POST \
+  https://dev-api.autorender.io/api/v1/generate-token \
+  -H "Authorization: Bearer YOUR_API_KEY_HERE" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "file_name": "my-image.jpg"
+  }'
+```
+
+### Full Request (All Fields)
+
+```bash
+curl -X POST \
+  https://dev-api.autorender.io/api/v1/generate-token \
+  -H "Authorization: Bearer YOUR_API_KEY_HERE" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "file_name": "avatar.jpg",
+    "folder": "user-uploads/avatars",
+    "tags": ["user-upload", "avatar", "profile"],
+    "transform": "w_400,h_400,fit_cover,q_80",
+    "max_file_size": 10485760,
+    "ttl_seconds": 3600,
+    "metadata": {
+      "user_id": "12345",
+      "category": "profile"
+    },
+    "custom_id": "user-avatar-12345",
+    "random_prefix": true,
+    "allow_override": {
+      "folder": false,
+      "tags": true,
+      "transform": false
+    }
+  }'
+```
+
+### Request with Custom TTL
+
+```bash
+curl -X POST \
+  https://dev-api.autorender.io/api/v1/generate-token \
+  -H "Authorization: Bearer YOUR_API_KEY_HERE" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "file_name": "document.pdf",
+    "folder": "documents",
+    "ttl_seconds": 7200
+  }'
+```
+
+## Response
+
+### Success Response (201 Created)
+
+```json
+{
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
+  "signature": "abc123...",
+  "expire_at": 1234567890,
+  "public_key": "pub_WS123",
+  "workspace_id": "WS123",
+  "policy": {
+    "folder": "user-uploads/avatars/",
+    "tags": ["user-upload", "avatar"],
+    "max_file_size": 5242880,
+    "allow_override": {
+      "folder": false,
+      "tags": true,
+      "transform": false
+    }
+  }
+}
+```
+
+### Response Fields
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `token` | string | JWT token to use for client-side uploads |
+| `signature` | string | HMAC signature for token verification |
+| `expire_at` | integer | Unix timestamp when the token expires |
+| `public_key` | string | Public key identifier for the workspace |
+| `workspace_id` | string | Workspace identifier |
+| `policy` | object | Upload policy constraints encoded in the token |
+| `policy.folder` | string | Folder path constraint |
+| `policy.tags` | array | Tags constraint |
+| `policy.max_file_size` | integer | Maximum file size constraint |
+| `policy.allow_override` | object | Override permission settings |
+
+## Error Responses
+
+### 400 Bad Request
+
+```json
+{
+  "success": false,
+  "error": "Validation error message"
+}
+```
+
+### 401 Unauthorized
+
+```json
+{
+  "success": false,
+  "error": "Unauthorized",
+  "message": "Invalid or missing API key"
+}
+```
+
+### 500 Internal Server Error
+
+```json
+{
+  "success": false,
+  "error": "Upload failed",
+  "message": "Detailed error message"
+}
+```
+
 ---
 
 ## Why

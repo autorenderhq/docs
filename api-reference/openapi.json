@@ -10,7 +10,7 @@
   },
   "servers": [
     {
-      "url": "https://upload.autorender.io"
+      "url": "https://dev-api.autorender.io"
     }
   ],
   "security": [
@@ -134,7 +134,7 @@
         "description": "Upload a file to your AutoRender workspace with optional transformations, tags, and folder organization",
         "security": [
           {
-            "apiKeyAuth": []
+            "bearerAuth": []
           }
         ],
         "requestBody": {
@@ -144,24 +144,40 @@
             "multipart/form-data": {
               "schema": {
                 "type": "object",
-                "required": ["file"],
+                "required": ["file", "file_name"],
                 "properties": {
                   "file": {
                     "type": "string",
                     "format": "binary",
-                    "description": "The image file to upload. Must be a valid image format (JPEG, PNG, GIF, WebP, BMP, TIFF, AVIF, HEIC, HEIF) and not exceed 100MB."
+                    "description": "The file to upload (binary data)"
                   },
-                  "settings": {
+                  "file_name": {
                     "type": "string",
-                    "description": "JSON string containing optional upload settings: tags (array), pretransformations (string), generate_random_suffix (boolean), webhook_url (string), custom_id (string), metadata (object)"
+                    "description": "File name for the uploaded file (e.g., my-image.jpg)"
                   },
-                  "folderPath": {
+                  "folder": {
                     "type": "string",
-                    "description": "Folder path where the file should be stored. If the folder doesn't exist, it will be created automatically."
+                    "description": "Folder path where the file will be stored (e.g., uploads/my-folder)"
                   },
-                  "relativePath": {
+                  "tags": {
                     "type": "string",
-                    "description": "Optional relative path for the file. If not provided, the original filename is used."
+                    "description": "Comma-separated tags (e.g., tag1,tag2,tag3)"
+                  },
+                  "transform": {
+                    "type": "string",
+                    "description": "Image transformation string (e.g., w_800,h_600,q_90) - same as generate-token API"
+                  },
+                  "metadata": {
+                    "type": "string",
+                    "description": "JSON string for custom metadata (e.g., {\"key\": \"value\"})"
+                  },
+                  "custom_id": {
+                    "type": "string",
+                    "description": "Custom identifier for the file"
+                  },
+                  "random_prefix": {
+                    "type": "string",
+                    "description": "Set to \"true\" to add a random suffix to filename"
                   }
                 }
               }
@@ -217,7 +233,7 @@
         "description": "Retrieve a paginated list of files from your AutoRender workspace. Supports filtering by folder, tags, and filename, as well as sorting and pagination.",
         "security": [
           {
-            "apiKeyAuth": []
+            "bearerAuth": []
           }
         ],
         "parameters": [
@@ -312,7 +328,7 @@
         "description": "Retrieve detailed information about a specific file using its file number",
         "security": [
           {
-            "apiKeyAuth": []
+            "bearerAuth": []
           }
         ],
         "parameters": [
@@ -363,7 +379,7 @@
         "description": "Permanently delete a file from your AutoRender workspace. This operation removes the file from both the database and S3 storage.",
         "security": [
           {
-            "apiKeyAuth": []
+            "bearerAuth": []
           }
         ],
         "parameters": [
@@ -419,7 +435,7 @@
         "description": "Generate a short-lived, secure token that allows client-side applications to upload files directly to AutoRender without exposing your API key",
         "security": [
           {
-            "apiKeyAuth": []
+            "bearerAuth": []
           }
         ],
         "requestBody": {
@@ -492,6 +508,16 @@
               "type": "string",
               "example": "up_tok_01JHD8X4BX3HQM8NFMD9ZCQ9QN"
             }
+          },
+          {
+            "name": "X-File-Name",
+            "in": "header",
+            "required": true,
+            "description": "File name for the uploaded file (e.g., my-image.jpg)",
+            "schema": {
+              "type": "string",
+              "example": "my-image.jpg"
+            }
           }
         ],
         "requestBody": {
@@ -502,6 +528,13 @@
                 "type": "string",
                 "format": "binary",
                 "description": "Raw image file as binary data. Filename will be extracted from Content-Disposition header or derived from Content-Type."
+              }
+            },
+            "application/octet-stream": {
+              "schema": {
+                "type": "string",
+                "format": "binary",
+                "description": "Raw binary file data. Filename will be extracted from Content-Disposition header or derived from Content-Type."
               }
             }
           }
@@ -555,7 +588,7 @@
         "description": "Upload an image from a remote URL to your AutoRender workspace. Fetches the image from the provided URL, applies optional transformations, and stores it in your workspace",
         "security": [
           {
-            "apiKeyAuth": []
+            "bearerAuth": []
           }
         ],
         "requestBody": {
@@ -703,6 +736,13 @@
       "UploadResponse": {
         "type": "object",
         "properties": {
+          "success": {
+            "type": "boolean",
+            "description": "Indicates if the upload was successful"
+          },
+          "data": {
+        "type": "object",
+        "properties": {
           "id": {
             "type": "string",
             "description": "Unique file record ID"
@@ -711,21 +751,17 @@
             "type": "string",
             "description": "10-character file number identifier"
           },
-          "workspace_id": {
-            "type": "string",
-            "description": "Workspace ID"
-          },
           "name": {
             "type": "string",
             "description": "Final filename (may include random suffix if requested)"
           },
-          "path": {
+              "url": {
             "type": "string",
-            "description": "Full path to the file including folder structure"
+                "description": "Full CDN URL to access the uploaded file"
           },
-          "url": {
+              "path": {
             "type": "string",
-            "description": "Full URL to access the uploaded file"
+                "description": "Folder path where the file is stored"
           },
           "width": {
             "type": "integer",
@@ -737,60 +773,19 @@
             "nullable": true,
             "description": "Image height in pixels (null for non-image files)"
           },
-          "size": {
-            "type": "integer",
-            "description": "File size in bytes (after processing)"
-          },
           "format": {
             "type": "string",
-            "description": "File format/extension (e.g., jpeg, png, webp)"
+                "description": "File format/extension (e.g., jpg, png, webp)"
           },
-          "mime_type": {
+              "file_size": {
+                "type": "integer",
+                "description": "File size in bytes (after processing)"
+          },
+              "workspace_no": {
             "type": "string",
-            "description": "MIME type of the file (e.g., image/jpeg, image/png)"
-          },
-          "hash": {
-            "type": "string",
-            "description": "SHA-256 hash of the file content (prefixed with sha256:)"
-          },
-          "tags": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "description": "Array of normalized tag strings associated with the file"
-          },
-          "metadata": {
-            "type": "object",
-            "description": "Custom metadata object attached to the file",
-            "additionalProperties": true
-          },
-          "custom_id": {
-            "type": "string",
-            "nullable": true,
-            "description": "Custom identifier for tracking the upload"
-          },
-          "folder_no": {
-            "type": "string",
-            "nullable": true,
-            "description": "Folder number identifier if file is in a folder (null for root)"
-          },
-          "is_private": {
-            "type": "boolean",
-            "description": "Whether the file is private"
-          },
-          "is_duplicate": {
-            "type": "boolean",
-            "description": "Indicates if a file with the same name already exists in the folder"
-          },
-          "created_at": {
-            "type": "string",
-            "format": "date-time",
-            "description": "ISO 8601 timestamp of when the file was created"
-          },
-          "upload_source": {
-            "type": "string",
-            "description": "Source of the upload (e.g., server, sdk, api)"
+                "description": "Workspace identifier"
+              }
+            }
           }
         }
       },
@@ -945,7 +940,12 @@
       },
       "GenerateTokenRequest": {
         "type": "object",
+        "required": ["file_name"],
         "properties": {
+          "file_name": {
+            "type": "string",
+            "description": "File name for the uploaded file (e.g., avatar.jpg)"
+          },
           "folder": {
             "type": "string",
             "description": "Folder path where files should be uploaded"
