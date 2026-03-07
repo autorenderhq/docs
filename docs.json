@@ -38,6 +38,20 @@
               "essentials/layers",
               "essentials/recipes"
             ]
+          },
+          {
+            "group": "Video Transformation",
+            "pages": [
+              "essentials/video/overview",
+              "essentials/video/thumbnail",
+              "essentials/video/resize",
+              "essentials/video/pad-resize",
+              "essentials/video/flip",
+              "essentials/video/gif",
+              "essentials/video/trim",
+              "essentials/video/aspect-ratio",
+              "essentials/video/rotate"
+            ]
           }
         ]
       },

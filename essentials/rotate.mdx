@@ -13,10 +13,10 @@ AutoRender's rotation feature allows you to rotate images by any angle in degree
 AutoRender URLs with rotation follow this structure:
 
 ```bash
-https://assets.autorender.io/LOKVTtKVGb/r_90/doc1/flight.jpg
+https://assets.autorender.io/LOKVTtKVGb/w_360,r_90/doc1/flight.jpg
 ```
 
-<img src="https://assets.autorender.io/LOKVTtKVGb/r_90/doc1/flight.jpg" alt="Rotated image" style={{ borderRadius: '0.5rem', maxWidth: '100%' }} />
+<img src="https://assets.autorender.io/LOKVTtKVGb/w_360,r_90/doc1/flight.jpg" alt="Rotated image" style={{ width: 360, maxWidth: '100%', height: 'auto', borderRadius: '0.5rem', display: 'block', marginLeft: 'auto', marginRight: 'auto', objectFit: 'contain' }} />
 
 ## How Rotation Works
 
@@ -33,50 +33,42 @@ Compare different rotation angles:
 <Tabs>
 <Tab title="Original (0°)">
 ```bash
-https://assets.autorender.io/LOKVTtKVGb/doc1/flight.jpg
+https://assets.autorender.io/LOKVTtKVGb/w_360/doc1/flight.jpg
 ```
 
-<img src="https://assets.autorender.io/LOKVTtKVGb/doc1/flight.jpg" alt="Original image" style={{ borderRadius: '0.5rem', maxWidth: '100%' }} />
+<img src="https://assets.autorender.io/LOKVTtKVGb/w_360/doc1/flight.jpg" alt="Original image" style={{ width: 360, maxWidth: '100%', height: 'auto', borderRadius: '0.5rem', display: 'block', marginLeft: 'auto', marginRight: 'auto', objectFit: 'contain' }} />
 </Tab>
 
 <Tab title="90°">
-Rotate the image 90 degrees clockwise:
-
 ```bash
-https://assets.autorender.io/LOKVTtKVGb/r_90/doc1/flight.jpg
+https://assets.autorender.io/LOKVTtKVGb/w_360,r_90/doc1/flight.jpg
 ```
 
-<img src="https://assets.autorender.io/LOKVTtKVGb/r_90/doc1/flight.jpg" alt="Rotated 90 degrees" style={{ borderRadius: '0.5rem', maxWidth: '100%' }} />
+<img src="https://assets.autorender.io/LOKVTtKVGb/w_360,r_90/doc1/flight.jpg" alt="Rotated 90 degrees" style={{ width: 360, maxWidth: '100%', height: 'auto', borderRadius: '0.5rem', display: 'block', marginLeft: 'auto', marginRight: 'auto', objectFit: 'contain' }} />
 </Tab>
 
 <Tab title="180°">
-Rotate the image 180 degrees (upside down):
-
 ```bash
-https://assets.autorender.io/LOKVTtKVGb/r_180/doc1/flight.jpg
+https://assets.autorender.io/LOKVTtKVGb/w_360,r_180/doc1/flight.jpg
 ```
 
-<img src="https://assets.autorender.io/LOKVTtKVGb/r_180/doc1/flight.jpg" alt="Rotated 180 degrees" style={{ borderRadius: '0.5rem', maxWidth: '100%' }} />
+<img src="https://assets.autorender.io/LOKVTtKVGb/w_360,r_180/doc1/flight.jpg" alt="Rotated 180 degrees" style={{ width: 360, maxWidth: '100%', height: 'auto', borderRadius: '0.5rem', display: 'block', marginLeft: 'auto', marginRight: 'auto', objectFit: 'contain' }} />
 </Tab>
 
 <Tab title="270°">
-Rotate the image 270 degrees clockwise (or 90 degrees counter-clockwise):
-
 ```bash
-https://assets.autorender.io/LOKVTtKVGb/r_270/doc1/flight.jpg
+https://assets.autorender.io/LOKVTtKVGb/w_360,r_270/doc1/flight.jpg
 ```
 
-<img src="https://assets.autorender.io/LOKVTtKVGb/r_270/doc1/flight.jpg" alt="Rotated 270 degrees" style={{ borderRadius: '0.5rem', maxWidth: '100%' }} />
+<img src="https://assets.autorender.io/LOKVTtKVGb/w_360,r_270/doc1/flight.jpg" alt="Rotated 270 degrees" style={{ width: 360, maxWidth: '100%', height: 'auto', borderRadius: '0.5rem', display: 'block', marginLeft: 'auto', marginRight: 'auto', objectFit: 'contain' }} />
 </Tab>
 
 <Tab title="45°">
-Rotate the image 45 degrees:
-
 ```bash
-https://assets.autorender.io/LOKVTtKVGb/r_45/doc1/flight.jpg
+https://assets.autorender.io/LOKVTtKVGb/w_360,r_45/doc1/flight.jpg
 ```
 
-<img src="https://assets.autorender.io/LOKVTtKVGb/r_45/doc1/flight.jpg" alt="Rotated 45 degrees" style={{ borderRadius: '0.5rem', maxWidth: '100%' }} />
+<img src="https://assets.autorender.io/LOKVTtKVGb/w_360,r_45/doc1/flight.jpg" alt="Rotated 45 degrees" style={{ width: 360, maxWidth: '100%', height: 'auto', borderRadius: '0.5rem', display: 'block', marginLeft: 'auto', marginRight: 'auto', objectFit: 'contain' }} />
 </Tab>
 </Tabs>
 
@@ -87,10 +79,10 @@ You can rotate images by any angle, not just 90-degree increments:
 ### 45 Degrees
 
 ```bash
-https://assets.autorender.io/LOKVTtKVGb/r_45/doc1/flight.jpg
+https://assets.autorender.io/LOKVTtKVGb/w_360,r_45/doc1/flight.jpg
 ```
 
-<img src="https://assets.autorender.io/LOKVTtKVGb/r_45/doc1/flight.jpg" alt="Rotated 45 degrees" style={{ borderRadius: '0.5rem', maxWidth: '100%' }} />
+<img src="https://assets.autorender.io/LOKVTtKVGb/w_360,r_45/doc1/flight.jpg" alt="Rotated 45 degrees" style={{ width: 360, maxWidth: '100%', height: 'auto', borderRadius: '0.5rem', display: 'block', marginLeft: 'auto', marginRight: 'auto', objectFit: 'contain' }} />
 
 ### 15 Degrees
 
@@ -134,23 +126,23 @@ Rotation works well when combined with other transformations like resize, crop, 
 
 ### Rotation with Resize
 
-Rotate 90 degrees, then resize to 800px width:
+Rotate 90 degrees, then resize to 360px width:
 
 ```bash
-https://assets.autorender.io/LOKVTtKVGb/r_90,w_800/doc1/flight.jpg
+https://assets.autorender.io/LOKVTtKVGb/r_90,w_360/doc1/flight.jpg
 ```
 
-<img src="https://assets.autorender.io/LOKVTtKVGb/r_90,w_800/doc1/flight.jpg" alt="Rotated and resized" style={{ borderRadius: '0.5rem', maxWidth: '100%' }} />
+<img src="https://assets.autorender.io/LOKVTtKVGb/r_90,w_360/doc1/flight.jpg" alt="Rotated and resized" style={{ width: 360, maxWidth: '100%', height: 'auto', borderRadius: '0.5rem', display: 'block', marginLeft: 'auto', marginRight: 'auto', objectFit: 'contain' }} />
 
 ### Rotation with Crop
 
-Rotate 45 degrees, then crop to 600x600:
+Rotate 45 degrees, then crop to 360×360:
 
 ```bash
-https://assets.autorender.io/LOKVTtKVGb/r_45,w_600,h_600,c_crop/doc1/flight.jpg
+https://assets.autorender.io/LOKVTtKVGb/r_45,w_360,h_360,c_crop/doc1/flight.jpg
 ```
 
-<img src="https://assets.autorender.io/LOKVTtKVGb/r_45,w_600,h_600,c_crop/doc1/flight.jpg" alt="Rotated and cropped" style={{ borderRadius: '0.5rem', maxWidth: '100%' }} />
+<img src="https://assets.autorender.io/LOKVTtKVGb/r_45,w_360,h_360,c_crop/doc1/flight.jpg" alt="Rotated and cropped" style={{ width: 360, maxWidth: '100%', height: 'auto', borderRadius: '0.5rem', display: 'block', marginLeft: 'auto', marginRight: 'auto', objectFit: 'contain' }} />
 
 ### Rotation with Flip
 
@@ -195,7 +187,7 @@ Adjust product images for better presentation:
 Rotate product for better viewing angle:
 
 ```bash
-https://assets.autorender.io/LOKVTtKVGb/r_15,w_800/doc1/flight.jpg
+https://assets.autorender.io/LOKVTtKVGb/r_15,w_360/doc1/flight.jpg
 ```
 
 ## Best Practices
@@ -222,41 +214,33 @@ https://assets.autorender.io/LOKVTtKVGb/r_15,w_800/doc1/flight.jpg
 
 ### Example 1: Simple Rotation
 
-Rotate image 90 degrees:
-
 ```bash
-https://assets.autorender.io/LOKVTtKVGb/r_90/doc1/flight.jpg
+https://assets.autorender.io/LOKVTtKVGb/w_360,r_90/doc1/flight.jpg
 ```
 
-<img src="https://assets.autorender.io/LOKVTtKVGb/r_90/doc1/flight.jpg" alt="Simple rotation" style={{ borderRadius: '0.5rem', maxWidth: '100%' }} />
+<img src="https://assets.autorender.io/LOKVTtKVGb/w_360,r_90/doc1/flight.jpg" alt="Simple rotation" style={{ width: 360, maxWidth: '100%', height: 'auto', borderRadius: '0.5rem', display: 'block', marginLeft: 'auto', marginRight: 'auto', objectFit: 'contain' }} />
 
 ### Example 2: Rotation with Resize
 
-Rotate 45 degrees and resize to 800px width:
-
 ```bash
-https://assets.autorender.io/LOKVTtKVGb/r_45,w_800/doc1/flight.jpg
+https://assets.autorender.io/LOKVTtKVGb/r_45,w_360/doc1/flight.jpg
 ```
 
-<img src="https://assets.autorender.io/LOKVTtKVGb/r_45,w_800/doc1/flight.jpg" alt="Rotation with resize" style={{ borderRadius: '0.5rem', maxWidth: '100%' }} />
+<img src="https://assets.autorender.io/LOKVTtKVGb/r_45,w_360/doc1/flight.jpg" alt="Rotation with resize" style={{ width: 360, maxWidth: '100%', height: 'auto', borderRadius: '0.5rem', display: 'block', marginLeft: 'auto', marginRight: 'auto', objectFit: 'contain' }} />
 
 ### Example 3: Rotation with Crop
 
-Rotate 90 degrees, then crop to square:
-
 ```bash
-https://assets.autorender.io/LOKVTtKVGb/r_90,w_600,h_600,c_crop/doc1/flight.jpg
+https://assets.autorender.io/LOKVTtKVGb/r_90,w_360,h_360,c_crop/doc1/flight.jpg
 ```
 
-<img src="https://assets.autorender.io/LOKVTtKVGb/r_90,w_600,h_600,c_crop/doc1/flight.jpg" alt="Rotation with crop" style={{ borderRadius: '0.5rem', maxWidth: '100%' }} />
+<img src="https://assets.autorender.io/LOKVTtKVGb/r_90,w_360,h_360,c_crop/doc1/flight.jpg" alt="Rotation with crop" style={{ width: 360, maxWidth: '100%', height: 'auto', borderRadius: '0.5rem', display: 'block', marginLeft: 'auto', marginRight: 'auto', objectFit: 'contain' }} />
 
 ### Example 4: Multiple Transformations
 
-Rotate, resize, and apply border radius:
-
 ```bash
-https://assets.autorender.io/LOKVTtKVGb/r_15,w_600,h_600,c_crop,br_20/doc1/flight.jpg
+https://assets.autorender.io/LOKVTtKVGb/r_15,w_360,h_360,c_crop,br_20/doc1/flight.jpg
 ```
 
-<img src="https://assets.autorender.io/LOKVTtKVGb/r_15,w_600,h_600,c_crop,br_20/doc1/flight.jpg" alt="Multiple transformations" style={{ borderRadius: '0.5rem', maxWidth: '100%' }} />
+<img src="https://assets.autorender.io/LOKVTtKVGb/r_15,w_360,h_360,c_crop,br_20/doc1/flight.jpg" alt="Multiple transformations" style={{ width: 360, maxWidth: '100%', height: 'auto', borderRadius: '0.5rem', display: 'block', marginLeft: 'auto', marginRight: 'auto', objectFit: 'contain' }} />
 

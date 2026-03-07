@@ -13,10 +13,10 @@ AutoRender's flip feature allows you to mirror images horizontally, vertically, 
 AutoRender URLs with flip follow this structure:
 
 ```bash
-https://assets.autorender.io/LOKVTtKVGb/flip_h/doc1/gpose.jpg
+https://assets.autorender.io/LOKVTtKVGb/w_360,flip_h/doc1/gpose.jpg
 ```
 
-<img src="https://assets.autorender.io/LOKVTtKVGb/flip_h/doc1/gpose.jpg" alt="Flipped image" style={{ borderRadius: '0.5rem', maxWidth: '100%' }} />
+<img src="https://assets.autorender.io/LOKVTtKVGb/w_360,flip_h/doc1/gpose.jpg" alt="Flipped image" style={{ width: 360, maxWidth: '100%', height: 'auto', borderRadius: '0.5rem', display: 'block', marginLeft: 'auto', marginRight: 'auto', objectFit: 'contain' }} />
 
 ## How Flipping Works
 
@@ -30,40 +30,40 @@ Compare different flip directions:
 <Tabs>
 <Tab title="Original">
 ```bash
-https://assets.autorender.io/LOKVTtKVGb/doc1/gpose.jpg
+https://assets.autorender.io/LOKVTtKVGb/w_360/doc1/gpose.jpg
 ```
 
-<img src="https://assets.autorender.io/LOKVTtKVGb/doc1/gpose.jpg" alt="Original image" style={{ borderRadius: '0.5rem', maxWidth: '100%' }} />
+<img src="https://assets.autorender.io/LOKVTtKVGb/w_360/doc1/gpose.jpg" alt="Original image" style={{ width: 360, maxWidth: '100%', height: 'auto', borderRadius: '0.5rem', display: 'block', marginLeft: 'auto', marginRight: 'auto', objectFit: 'contain' }} />
 </Tab>
 
 <Tab title="Horizontal (flip_h)">
 Flip the image horizontally (left-to-right mirror):
 
 ```bash
-https://assets.autorender.io/LOKVTtKVGb/flip_h/doc1/gpose.jpg
+https://assets.autorender.io/LOKVTtKVGb/w_360,flip_h/doc1/gpose.jpg
 ```
 
-<img src="https://assets.autorender.io/LOKVTtKVGb/flip_h/doc1/gpose.jpg" alt="Horizontal flip" style={{ borderRadius: '0.5rem', maxWidth: '100%' }} />
+<img src="https://assets.autorender.io/LOKVTtKVGb/w_360,flip_h/doc1/gpose.jpg" alt="Horizontal flip" style={{ width: 360, maxWidth: '100%', height: 'auto', borderRadius: '0.5rem', display: 'block', marginLeft: 'auto', marginRight: 'auto', objectFit: 'contain' }} />
 </Tab>
 
 <Tab title="Vertical (flip_v)">
 Flip the image vertically (top-to-bottom mirror):
 
 ```bash
-https://assets.autorender.io/LOKVTtKVGb/flip_v/doc1/gpose.jpg
+https://assets.autorender.io/LOKVTtKVGb/w_360,flip_v/doc1/gpose.jpg
 ```
 
-<img src="https://assets.autorender.io/LOKVTtKVGb/flip_v/doc1/gpose.jpg" alt="Vertical flip" style={{ borderRadius: '0.5rem', maxWidth: '100%' }} />
+<img src="https://assets.autorender.io/LOKVTtKVGb/w_360,flip_v/doc1/gpose.jpg" alt="Vertical flip" style={{ width: 360, maxWidth: '100%', height: 'auto', borderRadius: '0.5rem', display: 'block', marginLeft: 'auto', marginRight: 'auto', objectFit: 'contain' }} />
 </Tab>
 
 <Tab title="Both (flip_hv)">
 Flip the image both horizontally and vertically:
 
 ```bash
-https://assets.autorender.io/LOKVTtKVGb/flip_hv/doc1/gpose.jpg
+https://assets.autorender.io/LOKVTtKVGb/w_360,flip_hv/doc1/gpose.jpg
 ```
 
-<img src="https://assets.autorender.io/LOKVTtKVGb/flip_hv/doc1/gpose.jpg" alt="Flip both" style={{ borderRadius: '0.5rem', maxWidth: '100%' }} />
+<img src="https://assets.autorender.io/LOKVTtKVGb/w_360,flip_hv/doc1/gpose.jpg" alt="Flip both" style={{ width: 360, maxWidth: '100%', height: 'auto', borderRadius: '0.5rem', display: 'block', marginLeft: 'auto', marginRight: 'auto', objectFit: 'contain' }} />
 </Tab>
 </Tabs>
 
@@ -101,33 +101,33 @@ Flip works well when combined with other transformations like resize, crop, and 
 
 ### Flip with Resize
 
-Flip horizontally, then resize to 800px width:
+Flip horizontally, then resize to 360px width:
 
 ```bash
-https://assets.autorender.io/LOKVTtKVGb/flip_h,w_800/doc1/gpose.jpg
+https://assets.autorender.io/LOKVTtKVGb/flip_h,w_360/doc1/gpose.jpg
 ```
 
-<img src="https://assets.autorender.io/LOKVTtKVGb/flip_h,w_800/doc1/gpose.jpg" alt="Flip with resize" style={{ borderRadius: '0.5rem', maxWidth: '100%' }} />
+<img src="https://assets.autorender.io/LOKVTtKVGb/flip_h,w_360/doc1/gpose.jpg" alt="Flip with resize" style={{ width: 360, maxWidth: '100%', height: 'auto', borderRadius: '0.5rem', display: 'block', marginLeft: 'auto', marginRight: 'auto', objectFit: 'contain' }} />
 
 ### Flip with Crop
 
-Flip vertically, then crop to 600x600:
+Flip vertically, then crop to 360×360:
 
 ```bash
-https://assets.autorender.io/LOKVTtKVGb/flip_v,w_600,h_600,c_crop/doc1/gpose.jpg
+https://assets.autorender.io/LOKVTtKVGb/flip_v,w_360,h_360,c_crop/doc1/gpose.jpg
 ```
 
-<img src="https://assets.autorender.io/LOKVTtKVGb/flip_v,w_600,h_600,c_crop/doc1/gpose.jpg" alt="Flip with crop" style={{ borderRadius: '0.5rem', maxWidth: '100%' }} />
+<img src="https://assets.autorender.io/LOKVTtKVGb/flip_v,w_360,h_360,c_crop/doc1/gpose.jpg" alt="Flip with crop" style={{ width: 360, maxWidth: '100%', height: 'auto', borderRadius: '0.5rem', display: 'block', marginLeft: 'auto', marginRight: 'auto', objectFit: 'contain' }} />
 
 ### Flip with Rotation
 
 Flip horizontally, then rotate 90 degrees:
 
 ```bash
-https://assets.autorender.io/LOKVTtKVGb/flip_h,r_90/doc1/gpose.jpg
+https://assets.autorender.io/LOKVTtKVGb/flip_h,r_90,w_360/doc1/gpose.jpg
 ```
 
-<img src="https://assets.autorender.io/LOKVTtKVGb/flip_h,r_90/doc1/gpose.jpg" alt="Flip with rotation" style={{ borderRadius: '0.5rem', maxWidth: '100%' }} />
+<img src="https://assets.autorender.io/LOKVTtKVGb/flip_h,r_90,w_360/doc1/gpose.jpg" alt="Flip with rotation" style={{ width: 360, maxWidth: '100%', height: 'auto', borderRadius: '0.5rem', display: 'block', marginLeft: 'auto', marginRight: 'auto', objectFit: 'contain' }} />
 
 ## Use Cases
 
@@ -148,13 +148,13 @@ Create symmetrical patterns and designs:
 Horizontal symmetry:
 
 ```bash
-https://assets.autorender.io/LOKVTtKVGb/flip_h,w_800/doc1/gpose.jpg
+https://assets.autorender.io/LOKVTtKVGb/flip_h,w_360/doc1/gpose.jpg
 ```
 
 Vertical symmetry:
 
 ```bash
-https://assets.autorender.io/LOKVTtKVGb/flip_v,w_800/doc1/gpose.jpg
+https://assets.autorender.io/LOKVTtKVGb/flip_v,w_360/doc1/gpose.jpg
 ```
 
 ### Product Photography
@@ -164,7 +164,7 @@ Adjust product images for different viewing angles:
 Flip product for different perspective:
 
 ```bash
-https://assets.autorender.io/LOKVTtKVGb/flip_h,w_600,h_600,c_crop/doc1/gpose.jpg
+https://assets.autorender.io/LOKVTtKVGb/flip_h,w_360,h_360,c_crop/doc1/gpose.jpg
 ```
 
 ### Text and Logo Adjustments
@@ -201,41 +201,33 @@ https://assets.autorender.io/LOKVTtKVGb/flip_h/doc1/gpose.jpg
 
 ### Example 1: Simple Horizontal Flip
 
-Flip image horizontally:
-
 ```bash
-https://assets.autorender.io/LOKVTtKVGb/flip_h/doc1/gpose.jpg
+https://assets.autorender.io/LOKVTtKVGb/w_360,flip_h/doc1/gpose.jpg
 ```
 
-<img src="https://assets.autorender.io/LOKVTtKVGb/flip_h/doc1/gpose.jpg" alt="Simple horizontal flip" style={{ borderRadius: '0.5rem', maxWidth: '100%' }} />
+<img src="https://assets.autorender.io/LOKVTtKVGb/w_360,flip_h/doc1/gpose.jpg" alt="Simple horizontal flip" style={{ width: 360, maxWidth: '100%', height: 'auto', borderRadius: '0.5rem', display: 'block', marginLeft: 'auto', marginRight: 'auto', objectFit: 'contain' }} />
 
 ### Example 2: Flip with Resize
 
-Flip horizontally and resize to 800px width:
-
 ```bash
-https://assets.autorender.io/LOKVTtKVGb/flip_h,w_800/doc1/gpose.jpg
+https://assets.autorender.io/LOKVTtKVGb/flip_h,w_360/doc1/gpose.jpg
 ```
 
-<img src="https://assets.autorender.io/LOKVTtKVGb/flip_h,w_800/doc1/gpose.jpg" alt="Flip with resize" style={{ borderRadius: '0.5rem', maxWidth: '100%' }} />
+<img src="https://assets.autorender.io/LOKVTtKVGb/flip_h,w_360/doc1/gpose.jpg" alt="Flip with resize" style={{ width: 360, maxWidth: '100%', height: 'auto', borderRadius: '0.5rem', display: 'block', marginLeft: 'auto', marginRight: 'auto', objectFit: 'contain' }} />
 
 ### Example 3: Flip with Crop
 
-Flip vertically, then crop to square:
-
 ```bash
-https://assets.autorender.io/LOKVTtKVGb/flip_v,w_600,h_600,c_crop/doc1/gpose.jpg
+https://assets.autorender.io/LOKVTtKVGb/flip_v,w_360,h_360,c_crop/doc1/gpose.jpg
 ```
 
-<img src="https://assets.autorender.io/LOKVTtKVGb/flip_v,w_600,h_600,c_crop/doc1/gpose.jpg" alt="Flip with crop" style={{ borderRadius: '0.5rem', maxWidth: '100%' }} />
+<img src="https://assets.autorender.io/LOKVTtKVGb/flip_v,w_360,h_360,c_crop/doc1/gpose.jpg" alt="Flip with crop" style={{ width: 360, maxWidth: '100%', height: 'auto', borderRadius: '0.5rem', display: 'block', marginLeft: 'auto', marginRight: 'auto', objectFit: 'contain' }} />
 
 ### Example 4: Flip Both Directions
 
-Flip both horizontally and vertically:
-
 ```bash
-https://assets.autorender.io/LOKVTtKVGb/flip_hv/doc1/gpose.jpg
+https://assets.autorender.io/LOKVTtKVGb/w_360,flip_hv/doc1/gpose.jpg
 ```
 
-<img src="https://assets.autorender.io/LOKVTtKVGb/flip_hv/doc1/gpose.jpg" alt="Flip both" style={{ borderRadius: '0.5rem', maxWidth: '100%' }} />
+<img src="https://assets.autorender.io/LOKVTtKVGb/w_360,flip_hv/doc1/gpose.jpg" alt="Flip both" style={{ width: 360, maxWidth: '100%', height: 'auto', borderRadius: '0.5rem', display: 'block', marginLeft: 'auto', marginRight: 'auto', objectFit: 'contain' }} />
 

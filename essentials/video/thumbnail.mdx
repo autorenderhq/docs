@@ -1,0 +1,41 @@
+---
+title: "Thumbnail"
+description: "Generate a thumbnail from video preserving aspect ratio (WebP)"
+icon: "image"
+---
+
+## Overview
+
+Generate a thumbnail from the video while preserving the original aspect ratio. The thumbnail is extracted from the video and returned as a WebP image. Use this for previews, cards, and listing pages.
+
+### URL Structure
+
+```bash
+https://assets.autorender.io/LOKVTtKVGb/thumb_ar/doc/skateboarding.mp4
+```
+
+<img src="https://assets.autorender.io/LOKVTtKVGb/thumb_ar/doc/skateboarding.mp4" alt="Video thumbnail preview" style={{ borderRadius: '0.5rem', maxWidth: '100%', display: 'block', marginLeft: 'auto', marginRight: 'auto', objectFit: 'contain' }} />
+
+## Parameter
+
+| Parameter   | Description                                      |
+| ----------- | ------------------------------------------------- |
+| `thumb_ar`  | Thumbnail preserving original aspect ratio (WebP) |
+
+<Note>
+  Thumbnail generation is triggered on first request. Check processing status or retry after a short delay if the asset is not yet ready.
+</Note>
+
+## Example
+
+```bash
+https://assets.autorender.io/LOKVTtKVGb/thumb_ar/doc/skateboarding.mp4
+```
+
+<img src="https://assets.autorender.io/LOKVTtKVGb/thumb_ar/doc/skateboarding.mp4" alt="Thumbnail preview" style={{ borderRadius: '0.5rem', maxWidth: '100%', display: 'block', marginLeft: 'auto', marginRight: 'auto', objectFit: 'contain' }} />
+
+Thumbnail (WebP), aspect ratio preserved.
+
+<Info>
+  Video transformations are processed asynchronously. The first request may trigger processing; subsequent requests serve the transformed output from cache.
+</Info>

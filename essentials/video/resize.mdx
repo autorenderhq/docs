@@ -1,0 +1,68 @@
+---
+title: "Resize"
+description: "Resize video by width, height, or both using AutoRender video parameters"
+icon: "arrows-maximize"
+---
+
+## Overview
+
+Resize video by specifying width only, or both width and height. Dimensions are automatically rounded to even values for encoding compatibility. When only width is specified, height is derived to maintain aspect ratio.
+
+Previews below use **fit** (contain): the image or video is shown at the dimensions from the URL (`w_` / `h_`) and scales down only if needed to fit the page; aspect ratio is preserved and nothing is cropped.
+
+### URL Structure
+
+AutoRender video URLs with resize follow this structure:
+
+```bash
+https://assets.autorender.io/LOKVTtKVGb/w_500/doc/skateboarding.mp4
+```
+
+<video src="https://assets.autorender.io/LOKVTtKVGb/w_500/doc/skateboarding.mp4" controls style={{ borderRadius: '0.5rem', maxWidth: '100%', display: 'block', marginLeft: 'auto', marginRight: 'auto', objectFit: 'contain' }} />
+
+## Width only vs width and height
+
+Compare width-only resize with exact width and height:
+
+<Tabs>
+<Tab title="Width only (w_500)">
+Resize to a specific width; height is calculated automatically to maintain aspect ratio:
+
+```bash
+https://assets.autorender.io/LOKVTtKVGb/w_500/doc/skateboarding.mp4
+```
+
+<video src="https://assets.autorender.io/LOKVTtKVGb/w_500/doc/skateboarding.mp4" controls style={{ borderRadius: '0.5rem', maxWidth: '100%', display: 'block', marginLeft: 'auto', marginRight: 'auto', objectFit: 'contain' }} />
+</Tab>
+
+<Tab title="Width & height (w_500,h_500)">
+Resize to exact dimensions. Combine with crop modes (e.g. `cm_pad_resize`) if you need padding or cropping behavior:
+
+```bash
+https://assets.autorender.io/LOKVTtKVGb/w_500,h_500/doc/skateboarding.mp4
+```
+
+<video src="https://assets.autorender.io/LOKVTtKVGb/w_500,h_500/doc/skateboarding.mp4" controls style={{ borderRadius: '0.5rem', maxWidth: '100%', display: 'block', marginLeft: 'auto', marginRight: 'auto', objectFit: 'contain' }} />
+</Tab>
+
+<Tab title="Width & height (w_100,h_100)">
+Resize to smaller exact dimensions (100×100). Useful for thumbnails or small previews:
+
+```bash
+https://assets.autorender.io/LOKVTtKVGb/w_100,h_100/doc/skateboarding.mp4
+```
+
+<video src="https://assets.autorender.io/LOKVTtKVGb/w_100,h_100/doc/skateboarding.mp4" controls style={{ borderRadius: '0.5rem', maxWidth: '100%', display: 'block', marginLeft: 'auto', marginRight: 'auto', objectFit: 'contain' }} />
+</Tab>
+</Tabs>
+
+## Parameters
+
+| Parameter | Format      | Description                    |
+| --------- | ----------- | ------------------------------ |
+| `w_{n}`   | `w_500`     | Width in pixels (1–10000)      |
+| `h_{n}`   | `h_500`     | Height in pixels (1–10000)    |
+
+<Note>
+  Width and height are automatically rounded to even numbers for H.264 compatibility.
+</Note>

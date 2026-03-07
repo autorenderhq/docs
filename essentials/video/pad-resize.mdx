@@ -1,0 +1,40 @@
+---
+title: "Pad resize"
+description: "Resize video to fit dimensions with padding and background color"
+icon: "square"
+---
+
+## Overview
+
+Resize the video to fit within the given dimensions and add padding so the full frame is visible. Use `cm_pad_resize` with a background color (e.g. `bg_white`) to avoid letterboxing with black. Ideal for consistent card sizes and fixed aspect ratio layouts.
+
+### URL Structure
+
+```bash
+https://assets.autorender.io/LOKVTtKVGb/w_400,h_400,cm_pad_resize,bg_white/doc/skateboarding.mp4
+```
+
+<video src="https://assets.autorender.io/LOKVTtKVGb/w_400,h_400,cm_pad_resize,bg_white/doc/skateboarding.mp4" controls style={{ borderRadius: '0.5rem', maxWidth: '100%', display: 'block', marginLeft: 'auto', marginRight: 'auto', objectFit: 'contain' }} />
+
+## Parameters
+
+| Parameter       | Description                                  |
+| --------------- | -------------------------------------------- |
+| `cm_pad_resize` | Resize to fit and pad to exact dimensions    |
+| `bg_white`      | Padding color (e.g. `bg_white`, `bg_black`, `bg_FF0000`) |
+
+Other background options: `bg_blurred`, `bg_blurred_10`, or hex `bg_FF0000`.
+
+## Example
+
+Fit in 400×400 with white padding:
+
+```bash
+https://assets.autorender.io/LOKVTtKVGb/w_400,h_400,cm_pad_resize,bg_white/doc/skateboarding.mp4
+```
+
+<video src="https://assets.autorender.io/LOKVTtKVGb/w_400,h_400,cm_pad_resize,bg_white/doc/skateboarding.mp4" controls style={{ borderRadius: '0.5rem', maxWidth: '100%', display: 'block', marginLeft: 'auto', marginRight: 'auto', objectFit: 'contain' }} />
+
+<Note>
+  Combine with position parameters (e.g. `ps_center`) when supported to control where the video sits within the padded area.
+</Note>

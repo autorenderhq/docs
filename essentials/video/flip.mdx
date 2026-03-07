@@ -1,0 +1,55 @@
+---
+title: "Flip"
+description: "Flip video horizontally, vertically, or both"
+icon: "arrows-left-right"
+---
+
+## Overview
+
+Mirror the video horizontally, vertically, or both. Flipping is useful for correcting orientation, creating symmetrical previews, or matching layout requirements.
+
+### URL Structure
+
+```bash
+https://assets.autorender.io/LOKVTtKVGb/w_400,h_400,flip_h/doc/skateboarding.mp4
+```
+
+<video src="https://assets.autorender.io/LOKVTtKVGb/w_400,h_400,flip_h/doc/skateboarding.mp4" controls style={{ borderRadius: '0.5rem', maxWidth: '100%', display: 'block', marginLeft: 'auto', marginRight: 'auto', objectFit: 'contain' }} />
+
+## Parameters
+
+| Parameter | Description                |
+| --------- | -------------------------- |
+| `flip_h`  | Flip horizontally          |
+| `flip_v`  | Flip vertically            |
+| `flip_hv` | Flip horizontally and vertically |
+
+## Examples
+
+Flip horizontally (with resize):
+
+```bash
+https://assets.autorender.io/LOKVTtKVGb/w_400,h_400,flip_h/doc/skateboarding.mp4
+```
+
+<video src="https://assets.autorender.io/LOKVTtKVGb/w_400,h_400,flip_h/doc/skateboarding.mp4" controls style={{ borderRadius: '0.5rem', maxWidth: '100%', display: 'block', marginLeft: 'auto', marginRight: 'auto', objectFit: 'contain' }} />
+
+Flip vertically:
+
+```bash
+https://assets.autorender.io/LOKVTtKVGb/w_400,h_400,flip_v/doc/skateboarding.mp4
+```
+
+<video src="https://assets.autorender.io/LOKVTtKVGb/w_400,h_400,flip_v/doc/skateboarding.mp4" controls style={{ borderRadius: '0.5rem', maxWidth: '100%', display: 'block', marginLeft: 'auto', marginRight: 'auto', objectFit: 'contain' }} />
+
+Flip both:
+
+```bash
+https://assets.autorender.io/LOKVTtKVGb/w_400,h_400,flip_hv/doc/skateboarding.mp4
+```
+
+<video src="https://assets.autorender.io/LOKVTtKVGb/w_400,h_400,flip_hv/doc/skateboarding.mp4" controls style={{ borderRadius: '0.5rem', maxWidth: '100%', display: 'block', marginLeft: 'auto', marginRight: 'auto', objectFit: 'contain' }} />
+
+<Note>
+  Flipping both horizontally and vertically (`flip_hv`) is equivalent to rotating the video 180 degrees (`r_180`).
+</Note>

@@ -1,0 +1,48 @@
+---
+title: "GIF"
+description: "Convert a segment of the video to GIF format"
+icon: "film"
+---
+
+## Overview
+
+Convert a segment of the video to GIF. Use `f_gif` with optional width. You can combine with `st_` (start time) and `d_` (duration) to choose which part of the video becomes the GIF.
+
+### URL Structure
+
+```bash
+https://assets.autorender.io/LOKVTtKVGb/f_gif,w_420/doc/skateboarding.mp4
+```
+
+<img src="https://assets.autorender.io/LOKVTtKVGb/f_gif,w_420/doc/skateboarding.mp4" alt="GIF preview" style={{ borderRadius: '0.5rem', maxWidth: '100%', display: 'block', marginLeft: 'auto', marginRight: 'auto', objectFit: 'contain' }} />
+
+## Parameters
+
+| Parameter | Description                    |
+| --------- | ------------------------------ |
+| `f_gif`   | Output format GIF              |
+| `w_{n}`   | Optional width for GIF (e.g. `w_420`) |
+| `st_{sec}`| Optional start time in seconds |
+| `d_{sec}` | Optional duration in seconds  |
+
+## Examples
+
+Convert to GIF at 420px width:
+
+```bash
+https://assets.autorender.io/LOKVTtKVGb/f_gif,w_420/doc/skateboarding.mp4
+```
+
+<img src="https://assets.autorender.io/LOKVTtKVGb/f_gif,w_420/doc/skateboarding.mp4" alt="GIF at 420px width" style={{ borderRadius: '0.5rem', maxWidth: '100%', display: 'block', marginLeft: 'auto', marginRight: 'auto', objectFit: 'contain' }} />
+
+GIF from 5s, 10 seconds long (combine with `st_` and `d_`):
+
+```bash
+https://assets.autorender.io/LOKVTtKVGb/f_gif,w_420,st_5,d_10/doc/skateboarding.mp4
+```
+
+<img src="https://assets.autorender.io/LOKVTtKVGb/f_gif,w_420,st_5,d_10/doc/skateboarding.mp4" alt="GIF from 5s, 10s duration" style={{ borderRadius: '0.5rem', maxWidth: '100%', display: 'block', marginLeft: 'auto', marginRight: 'auto', objectFit: 'contain' }} />
+
+<Note>
+  For GIF you can use `st_{seconds}` and `d_{seconds}` to choose the start time and duration of the clip. This helps keep file size and load time under control.
+</Note>

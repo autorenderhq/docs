@@ -1,0 +1,47 @@
+---
+title: "Rotate"
+description: "Rotate video by 90, 180, or 270 degrees"
+icon: "rotate-cw"
+---
+
+## Overview
+
+Rotate the video by 90, 180, or 270 degrees. Use with width/height as needed for output dimensions. Useful for correcting orientation or fitting layout requirements.
+
+### URL Structure
+
+```bash
+https://assets.autorender.io/LOKVTtKVGb/w_200,r_90/doc/skateboarding.mp4
+```
+
+<video src="https://assets.autorender.io/LOKVTtKVGb/w_200,r_90/doc/skateboarding.mp4" controls style={{ borderRadius: '0.5rem', maxWidth: '100%', display: 'block', marginLeft: 'auto', marginRight: 'auto', objectFit: 'contain' }} />
+
+## Parameters
+
+| Parameter   | Format  | Description        |
+| ----------- | ------- | ------------------ |
+| `r_90`      | 90°     | Rotate 90 degrees  |
+| `r_180`     | 180°    | Rotate 180 degrees |
+| `r_270`     | 270°    | Rotate 270 degrees |
+
+## Examples
+
+200px width, rotated 90°:
+
+```bash
+https://assets.autorender.io/LOKVTtKVGb/w_200,r_90/doc/skateboarding.mp4
+```
+
+<video src="https://assets.autorender.io/LOKVTtKVGb/w_200,r_90/doc/skateboarding.mp4" controls style={{ borderRadius: '0.5rem', maxWidth: '100%', display: 'block', marginLeft: 'auto', marginRight: 'auto', objectFit: 'contain' }} />
+
+Rotate 180° (equivalent to `flip_hv`):
+
+```bash
+https://assets.autorender.io/LOKVTtKVGb/w_400,r_180/doc/skateboarding.mp4
+```
+
+<video src="https://assets.autorender.io/LOKVTtKVGb/w_400,r_180/doc/skateboarding.mp4" controls style={{ borderRadius: '0.5rem', maxWidth: '100%', display: 'block', marginLeft: 'auto', marginRight: 'auto', objectFit: 'contain' }} />
+
+<Note>
+  Only 90, 180, and 270 degree rotations are supported. Dimensions are adjusted automatically after rotation.
+</Note>

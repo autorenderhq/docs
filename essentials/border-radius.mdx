@@ -8,15 +8,15 @@ icon: 'circle'
 
 AutoRender's border radius feature allows you to add rounded corners to images. This is perfect for creating modern, polished designs, card layouts, profile pictures, and UI elements with rounded corners.
 
+Previews in this guide use a **max of 360px** and show **real output dimensions** (fit/contain).
+
 ### URL Structure
 
-AutoRender URLs with border radius follow this structure:
-
 ```bash
-https://assets.autorender.io/LOKVTtKVGb/br_20/doc1/photographer.jpg
+https://assets.autorender.io/LOKVTtKVGb/w_360,br_20/doc1/photographer.jpg
 ```
 
-<img src="https://assets.autorender.io/LOKVTtKVGb/br_20/doc1/photographer.jpg" alt="Rounded corners" style={{ borderRadius: '0.5rem', maxWidth: '100%' }} />
+<img src="https://assets.autorender.io/LOKVTtKVGb/w_360,br_20/doc1/photographer.jpg" alt="Rounded corners" style={{ width: 360, maxWidth: '100%', height: 'auto', borderRadius: '0.5rem', display: 'block', marginLeft: 'auto', marginRight: 'auto', objectFit: 'contain' }} />
 
 ## How Border Radius Works
 
@@ -28,61 +28,43 @@ Border radius rounds the corners of an image by the specified number of pixels. 
 
 ## Basic Border Radius
 
-### Small Radius (Subtle Rounding)
-
-Add subtle rounded corners:
-
-10px border radius:
-
+<Tabs>
+<Tab title="Small (10px)">
 ```bash
-https://assets.autorender.io/LOKVTtKVGb/br_10/doc1/photographer.jpg
+https://assets.autorender.io/LOKVTtKVGb/w_360,br_10/doc1/photographer.jpg
 ```
 
-<img src="https://assets.autorender.io/LOKVTtKVGb/br_10/doc1/photographer.jpg" alt="Small border radius" style={{ borderRadius: '0.5rem', maxWidth: '100%' }} />
+<img src="https://assets.autorender.io/LOKVTtKVGb/w_360,br_10/doc1/photographer.jpg" alt="Small border radius" style={{ width: 360, maxWidth: '100%', height: 'auto', borderRadius: '0.5rem', display: 'block', marginLeft: 'auto', marginRight: 'auto', objectFit: 'contain' }} />
+</Tab>
 
-### Medium Radius
-
-Add moderate rounded corners:
-
-20px border radius:
-
+<Tab title="Medium (20px)">
 ```bash
-https://assets.autorender.io/LOKVTtKVGb/br_20/doc1/photographer.jpg
+https://assets.autorender.io/LOKVTtKVGb/w_360,br_20/doc1/photographer.jpg
 ```
 
-<img src="https://assets.autorender.io/LOKVTtKVGb/br_20/doc1/photographer.jpg" alt="Medium border radius" style={{ borderRadius: '0.5rem', maxWidth: '100%' }} />
+<img src="https://assets.autorender.io/LOKVTtKVGb/w_360,br_20/doc1/photographer.jpg" alt="Medium border radius" style={{ width: 360, maxWidth: '100%', height: 'auto', borderRadius: '0.5rem', display: 'block', marginLeft: 'auto', marginRight: 'auto', objectFit: 'contain' }} />
+</Tab>
 
-### Large Radius
-
-Add very rounded corners:
-
-50px border radius:
-
+<Tab title="Large (50px)">
 ```bash
-https://assets.autorender.io/LOKVTtKVGb/br_50/doc1/photographer.jpg
+https://assets.autorender.io/LOKVTtKVGb/w_360,br_50/doc1/photographer.jpg
 ```
 
-<img src="https://assets.autorender.io/LOKVTtKVGb/br_50/doc1/photographer.jpg" alt="Large border radius" style={{ borderRadius: '0.5rem', maxWidth: '100%' }} />
+<img src="https://assets.autorender.io/LOKVTtKVGb/w_360,br_50/doc1/photographer.jpg" alt="Large border radius" style={{ width: 360, maxWidth: '100%', height: 'auto', borderRadius: '0.5rem', display: 'block', marginLeft: 'auto', marginRight: 'auto', objectFit: 'contain' }} />
+</Tab>
+</Tabs>
 
 ## Circular Images
 
 For square images, using a border radius equal to or greater than half the image dimension creates a perfect circle:
 
-Circular image (300x300 with 150px radius):
+Circular image (360×360 with 180px radius):
 
 ```bash
-https://assets.autorender.io/LOKVTtKVGb/w_300,h_300,c_crop,br_150/doc1/photographer.jpg
+https://assets.autorender.io/LOKVTtKVGb/w_360,h_360,c_crop,br_180/doc1/photographer.jpg
 ```
 
-<img src="https://assets.autorender.io/LOKVTtKVGb/w_300,h_300,c_crop,br_150/doc1/photographer.jpg" alt="Circular image" style={{ borderRadius: '0.5rem', maxWidth: '100%' }} />
-
-Circular image (400x400 with 200px radius):
-
-```bash
-https://assets.autorender.io/LOKVTtKVGb/w_400,h_400,c_crop,br_200/doc1/photographer.jpg
-```
-
-<img src="https://assets.autorender.io/LOKVTtKVGb/w_400,h_400,c_crop,br_200/doc1/photographer.jpg" alt="Circular image" style={{ borderRadius: '0.5rem', maxWidth: '100%' }} />
+<img src="https://assets.autorender.io/LOKVTtKVGb/w_360,h_360,c_crop,br_180/doc1/photographer.jpg" alt="Circular image" style={{ width: 360, maxWidth: '100%', height: 'auto', borderRadius: '0.5rem', display: 'block', marginLeft: 'auto', marginRight: 'auto', objectFit: 'contain' }} />
 
 <Note>
   For circular images, use a border radius that is at least half the smallest dimension (width or height). For example, a 300x300 image needs `br_150` or higher to be perfectly circular.
@@ -94,33 +76,29 @@ Border radius works well when combined with resize, crop, and other transformati
 
 ### Border Radius with Resize
 
-Resize to 600px width with rounded corners:
+Resize to 360px width with rounded corners:
 
 ```bash
-https://assets.autorender.io/LOKVTtKVGb/w_600,br_30/doc1/photographer.jpg
+https://assets.autorender.io/LOKVTtKVGb/w_360,br_30/doc1/photographer.jpg
 ```
 
-<img src="https://assets.autorender.io/LOKVTtKVGb/w_600,br_30/doc1/photographer.jpg" alt="Border radius with resize" style={{ borderRadius: '0.5rem', maxWidth: '100%' }} />
+<img src="https://assets.autorender.io/LOKVTtKVGb/w_360,br_30/doc1/photographer.jpg" alt="Border radius with resize" style={{ width: 360, maxWidth: '100%', height: 'auto', borderRadius: '0.5rem', display: 'block', marginLeft: 'auto', marginRight: 'auto', objectFit: 'contain' }} />
 
 ### Border Radius with Crop
 
-Crop to square with rounded corners:
-
 ```bash
-https://assets.autorender.io/LOKVTtKVGb/w_600,h_600,c_crop,br_40/doc1/photographer.jpg
+https://assets.autorender.io/LOKVTtKVGb/w_360,h_360,c_crop,br_40/doc1/photographer.jpg
 ```
 
-<img src="https://assets.autorender.io/LOKVTtKVGb/w_600,h_600,c_crop,br_40/doc1/photographer.jpg" alt="Border radius with crop" style={{ borderRadius: '0.5rem', maxWidth: '100%' }} />
+<img src="https://assets.autorender.io/LOKVTtKVGb/w_360,h_360,c_crop,br_40/doc1/photographer.jpg" alt="Border radius with crop" style={{ width: 360, maxWidth: '100%', height: 'auto', borderRadius: '0.5rem', display: 'block', marginLeft: 'auto', marginRight: 'auto', objectFit: 'contain' }} />
 
 ### Border Radius with Fill Mode
 
-Fill 600x600 area with rounded corners:
-
 ```bash
-https://assets.autorender.io/LOKVTtKVGb/w_600,h_600,c_fill,br_50/doc1/photographer.jpg
+https://assets.autorender.io/LOKVTtKVGb/w_360,h_360,c_fill,br_50/doc1/photographer.jpg
 ```
 
-<img src="https://assets.autorender.io/LOKVTtKVGb/w_600,h_600,c_fill,br_50/doc1/photographer.jpg" alt="Border radius with fill" style={{ borderRadius: '0.5rem', maxWidth: '100%' }} />
+<img src="https://assets.autorender.io/LOKVTtKVGb/w_360,h_360,c_fill,br_50/doc1/photographer.jpg" alt="Border radius with fill" style={{ width: 360, maxWidth: '100%', height: 'auto', borderRadius: '0.5rem', display: 'block', marginLeft: 'auto', marginRight: 'auto', objectFit: 'contain' }} />
 
 ## Common Use Cases
 
@@ -131,7 +109,7 @@ Create circular profile pictures:
 Circular profile picture:
 
 ```bash
-https://assets.autorender.io/LOKVTtKVGb/w_400,h_400,c_crop,ar_1:1,br_200/doc1/photographer.jpg
+https://assets.autorender.io/LOKVTtKVGb/w_360,h_360,c_crop,ar_1:1,br_180/doc1/photographer.jpg
 ```
 
 ### Card Images
@@ -141,7 +119,7 @@ Add rounded corners to card layouts:
 Card image with rounded corners:
 
 ```bash
-https://assets.autorender.io/LOKVTtKVGb/w_600,h_400,c_fill,br_20/doc1/photographer.jpg
+https://assets.autorender.io/LOKVTtKVGb/w_360,h_240,c_fill,br_20/doc1/photographer.jpg
 ```
 
 ### Thumbnails
@@ -151,7 +129,7 @@ Create rounded thumbnails:
 Rounded thumbnail:
 
 ```bash
-https://assets.autorender.io/LOKVTtKVGb/w_300,h_300,c_crop,br_15/doc1/photographer.jpg
+https://assets.autorender.io/LOKVTtKVGb/w_360,h_360,c_crop,br_15/doc1/photographer.jpg
 ```
 
 ### Hero Images
@@ -161,7 +139,7 @@ Add subtle rounding to hero images:
 Hero image with subtle rounding:
 
 ```bash
-https://assets.autorender.io/LOKVTtKVGb/w_1920,h_1080,c_fill,br_10/doc1/photographer.jpg
+https://assets.autorender.io/LOKVTtKVGb/w_360,h_202,c_fill,br_10/doc1/photographer.jpg
 ```
 
 ## Border Radius Guidelines
@@ -174,7 +152,7 @@ https://assets.autorender.io/LOKVTtKVGb/w_1920,h_1080,c_fill,br_10/doc1/photogra
 | Card layouts | 15-25px | `br_20` |
 | Modern UI | 20-40px | `br_30` |
 | Very rounded | 40-60px | `br_50` |
-| Circular (square images) | ≥ half dimension | `br_150` for 300x300 |
+| Circular (square images) | ≥ half dimension | `br_180` for 360×360 |
 
 ### Best Practices
 
@@ -211,38 +189,38 @@ https://assets.autorender.io/LOKVTtKVGb/w_1920,h_1080,c_fill,br_10/doc1/photogra
 Add 20px rounded corners:
 
 ```bash
-https://assets.autorender.io/LOKVTtKVGb/br_20/doc1/photographer.jpg
+https://assets.autorender.io/LOKVTtKVGb/w_360,br_20/doc1/photographer.jpg
 ```
 
-<img src="https://assets.autorender.io/LOKVTtKVGb/br_20/doc1/photographer.jpg" alt="Simple border radius" style={{ borderRadius: '0.5rem', maxWidth: '100%' }} />
+<img src="https://assets.autorender.io/LOKVTtKVGb/w_360,br_20/doc1/photographer.jpg" alt="Simple border radius" style={{ width: 360, maxWidth: '100%', height: 'auto', borderRadius: '0.5rem', display: 'block', marginLeft: 'auto', marginRight: 'auto', objectFit: 'contain' }} />
 
 ### Example 2: Circular Profile Picture
 
 Create a circular profile picture:
 
 ```bash
-https://assets.autorender.io/LOKVTtKVGb/w_400,h_400,c_crop,br_200/doc1/photographer.jpg
+https://assets.autorender.io/LOKVTtKVGb/w_360,h_360,c_crop,br_180/doc1/photographer.jpg
 ```
 
-<img src="https://assets.autorender.io/LOKVTtKVGb/w_400,h_400,c_crop,br_200/doc1/photographer.jpg" alt="Circular profile" style={{ borderRadius: '0.5rem', maxWidth: '100%' }} />
+<img src="https://assets.autorender.io/LOKVTtKVGb/w_360,h_360,c_crop,br_180/doc1/photographer.jpg" alt="Circular profile" style={{ width: 360, maxWidth: '100%', height: 'auto', borderRadius: '0.5rem', display: 'block', marginLeft: 'auto', marginRight: 'auto', objectFit: 'contain' }} />
 
 ### Example 3: Rounded Card Image
 
 Create a card image with rounded corners:
 
 ```bash
-https://assets.autorender.io/LOKVTtKVGb/w_600,h_400,c_fill,br_30/doc1/photographer.jpg
+https://assets.autorender.io/LOKVTtKVGb/w_360,h_240,c_fill,br_30/doc1/photographer.jpg
 ```
 
-<img src="https://assets.autorender.io/LOKVTtKVGb/w_600,h_400,c_fill,br_30/doc1/photographer.jpg" alt="Rounded card" style={{ borderRadius: '0.5rem', maxWidth: '100%' }} />
+<img src="https://assets.autorender.io/LOKVTtKVGb/w_360,h_240,c_fill,br_30/doc1/photographer.jpg" alt="Rounded card" style={{ width: 360, maxWidth: '100%', height: 'auto', borderRadius: '0.5rem', display: 'block', marginLeft: 'auto', marginRight: 'auto', objectFit: 'contain' }} />
 
 ### Example 4: Rounded Thumbnail
 
 Create a rounded thumbnail:
 
 ```bash
-https://assets.autorender.io/LOKVTtKVGb/w_300,h_300,c_crop,br_20/doc1/photographer.jpg
+https://assets.autorender.io/LOKVTtKVGb/w_360,h_360,c_crop,br_20/doc1/photographer.jpg
 ```
 
-<img src="https://assets.autorender.io/LOKVTtKVGb/w_300,h_300,c_crop,br_20/doc1/photographer.jpg" alt="Rounded thumbnail" style={{ borderRadius: '0.5rem', maxWidth: '100%' }} />
+<img src="https://assets.autorender.io/LOKVTtKVGb/w_360,h_360,c_crop,br_20/doc1/photographer.jpg" alt="Rounded thumbnail" style={{ width: 360, maxWidth: '100%', height: 'auto', borderRadius: '0.5rem', display: 'block', marginLeft: 'auto', marginRight: 'auto', objectFit: 'contain' }} />
 
