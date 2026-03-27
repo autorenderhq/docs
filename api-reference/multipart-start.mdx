@@ -1,0 +1,99 @@
+---
+title: 'Multipart start'
+description: 'Create a multipart session and receive part size plus presigned PUT URLs.'
+openapi: api-reference/openapi.json POST /api/v1/multipart/start
+---
+
+<RequestExample>
+
+```bash cURL
+curl --request POST \
+  --url https://upload.autorender.io/api/v1/multipart/start \
+  --header 'Authorization: Bearer YOUR_API_KEY' \
+  --header 'Content-Type: application/json' \
+  --data '{
+  "file_name": "big-video.mp4",
+  "size": 73400320,
+  "format": "video/mp4",
+  "folder": "uploads/videos",
+  "tags": ["campaign", "raw"],
+  "metadata": { "source": "mobile-app" },
+  "custom_id": "vid_001",
+  "random_prefix": false,
+  "ttl_seconds": 3600
+}'
+```
+
+</RequestExample>
+
+<ResponseExample>
+
+```json 200
+{
+  "session_id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+  "part_size": 10485760,
+  "parts": [
+    "https://storage.example.com/presigned-part-1?X-Amz-Signature=abc",
+    "https://storage.example.com/presigned-part-2?X-Amz-Signature=def"
+  ]
+}
+```
+
+```json 400
+{
+  "success": false,
+  "error": "<string>"
+}
+```
+
+```json 401
+{
+  "success": false,
+  "error": "Unauthorized",
+  "message": "Invalid or missing API key"
+}
+```
+
+```json 500
+{
+  "success": false,
+  "error": "<string>",
+  "message": "<string>"
+}
+```
+
+</ResponseExample>
+
+## Overview
+
+Starts a **multipart upload** for large files. The response includes `session_id`, **`part_size`** (split size in bytes), and **`parts`**: presigned URLs in order. Upload each chunk with **Upload parts**, then **Multipart complete**.
+
+## Authentication
+
+`Authorization: Bearer YOUR_API_KEY`
+
+## Workflow
+
+This is **step 1 of 3**.
+
+1. **Multipart start** (this endpoint) — get `session_id`, `part_size`, and `parts`.
+2. [**Upload parts**](/api-reference/multipart-upload-parts) — `PUT` each chunk to the matching presigned URL.
+3. [**Multipart complete**](/api-reference/multipart-complete) — finalize the file in your workspace.
+
+## Request body
+
+| Field | Type | Required | Description |
+| ----- | ---- | -------- | ----------- |
+| `file_name` | string | Yes | Original file name (e.g. `big-video.mp4`) |
+| `size` | number | Yes | Total file size in bytes |
+| `format` | string | Yes | MIME type (e.g. `video/mp4`, `image/jpeg`) |
+| `folder` | string | No | Workspace folder path |
+| `tags` | string[] | No | Tags |
+| `metadata` | object | No | Custom metadata |
+| `custom_id` | string | No | Your tracking id |
+| `random_prefix` | boolean | No | Random prefix on stored name if `true` |
+| `ttl_seconds` | number | No | Presigned URL lifetime |
+
+## Response
+
+Returns `session_id`, `part_size`, and `parts`. Part index `i` must be uploaded to `parts[i]`.

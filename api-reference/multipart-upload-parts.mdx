@@ -1,0 +1,81 @@
+---
+title: 'Upload parts'
+description: 'PUT each file chunk to its presigned URL from Multipart start.'
+openapi: api-reference/openapi.json PUT /api/v1/multipart/parts
+---
+
+<RequestExample>
+
+```bash cURL
+curl --request PUT \
+  --url 'https://PRESIGNED_URL_FROM_PARTS_ARRAY' \
+  --header 'Content-Type: application/octet-stream' \
+  --data-binary '@/path/to/chunk.bin'
+```
+
+</RequestExample>
+
+<ResponseExample>
+
+```text 200
+HTTP/1.1 200 OK
+ETag: "<string>"
+```
+
+```json 400
+{
+  "success": false,
+  "error": "<string>"
+}
+```
+
+</ResponseExample>
+
+## Overview
+
+Upload **one part** at a time as **raw binary** to the URL in `parts[i]` from [**Multipart start**](/api-reference/multipart-start). Do **not** send your AutoRender API key. After all parts succeed, call [**Multipart complete**](/api-reference/multipart-complete).
+
+Replace the `--url` value with each **full presigned URL** from the `parts` array (including any query parameters). The path below is for documentation tooling only—production requests go to storage, not `upload.autorender.io`.
+
+## Request
+
+### URL
+
+Each element of `parts` in the start response (full URL, including query parameters if present).
+
+### Headers
+
+| Header | Required | Value |
+| ------ | -------- | ----- |
+| `Content-Type` | Yes | `application/octet-stream` |
+
+### Body
+
+Binary chunk: `part_size` bytes for each part except the last (may be shorter). Total bytes must equal the `size` you sent at start.
+
+### Split file and upload every part
+
+If the start response is saved as `start-response.json`:
+
+```bash
+PART_SIZE=$(jq -r '.part_size' start-response.json)
+split -b "$PART_SIZE" "./big-video.mp4" /tmp/mpart_
+
+i=0
+for chunk in /tmp/mpart_*; do
+  url=$(jq -r ".parts[$i]" start-response.json)
+  curl --request PUT \
+    --url "$url" \
+    --header "Content-Type: application/octet-stream" \
+    --data-binary @"$chunk"
+  i=$((i + 1))
+done
+```
+
+## Response
+
+Storage typically returns **200 OK** and may include an **ETag** header.
+
+## Workflow
+
+This is **step 2 of 3**. Before: [**Multipart start**](/api-reference/multipart-start). After: [**Multipart complete**](/api-reference/multipart-complete).

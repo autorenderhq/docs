@@ -83,8 +83,9 @@
             "group": "Upload",
             "pages": [
               "api-reference/direct-upload",
-              "api-reference/generate-upload-token",
-              "api-reference/upload-with-token"
+              "api-reference/multipart-start",
+              "api-reference/multipart-upload-parts",
+              "api-reference/multipart-complete"
             ]
           },
           {
@@ -92,7 +93,17 @@
             "pages": [
               "api-reference/list-files",
               "api-reference/get-file-details",
+              "api-reference/rename-file",
               "api-reference/delete-file"
+            ]
+          },
+          {
+            "group": "Folder Management",
+            "pages": [
+              "api-reference/list-folders",
+              "api-reference/create-folder",
+              "api-reference/rename-folder",
+              "api-reference/delete-folder"
             ]
           }
         ]
@@ -107,7 +118,7 @@
     "primary": {
       "type": "button",
       "label": "Login",
-      "href": "https://production.d1r2ce5qalrpn3.amplifyapp.com"
+      "href": "https://app.autorender.io"
     }
   },
   "contextual": {

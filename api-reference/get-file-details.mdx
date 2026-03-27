@@ -1,34 +1,74 @@
 ---
-title: 'Get File Details'
-openapi: 'GET /api/v1/files/{fileNo}'
+title: 'File details'
+description: 'Full metadata for one file by file number.'
+openapi: api-reference/openapi.json GET /api/v1/files/{fileNo}
 ---
+
+<RequestExample>
+
+```bash cURL
+curl --request GET \
+  --url 'https://upload.autorender.io/api/v1/files/2353377462' \
+  --header 'Authorization: Bearer YOUR_API_KEY'
+```
+
+</RequestExample>
+
+<ResponseExample>
+
+```json 200
+{
+  "success": true,
+  "data": {
+    "id": "974628c2-9b55-4ce4-adf1-9b63edff6baa",
+    "file_no": "2338045312",
+    "name": "Screenshot from 2026-03-27 18-58-16.png",
+    "url": "https://dev.autorender.io/FWA7PWC7LZ/Screenshot from 2026-03-27 18-58-16.png",
+    "path": null,
+    "format": "PNG",
+    "dimensions": {
+      "width": 1849,
+      "height": 910
+    },
+    "size": 194141,
+    "workspace": {
+      "name": "api-testing",
+      "workspace_no": "FWA7PWC7LZ"
+    },
+    "folder": null,
+    "uploaded_by": "premmm2201",
+    "uploaded_at": "2026-03-27T14:56:20.511Z",
+    "asset_key": "2338045312",
+    "asset_url": "https://dev.autorender.io/FWA7PWC7LZ/null",
+    "extension": "image"
+  }
+}
+```
+
+```json 404
+{
+  "error": "File not found"
+}
+```
+
+```json 500
+{
+  "error": "Failed to get file details"
+}
+```
+
+</ResponseExample>
 
 ## Overview
 
-Retrieve detailed information about a specific file using its file number. This endpoint returns complete file metadata including dimensions, tags, folder information, and custom metadata.
+Fetch a single file by **`file_no`** (same id used in URLs and list results). The payload is wrapped as `{ "success": true, "data": { ... } }`.
 
----
+## Path parameters
 
-## Why
+| Parameter | Description |
+| --------- | ----------- |
+| `fileNo` | Numeric file identifier (e.g. `2353377462`) |
 
-**Essential for retrieving file metadata and URLs.** The Get File Details endpoint provides complete information about a file, including its CDN URL, dimensions, tags, and custom metadata. This is crucial for displaying file information, generating transformation URLs, and managing individual assets.
+## `data` object
 
-## Features
-
-- **Complete metadata**: Returns all file information in a single request
-- **CDN URL**: Provides the full CDN URL for direct access or transformation
-- **Image dimensions**: Includes width and height for images (null for non-images)
-- **Tag information**: Returns all tags associated with the file
-- **Custom metadata**: Access to any custom metadata stored with the file
-- **Folder context**: Includes folder number and name if the file is organized in folders
-- **Upload source**: Identifies how the file was uploaded (api, sdk, etc.)
-
-## Use Cases
-
-- **Display file information**: Show file details in user interfaces or dashboards
-- **Generate transformation URLs**: Use the base URL to create transformed image URLs
-- **Validate file existence**: Check if a file exists before performing operations
-- **Retrieve metadata**: Access custom metadata stored during upload
-- **Get file dimensions**: Obtain image dimensions for responsive layouts or validation
-- **Tag management**: View all tags associated with a file before updating them
-- **Integration workflows**: Fetch file details as part of automated workflows or webhooks
+Includes `id`, `file_no`, `name`, `url`, `path`, `format`, `dimensions` (`width` / `height`), `size`, `workspace` (`name`, `workspace_no`), `folder`, `uploaded_by`, `uploaded_at`, `asset_key`, `asset_url`, `extension`.

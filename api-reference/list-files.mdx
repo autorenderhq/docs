@@ -1,34 +1,82 @@
 ---
-title: 'List Files'
-openapi: 'GET /api/v1/files'
+title: 'List files'
+description: 'Paginated files with sort, folder filter, and meta pagination.'
+openapi: api-reference/openapi.json GET /api/v1/files
 ---
+
+<RequestExample>
+
+```bash cURL
+curl --request GET \
+  --url 'https://upload.autorender.io/api/v1/files?page=1&limit=20&sort_field=file_size&sort_order=desc&folder_no=BGbQHg5UtW' \
+  --header 'Authorization: Bearer YOUR_API_KEY'
+```
+
+</RequestExample>
+
+<ResponseExample>
+
+```json 200
+{
+  "files": [
+    {
+      "file_no": "2353377462",
+      "name": "ar-juice.jpg",
+      "thumbanil": "https://dev.autorender.io/FWA7PWC7LZ/h_320,w_320,c_center/ar-juice.jpg",
+      "url": "https://dev.autorender.io/FWA7PWC7LZ/ar-juice.jpg",
+      "file_size": 1278975,
+      "format": "jpg",
+      "width": 3788,
+      "height": 5869,
+      "created_at": "2026-03-27T14:58:53.795Z",
+      "workspace_no": "FWA7PWC7LZ",
+      "path": "ar-juice.jpg",
+      "extension": "image"
+    }
+  ],
+  "meta": {
+    "page": 1,
+    "limit": 20,
+    "total": 2,
+    "hasNext": false,
+    "hasPrev": false
+  }
+}
+```
+
+```json 401
+{
+  "success": false,
+  "error": "Unauthorized",
+  "message": "Invalid or missing API key"
+}
+```
+
+</ResponseExample>
 
 ## Overview
 
-Retrieve a paginated list of files from your AutoRender workspace. This endpoint supports filtering by folder, tags, and filename, as well as sorting and pagination.
+Returns **`files`** (lightweight rows for listing) and **`meta`** pagination (`page`, `limit`, `total`, `hasNext`, `hasPrev`). Use **`sort_field`** + **`sort_order`** for ordering, and **`folder_no`** to scope to a folder.
 
----
+<Note>
+  List items include **`thumbanil`** exactly as the API returns it today (thumbnail URL).
+</Note>
 
-## Why
+## Query parameters
 
-**Essential for browsing and managing assets.** The List Files endpoint is the primary way to discover, search, and navigate your file library. It provides comprehensive filtering and sorting capabilities that enable efficient asset management workflows.
+| Parameter | Type | Description |
+| --------- | ---- | ----------- |
+| `page` | integer | Page number (default `1`) |
+| `limit` | integer | Page size (e.g. `20`) |
+| `sort_field` | string | One of: `file_size`, `name`, `created_at`, `updated_at` |
+| `sort_order` | string | `asc` or `desc` |
+| `folder_no` | string | Only files in this folder |
+| `name` | string | Filename filter (partial), if supported |
+| `path` | string | Path filter, if supported |
+| `tags` | string | Comma-separated tags, if supported |
 
-## Features
+## Response fields
 
-- **Pagination**: Efficiently handle large file collections with configurable page size (up to 200 items per page)
-- **Filtering**: Filter by folder path, folder number, filename, and tags
-- **Sorting**: Sort by creation date (ascending/descending) or file size (ascending/descending)
-- **Search**: Case-insensitive partial matching for filenames
-- **Tag filtering**: Filter files by one or more tags using comma-separated values
-- **Path matching**: Support for partial path matching to find files in nested folder structures
-- **Comprehensive metadata**: Returns full file details including dimensions, format, tags, and custom metadata
+**`files[]`:** `file_no`, `name`, `thumbanil`, `url`, `file_size`, `format`, `width`, `height`, `created_at`, `workspace_no`, `path`, `extension`
 
-## Use Cases
-
-- **Display file library**: Build file browsers and asset management interfaces
-- **Search assets**: Implement search functionality to find specific files
-- **Paginate results**: Handle large collections efficiently with pagination
-- **Filter by category**: Use tags and folder paths to organize and filter assets
-- **Bulk operations**: Retrieve file lists for batch processing or bulk updates
-- **Analytics**: Analyze file collections by size, format, or creation date
-- **Integration**: Connect with third-party tools that need to browse your asset library
+**`meta`:** `page`, `limit`, `total`, `hasNext`, `hasPrev`

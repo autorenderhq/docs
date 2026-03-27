@@ -1,0 +1,53 @@
+---
+title: 'Delete folder'
+description: 'Delete a folder by folder number.'
+openapi: api-reference/openapi.json DELETE /api/v1/folders/{folderNo}
+---
+
+<RequestExample>
+
+```bash cURL
+curl --request DELETE \
+  --url 'https://upload.autorender.io/api/v1/folders/my8JeLg4tr' \
+  --header 'Authorization: Bearer YOUR_API_KEY'
+```
+
+</RequestExample>
+
+<ResponseExample>
+
+```json 200
+{
+  "message": "folder deleted"
+}
+```
+
+```json 404
+{
+  "error": "Folder not found"
+}
+```
+
+```json 401
+{
+  "success": false,
+  "error": "Unauthorized",
+  "message": "Invalid or missing API key"
+}
+```
+
+</ResponseExample>
+
+## Overview
+
+Removes the folder identified by **`folderNo`**. No request body is required.
+
+<Warning>
+  Ensure the folder is empty or that your product rules allow deletion; this may fail if the folder still contains files.
+</Warning>
+
+## Path parameters
+
+| Parameter | Description |
+| --------- | ----------- |
+| `folderNo` | Folder number to delete |

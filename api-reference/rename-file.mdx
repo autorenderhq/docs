@@ -1,0 +1,87 @@
+---
+title: 'Rename file'
+description: 'Change a file display name; server may normalize extension.'
+openapi: api-reference/openapi.json PATCH /api/v1/files/{fileNo}/rename
+---
+
+<RequestExample>
+
+```bash cURL
+curl --request PATCH \
+  --url 'https://upload.autorender.io/api/v1/files/2338045312/rename' \
+  --header 'Authorization: Bearer YOUR_API_KEY' \
+  --header 'Content-Type: application/json' \
+  --data '{
+  "name": "demo"
+}'
+```
+
+</RequestExample>
+
+<ResponseExample>
+
+```json 200
+{
+  "id": "974628c2-9b55-4ce4-adf1-9b63edff6baa",
+  "file_no": "2338045312",
+  "name": "demo.png",
+  "folder_id": null,
+  "path": null,
+  "url": "FWA7PWC7LZ/demo.png",
+  "original_url": null,
+  "workspace_id": "4328e3bf-8252-4f07-a0ec-b3265ffe1552",
+  "workspace_no": "FWA7PWC7LZ",
+  "height": 910,
+  "width": 1849,
+  "format": "png",
+  "file_size": 194141,
+  "is_delete": false,
+  "is_active": true,
+  "created_by": "27d7fa01-2cd1-4326-9f56-015af7df06e1",
+  "meta_data": {
+    "size": 194141,
+    "width": 1849,
+    "format": "image/png",
+    "height": 910,
+    "orientation": null
+  },
+  "created_at": "2026-03-27T14:56:20.511Z",
+  "updated_at": "2026-03-27T17:55:05.675Z",
+  "transform_string": null,
+  "source": "app",
+  "is_default": false,
+  "orientation": "square",
+  "extension": "image"
+}
+```
+
+```json 404
+{
+  "error": "File with ID File not found or access denied not found",
+  "code": "FILE_NOT_FOUND"
+}
+```
+
+```json 401
+{
+  "success": false,
+  "error": "Unauthorized",
+  "message": "Invalid or missing API key"
+}
+```
+
+</ResponseExample>
+
+## Overview
+
+**`PATCH /api/v1/files/{fileNo}/rename`** updates the file’s name. Pass the new base name in JSON; the API may keep or append the correct extension (e.g. `"demo"` → `"demo.png"`).
+
+## Request body
+
+| Field | Type | Required | Description |
+| ----- | ---- | -------- | ----------- |
+| `name` | string | Yes | New name (extension may be normalized by the server) |
+
+## Success body
+
+Returns the updated **file record** (database fields such as `id`, `file_no`, `name`, `url`, `workspace_no`, `meta_data`, timestamps, etc.).

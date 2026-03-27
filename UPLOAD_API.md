@@ -1,256 +1,140 @@
 # Upload API Documentation
 
-This document provides comprehensive curl examples for all three upload API endpoints.
+Curl-oriented reference for AutoRender upload endpoints: **multipart upload** (large files in parts) and **direct upload** (single multipart/form request).
 
 ## Base URLs
 
-- **Production:** `https://dev-api.autorender.io`
-- **Local Development:** `http://localhost:8080`
+- **Production:** `https://upload.autorender.io`
+- **Local development:** use your app URL (for example `http://localhost:3000` or `http://localhost:8080`)
 
 ## Authentication
 
-All endpoints (except token-based upload) require API key authentication. You can provide your API key in two ways:
+Endpoints on AutoRender require API key authentication:
 
 1. **Header:** `x-api-key: YOUR_API_KEY`
 2. **Authorization:** `Authorization: Bearer YOUR_API_KEY`
 
+Presigned URLs returned by multipart **start** are called with `PUT` only; do not send your API key to those URLs.
+
 ---
 
-## 1. Generate Upload Token
+## 1. Multipart upload (large files)
 
-Generate a short-lived token for client-side uploads. The token contains workspace, user, and upload configuration.
+Three steps: **start** (JSON + API key) → **upload parts** (presigned `PUT` to storage) → **complete** (JSON + API key).
 
-**Endpoint:** `POST /api/v1/generate-token`
+### 1a. Start session
 
-**Authentication:** Required (API Key)
+**Endpoint:** `POST /api/v1/multipart/start`
 
-### Request Body Fields
+#### Request body (JSON)
 
 | Field | Type | Required | Description |
 |-------|------|----------|-------------|
-| `file_name` | string | ✅ Yes | File name for the uploaded file (e.g., `avatar.jpg`) |
-| `folder` | string | ❌ No | Folder path where the file will be stored (e.g., `user-uploads/avatars/`) |
-| `tags` | string[] | ❌ No | Array of tags to attach to the file (e.g., `["user-upload", "avatar"]`) |
-| `transform` | string | ❌ No | Image transformation string (e.g., `w_400,h_400,fit_cover,q_80`) |
-| `max_file_size` | number | ❌ No | Maximum file size in bytes (default: 5MB) |
-| `ttl_seconds` | number | ❌ No | Token expiration time in seconds (default: 300 seconds / 5 minutes) |
-| `metadata` | object | ❌ No | Custom metadata object (e.g., `{"key": "value"}`) |
-| `custom_id` | string | ❌ No | Custom identifier for the file |
-| `random_prefix` | boolean | ❌ No | If `true`, adds a random suffix to the filename |
-| `allow_override` | object | ❌ No | Allow client to override certain fields during upload |
-| `allow_override.folder` | boolean | ❌ No | Allow client to override folder path |
-| `allow_override.tags` | boolean | ❌ No | Allow client to override tags |
-| `allow_override.transform` | boolean | ❌ No | Allow client to override transformation string |
+| `file_name` | string | Yes | Original file name |
+| `size` | number | Yes | Total size in bytes |
+| `format` | string | Yes | MIME type (e.g. `video/mp4`) |
+| `folder` | string | No | Workspace folder path |
+| `tags` | string[] | No | Tags |
+| `metadata` | object | No | Custom metadata |
+| `custom_id` | string | No | Your tracking id |
+| `random_prefix` | boolean | No | Random prefix on stored name |
+| `ttl_seconds` | number | No | Presigned URL lifetime |
 
-### Response
+#### Response
 
 ```json
 {
-  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
-  "signature": "abc123...",
-  "expire_at": 1234567890,
-  "public_key": "pub_WS123",
-  "workspace_id": "WS123",
-  "policy": {
-    "folder": "user-uploads/avatars/",
-    "tags": ["user-upload", "avatar"],
-    "max_file_size": 5242880,
-    "allow_override": {
-      "folder": false,
-      "tags": true,
-      "transform": false
-    }
-  }
+  "session_id": "<MULTIPART_SESSION_UUID>",
+  "part_size": 10485760,
+  "parts": ["<PRESIGNED_URL_1>", "<PRESIGNED_URL_2>"]
 }
 ```
 
-### Curl Examples
-
-#### Minimal Request (Required Fields Only)
+#### Curl example
 
 ```bash
-curl -X POST \
-  https://dev-api.autorender.io/api/v1/generate-token \
-  -H "x-api-key: YOUR_API_KEY_HERE" \
+curl -X POST "https://upload.autorender.io/api/v1/multipart/start" \
+  -H "Authorization: Bearer YOUR_API_KEY" \
   -H "Content-Type: application/json" \
   -d '{
-    "file_name": "my-image.jpg"
+    "file_name": "big-video.mp4",
+    "size": 73400320,
+    "format": "video/mp4",
+    "folder": "uploads/videos",
+    "tags": ["campaign", "raw"],
+    "metadata": { "source": "mobile-app" },
+    "custom_id": "vid_001",
+    "random_prefix": false,
+    "ttl_seconds": 3600
   }'
 ```
 
-#### Full Request (All Fields)
+### 1b. Upload parts (presigned PUT)
+
+- Split the file into chunks of **`part_size`** bytes (last chunk may be smaller).
+- For each chunk index `i`, `PUT` raw bytes to `parts[i]` with `Content-Type: application/octet-stream`.
+
+Example after saving the start response as `start-response.json`:
 
 ```bash
-curl -X POST \
-  https://dev-api.autorender.io/api/v1/generate-token \
-  -H "x-api-key: YOUR_API_KEY_HERE" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "file_name": "avatar.jpg",
-    "folder": "user-uploads/avatars",
-    "tags": ["user-upload", "avatar", "profile"],
-    "transform": "w_400,h_400,fit_cover,q_80",
-    "max_file_size": 10485760,
-    "ttl_seconds": 3600,
-    "metadata": {
-      "user_id": "12345",
-      "category": "profile"
-    },
-    "custom_id": "user-avatar-12345",
-    "random_prefix": true,
-    "allow_override": {
-      "folder": false,
-      "tags": true,
-      "transform": false
-    }
-  }'
+PART_SIZE=$(jq -r '.part_size' start-response.json)
+split -b "$PART_SIZE" "./big-video.mp4" /tmp/mpart_
+
+i=0
+for chunk in /tmp/mpart_*; do
+  url=$(jq -r ".parts[$i]" start-response.json)
+  curl -X PUT "$url" \
+    -H "Content-Type: application/octet-stream" \
+    --data-binary @"$chunk"
+  i=$((i + 1))
+done
 ```
 
-#### Using Authorization Bearer Header
+### 1c. Complete session
+
+**Endpoint:** `POST /api/v1/multipart/complete`
+
+| Field | Type | Required | Description |
+|-------|------|----------|-------------|
+| `session_id` | string | Yes | From start response |
 
 ```bash
-curl -X POST \
-  https://dev-api.autorender.io/api/v1/generate-token \
-  -H "Authorization: Bearer YOUR_API_KEY_HERE" \
+curl -X POST "https://upload.autorender.io/api/v1/multipart/complete" \
+  -H "Authorization: Bearer YOUR_API_KEY" \
   -H "Content-Type: application/json" \
   -d '{
-    "file_name": "document.pdf",
-    "folder": "documents",
-    "ttl_seconds": 7200
+    "session_id": "<MULTIPART_SESSION_UUID>"
   }'
 ```
 
 ---
 
-## 2. Upload File with Token
+## 2. Direct file upload
 
-Upload a file using a token generated from the previous endpoint. No API key required - authentication is handled by the token.
-
-**Endpoint:** `POST /api/v1/uploads/{token}`
-
-**Authentication:** Token-based (token in URL path)
-
-### URL Parameters
-
-| Parameter | Type | Required | Description |
-|-----------|------|----------|-------------|
-| `token` | string | ✅ Yes | The upload token from step 1 (in URL path) |
-
-### Request Headers
-
-| Header | Type | Required | Description |
-|--------|------|----------|-------------|
-| `Content-Type` | string | ✅ Yes | MIME type of the file (e.g., `image/jpeg`, `image/png`, `application/octet-stream`) |
-| `Content-Length` | number | ❌ No | File size in bytes (optional, but recommended) |
-
-### Request Body
-
-The request body should be the raw binary file data.
-
-### Response
-
-```json
-{
-  "success": true,
-  "data": {
-    "id": "file-id",
-    "file_no": "FILE123",
-    "name": "avatar.jpg",
-    "url": "https://...",
-    "path": "user-uploads/avatars",
-    "width": 400,
-    "height": 400,
-    "format": "jpg",
-    "file_size": 102400,
-    "workspace_no": "WS123"
-  }
-}
-```
-
-### Curl Examples
-
-#### Upload JPEG Image
-
-```bash
-curl -X POST \
-  https://dev-api.autorender.io/api/v1/uploads/YOUR_TOKEN_HERE \
-  -H "Content-Type: image/jpeg" \
-  --data-binary @/path/to/your/image.jpg
-```
-
-#### Upload PNG Image
-
-```bash
-curl -X POST \
-  https://dev-api.autorender.io/api/v1/uploads/YOUR_TOKEN_HERE \
-  -H "Content-Type: image/png" \
-  --data-binary @/path/to/your/image.png
-```
-
-#### Upload with Content-Length Header
-
-```bash
-curl -X POST \
-  https://dev-api.autorender.io/api/v1/uploads/YOUR_TOKEN_HERE \
-  -H "Content-Type: image/jpeg" \
-  -H "Content-Length: $(stat -f%z /path/to/your/image.jpg)" \
-  --data-binary @/path/to/your/image.jpg
-```
-
-#### Upload WebP Image
-
-```bash
-curl -X POST \
-  https://dev-api.autorender.io/api/v1/uploads/YOUR_TOKEN_HERE \
-  -H "Content-Type: image/webp" \
-  --data-binary @/path/to/your/image.webp
-```
-
-#### Upload Generic Binary File
-
-```bash
-curl -X POST \
-  https://dev-api.autorender.io/api/v1/uploads/YOUR_TOKEN_HERE \
-  -H "Content-Type: application/octet-stream" \
-  --data-binary @/path/to/your/file.bin
-```
-
-**Note:** Replace `YOUR_TOKEN_HERE` with the actual token value from the generate-token response.
-
----
-
-## 3. Direct File Upload
-
-Upload a file directly using API key authentication. This is the simplest method for server-side uploads.
+Upload a file in one request using API key authentication (multipart form data).
 
 **Endpoint:** `POST /api/v1/uploads`
 
-**Authentication:** Required (API Key)
-
-### Request Headers
+### Request headers
 
 | Header | Type | Required | Description |
 |--------|------|----------|-------------|
-| `x-api-key` | string | ✅ Yes | Your API key (alternative to Authorization header) |
-| `Authorization` | string | ❌ No | Bearer token with API key (alternative to x-api-key header) |
-| `Content-Type` | string | ✅ Yes | Must be `multipart/form-data` (curl automatically sets this with `-F` flag) |
+| `x-api-key` | string | Yes* | API key (*or use Bearer below) |
+| `Authorization` | string | Yes* | `Bearer YOUR_API_KEY` |
+| `Content-Type` | string | Yes | `multipart/form-data` (set automatically by curl `-F`) |
 
-**Note:** When using curl with the `-F` flag, the `Content-Type: multipart/form-data` header is automatically set. You don't need to specify it manually.
-
-### Request Body (Multipart Form Data)
-
-**Important:** Validation is handled server-side in the controller. The `file_name` field is required and must be provided in the form data.
+### Form fields
 
 | Field | Type | Required | Description |
 |-------|------|----------|-------------|
-| `file` | file | ✅ Yes | The file to upload (binary data) |
-| `file_name` | string | ✅ Yes | File name for the uploaded file (e.g., `my-image.jpg`) |
-| `folder` | string | ❌ No | Folder path where the file will be stored (e.g., `uploads/my-folder`) |
-| `tags` | string | ❌ No | Comma-separated tags (e.g., `tag1,tag2,tag3`) |
-| `transform` | string | ❌ No | Image transformation string (e.g., `w_800,h_600,q_90`) - same as generate-token API |
-| `metadata` | string | ❌ No | JSON string for custom metadata (e.g., `{"key": "value"}`) |
-| `custom_id` | string | ❌ No | Custom identifier for the file |
-| `random_prefix` | string | ❌ No | Set to `"true"` to add a random suffix to filename |
+| `file` | file | Yes | File binary |
+| `file_name` | string | Yes | Final name |
+| `folder` | string | No | Folder path |
+| `tags` | string | No | Comma-separated tags |
+| `transform` | string | No | Image transform string (e.g. `w_800,h_600,q_90`) |
+| `metadata` | string | No | JSON string |
+| `custom_id` | string | No | Custom id |
+| `random_prefix` | string | No | `"true"` for random suffix |
 
 ### Response
 
@@ -272,25 +156,23 @@ Upload a file directly using API key authentication. This is the simplest method
 }
 ```
 
-### Curl Examples
+### Curl examples
 
-#### Minimal Request (Required Fields Only)
+#### Minimal
 
 ```bash
 curl -X POST \
-  https://dev-api.autorender.io/api/v1/uploads \
+  https://upload.autorender.io/api/v1/uploads \
   -H "x-api-key: YOUR_API_KEY_HERE" \
   -F "file=@/path/to/your/image.jpg" \
   -F "file_name=my-image.jpg"
 ```
 
-**Note:** The `-F` flag automatically sets `Content-Type: multipart/form-data`. Both `file` and `file_name` are required fields.
-
-#### Full Request (All Fields)
+#### Full
 
 ```bash
 curl -X POST \
-  https://dev-api.autorender.io/api/v1/uploads \
+  https://upload.autorender.io/api/v1/uploads \
   -H "x-api-key: YOUR_API_KEY_HERE" \
   -F "file=@/path/to/your/image.jpg" \
   -F "file_name=my-image.jpg" \
@@ -302,11 +184,11 @@ curl -X POST \
   -F "random_prefix=true"
 ```
 
-#### Using Authorization Bearer Header
+#### Bearer header
 
 ```bash
 curl -X POST \
-  https://dev-api.autorender.io/api/v1/uploads \
+  https://upload.autorender.io/api/v1/uploads \
   -H "Authorization: Bearer YOUR_API_KEY_HERE" \
   -F "file=@/path/to/your/image.jpg" \
   -F "file_name=document.jpg" \
@@ -314,33 +196,7 @@ curl -X POST \
   -F "transform=w_1200,h_800,q_85"
 ```
 
-#### Upload with Image Transformations
-
-```bash
-curl -X POST \
-  https://dev-api.autorender.io/api/v1/uploads \
-  -H "x-api-key: YOUR_API_KEY_HERE" \
-  -F "file=@/path/to/your/image.jpg" \
-  -F "file_name=thumbnail.jpg" \
-  -F "folder=processed-images" \
-  -F "transform=w_500,h_500,fit_cover,q_80" \
-  -F "tags=processed,thumbnail"
-```
-
-#### Upload with Custom Metadata
-
-```bash
-curl -X POST \
-  https://dev-api.autorender.io/api/v1/uploads \
-  -H "x-api-key: YOUR_API_KEY_HERE" \
-  -F "file=@/path/to/your/image.jpg" \
-  -F "file_name=avatar.jpg" \
-  -F "folder=user-uploads" \
-  -F "metadata={\"user_id\":\"12345\",\"upload_source\":\"mobile_app\",\"timestamp\":\"2025-01-19T10:00:00Z\"}" \
-  -F "custom_id=user-12345-avatar"
-```
-
-#### Local Development Example
+#### Local example
 
 ```bash
 curl -X POST \
@@ -354,54 +210,28 @@ curl -X POST \
 
 ---
 
-## Complete Workflow Example
-
-Here's a complete example showing all three endpoints in sequence:
+## Workflow example (multipart + direct)
 
 ```bash
-# Step 1: Generate upload token
-TOKEN_RESPONSE=$(curl -s -X POST \
-  https://dev-api.autorender.io/api/v1/generate-token \
-  -H "x-api-key: YOUR_API_KEY_HERE" \
+# Multipart: start → upload parts (see sections 1a–1b) → complete
+curl -s -X POST "https://upload.autorender.io/api/v1/multipart/complete" \
+  -H "Authorization: Bearer YOUR_API_KEY" \
   -H "Content-Type: application/json" \
-  -d '{
-    "file_name": "test-image.jpg",
-    "folder": "uploads",
-    "tags": ["test", "example"],
-    "transform": "w_800,h_600,q_90",
-    "ttl_seconds": 3600
-  }')
+  -d '{"session_id":"<MULTIPART_SESSION_UUID>"}'
 
-# Extract token from response (requires jq)
-TOKEN=$(echo $TOKEN_RESPONSE | jq -r '.token')
-
-echo "Generated token: $TOKEN"
-
-# Step 2: Upload file with token
-UPLOAD_RESPONSE=$(curl -s -X POST \
-  https://dev-api.autorender.io/api/v1/uploads/$TOKEN \
-  -H "Content-Type: image/jpeg" \
-  --data-binary @/path/to/your/image.jpg)
-
-echo "Upload response: $UPLOAD_RESPONSE"
-
-# Step 3: Alternative - Direct upload (no token needed)
-DIRECT_UPLOAD_RESPONSE=$(curl -s -X POST \
-  https://dev-api.autorender.io/api/v1/uploads \
+# Direct upload (single request)
+curl -s -X POST \
+  https://upload.autorender.io/api/v1/uploads \
   -H "x-api-key: YOUR_API_KEY_HERE" \
   -F "file=@/path/to/your/image.jpg" \
   -F "file_name=test-image.jpg" \
   -F "folder=uploads" \
-  -F "transform=w_800,h_600,q_90")
-
-echo "Direct upload response: $DIRECT_UPLOAD_RESPONSE"
+  -F "transform=w_800,h_600,q_90"
 ```
 
 ---
 
-## Error Responses
-
-All endpoints may return the following error responses:
+## Error responses
 
 ### 400 Bad Request
 
@@ -436,43 +266,24 @@ All endpoints may return the following error responses:
 
 ## Notes
 
-1. **Token Expiration:** Tokens expire after the TTL specified (default: 5 minutes). Generate a new token if it expires.
+1. **Multipart:** Total bytes uploaded across parts must match **`size`** from start. Parts must match **`part_size`** ordering from the API. If presigned URLs expire, start a new session.
 
-2. **File Size Limits:** 
-   - Default max file size for token uploads: 5MB
-   - Can be customized via `max_file_size` in token generation
-   - Direct uploads: 100MB limit
+2. **File size limits:** Direct uploads are bounded by server policy (historically on the order of 100MB for form posts); use multipart for larger assets.
 
-3. **Image Transformations:** 
-   - Only applies to image files
-   - Use `transform` field (same field name in both generate-token and direct upload APIs)
-   - Format: `w_{width},h_{height},q_{quality}`
-   - Example: `w_800,h_600,q_90`
+3. **Image transformations:** Apply to image files via **`transform`** on direct upload (e.g. `w_800,h_600,q_90`).
 
-4. **Folder Paths:** 
-   - Leading and trailing slashes are automatically removed
-   - Nested folders are supported (e.g., `uploads/subfolder/nested`)
+4. **Folder paths:** Leading and trailing slashes are normalized; nested paths are supported.
 
-5. **Content Types:** 
-   - Token uploads accept: `image/*` and `application/octet-stream`
-   - Direct uploads use `multipart/form-data` (validation handled in controller, not via JSON schema)
-
-6. **Direct Upload Validation:**
-   - The direct upload endpoint uses `multipart/form-data`, which is validated server-side in the controller
-   - Required fields: `file` (the actual file) and `file_name` (string)
-   - All other fields are optional
-   - If `file_name` is missing or empty, the request will return a 400 error
+5. **Direct upload validation:** Requires **`file`** and **`file_name`** in form data; other fields are optional.
 
 ---
 
-## Local Development
+## Local development paths
 
-For local development, replace the base URL:
-
-```bash
-# Local development URL
-http://localhost:8080/api/v1/generate-token
-http://localhost:8080/api/v1/uploads/{token}
-http://localhost:8080/api/v1/uploads
+```text
+POST http://localhost:3000/api/v1/multipart/start
+POST http://localhost:3000/api/v1/multipart/complete
+POST http://localhost:3000/api/v1/uploads
 ```
 
+(Adjust host and port to match your API process.)

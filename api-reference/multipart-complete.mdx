@@ -1,0 +1,86 @@
+---
+title: 'Multipart complete'
+description: 'Finalize the multipart upload after all parts are uploaded.'
+openapi: api-reference/openapi.json POST /api/v1/multipart/complete
+---
+
+<RequestExample>
+
+```bash cURL
+curl --request POST \
+  --url https://upload.autorender.io/api/v1/multipart/complete \
+  --header 'Authorization: Bearer YOUR_API_KEY' \
+  --header 'Content-Type: application/json' \
+  --data '{
+  "session_id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890"
+}'
+```
+
+</RequestExample>
+
+<ResponseExample>
+
+```json 200
+{
+  "success": true,
+  "data": {
+    "id": "<string>",
+    "file_no": "<string>",
+    "name": "big-video.mp4",
+    "url": "<string>",
+    "path": "uploads/videos",
+    "width": null,
+    "height": null,
+    "format": "mp4",
+    "file_size": 73400320,
+    "workspace_no": "<string>"
+  }
+}
+```
+
+```json 400
+{
+  "success": false,
+  "error": "<string>"
+}
+```
+
+```json 401
+{
+  "success": false,
+  "error": "Unauthorized",
+  "message": "Invalid or missing API key"
+}
+```
+
+```json 500
+{
+  "success": false,
+  "error": "<string>",
+  "message": "<string>"
+}
+```
+
+</ResponseExample>
+
+## Overview
+
+Completes the multipart session after every part has been uploaded with **PUT** to the presigned URLs. The file is assembled and registered in your workspace.
+
+## Authentication
+
+`Authorization: Bearer YOUR_API_KEY`
+
+## Workflow
+
+This is **step 3 of 3**.
+
+1. [**Multipart start**](/api-reference/multipart-start)
+2. [**Upload parts**](/api-reference/multipart-upload-parts)
+3. **Multipart complete** (this endpoint) — body: `{ "session_id": "<from start>" }`
+
+## Request body
+
+| Field | Type | Required | Description |
+| ----- | ---- | -------- | ----------- |
+| `session_id` | string | Yes | `session_id` from the start response |

@@ -1,6 +1,7 @@
 ---
-title: 'Upload File'
-openapi: 'POST /api/v1/uploads'
+title: 'Direct upload'
+description: 'Upload a file with multipart/form-data and your API key.'
+openapi: api-reference/openapi.json POST /api/v1/uploads
 ---
 
 ## Overview
@@ -38,7 +39,7 @@ Content-Type: multipart/form-data
 | `file_name` | string | ✅ Yes | File name for the uploaded file (e.g., `my-image.jpg`) |
 | `folder` | string | ❌ No | Folder path where the file will be stored (e.g., `uploads/my-folder`) |
 | `tags` | string | ❌ No | Comma-separated tags (e.g., `tag1,tag2,tag3`) |
-| `transform` | string | ❌ No | Image transformation string (e.g., `w_800,h_600,q_90`) - same as generate-token API |
+| `transform` | string | ❌ No | Image transformation string (e.g., `w_800,h_600,q_90`) |
 | `metadata` | string | ❌ No | JSON string for custom metadata (e.g., `{"key": "value"}`) |
 | `custom_id` | string | ❌ No | Custom identifier for the file |
 | `random_prefix` | string | ❌ No | Set to `"true"` to add a random suffix to filename |
@@ -49,7 +50,7 @@ Content-Type: multipart/form-data
 
 ```bash
 curl -X POST \
-  https://dev-api.autorender.io/api/v1/uploads \
+  https://upload.autorender.io/api/v1/uploads \
   -H "Authorization: Bearer YOUR_API_KEY_HERE" \
   -F "file=@/path/to/your/image.jpg" \
   -F "file_name=my-image.jpg"
@@ -59,7 +60,7 @@ curl -X POST \
 
 ```bash
 curl -X POST \
-  https://dev-api.autorender.io/api/v1/uploads \
+  https://upload.autorender.io/api/v1/uploads \
   -H "Authorization: Bearer YOUR_API_KEY_HERE" \
   -F "file=@/path/to/your/image.jpg" \
   -F "file_name=my-image.jpg" \
@@ -75,7 +76,7 @@ curl -X POST \
 
 ```bash
 curl -X POST \
-  https://dev-api.autorender.io/api/v1/uploads \
+  https://upload.autorender.io/api/v1/uploads \
   -H "Authorization: Bearer YOUR_API_KEY_HERE" \
   -F "file=@/path/to/your/image.jpg" \
   -F "file_name=thumbnail.jpg" \
@@ -88,7 +89,7 @@ curl -X POST \
 
 ```bash
 curl -X POST \
-  https://dev-api.autorender.io/api/v1/uploads \
+  https://upload.autorender.io/api/v1/uploads \
   -H "Authorization: Bearer YOUR_API_KEY_HERE" \
   -F "file=@/path/to/your/image.jpg" \
   -F "file_name=avatar.jpg" \

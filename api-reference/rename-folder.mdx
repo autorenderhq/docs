@@ -1,0 +1,74 @@
+---
+title: 'Rename folder'
+description: 'Rename an existing folder by folder number.'
+openapi: api-reference/openapi.json POST /api/v1/folders/rename/{folderNo}
+---
+
+<RequestExample>
+
+```bash cURL
+curl --request POST \
+  --url 'https://upload.autorender.io/api/v1/folders/rename/53855hxPoq' \
+  --header 'Authorization: Bearer YOUR_API_KEY' \
+  --header 'Content-Type: application/json' \
+  --data '{
+  "name": "demo2"
+}'
+```
+
+</RequestExample>
+
+<ResponseExample>
+
+```json 200
+{
+  "id": "f3b738aa-c8f7-480d-a861-f5c5895f258b",
+  "folder_no": "53855hxPoq",
+  "name": "demo2",
+  "parent_folder": "84248393-8f6c-4f33-995d-16cf9c738424",
+  "workspace_id": "4328e3bf-8252-4f07-a0ec-b3265ffe1552",
+  "workspace_no": "FWA7PWC7LZ",
+  "is_delete": false,
+  "is_active": true,
+  "created_by": "27d7fa01-2cd1-4326-9f56-015af7df06e1",
+  "created_at": "2026-03-27T15:21:40.693Z",
+  "updated_at": "2026-03-27T16:01:38.284Z",
+  "source": "app",
+  "path": "demo_nested_folder/demo2",
+  "workspace": {
+    "workspace_no": "FWA7PWC7LZ"
+  }
+}
+```
+
+```json 404
+{
+  "error": "Folder not found"
+}
+```
+
+```json 401
+{
+  "success": false,
+  "error": "Unauthorized",
+  "message": "Invalid or missing API key"
+}
+```
+
+</ResponseExample>
+
+## Overview
+
+**`POST /api/v1/folders/rename/{folderNo}`** sets a new **`name`** for the folder and returns the full folder record (path, workspace, timestamps, etc.).
+
+## Path parameters
+
+| Parameter | Description |
+| --------- | ----------- |
+| `folderNo` | Folder number to rename |
+
+## Request body
+
+| Field | Type | Required | Description |
+| ----- | ---- | -------- | ----------- |
+| `name` | string | Yes | New folder name |

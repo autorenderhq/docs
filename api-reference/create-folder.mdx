@@ -1,0 +1,61 @@
+---
+title: 'Create folder'
+description: 'Create a folder under an optional parent.'
+openapi: api-reference/openapi.json POST /api/v1/folders
+---
+
+<RequestExample>
+
+```bash cURL
+curl --request POST \
+  --url 'https://upload.autorender.io/api/v1/folders' \
+  --header 'Authorization: Bearer YOUR_API_KEY' \
+  --header 'Content-Type: application/json' \
+  --data '{
+  "name": "demo2",
+  "parent_folder_no": "sD1LvqoDzG"
+}'
+```
+
+</RequestExample>
+
+<ResponseExample>
+
+```json 200
+{
+  "name": "demo2",
+  "folder_no": "dejfjijf"
+}
+```
+
+```json 400
+{
+  "success": false,
+  "error": "<string>"
+}
+```
+
+```json 401
+{
+  "success": false,
+  "error": "Unauthorized",
+  "message": "Invalid or missing API key"
+}
+```
+
+</ResponseExample>
+
+## Overview
+
+Creates a new folder. Send **`name`** and optionally **`parent_folder_no`** to nest under an existing folder.
+
+## Request body
+
+| Field | Type | Required | Description |
+| ----- | ---- | -------- | ----------- |
+| `name` | string | Yes | Folder name |
+| `parent_folder_no` | string | No | Parent folder number; omit for root |
+
+## Response
+
+Short payload with `name` and `folder_no` of the created folder.
