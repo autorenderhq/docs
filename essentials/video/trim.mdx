@@ -1,48 +1,46 @@
 ---
 title: "Trim"
-description: "Trim video by start time and duration in seconds"
+description: "Trim video by start and end offsets in seconds"
 icon: "scissors"
 ---
 
 ## Overview
 
-Trim the video by specifying start time and duration in seconds. Useful for clips, previews, and reducing file size. Combine with width/height and other transformations as needed.
+Trim the video by specifying start and end offsets in seconds. Useful for clips, previews, and reducing file size. Combine with width/height and other transformations as needed.
 
 ### URL Structure
 
 ```bash
-https://assets.autorender.io/LOKVTtKVGb/st_5,d_10,w_500,h_500/doc/skateboarding.mp4
+https://assets.autorender.io/LOKVTtKVGb/so_5,eo_15,w_500,h_500/doc/skateboarding.mp4
 ```
 
-<video src="https://assets.autorender.io/LOKVTtKVGb/st_5,d_10,w_500,h_500/doc/skateboarding.mp4" controls style={{ borderRadius: '0.5rem', maxWidth: '100%', display: 'block', marginLeft: 'auto', marginRight: 'auto', objectFit: 'contain' }} />
+<video src="https://assets.autorender.io/LOKVTtKVGb/so_5,eo_15,w_500,h_500/doc/skateboarding.mp4" controls style={{ borderRadius: '0.5rem', maxWidth: '100%', display: 'block', marginLeft: 'auto', marginRight: 'auto', objectFit: 'contain' }} />
 
 ## Parameters
 
 | Parameter   | Format   | Description              |
 | ----------- | -------- | ------------------------ |
-| `st_{sec}`  | `st_5`   | Start time in seconds    |
-| `d_{sec}`   | `d_10`   | Duration in seconds      |
-
-You can also use `et_{sec}` (end time) in place of duration where supported.
+| `so_{sec}`  | `so_5`   | Start offset in seconds  |
+| `eo_{sec}`  | `eo_15`  | End offset in seconds    |
 
 ## Example
 
-Start at 5 seconds, keep 10 seconds, resized to 500×500:
+Start at 5 seconds and end at 15 seconds, resized to 500x500:
 
 ```bash
-https://assets.autorender.io/LOKVTtKVGb/st_5,d_10,w_500,h_500/doc/skateboarding.mp4
+https://assets.autorender.io/LOKVTtKVGb/so_5,eo_15,w_500,h_500/doc/skateboarding.mp4
 ```
 
-<video src="https://assets.autorender.io/LOKVTtKVGb/st_5,d_10,w_500,h_500/doc/skateboarding.mp4" controls style={{ borderRadius: '0.5rem', maxWidth: '100%', display: 'block', marginLeft: 'auto', marginRight: 'auto', objectFit: 'contain' }} />
+<video src="https://assets.autorender.io/LOKVTtKVGb/so_5,eo_15,w_500,h_500/doc/skateboarding.mp4" controls style={{ borderRadius: '0.5rem', maxWidth: '100%', display: 'block', marginLeft: 'auto', marginRight: 'auto', objectFit: 'contain' }} />
 
 Trim only (no resize):
 
 ```bash
-https://assets.autorender.io/LOKVTtKVGb/st_0,d_15/doc/skateboarding.mp4
+https://assets.autorender.io/LOKVTtKVGb/so_0,eo_15/doc/skateboarding.mp4
 ```
 
-<video src="https://assets.autorender.io/LOKVTtKVGb/st_0,d_15/doc/skateboarding.mp4" controls style={{ borderRadius: '0.5rem', maxWidth: '100%', display: 'block', marginLeft: 'auto', marginRight: 'auto', objectFit: 'contain' }} />
+<video src="https://assets.autorender.io/LOKVTtKVGb/so_0,eo_15/doc/skateboarding.mp4" controls style={{ borderRadius: '0.5rem', maxWidth: '100%', display: 'block', marginLeft: 'auto', marginRight: 'auto', objectFit: 'contain' }} />
 
 <Note>
-  Use `st_` and `d_` for short clips to reduce size and processing time. Trim is applied before other transformations.
+  Use `so_` and `eo_` for short clips to reduce size and processing time. Trim is applied before other transformations.
 </Note>
