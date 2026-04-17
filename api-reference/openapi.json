@@ -1,8 +1,8 @@
 {
   "openapi": "3.1.0",
   "info": {
-    "title": "OpenAPI Plant Store",
-    "description": "A sample API that uses a plant store as an example to demonstrate features in the OpenAPI specification",
+    "title": "AutoRender API",
+    "description": "AutoRender upload, file, folder, and multipart APIs",
     "license": {
       "name": "MIT"
     },
@@ -16,126 +16,23 @@
   "security": [
     {
       "bearerAuth": []
+    },
+    {
+      "apiKeyAuth": []
     }
   ],
   "paths": {
-    "/plants": {
-      "get": {
-        "description": "Returns all plants from the system that the user has access to",
-        "parameters": [
-          {
-            "name": "limit",
-            "in": "query",
-            "description": "The maximum number of results to return",
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Plant response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Plant"
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Unexpected error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          }
-        }
-      },
-      "post": {
-        "description": "Creates a new plant in the store",
-        "requestBody": {
-          "description": "Plant to add to the store",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/NewPlant"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "plant response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Plant"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "unexpected error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/plants/{id}": {
-      "delete": {
-        "description": "Deletes a single plant based on the ID supplied",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "description": "ID of plant to delete",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int64"
-            }
-          }
-        ],
-        "responses": {
-          "204": {
-            "description": "Plant deleted",
-            "content": {}
-          },
-          "400": {
-            "description": "unexpected error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
     "/api/v1/uploads": {
       "post": {
+        "operationId": "uploadFile",
         "summary": "Direct upload",
         "description": "Upload a file to your AutoRender workspace with optional transformations, tags, and folder organization",
         "security": [
           {
             "bearerAuth": []
+          },
+          {
+            "apiKeyAuth": []
           }
         ],
         "requestBody": {
@@ -231,6 +128,7 @@
     },
     "/api/v1/files": {
       "get": {
+        "operationId": "listFiles",
         "summary": "List files",
         "description": "Paginated list of files in the workspace. Filter by folder, sort by field and order, and page through results.",
         "security": [
@@ -360,6 +258,7 @@
     },
     "/api/v1/files/{fileNo}": {
       "get": {
+        "operationId": "getFileDetails",
         "summary": "Get file details",
         "description": "Retrieve detailed information about a file by numeric file id (`file_no`).",
         "security": [
@@ -452,6 +351,7 @@
         }
       },
       "delete": {
+        "operationId": "deleteFile",
         "summary": "Delete file",
         "description": "Permanently delete a file. No request body is required.",
         "security": [
@@ -520,6 +420,7 @@
     },
     "/api/v1/files/{fileNo}/rename": {
       "patch": {
+        "operationId": "renameFile",
         "summary": "Rename file",
         "description": "Rename a file. The API may preserve or normalize the file extension (e.g. `demo` → `demo.png`).",
         "security": [
@@ -592,6 +493,7 @@
     },
     "/api/v1/folders": {
       "get": {
+        "operationId": "listFolders",
         "summary": "List folders",
         "description": "List folders under an optional parent. Omit `parent_folder_no` to list root-level folders.",
         "security": [
@@ -652,6 +554,7 @@
         }
       },
       "post": {
+        "operationId": "createFolder",
         "summary": "Create folder",
         "description": "Create a folder under an optional parent.",
         "security": [
@@ -713,6 +616,7 @@
     },
     "/api/v1/folders/rename/{folderNo}": {
       "post": {
+        "operationId": "renameFolder",
         "summary": "Rename folder",
         "description": "Rename a folder by `folder_no`.",
         "security": [
@@ -798,6 +702,7 @@
     },
     "/api/v1/folders/{folderNo}": {
       "delete": {
+        "operationId": "deleteFolder",
         "summary": "Delete folder",
         "description": "Delete a folder by folder number. No request body required.",
         "security": [
@@ -855,6 +760,7 @@
     },
     "/api/v1/multipart/start": {
       "post": {
+        "operationId": "startMultipartUpload",
         "summary": "Start multipart upload",
         "description": "Creates a multipart session and returns part size and presigned PUT URLs for each part. Use for large files uploaded in chunks.",
         "security": [
@@ -937,6 +843,7 @@
     },
     "/api/v1/multipart/complete": {
       "post": {
+        "operationId": "completeMultipartUpload",
         "summary": "Complete multipart upload",
         "description": "Finalizes the multipart upload after all parts have been uploaded to the presigned URLs.",
         "security": [
@@ -1018,6 +925,7 @@
     },
     "/api/v1/multipart/parts": {
       "put": {
+        "operationId": "uploadMultipartPart",
         "summary": "Upload part",
         "description": "Upload **one part** of the file as raw bytes (`Content-Type: application/octet-stream`).\n\n**Request URL:** Use the **full presigned URL** from `parts[i]` returned by `POST /api/v1/multipart/start` (typically object storage). It is not this documentation path—the generated sample URL is only a template; substitute your real `parts[i]` value, including path and query flags.\n\n**Authentication:** Do **not** send your AutoRender `Authorization` header. Signatures are already in the presigned URL.\n\nUpload every index in `parts` in order, then call `POST /api/v1/multipart/complete`.",
         "security": [],
@@ -1026,8 +934,7 @@
           "content": {
             "application/octet-stream": {
               "schema": {
-                "type": "string",
-                "format": "binary"
+                "$ref": "#/components/schemas/MultipartPartBinary"
               }
             }
           }
@@ -1059,6 +966,7 @@
     },
     "/api/v1/uploads/remote": {
       "post": {
+        "operationId": "uploadFromUrl",
         "summary": "Upload from URL",
         "description": "Upload an image from a remote URL to your AutoRender workspace. Fetches the image from the provided URL, applies optional transformations, and stores it in your workspace",
         "security": [
@@ -1132,90 +1040,22 @@
       }
     }
   },
-  "webhooks": {
-    "/plant/webhook": {
-      "post": {
-        "description": "Information about a new plant added to the store",
-        "requestBody": {
-          "description": "Plant added to the store",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/NewPlant"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Return a 200 status to indicate that the data was received successfully"
-          }
-        }
-      }
-    }
-  },
   "components": {
     "schemas": {
-      "Plant": {
-        "required": [
-          "name"
-        ],
-        "type": "object",
-        "properties": {
-          "name": {
-            "description": "The name of the plant",
-            "type": "string"
-          },
-          "tag": {
-            "description": "Tag to specify the type",
-            "type": "string"
-          }
-        }
-      },
-      "NewPlant": {
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/Plant"
-          },
-          {
-            "required": [
-              "id"
-            ],
-            "type": "object",
-            "properties": {
-              "id": {
-                "description": "Identification number of the plant",
-                "type": "integer",
-                "format": "int64"
-              }
-            }
-          }
-        ]
-      },
-      "Error": {
-        "required": [
-          "error",
-          "message"
-        ],
-        "type": "object",
-        "properties": {
-          "error": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "message": {
-            "type": "string"
-          }
-        }
-      },
       "UploadResponse": {
         "type": "object",
+        "required": ["success", "data"],
         "properties": {
           "success": {
             "type": "boolean",
             "description": "Indicates if the upload was successful"
           },
           "data": {
+            "$ref": "#/components/schemas/UploadData"
+          }
+        }
+      },
+      "UploadData": {
         "type": "object",
         "properties": {
           "id": {
@@ -1230,13 +1070,13 @@
             "type": "string",
             "description": "Final filename (may include random suffix if requested)"
           },
-              "url": {
+          "url": {
             "type": "string",
-                "description": "Full CDN URL to access the uploaded file"
+            "description": "Full CDN URL to access the uploaded file"
           },
-              "path": {
+          "path": {
             "type": "string",
-                "description": "Folder path where the file is stored"
+            "description": "Folder path where the file is stored"
           },
           "width": {
             "type": "integer",
@@ -1250,32 +1090,44 @@
           },
           "format": {
             "type": "string",
-                "description": "File format/extension (e.g., jpg, png, webp)"
+            "description": "File format/extension (e.g., jpg, png, webp)"
           },
-              "file_size": {
-                "type": "integer",
-                "description": "File size in bytes (after processing)"
+          "file_size": {
+            "type": "integer",
+            "description": "File size in bytes (after processing)"
           },
-              "workspace_no": {
+          "workspace_no": {
             "type": "string",
-                "description": "Workspace identifier"
-              }
-            }
+            "description": "Workspace identifier"
           }
         }
       },
-      "UploadError": {
+      "ApiError": {
         "type": "object",
+        "description": "Standard API error shape",
         "properties": {
           "success": {
             "type": "boolean",
-            "description": "Always false for errors"
+            "description": "Usually false on errors",
+            "default": false
           },
           "error": {
             "type": "string",
-            "description": "Error message describing what went wrong"
+            "description": "Human-readable error summary"
+          },
+          "message": {
+            "type": "string",
+            "description": "Detailed error message"
+          },
+          "code": {
+            "type": "string",
+            "description": "Machine-readable error code"
           }
-        }
+        },
+        "additionalProperties": true
+      },
+      "UploadError": {
+        "$ref": "#/components/schemas/ApiError"
       },
       "FileResponse": {
         "type": "object",
@@ -1414,6 +1266,7 @@
       },
       "FileListMeta": {
         "type": "object",
+        "required": ["page", "limit", "total", "hasNext", "hasPrev"],
         "properties": {
           "page": { "type": "integer" },
           "limit": { "type": "integer" },
@@ -1424,6 +1277,7 @@
       },
       "FileListResponse": {
         "type": "object",
+        "required": ["files", "meta"],
         "properties": {
           "files": {
             "type": "array",
@@ -1529,37 +1383,26 @@
         }
       },
       "SimpleErrorBody": {
-        "type": "object",
-        "properties": {
-          "error": {
-            "type": "string"
-          }
-        }
+        "$ref": "#/components/schemas/ApiError"
       },
       "FileErrorResponse": {
-        "type": "object",
-        "description": "Generic error body for file operations",
-        "properties": {
-          "error": {
-            "type": "string"
-          },
-          "message": {
-            "type": "string"
-          }
-        },
-        "additionalProperties": true
+        "$ref": "#/components/schemas/ApiError"
       },
       "FileNotFoundError": {
-        "type": "object",
-        "properties": {
-          "error": {
-            "type": "string"
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/ApiError"
           },
-          "code": {
-            "type": "string",
-            "example": "FILE_NOT_FOUND"
+          {
+            "type": "object",
+            "properties": {
+              "code": {
+                "type": "string",
+                "example": "FILE_NOT_FOUND"
+              }
+            }
           }
-        }
+        ]
       },
       "FolderListItem": {
         "type": "object",
@@ -1740,6 +1583,11 @@
           }
         }
       },
+      "MultipartPartBinary": {
+        "type": "string",
+        "format": "binary",
+        "description": "One multipart chunk uploaded to a presigned URL"
+      },
       "RemoteUploadRequest": {
         "type": "object",
         "required": ["remote_url"],
@@ -1782,12 +1630,14 @@
     "securitySchemes": {
       "bearerAuth": {
         "type": "http",
-        "scheme": "bearer"
+        "scheme": "bearer",
+        "bearerFormat": "API Key"
       },
       "apiKeyAuth": {
         "type": "apiKey",
         "in": "header",
-        "name": "x-api-key"
+        "name": "x-api-key",
+        "description": "Alternative API key header authentication"
       }
     }
   }
