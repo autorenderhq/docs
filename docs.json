@@ -37,7 +37,12 @@
             "pages": [
               "essentials/transformations"
             ]
-          },
+          }
+        ]
+      },
+      {
+        "tab": "Image",
+        "groups": [
           {
             "group": "Image Transformations",
             "pages": [
@@ -59,7 +64,12 @@
               "essentials/layers",
               "essentials/recipes"
             ]
-          },
+          }
+        ]
+      },
+      {
+        "tab": "Video",
+        "groups": [
           {
             "group": "Video Transformations",
             "pages": [
