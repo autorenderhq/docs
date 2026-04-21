@@ -33,9 +33,14 @@
         "tab": "Transform",
         "groups": [
           {
-            "group": "Media Transformations",
+            "group": "Overview",
             "pages": [
-              "essentials/transformations",
+              "essentials/transformations"
+            ]
+          },
+          {
+            "group": "Image Transformations",
+            "pages": [
               "essentials/overview",
               "essentials/automatic",
               "essentials/resize",
@@ -52,7 +57,12 @@
               "essentials/effects/sharpen",
               "essentials/effects/grayscale",
               "essentials/layers",
-              "essentials/recipes",
+              "essentials/recipes"
+            ]
+          },
+          {
+            "group": "Video Transformations",
+            "pages": [
               "essentials/video/overview",
               "essentials/video/thumbnail",
               "essentials/video/resize",
