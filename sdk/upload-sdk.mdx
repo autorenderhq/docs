@@ -1,0 +1,22 @@
+---
+title: "Upload SDK"
+description: "Client-side upload patterns with secure token handling."
+---
+
+## What this feature covers
+
+- File picker and upload trigger
+- Progress + retry handling
+- Response parsing (`file_no`, `path`, `url`)
+
+## Security model
+
+- Generate short-lived signed/scoped upload credentials from backend.
+- Never expose long-lived admin API keys in frontend code.
+
+## Keep docs minimal
+
+1. Install
+2. Auth token fetch from backend
+3. Single upload example
+4. Error handling and retry strategy

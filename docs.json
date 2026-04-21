@@ -24,7 +24,7 @@
               "getting-started/quickstart",
               "getting-started/first-image",
               "getting-started/upload-assets",
-              "sdk/frontend"
+              "sdk/overview"
             ]
           }
         ]
@@ -62,6 +62,29 @@
               "essentials/video/trim",
               "essentials/video/aspect-ratio",
               "essentials/video/rotate"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "SDKs",
+        "groups": [
+          {
+            "group": "By Feature",
+            "pages": [
+              "sdk/overview",
+              "sdk/view-sdk",
+              "sdk/upload-sdk"
+            ]
+          },
+          {
+            "group": "By Framework",
+            "pages": [
+              "sdk/frameworks/react",
+              "sdk/frameworks/nextjs",
+              "sdk/frameworks/angular",
+              "sdk/frameworks/svelte",
+              "sdk/frameworks/vue"
             ]
           }
         ]
