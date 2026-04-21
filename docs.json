@@ -3,19 +3,38 @@
   "theme": "mint",
   "name": "AutoRender Docs",
   "colors": {
-    "primary": "#16A34A",
-    "light": "#07C983",
-    "dark": "#15803D"
+    "primary": "#111827",
+    "light": "#2563EB",
+    "dark": "#0F172A"
   },
   "favicon": "/favicon.ico",
+  "logo": {
+    "light": "/logo/light.svg",
+    "dark": "/logo/dark.svg"
+  },
   "navigation": {
     "tabs": [
       {
-        "tab": "Guides",
+        "tab": "Start",
         "groups": [
           {
-            "group": "Image Transformation",
+            "group": "Getting Started",
             "pages": [
+              "index",
+              "getting-started/quickstart",
+              "getting-started/first-image",
+              "getting-started/upload-assets"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "Transform",
+        "groups": [
+          {
+            "group": "Image",
+            "pages": [
+              "essentials/overview",
               "essentials/automatic",
               "essentials/resize",
               "essentials/crop",
@@ -40,7 +59,7 @@
             ]
           },
           {
-            "group": "Video Transformation",
+            "group": "Video",
             "pages": [
               "essentials/video/overview",
               "essentials/video/thumbnail",
@@ -56,40 +75,27 @@
         ]
       },
       {
-        "tab": "Industries",
+        "tab": "API",
         "groups": [
           {
-            "group": "Quick Commerce",
+            "group": "Overview",
             "pages": [
-              "blog/quick-commerce-best-practices",
-              {
-                "group": "Guides",
-                "pages": [
-                  "blog/quick-commerce/getting-started",
-                  "blog/quick-commerce/best-practices",
-                  "blog/quick-commerce/examples",
-                  "blog/quick-commerce/advanced",
-                  "blog/quick-commerce/performance"
-                ]
-              }
+              "api-reference/introduction",
+              "api-reference/authentication"
             ]
-          }
-        ]
-      },
-      {
-        "tab": "API reference",
-        "groups": [
+          },
           {
             "group": "Upload",
             "pages": [
               "api-reference/direct-upload",
+              "api-reference/remote-upload",
               "api-reference/multipart-start",
               "api-reference/multipart-upload-parts",
               "api-reference/multipart-complete"
             ]
           },
           {
-            "group": "File Management",
+            "group": "Files",
             "pages": [
               "api-reference/list-files",
               "api-reference/get-file-details",
@@ -98,7 +104,7 @@
             ]
           },
           {
-            "group": "Folder Management",
+            "group": "Folders",
             "pages": [
               "api-reference/list-folders",
               "api-reference/create-folder",
@@ -107,30 +113,39 @@
             ]
           }
         ]
+      },
+      {
+        "tab": "Use Cases",
+        "groups": [
+          {
+            "group": "Quick Commerce",
+            "pages": [
+              "blog/quick-commerce/getting-started",
+              "blog/quick-commerce/best-practices",
+              "blog/quick-commerce/examples",
+              "blog/quick-commerce/performance",
+              "blog/quick-commerce/advanced"
+            ]
+          }
+        ]
       }
     ]
-  },
-  "logo": {
-    "light": "/logo/light.svg",
-    "dark": "/logo/dark.svg"
   },
   "navbar": {
     "primary": {
       "type": "button",
-      "label": "Login",
+      "label": "Open Dashboard",
       "href": "https://app.autorender.io"
     }
   },
   "contextual": {
     "options": [
-     "copy",
-     "view",
-     "chatgpt",
-     "claude",
-     "perplexity",
-     "mcp",
-     "cursor",
-     "vscode"
-   ]
+      "copy",
+      "view",
+      "chatgpt",
+      "claude",
+      "cursor",
+      "vscode"
+    ]
   }
 }

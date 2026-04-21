@@ -1,0 +1,32 @@
+---
+title: "Upload assets with API"
+description: "A clean production flow for direct uploads without unnecessary sample payloads."
+---
+
+## Direct upload endpoint
+
+Use this endpoint for server-side uploads:
+
+```bash
+POST https://upload.autorender.io/api/v1/uploads
+Authorization: Bearer YOUR_API_KEY
+Content-Type: multipart/form-data
+```
+
+## Minimal cURL request
+
+```bash
+curl -X POST \
+  https://upload.autorender.io/api/v1/uploads \
+  -H "Authorization: Bearer YOUR_API_KEY" \
+  -F "file=@./shoe.jpg" \
+  -F "file_name=shoe.jpg"
+```
+
+## Recommended optional fields
+
+- `folder`: keep assets organized by domain (`products`, `banners`, `avatars`)
+- `tags`: searchable labels (`summer`, `hero`, `catalog`)
+- `custom_id`: your internal reference ID
+
+For complete request and response schema, continue to [Direct upload](/api-reference/direct-upload).

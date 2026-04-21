@@ -1,33 +1,39 @@
 ---
-title: 'Introduction'
-description: 'Example section for showcasing API endpoints'
+title: "API Introduction"
+description: "Authenticate once, upload assets, and manage files programmatically."
 ---
 
-<Note>
-  If you're not looking to build API reference documentation, you can delete
-  this section by removing the api-reference folder.
-</Note>
+## Base URLs
 
-## Welcome
-
-There are two ways to build API documentation: [OpenAPI](https://mintlify.com/docs/api-playground/openapi/setup) and [MDX components](https://mintlify.com/docs/api-playground/mdx/configuration). For the starter kit, we are using the following OpenAPI specification.
-
-<Card
-  title="Plant Store Endpoints"
-  icon="leaf"
-  href="https://github.com/mintlify/starter/blob/main/api-reference/openapi.json"
->
-  View the OpenAPI specification file
-</Card>
+- **Upload API:** `https://upload.autorender.io`
+- **Delivery CDN:** `https://assets.autorender.io`
 
 ## Authentication
 
-All API endpoints are authenticated using Bearer tokens and picked up from the specification file.
+Send your API key as a bearer token on every upload and management request.
 
-```json
-"security": [
-  {
-    "bearerAuth": []
-  }
-]
+```bash
+Authorization: Bearer YOUR_API_KEY
 ```
+
+<CardGroup cols={2}>
+  <Card title="Authentication" icon="key" href="/api-reference/authentication">
+    Header format, scopes, and common auth errors.
+  </Card>
+  <Card title="Direct upload" icon="arrow-up-from-bracket" href="/api-reference/direct-upload">
+    Primary endpoint for binary uploads with optional metadata.
+  </Card>
+  <Card title="List files" icon="folder-open" href="/api-reference/list-files">
+    Retrieve paginated files for admin panels and content tools.
+  </Card>
+  <Card title="Folder APIs" icon="folder-tree" href="/api-reference/list-folders">
+    Create and manage folder structures used by your teams.
+  </Card>
+</CardGroup>
+
+## Typical backend flow
+
+1. Upload file to `/api/v1/uploads`.
+2. Store returned `file_no`, `path`, and `url` in your database.
+3. Deliver transformed variants through CDN URL tokens.
+4. Use list/detail endpoints for moderation, catalog, and reporting tools.

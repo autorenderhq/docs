@@ -1,12 +1,41 @@
 ---
-title: 'Overview'
-description: 'Learn about AutoRender dynamic URL transformations'
+title: 'Image transformations overview'
+description: 'Understand URL-based image transformation in a clean, practical format.'
 icon: 'gear'
 ---
 
-## Overview
+## One URL, many outputs
 
-AutoRender's dynamic URL transformations enable you to programmatically generate multiple variations of your high quality original images on the fly, without the need for graphic designers and fancy editing tools.
+AutoRender transforms your original image on demand. You keep one source file and generate variants through URL tokens.
 
-You can build these URLs manually in your code, or take advantage of AutoRender's SDKs, which enable you to write your transformation code using intuitive syntax designed for your preferred programming language or framework and let the SDK automatically build these URLs for you.
+```text
+https://assets.autorender.io/{workspace}/{transformations}/{path}
+```
 
+## Core tokens you will use most
+
+| Goal | Tokens |
+| --- | --- |
+| Resize | `w_`, `h_` |
+| Crop / fit | `c_fill`, `c_fit`, `c_crop` |
+| Aspect ratio | `ar_16:9`, `ar_1:1` |
+| Quality and format | `q_auto`, `f_auto` |
+| Positioning | `p_c`, `p_t`, `p_br` |
+| Visual effects | `e_*` |
+
+## High-value examples
+
+```text
+# Product image (square)
+https://assets.autorender.io/WORKSPACE/ar_1:1,w_900,c_fill,p_c,q_auto,f_auto/products/shoe.jpg
+
+# Hero banner
+https://assets.autorender.io/WORKSPACE/ar_16:9,w_1600,c_fill,q_auto,f_auto/marketing/hero.jpg
+
+# Avatar
+https://assets.autorender.io/WORKSPACE/w_240,h_240,c_crop,p_face,br_120,q_auto,f_auto/users/alex.jpg
+```
+
+<Note>
+  Start with `q_auto,f_auto` in almost all production URLs for simpler performance wins.
+</Note>

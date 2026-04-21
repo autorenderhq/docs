@@ -1,8 +1,40 @@
-/* AutoRender CDN URL Visualization Styles - Cloudinary-style segmented URLs */
+:root {
+  --ar-border: rgba(15, 23, 42, 0.12);
+  --ar-bg-soft: rgba(148, 163, 184, 0.08);
+  --ar-radius: 14px;
+}
 
+/* Modern docs surface styling (Linear/Vercel inspired) */
+img.rounded-xl {
+  border-radius: 16px;
+}
+
+img.border {
+  border: 1px solid var(--ar-border);
+}
+
+.card,
+[data-component='card'] {
+  border-radius: var(--ar-radius) !important;
+  border: 1px solid var(--ar-border) !important;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.06);
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+
+.card:hover,
+[data-component='card']:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.08);
+}
+
+pre {
+  border-radius: 12px;
+}
+
+/* Keep existing segmented URL style helper */
 .ar-url-block {
   font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Fira Code', 'Droid Sans Mono', 'Source Code Pro', 'Courier New', monospace;
-  font-size: 0; /* Remove whitespace between inline elements */
+  font-size: 0;
   line-height: 1.5;
   padding: 12px 16px;
   border-radius: 6px;
@@ -11,45 +43,26 @@
   margin: 1rem 0;
   text-decoration: none;
   white-space: nowrap;
-  /* Light mode (default) - Cloudinary style */
   background: #f8f9fa;
   border: 1px solid #e1e4e8;
   color: #24292e;
 }
 
-/* Remove whitespace from all nested elements */
-.ar-url-block * {
-  font-size: 0;
-  white-space: nowrap;
-}
-
-/* Remove hyperlink behavior - make URLs non-clickable */
+.ar-url-block * { font-size: 0; white-space: nowrap; }
 .ar-url-block,
 .ar-url-block span,
-.ar-url-block a {
-  text-decoration: none !important;
-  pointer-events: none !important;
-  cursor: default !important;
-  user-select: text;
-}
-
-/* Prevent any anchor tags from being clickable */
-.ar-url-block a {
-  pointer-events: none !important;
-  cursor: default !important;
-  color: inherit;
-}
-
-/* Ensure no hover effects on URL blocks */
+.ar-url-block a { text-decoration: none !important; pointer-events: none !important; cursor: default !important; user-select: text; }
+.ar-url-block a { color: inherit; }
 .ar-url-block:hover,
 .ar-url-block a:hover,
-.ar-url-block span:hover {
-  text-decoration: none !important;
-  cursor: default !important;
-}
+.ar-url-block span:hover { text-decoration: none !important; cursor: default !important; }
 
-/* Dark mode support - Cloudinary style */
 @media (prefers-color-scheme: dark) {
+  :root {
+    --ar-border: rgba(148, 163, 184, 0.22);
+    --ar-bg-soft: rgba(148, 163, 184, 0.14);
+  }
+
   .ar-url-block {
     background: #161b22;
     border: 1px solid #30363d;
@@ -57,7 +70,6 @@
   }
 }
 
-/* Cloudinary-style segmented colors - restore font-size and apply colors */
 .ar-url-block span,
 .ar-url-block a,
 .ar-url-block span[data-as],
@@ -69,100 +81,16 @@
   text-decoration: none;
 }
 
-/* Domain - Gray (like Cloudinary's prefix) */
 .ar-domain,
-.ar-domain a {
-  color: #6a737d;
-  font-weight: 400;
-}
+.ar-domain a { color: #6a737d; font-weight: 400; }
+.ar-workspace { color: #0969da; font-weight: 400; }
+.ar-transform { color: #cf222e; font-weight: 400; }
+.ar-path { color: #1a7f37; font-weight: 400; }
 
 @media (prefers-color-scheme: dark) {
   .ar-domain,
-  .ar-domain a {
-    color: #8b949e;
-  }
-}
-
-/* Workspace - Teal/Cyan (like Cloudinary's kind) */
-.ar-workspace {
-  color: #0969da;
-  font-weight: 400;
-}
-
-@media (prefers-color-scheme: dark) {
-  .ar-workspace {
-    color: #58a6ff;
-  }
-}
-
-/* Transformations - Red/Orange (like Cloudinary's transformation) */
-.ar-transform {
-  color: #cf222e;
-  font-weight: 400;
-}
-
-@media (prefers-color-scheme: dark) {
-  .ar-transform {
-    color: #f85149;
-  }
-}
-
-/* Image Path - Green (like Cloudinary's publicId) */
-.ar-path {
-  color: #1a7f37;
-  font-weight: 400;
-}
-
-@media (prefers-color-scheme: dark) {
-  .ar-path {
-    color: #3fb950;
-  }
-}
-
-/* URL Open Button Styles */
-.ar-url-button {
-  display: inline-block;
-  margin-top: 8px;
-  padding: 6px 12px;
-  background-color: #0070f3;
-  color: white;
-  text-decoration: none;
-  border-radius: 4px;
-  font-size: 14px;
-  transition: background-color 0.2s;
-}
-
-.ar-url-button:hover {
-  background-color: #0051cc;
-  color: white;
-  text-decoration: none;
-}
-
-.ar-url-buttons {
-  display: flex;
-  gap: 8px;
-  margin-top: 8px;
-}
-
-.ar-url-buttons .ar-url-button {
-  margin-top: 0;
-}
-
-/* Embedded URL Images */
-.ar-url-image {
-  max-width: 100%;
-  margin-top: 16px;
-  border-radius: 4px;
-  display: block;
-}
-
-.ar-responsive-images {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  margin-top: 16px;
-}
-
-.ar-responsive-images .ar-url-image {
-  margin-top: 8px;
+  .ar-domain a { color: #8b949e; }
+  .ar-workspace { color: #58a6ff; }
+  .ar-transform { color: #f85149; }
+  .ar-path { color: #3fb950; }
 }

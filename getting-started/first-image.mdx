@@ -1,0 +1,32 @@
+---
+title: "First transformed image"
+description: "Understand the URL pattern and compose your first clean transformation."
+---
+
+## URL anatomy
+
+```text
+https://assets.autorender.io/{workspace}/{transformations}/{asset_path}
+```
+
+| Part | Example | What it does |
+| --- | --- | --- |
+| Workspace | `WORKSPACE123` | Identifies your project |
+| Transformations | `w_1200,h_630,c_fill` | Processing instructions |
+| Asset path | `banners/launch.jpg` | Original file location |
+
+## Start with a common social image preset
+
+```text
+https://assets.autorender.io/WORKSPACE123/w_1200,h_630,c_fill,q_auto,f_auto/banners/launch.jpg
+```
+
+## Useful token combinations
+
+- `w_400,c_fit` → Smaller cards and thumbnails.
+- `ar_1:1,w_800,c_fill,p_c` → Square crop centered.
+- `w_1600,q_auto,f_auto` → Large hero image with optimization.
+
+<Check>
+  Keep transformations compact and reusable. Save common patterns as recipe presets when possible.
+</Check>

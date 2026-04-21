@@ -1,12 +1,42 @@
 ---
-title: 'Overview'
-description: 'Learn about AutoRender dynamic URL transformations'
-icon: 'gear'
+title: "AutoRender Documentation"
+description: "Build fast image and video pipelines with transformation URLs and upload APIs."
 ---
 
-## Overview
+<img src="/images/hero-light.png" alt="AutoRender docs hero" className="rounded-xl border" />
 
-AutoRender's dynamic URL transformations enable you to programmatically generate multiple variations of your high quality original images on the fly, without the need for graphic designers and fancy editing tools.
+## Build media workflows that feel instant
 
-You can build these URLs manually in your code, or take advantage of AutoRender's SDKs, which enable you to write your transformation code using intuitive syntax designed for your preferred programming language or framework and let the SDK automatically build these URLs for you.
+AutoRender lets you upload once and deliver many optimized variants through URL-based transformations.
 
+<CardGroup cols={2}>
+  <Card title="Start in 5 minutes" icon="rocket" href="/getting-started/quickstart">
+    Create a workspace, upload a file, and ship your first transformation URL.
+  </Card>
+  <Card title="Image transformations" icon="image" href="/essentials/overview">
+    Resize, crop, optimize quality, add effects, overlays, and recipes.
+  </Card>
+  <Card title="Video transformations" icon="film" href="/essentials/video/overview">
+    Generate thumbnails, trim clips, resize, and convert MP4 to GIF.
+  </Card>
+  <Card title="Upload API" icon="terminal" href="/api-reference/introduction">
+    Use direct upload and file management endpoints for production workflows.
+  </Card>
+</CardGroup>
+
+## Popular examples
+
+```text
+# Product card
+https://assets.autorender.io/WORKSPACE/w_600,h_600,c_fill,q_auto,f_auto/catalog/shoe.jpg
+
+# Social banner
+https://assets.autorender.io/WORKSPACE/w_1200,h_630,c_fill,q_auto,f_auto/campaigns/summer-launch.jpg
+
+# Video thumbnail
+https://assets.autorender.io/WORKSPACE/thumb_ar/videos/demo.mp4
+```
+
+<Info>
+  This documentation is structured for implementation speed: start with quickstart, copy a URL pattern, then move to endpoint-specific API pages.
+</Info>

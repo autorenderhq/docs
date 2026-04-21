@@ -1,0 +1,38 @@
+---
+title: "Quickstart"
+description: "Go from account creation to your first transformed URL in minutes."
+---
+
+## 1) Create a workspace
+
+1. Sign in to [AutoRender](https://app.autorender.io).
+2. Create or select a workspace.
+3. Copy your workspace ID from the dashboard.
+
+<Note>
+  Your workspace ID is used in all delivery URLs.
+</Note>
+
+## 2) Upload one test file
+
+Use the dashboard upload to add a JPG or PNG file. Keep the file name simple (for example: `shoe.jpg`) for testing.
+
+## 3) Build your first URL
+
+```text
+https://assets.autorender.io/{workspace_id}/w_800,h_800,c_fill/{file_path}
+```
+
+Example:
+
+```text
+https://assets.autorender.io/WORKSPACE123/w_800,h_800,c_fill/products/shoe.jpg
+```
+
+## 4) Add quality + format optimization
+
+```text
+https://assets.autorender.io/WORKSPACE123/w_800,h_800,c_fill,q_auto,f_auto/products/shoe.jpg
+```
+
+This gives you a production-ready baseline with responsive sizing and automatic optimization.
