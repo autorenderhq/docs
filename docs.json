@@ -157,5 +157,19 @@
       "cursor",
       "vscode"
     ]
+  },
+  "fonts": {
+    "heading": {
+      "family": "Geist",
+      "source": "https://unpkg.com/geist@1.5.1/dist/fonts/geist-sans/Geist-Regular.woff2",
+      "format": "woff2",
+      "weight": 600
+    },
+    "body": {
+      "family": "Geist",
+      "source": "https://unpkg.com/geist@1.5.1/dist/fonts/geist-sans/Geist-Regular.woff2",
+      "format": "woff2",
+      "weight": 400
+    }
   }
 }

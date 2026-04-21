@@ -1,55 +1,26 @@
 ---
 title: "Media transformations"
-description: "Image and video transformations in one practical reference page."
+description: "Choose image or video transformations from one clear entry point."
 icon: "wand-magic-sparkles"
 ---
 
-## One URL pattern for both image and video
+## Transformations
+
+Use one URL pattern for all media:
 
 ```text
 https://assets.autorender.io/{workspace}/{transformations}/{asset_path}
 ```
 
-<Image src="/images/hero-light.png" alt="AutoRender transformation examples" />
-
-## Image transformation quick patterns
-
-| Use case | Tokens |
-| --- | --- |
-| Product square | `ar_1:1,w_900,c_fill,p_c,q_auto,f_auto` |
-| Hero banner | `ar_16:9,w_1600,c_fill,q_auto,f_auto` |
-| Avatar | `w_240,h_240,c_crop,p_face,br_120,q_auto,f_auto` |
-| Editorial fit | `w_1200,c_fit,q_auto,f_auto` |
-
-## Video transformation quick patterns
-
-| Use case | Tokens |
-| --- | --- |
-| Poster thumbnail | `thumb_ar` |
-| Clip trim | `so_5,eo_20` |
-| Social video | `ar_1:1,w_1080,cm_pad_resize,bg_black` |
-| MP4 to GIF | `w_500,so_2,eo_8,f_gif` |
-
-## Combined examples
-
-```text
-# Image
-https://assets.autorender.io/WORKSPACE/ar_1:1,w_900,c_fill,p_c,q_auto,f_auto/products/shoe.jpg
-
-# Video thumbnail
-https://assets.autorender.io/WORKSPACE/thumb_ar/videos/demo.mp4
-
-# Video to GIF
-https://assets.autorender.io/WORKSPACE/w_500,so_2,eo_8,f_gif/videos/demo.mp4
-```
-
-## Choose where to go next
-
 <CardGroup cols={2}>
-  <Card title="Image deep dive" icon="image" href="/essentials/overview">
-    Resize, crop, effects, overlays, and recipes.
+  <Card title="Image transformations" icon="image" href="/essentials/overview">
+    Resize, crop, effects, overlays, recipes, and optimization patterns.
   </Card>
-  <Card title="Video deep dive" icon="film" href="/essentials/video/overview">
-    Thumbnail, trim, resize, aspect ratio, rotate, and GIF.
+  <Card title="Video transformations" icon="film" href="/essentials/video/overview">
+    Thumbnail, trim, resize, aspect ratio, rotate, and GIF conversion.
   </Card>
 </CardGroup>
+
+<Note>
+  Start with `q_auto,f_auto` for images and `thumb_ar` for quick video thumbnails.
+</Note>
