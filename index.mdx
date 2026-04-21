@@ -1,42 +1,60 @@
 ---
 title: "AutoRender Documentation"
-description: "Build fast image and video pipelines with transformation URLs and upload APIs."
+description: "Clear, production-ready guides for image/video delivery and upload APIs."
 ---
+
+<div className="ar-hero">
+  <p className="ar-eyebrow">AUTORENDER DOCS</p>
+  <h2>Fast media delivery. Clean developer experience.</h2>
+  <p>Upload once, transform on demand, and serve optimized URLs for web, apps, and campaigns.</p>
+</div>
 
 <img src="/images/hero-light.png" alt="AutoRender docs hero" className="rounded-xl border" />
 
-## Build media workflows that feel instant
+## Start here
 
-AutoRender lets you upload once and deliver many optimized variants through URL-based transformations.
-
-<CardGroup cols={2}>
-  <Card title="Start in 5 minutes" icon="rocket" href="/getting-started/quickstart">
-    Create a workspace, upload a file, and ship your first transformation URL.
+<CardGroup cols={3}>
+  <Card title="1. Quickstart" icon="rocket" href="/getting-started/quickstart">
+    Set up workspace + first URL in a few minutes.
   </Card>
-  <Card title="Image transformations" icon="image" href="/essentials/overview">
-    Resize, crop, optimize quality, add effects, overlays, and recipes.
+  <Card title="2. First transformed image" icon="wand-magic-sparkles" href="/getting-started/first-image">
+    Learn URL anatomy and reusable token patterns.
   </Card>
-  <Card title="Video transformations" icon="film" href="/essentials/video/overview">
-    Generate thumbnails, trim clips, resize, and convert MP4 to GIF.
-  </Card>
-  <Card title="Upload API" icon="terminal" href="/api-reference/introduction">
-    Use direct upload and file management endpoints for production workflows.
+  <Card title="3. Upload API flow" icon="arrow-up-from-bracket" href="/getting-started/upload-assets">
+    Minimal backend upload request without noisy sample payloads.
   </Card>
 </CardGroup>
 
-## Popular examples
+## Most-used docs
+
+<CardGroup cols={2}>
+  <Card title="Image transformations" icon="image" href="/essentials/overview">
+    Resize, crop, effects, overlays, and optimization patterns.
+  </Card>
+  <Card title="Video transformations" icon="film" href="/essentials/video/overview">
+    Thumbnail generation, trim, aspect ratio, and GIF output.
+  </Card>
+  <Card title="API reference" icon="terminal" href="/api-reference/introduction">
+    Authentication, uploads, and file/folder management endpoints.
+  </Card>
+  <Card title="Quick commerce playbook" icon="store" href="/blog/quick-commerce/getting-started">
+    Practical implementation ideas for high-velocity catalogs.
+  </Card>
+</CardGroup>
+
+## Copy-ready examples
 
 ```text
-# Product card
-https://assets.autorender.io/WORKSPACE/w_600,h_600,c_fill,q_auto,f_auto/catalog/shoe.jpg
+# Product card (square)
+https://assets.autorender.io/WORKSPACE/ar_1:1,w_800,c_fill,p_c,q_auto,f_auto/products/shoe.jpg
 
-# Social banner
-https://assets.autorender.io/WORKSPACE/w_1200,h_630,c_fill,q_auto,f_auto/campaigns/summer-launch.jpg
+# Social banner (landscape)
+https://assets.autorender.io/WORKSPACE/ar_1200:630,w_1200,c_fill,q_auto,f_auto/campaigns/launch.jpg
 
 # Video thumbnail
 https://assets.autorender.io/WORKSPACE/thumb_ar/videos/demo.mp4
 ```
 
 <Info>
-  This documentation is structured for implementation speed: start with quickstart, copy a URL pattern, then move to endpoint-specific API pages.
+  If you're new, follow the 3-step path above. If you already have assets uploaded, jump straight to transformation guides.
 </Info>

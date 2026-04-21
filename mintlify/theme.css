@@ -1,17 +1,37 @@
 :root {
   --ar-border: rgba(15, 23, 42, 0.12);
-  --ar-bg-soft: rgba(148, 163, 184, 0.08);
   --ar-radius: 14px;
 }
 
-/* Modern docs surface styling (Linear/Vercel inspired) */
-img.rounded-xl {
+/* Clean docs polish (Linear/Vercel inspired) */
+.ar-hero {
+  padding: 18px 20px;
+  border: 1px solid var(--ar-border);
   border-radius: 16px;
+  background: linear-gradient(135deg, rgba(37, 99, 235, 0.08), rgba(15, 23, 42, 0.03));
+  margin-bottom: 16px;
 }
 
-img.border {
-  border: 1px solid var(--ar-border);
+.ar-hero h2 {
+  margin: 0 0 8px;
+  font-size: 1.8rem;
+  line-height: 1.2;
 }
+
+.ar-hero p {
+  margin: 0;
+}
+
+.ar-eyebrow {
+  letter-spacing: 0.08em;
+  font-size: 0.72rem;
+  font-weight: 700;
+  opacity: 0.7;
+  margin-bottom: 8px !important;
+}
+
+img.rounded-xl { border-radius: 16px; }
+img.border { border: 1px solid var(--ar-border); }
 
 .card,
 [data-component='card'] {
@@ -27,11 +47,9 @@ img.border {
   box-shadow: 0 10px 24px rgba(15, 23, 42, 0.08);
 }
 
-pre {
-  border-radius: 12px;
-}
+pre { border-radius: 12px; }
 
-/* Keep existing segmented URL style helper */
+/* Existing segmented URL helper */
 .ar-url-block {
   font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Fira Code', 'Droid Sans Mono', 'Source Code Pro', 'Courier New', monospace;
   font-size: 0;
@@ -53,22 +71,6 @@ pre {
 .ar-url-block span,
 .ar-url-block a { text-decoration: none !important; pointer-events: none !important; cursor: default !important; user-select: text; }
 .ar-url-block a { color: inherit; }
-.ar-url-block:hover,
-.ar-url-block a:hover,
-.ar-url-block span:hover { text-decoration: none !important; cursor: default !important; }
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --ar-border: rgba(148, 163, 184, 0.22);
-    --ar-bg-soft: rgba(148, 163, 184, 0.14);
-  }
-
-  .ar-url-block {
-    background: #161b22;
-    border: 1px solid #30363d;
-    color: #c9d1d9;
-  }
-}
 
 .ar-url-block span,
 .ar-url-block a,
@@ -88,6 +90,18 @@ pre {
 .ar-path { color: #1a7f37; font-weight: 400; }
 
 @media (prefers-color-scheme: dark) {
+  :root { --ar-border: rgba(148, 163, 184, 0.22); }
+
+  .ar-hero {
+    background: linear-gradient(135deg, rgba(56, 189, 248, 0.12), rgba(148, 163, 184, 0.08));
+  }
+
+  .ar-url-block {
+    background: #161b22;
+    border: 1px solid #30363d;
+    color: #c9d1d9;
+  }
+
   .ar-domain,
   .ar-domain a { color: #8b949e; }
   .ar-workspace { color: #58a6ff; }

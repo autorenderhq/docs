@@ -1,6 +1,6 @@
 ---
 title: "First transformed image"
-description: "Understand the URL pattern and compose your first clean transformation."
+description: "Understand URL anatomy and use proven transformation presets."
 ---
 
 ## URL anatomy
@@ -9,24 +9,27 @@ description: "Understand the URL pattern and compose your first clean transforma
 https://assets.autorender.io/{workspace}/{transformations}/{asset_path}
 ```
 
-| Part | Example | What it does |
+| Part | Example | Purpose |
 | --- | --- | --- |
-| Workspace | `WORKSPACE123` | Identifies your project |
+| Workspace | `WORKSPACE123` | Targets your project |
 | Transformations | `w_1200,h_630,c_fill` | Processing instructions |
-| Asset path | `banners/launch.jpg` | Original file location |
+| Asset path | `banners/launch.jpg` | Original file |
 
-## Start with a common social image preset
+## Starter presets
+
+| Use case | URL token set |
+| --- | --- |
+| Product thumbnail | `ar_1:1,w_600,c_fill,p_c,q_auto,f_auto` |
+| Social open graph | `w_1200,h_630,c_fill,q_auto,f_auto` |
+| Large hero | `w_1600,c_fit,q_auto,f_auto` |
+| Avatar | `w_240,h_240,c_crop,p_face,br_120,q_auto,f_auto` |
+
+## Example
 
 ```text
 https://assets.autorender.io/WORKSPACE123/w_1200,h_630,c_fill,q_auto,f_auto/banners/launch.jpg
 ```
 
-## Useful token combinations
-
-- `w_400,c_fit` → Smaller cards and thumbnails.
-- `ar_1:1,w_800,c_fill,p_c` → Square crop centered.
-- `w_1600,q_auto,f_auto` → Large hero image with optimization.
-
 <Check>
-  Keep transformations compact and reusable. Save common patterns as recipe presets when possible.
+  Keep transformation strings short and reusable. Save high-frequency combinations as recipes/presets.
 </Check>
