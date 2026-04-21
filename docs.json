@@ -3,9 +3,9 @@
   "theme": "mint",
   "name": "AutoRender Docs",
   "colors": {
-    "primary": "#111827",
-    "light": "#2563EB",
-    "dark": "#0F172A"
+    "primary": "#0F172A",
+    "light": "#4F46E5",
+    "dark": "#020617"
   },
   "favicon": "/favicon.ico",
   "logo": {
@@ -23,7 +23,8 @@
               "index",
               "getting-started/quickstart",
               "getting-started/first-image",
-              "getting-started/upload-assets"
+              "getting-started/upload-assets",
+              "sdk/frontend"
             ]
           }
         ]
@@ -32,8 +33,9 @@
         "tab": "Transform",
         "groups": [
           {
-            "group": "Image",
+            "group": "Media Transformations",
             "pages": [
+              "essentials/transformations",
               "essentials/overview",
               "essentials/automatic",
               "essentials/resize",
@@ -42,25 +44,15 @@
               "essentials/rotate",
               "essentials/flip",
               "essentials/border-radius",
-              {
-                "group": "Effects",
-                "pages": [
-                  "essentials/effects",
-                  "essentials/effects/brightness",
-                  "essentials/effects/contrast",
-                  "essentials/effects/saturation",
-                  "essentials/effects/exposure",
-                  "essentials/effects/sharpen",
-                  "essentials/effects/grayscale"
-                ]
-              },
+              "essentials/effects",
+              "essentials/effects/brightness",
+              "essentials/effects/contrast",
+              "essentials/effects/saturation",
+              "essentials/effects/exposure",
+              "essentials/effects/sharpen",
+              "essentials/effects/grayscale",
               "essentials/layers",
-              "essentials/recipes"
-            ]
-          },
-          {
-            "group": "Video",
-            "pages": [
+              "essentials/recipes",
               "essentials/video/overview",
               "essentials/video/thumbnail",
               "essentials/video/resize",
@@ -95,17 +87,12 @@
             ]
           },
           {
-            "group": "Files",
+            "group": "Files & Folders",
             "pages": [
               "api-reference/list-files",
               "api-reference/get-file-details",
               "api-reference/rename-file",
-              "api-reference/delete-file"
-            ]
-          },
-          {
-            "group": "Folders",
-            "pages": [
+              "api-reference/delete-file",
               "api-reference/list-folders",
               "api-reference/create-folder",
               "api-reference/rename-folder",
