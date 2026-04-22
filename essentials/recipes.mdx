@@ -21,16 +21,16 @@ Compare a simple recipe against its full transformation equivalent:
     https://assets.autorender.io/LOKVTtKVGb/t_thumbnail/doc1/porsche.jpg
     ```
     <div className="flex object-contain justify-center mt-4">
-      <img src="https://assets.autorender.io/LOKVTtKVGb/t_thumbnail/doc1/porsche.jpg" alt="Recipe output" className="border border-gray-200 dark:border-gray-800" />
+      <img src="https://assets.autorender.io/LOKVTtKVGb/t_watermark/ar-accessories.jpg" alt="Recipe output" className="border border-gray-200 dark:border-gray-800" />
     </div>
-    *Expands to: `c_fill,w_300,h_300,p_c`*
+    *Expands to: `c_crop,w_420,h_420,p_c,ps_center,l_image:logo.svg,l_type:overlay,lw_100,lh_200,ip_nw,o_100,fl_layer_apply`*
   </Tab>
   <Tab title="Full Transformation">
     ```bash
     https://assets.autorender.io/LOKVTtKVGb/c_fill,w_300,h_300,p_c/doc1/porsche.jpg
     ```
     <div className="flex object-contain justify-center mt-4">
-      <img src="https://assets.autorender.io/LOKVTtKVGb/c_fill,w_300,h_300,p_c/doc1/porsche.jpg" alt="Full transformation output" className="border border-gray-200 dark:border-gray-800" />
+      <img src="https://assets.autorender.io/LOKVTtKVGb/c_crop,w_420,h_420,p_c,ps_center,l_image:logo.svg,l_type:overlay,lw_100,lh_200,ip_nw,o_100,fl_layer_apply/ar-accessories.jpg" alt="Full transformation output" className="border border-gray-200 dark:border-gray-800" />
     </div>
   </Tab>
 </Tabs>
