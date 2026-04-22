@@ -1,47 +1,113 @@
 ---
-title: "AutoRender Documentation"
-description: "Stylish, clear docs for transformation URLs, SDKs, and upload APIs."
+title: "AutoRender"
+description: "The complete platform for high-performance image and video transformations"
+mode: "custom"
 ---
 
-<div className="ar-hero">
-  <p className="ar-eyebrow">AUTORENDER DOCS</p>
-  <h2>One platform for image + video delivery</h2>
-  <p>Build once, transform via URL, and ship faster across web, mobile, and commerce surfaces.</p>
+<div className="relative isolate px-6 pt-14 lg:px-8 bg-white dark:bg-slate-950 overflow-hidden">
+  <div className="mx-auto max-w-4xl py-24 sm:py-32 lg:py-40 text-center">
+    <h1 className="text-4xl font-extrabold tracking-tight text-slate-900 dark:text-white sm:text-6xl mb-6 leading-tight">
+      Transform Media at the <span className="text-slate-500 dark:text-slate-400">Speed of Light</span>
+    </h1>
+    <p className="text-lg leading-8 text-slate-600 dark:text-slate-300 mb-10 max-w-2xl mx-auto">
+      Deliver optimized, visually stunning images and videos globally. Simple URL-based transformations for modern development teams.
+    </p>
+    <div className="flex items-center justify-center gap-x-6">
+      <a href="/getting-started/quickstart" className="rounded-[4px] bg-slate-900 dark:bg-white text-white dark:text-slate-950 px-8 py-4 text-sm font-bold shadow-none hover:opacity-90 transition-all">
+        Get Started Free
+      </a>
+      <a href="/api-reference/authentication" className="text-sm font-bold leading-6 text-slate-900 dark:text-white hover:opacity-80">
+        API Reference <span aria-hidden="true">→</span>
+      </a>
+    </div>
+  </div>
 </div>
 
-<img src="/images/hero-light.png" alt="AutoRender docs hero" className="rounded-xl border" />
+<div className="max-w-7xl mx-auto px-6 pb-24 text-slate-900 dark:text-white">
+  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+    <a href="/essentials/overview" className="block border border-slate-200 dark:border-slate-800 p-8 rounded-[4px] shadow-none hover:bg-slate-50/50 dark:hover:bg-slate-900/50 transition-colors">
+      <div className="w-10 h-10 flex items-center justify-center rounded bg-slate-100 dark:bg-slate-900 mb-6">
+        <Icon icon="images" iconType="solid" className="w-5 h-5 text-slate-600 dark:text-slate-400" />
+      </div>
+      <h3 className="text-xl font-extrabold mb-3">Image Transformations</h3>
+      <p className="text-slate-500 dark:text-slate-400 leading-relaxed">Resize, crop, and apply effects to images in real-time using simple URL parameters.</p>
+    </a>
+    
+    <a href="/essentials/video/overview" className="block border border-slate-200 dark:border-slate-800 p-8 rounded-[4px] shadow-none hover:bg-slate-50/50 dark:hover:bg-slate-900/50 transition-colors">
+      <div className="w-10 h-10 flex items-center justify-center rounded bg-slate-100 dark:bg-slate-900 mb-6">
+        <Icon icon="video" iconType="solid" className="w-5 h-5 text-slate-600 dark:text-slate-400" />
+      </div>
+      <h3 className="text-xl font-extrabold mb-3">Video Processing</h3>
+      <p className="text-slate-500 dark:text-slate-400 leading-relaxed">Asynchronous video rendering, trimming, and GIF conversion for any platform.</p>
+    </a>
 
-## Start in order
+    <a href="/essentials/recipes" className="block border border-slate-200 dark:border-slate-800 p-8 rounded-[4px] shadow-none hover:bg-slate-50/50 dark:hover:bg-slate-900/50 transition-colors">
+      <div className="w-10 h-10 flex items-center justify-center rounded bg-slate-100 dark:bg-slate-900 mb-6">
+        <Icon icon="wand-magic-sparkles" iconType="solid" className="w-5 h-5 text-slate-600 dark:text-slate-400" />
+      </div>
+      <h3 className="text-xl font-extrabold mb-3">Smart Recipes</h3>
+      <p className="text-slate-500 dark:text-slate-400 leading-relaxed">Create reusable transformation presets to standardize your media delivery.</p>
+    </a>
 
-<CardGroup cols={2}>
-  <Card title="Quickstart" icon="rocket" href="/getting-started/quickstart">
-    Account → workspace → first optimized URL.
-  </Card>
-  <Card title="First transformed media" icon="wand-magic-sparkles" href="/getting-started/first-image">
-    Learn URL anatomy and reusable presets.
-  </Card>
-  <Card title="Upload API basics" icon="arrow-up-from-bracket" href="/getting-started/upload-assets">
-    Minimal request + exact response values to store.
-  </Card>
-  <Card title="Frontend SDKs" icon="code" href="/sdk/overview">
-    React, Next.js, Angular, Svelte, and Vue reference sandboxes.
-  </Card>
-</CardGroup>
+    <a href="/integrations/external-storage/overview" className="block border border-slate-200 dark:border-slate-800 p-8 rounded-[4px] shadow-none hover:bg-slate-50/50 dark:hover:bg-slate-900/50 transition-colors">
+      <div className="w-10 h-10 flex items-center justify-center rounded bg-slate-100 dark:bg-slate-900 mb-6">
+        <Icon icon="clouds" iconType="solid" className="w-5 h-5 text-slate-600 dark:text-slate-400" />
+      </div>
+      <h3 className="text-xl font-extrabold mb-3">External Storage</h3>
+      <p className="text-slate-500 dark:text-slate-400 leading-relaxed">Connect your existing S3, Azure, or GCP buckets directly to your workspace.</p>
+    </a>
+  </div>
 
-## Core references
+  <div className="mt-24">
+    <h2 className="text-3xl font-bold tracking-tight mb-12">Built for every stack</h2>
+    <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
+      <a href="/getting-started/sdks/angular" className="flex flex-col items-center justify-center border border-slate-200 dark:border-slate-800 p-6 rounded-[4px] shadow-none hover:bg-slate-50/50 dark:hover:bg-slate-900/50 transition-colors group">
+        <Icon icon="angular" iconType="brands" className="w-8 h-8 mb-4 text-slate-400 group-hover:text-slate-600 dark:group-hover:text-white transition-colors" />
+        <span className="text-sm font-bold">Angular</span>
+      </a>
+      <a href="/getting-started/sdks/javascript" className="flex flex-col items-center justify-center border border-slate-200 dark:border-slate-800 p-6 rounded-[4px] shadow-none hover:bg-slate-50/50 dark:hover:bg-slate-900/50 transition-colors group">
+        <Icon icon="js" iconType="brands" className="w-8 h-8 mb-4 text-slate-400 group-hover:text-slate-600 dark:group-hover:text-white transition-colors" />
+        <span className="text-sm font-bold">JavaScript</span>
+      </a>
+      <a href="/getting-started/sdks/nextjs" className="flex flex-col items-center justify-center border border-slate-200 dark:border-slate-800 p-6 rounded-[4px] shadow-none hover:bg-slate-50/50 dark:hover:bg-slate-900/50 transition-colors group">
+        <Icon icon="n" iconType="solid" className="w-8 h-8 mb-4 text-slate-400 group-hover:text-slate-600 dark:group-hover:text-white transition-colors" />
+        <span className="text-sm font-bold">Next.js</span>
+      </a>
+      <a href="/getting-started/sdks/react" className="flex flex-col items-center justify-center border border-slate-200 dark:border-slate-800 p-6 rounded-[4px] shadow-none hover:bg-slate-50/50 dark:hover:bg-slate-900/50 transition-colors group">
+        <Icon icon="react" iconType="brands" className="w-8 h-8 mb-4 text-slate-400 group-hover:text-slate-600 dark:group-hover:text-white transition-colors" />
+        <span className="text-sm font-bold">React</span>
+      </a>
+      <a href="/getting-started/sdks/svelte" className="flex flex-col items-center justify-center border border-slate-200 dark:border-slate-800 p-6 rounded-[4px] shadow-none hover:bg-slate-50/50 dark:hover:bg-slate-900/50 transition-colors group">
+        <Icon icon="bolt" iconType="solid" className="w-8 h-8 mb-4 text-slate-400 group-hover:text-slate-600 dark:group-hover:text-white transition-colors" />
+        <span className="text-sm font-bold">Svelte</span>
+      </a>
+      <a href="/getting-started/sdks/vue" className="flex flex-col items-center justify-center border border-slate-200 dark:border-slate-800 p-6 rounded-[4px] shadow-none hover:bg-slate-50/50 dark:hover:bg-slate-900/50 transition-colors group">
+        <Icon icon="vuejs" iconType="brands" className="w-8 h-8 mb-4 text-slate-400 group-hover:text-slate-600 dark:group-hover:text-white transition-colors" />
+        <span className="text-sm font-bold">Vue.js</span>
+      </a>
+    </div>
+  </div>
 
-<CardGroup cols={3}>
-  <Card title="Media transformations" icon="image" href="/essentials/transformations">
-    Image and video transformation patterns on one page.
-  </Card>
-  <Card title="API reference" icon="terminal" href="/api-reference/introduction">
-    Authentication, uploads, and asset management.
-  </Card>
-  <Card title="Quick commerce" icon="store" href="/blog/quick-commerce/getting-started">
-    Practical delivery strategy for high-velocity catalogs.
-  </Card>
-</CardGroup>
-
-<Info>
-  New here? Read Start tab top to bottom. Existing users can jump directly to Media Transformations or API Reference.
-</Info>
+  <div className="mt-24 p-4 sm:p-8 rounded-[4px] bg-slate-50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 flex flex-col lg:flex-row items-center gap-12 overflow-hidden shadow-none">
+    <div className="flex-1 min-w-[300px]">
+      <h3 className="text-2xl font-extrabold mb-4">Start with the Quickstart</h3>
+      <p className="text-slate-600 dark:text-slate-400 mb-6 leading-relaxed">Learn how to upload your first asset and apply transformations in under 5 minutes.</p>
+      <a href="/getting-started/quickstart" className="inline-flex items-center font-bold text-slate-900 dark:text-white hover:underline group">
+        Launch Quickstart Guide <span className="ml-2 group-hover:translate-x-1 transition-transform">→</span>
+      </a>
+    </div>
+    <div className="flex-1 w-full max-w-lg">
+      <div className="bg-slate-950 rounded-[4px] p-6 shadow-none font-mono text-[13px] border border-slate-800">
+        <div className="flex gap-2 mb-6">
+          <div className="w-2.5 h-2.5 rounded-full bg-[#ff5f56]"></div>
+          <div className="w-2.5 h-2.5 rounded-full bg-[#ffbd2e]"></div>
+          <div className="w-2.5 h-2.5 rounded-full bg-[#27c93f]"></div>
+        </div>
+        <div className="text-slate-500 mb-3">// Resize and apply grayscale</div>
+        <div className="text-slate-300 break-all leading-relaxed">
+          https://assets.autorender.io/<span className="text-white">demo</span>/<span className="text-slate-400">w_800,e_grayscale</span>/car.jpg
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

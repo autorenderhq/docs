@@ -1,185 +1,108 @@
 ---
 title: 'Resize'
 description: 'Learn how to resize images using AutoRender width, height, and aspect ratio parameters'
-icon: 'arrows-maximize'
 ---
 
 ## Overview
 
-AutoRender provides powerful image resizing capabilities that allow you to change image dimensions while maintaining quality and aspect ratios. You can resize images by specifying width, height, or both, and use aspect ratios for responsive image generation.
+AutoRender provides powerful image resizing capabilities that allow you to change image dimensions while maintaining quality and aspect ratios. Use the `w_`, `h_`, and `ar_` parameters to adapt your media to any layout.
 
-Previews in this guide use a **maximum of 360px** width/height so you can see results at a glance. They are shown at **real output dimensions** (fit/contain) and scale down on narrow viewports.
+## Width - (w)
 
-### URL Structure
-
-AutoRender URLs follow this structure:
-
-```bash
-https://assets.autorender.io/LOKVTtKVGb/w_360/doc1/fujicam.jpg
-```
-
-<img src="https://assets.autorender.io/LOKVTtKVGb/w_360/doc1/fujicam.jpg" alt="Resized image" style={{ width: 360, maxWidth: '100%', height: 'auto', borderRadius: '0.5rem', display: 'block', marginLeft: 'auto', marginRight: 'auto', objectFit: 'contain' }} />
-
-URL components:
-- **Domain**: `https://assets.autorender.io` - AutoRender CDN domain
-- **Workspace**: `LOKVTtKVGb` - Your workspace identifier  
-- **Transformations**: `w_360` - Image transformation parameters
-- **Image Path**: `doc/fujicam.jpg` - Your image path (can include folders)
-
-## Width and Height
-
-Resize images by specifying width and/or height dimensions. When only one dimension is specified, AutoRender automatically calculates the other to maintain the original aspect ratio.
-
-<Tabs>
-<Tab title="Width only">
-Resize by width only — height is calculated automatically to maintain aspect ratio.
-
-```bash
-https://assets.autorender.io/LOKVTtKVGb/w_360/doc1/gpose.jpg
-```
-
-<img src="https://assets.autorender.io/LOKVTtKVGb/w_360/doc1/gpose.jpg" alt="Resized image" style={{ width: 360, maxWidth: '100%', height: 'auto', borderRadius: '0.5rem', display: 'block', marginLeft: 'auto', marginRight: 'auto', objectFit: 'contain' }} />
-</Tab>
-
-<Tab title="Height only">
-Resize by height only — width is calculated automatically to maintain aspect ratio.
-
-```bash
-https://assets.autorender.io/LOKVTtKVGb/h_360/doc1/earring.jpg
-```
-
-<img src="https://assets.autorender.io/LOKVTtKVGb/h_360/doc1/earring.jpg" alt="Resized image" style={{ width: 360, maxWidth: '100%', height: 'auto', borderRadius: '0.5rem', display: 'block', marginLeft: 'auto', marginRight: 'auto', objectFit: 'contain' }} />
-</Tab>
-
-<Tab title="Width & height">
-Specify both dimensions for exact sizing. Use crop mode (e.g. `c_fill`) to achieve the target size.
-
-```bash
-https://assets.autorender.io/LOKVTtKVGb/w_360,h_240,c_fill/doc1/paintbrush.jpg
-```
-
-<img src="https://assets.autorender.io/LOKVTtKVGb/w_360,h_240,c_fill/doc1/paintbrush.jpg" alt="Resized image" style={{ width: 360, maxWidth: '100%', height: 'auto', borderRadius: '0.5rem', display: 'block', marginLeft: 'auto', marginRight: 'auto', objectFit: 'contain' }} />
-</Tab>
-</Tabs>
+This parameter specifies the width of the output image. It accepts an integer value greater than 1 representing the width in pixels.
 
 <Note>
-  When only one dimension is specified, AutoRender automatically calculates the other dimension to maintain the original aspect ratio. When both dimensions are specified, you may want to use crop modes (see [Crop](/essentials/crop) page) to control how the image fits the target dimensions.
+  If you only specify the `w_` parameter, then while adjusting the width, it will automatically scale the height in order to maintain the aspect ratio.
 </Note>
 
-## Relative Sizing
-
-Use decimal values to resize relative to the original image dimensions. This is useful for creating proportional variations of images.
-
 <Tabs>
-<Tab title="Relative width">
-50% of original width (maintains aspect ratio):
+  <Tab title="Original image">
+    ```text
+    https://assets.autorender.io/LOKVTtKVGb/doc1/ar-juice.jpg
+    ```
+    <div className="flex object-contain justify-center mt-4">
+      <img src="https://assets.autorender.io/LOKVTtKVGb/doc1/ar-juice.jpg" alt="Original image" className="border border-gray-200 dark:border-gray-800" />
+    </div>
+  </Tab>
+  <Tab title="300px wide">
+    ```text
+    https://assets.autorender.io/LOKVTtKVGb/w_300/doc1/ar-juice.jpg
+    ```
+    <div className="flex object-contain justify-center mt-4">
+      <img src="https://assets.autorender.io/LOKVTtKVGb/w_300/doc1/ar-juice.jpg
 
-```bash
-https://assets.autorender.io/LOKVTtKVGb/w_0.5/doc1/edc.jpg
-```
-
-<img src="https://assets.autorender.io/LOKVTtKVGb/w_0.5/doc1/edc.jpg" alt="Resized image" style={{ maxWidth: '100%', width: 360, height: 'auto', borderRadius: '0.5rem', display: 'block', marginLeft: 'auto', marginRight: 'auto', objectFit: 'contain' }} />
-</Tab>
-
-<Tab title="Relative height">
-75% of original height:
-
-```bash
-https://assets.autorender.io/LOKVTtKVGb/h_0.75/doc1/earring.jpg
-```
-
-<img src="https://assets.autorender.io/LOKVTtKVGb/h_0.75/doc1/earring.jpg" alt="Resized image" style={{ maxWidth: '100%', width: 360, height: 'auto', borderRadius: '0.5rem', display: 'block', marginLeft: 'auto', marginRight: 'auto', objectFit: 'contain' }} />
-</Tab>
+" alt="300px wide image" className="border border-gray-200 dark:border-gray-800 shadow-sm" />
+    </div>
+  </Tab>
 </Tabs>
 
-### Common Relative Sizes
+## Height - (h)
 
-```
-// 25% of original (thumbnail)
-https://assets.autorender.io/LOKVTtKVGb/w_0.25/doc1/edc.jpg
-
-// 50% of original (medium)
-https://assets.autorender.io/LOKVTtKVGb/w_0.5/doc1/edc.jpg
-
-// 75% of original (large)
-https://assets.autorender.io/LOKVTtKVGb/w_0.75/doc1/edc.jpg
-
-// 150% of original (enlarged - may reduce quality)
-https://assets.autorender.io/LOKVTtKVGb/w_1.5/doc1/edc.jpg
-```
-
-<Warning>
-  Enlarging images beyond their original size (values > 1.0) may reduce image quality. AutoRender prevents upscaling by default to maintain quality, but you can override this behavior when needed.
-</Warning>
-
-## Aspect Ratio
-
-Crop images to specific aspect ratios without specifying exact dimensions. This is particularly useful for responsive images and maintaining consistent proportions across different screen sizes.
-
-### Common Aspect Ratios
-
-Previews use **fit** (contain) at **real output dimensions** (max 360px). They scale down when the viewport is narrower.
-
-<Tabs>
-<Tab title="16:9 (Widescreen)">
-16:9 at 360px width (output: 360×202):
-
-```bash
-https://assets.autorender.io/LOKVTtKVGb/ar_16:9,w_360,c_fill/doc1/skate.jpg
-```
-
-<img src="https://assets.autorender.io/LOKVTtKVGb/ar_16:9,w_360,c_fill/doc1/skate.jpg" alt="16:9 aspect ratio" style={{ width: 360, maxWidth: '100%', height: 'auto', borderRadius: '0.5rem', display: 'block', marginLeft: 'auto', marginRight: 'auto', objectFit: 'contain' }} />
-</Tab>
-
-<Tab title="1:1 (Square)">
-1:1 square at 360px (output: 360×360):
-
-```bash
-https://assets.autorender.io/LOKVTtKVGb/ar_1:1,w_360,c_fill,p_c/doc1/gpose.jpg
-```
-
-<img src="https://assets.autorender.io/LOKVTtKVGb/ar_1:1,w_360,c_fill,p_c/doc1/gpose.jpg" alt="Square aspect ratio" style={{ width: 360, maxWidth: '100%', height: 'auto', borderRadius: '0.5rem', display: 'block', marginLeft: 'auto', marginRight: 'auto', objectFit: 'contain' }} />
-</Tab>
-
-<Tab title="4:3 (Standard)">
-4:3 at 360px width (output: 360×270):
-
-```bash
-https://assets.autorender.io/LOKVTtKVGb/ar_4:3,w_360,c_fill/doc1/skate.jpg
-```
-
-<img src="https://assets.autorender.io/LOKVTtKVGb/ar_4:3,w_360,c_fill/doc1/skate.jpg" alt="4:3 aspect ratio" style={{ width: 360, maxWidth: '100%', height: 'auto', borderRadius: '0.5rem', display: 'block', marginLeft: 'auto', marginRight: 'auto', objectFit: 'contain' }} />
-</Tab>
-
-<Tab title="21:9 (Ultrawide)">
-21:9 at 360px width (output: 360×154):
-
-```bash
-https://assets.autorender.io/LOKVTtKVGb/ar_21:9,w_360,c_fill/doc1/rotjump.jpg
-```
-
-<img src="https://assets.autorender.io/LOKVTtKVGb/ar_21:9,w_360,c_fill/doc1/rotjump.jpg" alt="Ultrawide aspect ratio" style={{ width: 360, maxWidth: '100%', height: 'auto', borderRadius: '0.5rem', display: 'block', marginLeft: 'auto', marginRight: 'auto', objectFit: 'contain' }} />
-</Tab>
-</Tabs>
-
-### Custom Aspect Ratios
-
-You can use any aspect ratio by specifying the ratio in the format `width:height`:
-
-```
-// 3:2 at 360px width
-https://assets.autorender.io/LOKVTtKVGb/ar_3:2,w_360,c_fill/doc1/fujicam.jpg
-
-// 5:4 at 360px width
-https://assets.autorender.io/LOKVTtKVGb/ar_5:4,w_360,c_fill/doc1/paintbrush.jpg
-
-// 9:16 portrait at 360px height
-https://assets.autorender.io/LOKVTtKVGb/ar_9:16,h_360,c_fill/doc1/gpose.jpg
-```
+This parameter specifies the height of the output image. It accepts an integer value greater than 1 representing the height in pixels.
 
 <Note>
-  When using aspect ratio, specify either width or height. AutoRender calculates the other dimension automatically. Aspect ratios work best when combined with crop modes (see [Crop](/essentials/crop) page) to control how the image is cropped to fit the ratio.
+  If you only specify the `h_` parameter, then while adjusting the height, it will automatically scale the width in order to maintain the aspect ratio.
 </Note>
+
+<Tabs>
+  <Tab title="Original image">
+    ```text
+    https://assets.autorender.io/LOKVTtKVGb/doc1/ar-juice.jpg
+    ```
+    <div className="flex object-contain justify-center mt-4">
+      <img src="https://assets.autorender.io/LOKVTtKVGb/doc1/ar-juice.jpg
+
+" alt="Original image" className="border border-gray-200 dark:border-gray-800" />
+    </div>
+  </Tab>
+  <Tab title="300px height">
+    ```text
+    https://assets.autorender.io/LOKVTtKVGb/h_300/doc1/ar-juice.jpg
+    ```
+    <div className="flex object-contain justify-center mt-4">
+      <img src="https://assets.autorender.io/LOKVTtKVGb/h_300/doc1/ar-juice.jpg" alt="300px height image" className="border border-gray-200 dark:border-gray-800 shadow-sm" />
+    </div>
+  </Tab>
+    <Tab title="300 width and 300 height">
+    ```text
+    https://assets.autorender.io/LOKVTtKVGb/h_300/doc1/ar-juice.jpg
+    ```
+    <div className="flex object-contain justify-center mt-4">
+      <img src="https://assets.autorender.io/LOKVTtKVGb/h_300/doc1/ar-juice.jpg" alt="300px height image" className="border border-gray-200 dark:border-gray-800 shadow-sm" />
+    </div>
+  </Tab>
+</Tabs>
+
+## Aspect ratio - (ar)
+
+Used to specify the aspect ratio of the output image or the ratio of width to height of the output image. This parameter must be used along with either the height(h) or width(w) parameter. The format for specifying this transformation is `ar_{width}:{height}`.
+
+<Note>
+  If you specify both height(h) and width(w) in the URL along with the aspect ratio(ar), then the aspect ratio is ignored.
+</Note>
+
+<Tabs>
+  <Tab title="Original image">
+    <div className="flex object-contain justify-center mt-4">
+      <img src="https://assets.autorender.io/LOKVTtKVGb/doc1/ar-juice.jpg
+
+" alt="Original image" className="border border-gray-200 dark:border-gray-800" />
+    </div>
+  </Tab>
+  <Tab title="16:9 ratio">
+    ```text
+    https://assets.autorender.io/LOKVTtKVGb/ar_16:9,w_400/doc1/ar-juice.jpg
+
+
+    ```
+    <div className="flex object-contain justify-center mt-4">
+      <img src="https://assets.autorender.io/LOKVTtKVGb/ar_16:9,w_400/doc1/ar-juice.jpg
+
+" alt="16:9 aspect ratio" className="border border-gray-200 dark:border-gray-800 shadow-sm" />
+    </div>
+  </Tab>
+</Tabs>
+
 
 ## Responsive Images
 
@@ -195,7 +118,7 @@ Preview sizes capped at 360px for easier comparison. In production you would use
 https://assets.autorender.io/LOKVTtKVGb/w_240,c_fit/doc1/rotjump.jpg
 ```
 
-<img src="https://assets.autorender.io/LOKVTtKVGb/w_240,c_fit/doc1/rotjump.jpg" alt="Mobile" style={{ width: 240, maxWidth: '100%', height: 'auto', borderRadius: '0.5rem', display: 'block', marginLeft: 'auto', marginRight: 'auto', objectFit: 'contain' }} />
+<img src="https://assets.autorender.io/LOKVTtKVGb/w_240,c_fit/doc1/rotjump.jpg" alt="Mobile" style={{ width: 240, maxWidth: '100%', height: 'auto',display: 'block', marginLeft: 'auto', marginRight: 'auto', objectFit: 'contain' }} />
 </Tab>
 
 <Tab title="Tablet (360px)">
@@ -203,7 +126,7 @@ https://assets.autorender.io/LOKVTtKVGb/w_240,c_fit/doc1/rotjump.jpg
 https://assets.autorender.io/LOKVTtKVGb/w_360,c_fit/doc1/rotjump.jpg
 ```
 
-<img src="https://assets.autorender.io/LOKVTtKVGb/w_360,c_fit/doc1/rotjump.jpg" alt="Tablet" style={{ width: 360, maxWidth: '100%', height: 'auto', borderRadius: '0.5rem', display: 'block', marginLeft: 'auto', marginRight: 'auto', objectFit: 'contain' }} />
+<img src="https://assets.autorender.io/LOKVTtKVGb/w_360,c_fit/doc1/rotjump.jpg" alt="Tablet" style={{ width: 360, maxWidth: '100%', height: 'auto',display: 'block', marginLeft: 'auto', marginRight: 'auto', objectFit: 'contain' }} />
 </Tab>
 
 <Tab title="Desktop (360px)">
@@ -211,7 +134,7 @@ https://assets.autorender.io/LOKVTtKVGb/w_360,c_fit/doc1/rotjump.jpg
 https://assets.autorender.io/LOKVTtKVGb/w_360,c_fit/doc1/rotjump.jpg
 ```
 
-<img src="https://assets.autorender.io/LOKVTtKVGb/w_360,c_fit/doc1/rotjump.jpg" alt="Desktop preview" style={{ width: 360, maxWidth: '100%', height: 'auto', borderRadius: '0.5rem', display: 'block', marginLeft: 'auto', marginRight: 'auto', objectFit: 'contain' }} />
+<img src="https://assets.autorender.io/LOKVTtKVGb/w_360,c_fit/doc1/rotjump.jpg" alt="Desktop preview" style={{ width: 360, maxWidth: '100%', height: 'auto',display: 'block', marginLeft: 'auto', marginRight: 'auto', objectFit: 'contain' }} />
 </Tab>
 </Tabs>
 
@@ -252,10 +175,12 @@ Use AutoRender URLs with HTML `srcset` for automatic responsive image selection:
 <Tabs>
 <Tab title="Thumbnail">
 ```bash
-https://assets.autorender.io/LOKVTtKVGb/w_360,h_360,c_fill/doc1/earring.jpg
+https://assets.autorender.io/LOKVTtKVGb/w_360,h_360,c_fill/doc1/ar-juice.jpg
 ```
 
-<img src="https://assets.autorender.io/LOKVTtKVGb/w_360,h_360,c_fill/doc1/earring.jpg" alt="Thumbnail" style={{ width: 360, maxWidth: '100%', height: 'auto', borderRadius: '0.5rem', display: 'block', marginLeft: 'auto', marginRight: 'auto', objectFit: 'contain' }} />
+<img src="https://assets.autorender.io/LOKVTtKVGb/w_360,h_360,c_fill/doc1/ar-juice.jpg
+
+" alt="Thumbnail" style={{ width: 360, maxWidth: '100%', height: 'auto',display: 'block', marginLeft: 'auto', marginRight: 'auto', objectFit: 'contain' }} />
 </Tab>
 
 <Tab title="Hero (16:9)">
@@ -263,7 +188,7 @@ https://assets.autorender.io/LOKVTtKVGb/w_360,h_360,c_fill/doc1/earring.jpg
 https://assets.autorender.io/LOKVTtKVGb/w_360,h_202,c_fill/doc1/skate.jpg
 ```
 
-<img src="https://assets.autorender.io/LOKVTtKVGb/w_360,h_202,c_fill/doc1/skate.jpg" alt="Hero preview" style={{ width: 360, maxWidth: '100%', height: 'auto', borderRadius: '0.5rem', display: 'block', marginLeft: 'auto', marginRight: 'auto', objectFit: 'contain' }} />
+<img src="https://assets.autorender.io/LOKVTtKVGb/w_360,h_202,c_fill/doc1/skate.jpg" alt="Hero preview" style={{ width: 360, maxWidth: '100%', height: 'auto',display: 'block', marginLeft: 'auto', marginRight: 'auto', objectFit: 'contain' }} />
 </Tab>
 </Tabs>
 
@@ -275,7 +200,7 @@ https://assets.autorender.io/LOKVTtKVGb/w_360,h_202,c_fill/doc1/skate.jpg
 https://assets.autorender.io/LOKVTtKVGb/w_360/doc1/gpose.jpg
 ```
 
-<img src="https://assets.autorender.io/LOKVTtKVGb/w_360/doc1/gpose.jpg" alt="Width resize" style={{ width: 360, maxWidth: '100%', height: 'auto', borderRadius: '0.5rem', display: 'block', marginLeft: 'auto', marginRight: 'auto', objectFit: 'contain' }} />
+<img src="https://assets.autorender.io/LOKVTtKVGb/w_360/doc1/gpose.jpg" alt="Width resize" style={{ width: 360, maxWidth: '100%', height: 'auto',display: 'block', marginLeft: 'auto', marginRight: 'auto', objectFit: 'contain' }} />
 </Tab>
 
 <Tab title="Exact dimensions">
@@ -283,7 +208,7 @@ https://assets.autorender.io/LOKVTtKVGb/w_360/doc1/gpose.jpg
 https://assets.autorender.io/LOKVTtKVGb/w_360,h_240,c_fill/doc1/paintbrush.jpg
 ```
 
-<img src="https://assets.autorender.io/LOKVTtKVGb/w_360,h_240,c_fill/doc1/paintbrush.jpg" alt="Exact dimensions" style={{ width: 360, maxWidth: '100%', height: 'auto', borderRadius: '0.5rem', display: 'block', marginLeft: 'auto', marginRight: 'auto', objectFit: 'contain' }} />
+<img src="https://assets.autorender.io/LOKVTtKVGb/w_360,h_240,c_fill/doc1/paintbrush.jpg" alt="Exact dimensions" style={{ width: 360, maxWidth: '100%', height: 'auto',display: 'block', marginLeft: 'auto', marginRight: 'auto', objectFit: 'contain' }} />
 </Tab>
 
 <Tab title="16:9 aspect ratio">
@@ -291,14 +216,7 @@ https://assets.autorender.io/LOKVTtKVGb/w_360,h_240,c_fill/doc1/paintbrush.jpg
 https://assets.autorender.io/LOKVTtKVGb/ar_16:9,w_360,c_fill/doc1/skate.jpg
 ```
 
-<img src="https://assets.autorender.io/LOKVTtKVGb/ar_16:9,w_360,c_fill/doc1/skate.jpg" alt="16:9" style={{ width: 360, maxWidth: '100%', height: 'auto', borderRadius: '0.5rem', display: 'block', marginLeft: 'auto', marginRight: 'auto', objectFit: 'contain' }} />
+<img src="https://assets.autorender.io/LOKVTtKVGb/ar_16:9,w_360,c_fill/doc1/skate.jpg" alt="16:9" style={{ width: 360, maxWidth: '100%', height: 'auto',display: 'block', marginLeft: 'auto', marginRight: 'auto', objectFit: 'contain' }} />
 </Tab>
 
-<Tab title="Relative (25%)">
-```bash
-https://assets.autorender.io/LOKVTtKVGb/w_0.25/doc1/edc.jpg
-```
-
-<img src="https://assets.autorender.io/LOKVTtKVGb/w_0.25/doc1/edc.jpg" alt="Relative sizing" style={{ maxWidth: '100%', width: 360, height: 'auto', borderRadius: '0.5rem', display: 'block', marginLeft: 'auto', marginRight: 'auto', objectFit: 'contain' }} />
-</Tab>
 </Tabs>

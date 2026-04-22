@@ -1,0 +1,161 @@
+---
+title: "Angular"
+description: "Autorender SDK adapter for Angular - Upload and ViewTag functionality."
+---
+
+## Installation
+
+```bash
+npm install @autorender/sdk-angular
+```
+
+## Upload SDK Usage
+
+```typescript
+import { Component, ElementRef, OnInit } from '@angular/core';
+import { bootstrapAutorenderUploader } from '@autorender/sdk-angular';
+import '@autorender/sdk-angular/styles';
+
+@Component({
+  selector: 'app-upload',
+  template: '<div class="uploader"></div>',
+  standalone: true,
+})
+export class UploadComponent implements OnInit {
+  constructor(private host: ElementRef<HTMLElement>) {}
+
+  ngOnInit(): void {
+    const target = this.host.nativeElement.querySelector('.uploader');
+    if (!target) return;
+
+    bootstrapAutorenderUploader(target, {
+      apiKey: environment.autorenderKey,
+      type: 'inline',
+      allowMultiple: true,
+      onSuccess: ({ files }) => console.log('Uploaded', files),
+    });
+  }
+}
+```
+
+## ViewTag SDK Usage
+
+### Setup Service
+
+```typescript
+import { Component } from '@angular/core';
+import { AutoRenderService, AUTORENDER_CONFIG } from '@autorender/sdk-angular';
+import type { CreateARConfig } from '@autorender/sdk-core';
+
+@Component({
+  selector: 'app-root',
+  standalone: true,
+  providers: [
+    AutoRenderService,
+    {
+      provide: AUTORENDER_CONFIG,
+      useValue: {
+        baseUrl: 'https://assets.autorender.io',
+        workspace: 'ws_123',
+      } as CreateARConfig
+    }
+  ]
+})
+export class AppComponent {}
+```
+
+### Use ARImage Component
+
+```typescript
+import { Component } from '@angular/core';
+import { ARImageComponent } from '@autorender/sdk-angular';
+
+@Component({
+  selector: 'app-product',
+  standalone: true,
+  imports: [ARImageComponent],
+  template: `
+    <ar-image
+      src="products/shoe.jpg"
+      [width]="400"
+      [height]="400"
+      alt="Shoe"
+      [transform]="{ fit: 'cover' }"
+      [responsive]="true"
+      [lazy]="true"
+    />
+  `
+})
+export class ProductComponent {}
+```
+
+### Use ARVideo Component
+
+```typescript
+import { Component } from '@angular/core';
+import { ARVideoComponent } from '@autorender/sdk-angular';
+
+@Component({
+  selector: 'app-product-video',
+  standalone: true,
+  imports: [ARVideoComponent],
+  template: `
+    <ar-video
+      src="docs/skateboarding.mp4"
+      [width]="960"
+      [height]="540"
+      [controls]="true"
+      preload="metadata"
+      [transform]="{ w: 960, h: 540 }"
+    />
+  `
+})
+export class ProductVideoComponent {}
+```
+
+### Complete Transform Example
+
+```typescript
+import { Component } from '@angular/core';
+import { ARImageComponent } from '@autorender/sdk-angular';
+import type { TransformOptions } from '@autorender/sdk-core';
+
+@Component({
+  selector: 'app-hero',
+  standalone: true,
+  imports: [ARImageComponent],
+  template: `
+    <ar-image
+      src="hero.jpg"
+      [width]="1200"
+      [height]="800"
+      alt="Hero image"
+      [transform]="transform"
+      [responsive]="true"
+      [lazy]="true"
+      sizes="(min-width: 1200px) 1200px, 100vw"
+      class="hero-image"
+    />
+  `
+})
+export class HeroComponent {
+  transform: TransformOptions = {
+    w: 1200,
+    h: 800,
+    fit: 'cover',
+    ar: '16:9',
+    position: 'center',
+    improve: true,
+    sharpen: 50,
+    layers: [
+      {
+        type: 'image',
+        imagePath: 'logo.png',
+        width: 200,
+        placement: 'north-east',
+      }
+    ],
+    blend: 'overlay',
+  };
+}
+```

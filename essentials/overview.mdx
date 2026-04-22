@@ -1,41 +1,60 @@
 ---
-title: 'Image transformations overview'
-description: 'Understand URL-based image transformation in a clean, practical format.'
-icon: 'gear'
+title: "Overview"
+description: "Learn how to transform images using the AutoRender.io URL-based transformation parameters."
 ---
 
-## One URL, many outputs
+<div className="flex gap-4 text-sm text-gray-500 dark:text-gray-400 mb-8">
+  <a href="#" className="flex items-center gap-1"><Icon icon="copy" /> Copy for LLM</a>
+  <a href="#" className="flex items-center gap-1"><Icon icon="file-code" /> View Markdown</a>
+</div>
 
-AutoRender transforms your original image on demand. You keep one source file and generate variants through URL tokens.
+AutoRender lets you manipulate images on-the-fly using URL-based transformations. You can resize, crop, rotate, and apply various other transformations to images using simple URL parameters.
 
-```text
-https://assets.autorender.io/{workspace}/{transformations}/{path}
-```
+## Basic example
 
-## Core tokens you will use most
+Here's the basic structure of a URL-based image transformation:
 
-| Goal | Tokens |
-| --- | --- |
-| Resize | `w_`, `h_` |
-| Crop / fit | `c_fill`, `c_fit`, `c_crop` |
-| Aspect ratio | `ar_16:9`, `ar_1:1` |
-| Quality and format | `q_auto`, `f_auto` |
-| Positioning | `p_c`, `p_t`, `p_br` |
-| Visual effects | `e_*` |
+<div className="ar-url-block">
+  <span className="ar-domain">https://assets.autorender.io/</span>
+  <span className="ar-workspace">LOKVTtKVGb</span>
+  <span>/</span>
+  <span className="ar-transform">w_300,h_300</span>
+  <span>/</span>
+  <span className="ar-path">example-asset.jpg</span>
+</div>
 
-## High-value examples
+<Tabs>
+  <Tab title="Resized with as 300px">
+    ```text
+    https://assets.autorender.io/LOKVTtKVGb/fo_face,w_300/doc1/face-crop.jpg
+    ```
+    <div className="flex object-contain justify-center">
+    <img src="https://assets.autorender.io/LOKVTtKVGb/fo_face,w_300/doc1/face-crop.jpg" alt="200px wide image" className="flex object-contain justify-center" />
+    </div>
+  </Tab>
+  <Tab title="Avatar image">
+    ```text
+  https://assets.autorender.io/LOKVTtKVGb/fo_face,w_300,h_300,br_150/doc1/face-crop.jpg
+    ```
+    <div className="flex object-contain justify-center">
+    <img src="https://assets.autorender.io/LOKVTtKVGb/fo_face,w_300,h_300,br_150/doc1/face-crop.jpg" alt="Avatar image"/>
+    </div>
+  </Tab>
+</Tabs>
 
-```text
-# Product image (square)
-https://assets.autorender.io/WORKSPACE/ar_1:1,w_900,c_fill,p_c,q_auto,f_auto/products/shoe.jpg
+## Transformation Summary
 
-# Hero banner
-https://assets.autorender.io/WORKSPACE/ar_16:9,w_1600,c_fill,q_auto,f_auto/marketing/hero.jpg
-
-# Avatar
-https://assets.autorender.io/WORKSPACE/w_240,h_240,c_crop,p_face,br_120,q_auto,f_auto/users/alex.jpg
-```
-
-<Note>
-  Start with `q_auto,f_auto` in almost all production URLs for simpler performance wins.
-</Note>
+| Category | Parameter | Example | Description |
+| :--- | :--- | :--- | :--- |
+| **Dimensions** | `w_{n}` | `w_500` | Width in pixels |
+| | `h_{n}` | `h_500` | Height in pixels |
+| | `ar_{ratio}` | `ar_1:1` | Aspect ratio |
+| **Crop Modes** | `c_fill` | `c_fill` | Fill dimensions (crops excess) |
+| | `c_fit` | `c_fit` | Fit within dimensions (no crop) |
+| **Positioning**| `p_{gravity}` | `p_face` | Center transformation on face/object |
+| | `ps_{x,y}` | `ps_10,20` | Specific X,Y coordinate positioning |
+| **Effects** | `e_{effect}` | `e_grayscale` | Apply filter (grayscale, blur, etc.) |
+| **Format** | `f_{type}` | `f_webp` | Output format (webp, auto, jpg, png) |
+| **Quality** | `q_{n}` | `q_auto` | Output quality (auto, 1-100) |
+| **Flip** | `flip_h` / `flip_v` / `flip_hv` | `flip_h` | Horizontal, vertical, or both |
+| **Rotation** | `r_{deg}` | `r_90` | Rotate 90, 180, or 270 degrees |

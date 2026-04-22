@@ -1,0 +1,189 @@
+---
+title: "React"
+description: "Autorender SDK adapter for React - Upload and ViewTag functionality."
+---
+
+## Installation
+
+```bash
+npm install @autorender/sdk-react
+```
+
+## Upload SDK Usage
+
+```tsx
+import { AutorenderUploader } from '@autorender/sdk-react';
+import '@autorender/sdk-react/styles';
+
+function App() {
+  return (
+    <AutorenderUploader
+      apiKey={process.env.REACT_APP_AUTORENDER_KEY}
+      type="inline"
+      allowMultiple
+      theme="system"
+      sources={['local', 'camera']}
+      onSuccess={({ files }) => console.log('Uploaded', files)}
+    />
+  );
+}
+```
+
+## ViewTag SDK Usage
+
+### Setup Provider
+
+```tsx
+import { AutoRenderProvider } from '@autorender/sdk-react';
+
+function App() {
+  return (
+    <AutoRenderProvider
+      baseUrl="https://assets.autorender.io"
+      workspace="ws_123"
+      defaults={{}}
+    >
+      <YourComponents />
+    </AutoRenderProvider>
+  );
+}
+```
+
+### Use ARImage Component
+
+```tsx
+import { ARImage } from '@autorender/sdk-react';
+
+function ProductImage() {
+  return (
+    <ARImage
+      src="products/shoe.jpg"
+      width={400}
+      height={400}
+      alt="Shoe"
+      transformations={{
+        fit: 'cover',
+      }}
+      responsive={true}
+      lazy={true}
+      sizes="(min-width: 800px) 50vw, 100vw"
+    />
+  );
+}
+```
+
+### Complete Transform Example
+
+```tsx
+import { ARImage } from '@autorender/sdk-react';
+
+function AdvancedImage() {
+  return (
+    <ARImage
+      src="hero.jpg"
+      width={1200}
+      height={800}
+      alt="Hero image"
+      transformations={{
+        // Size & Crop
+        w: 1200,
+        h: 800,
+        fit: 'cover',
+        ar: '16:9',
+        position: 'center',
+        
+        // Transform
+        r: 0,
+        z: 1.2,
+        flip: 'h',
+        br: 20,
+        
+        // Format & Quality
+        f: 'auto',
+        q: 'auto',
+        
+        // Effects
+        improve: true,
+        sharpen: 50,
+        blur: 0,
+        
+        // Layers
+        layers: [
+          {
+            type: 'image',
+            imagePath: 'logo.png',
+            width: 200,
+            placement: 'north-east',
+            opacity: 80,
+          },
+          {
+            type: 'text',
+            text: 'AutoRender',
+            fontFamily: 'arial',
+            fontSize: 24,
+            fontColor: 'FFFFFF',
+            placement: 'south',
+          }
+        ],
+        blend: 'overlay',
+      }}
+      responsive={true}
+      lazy={true}
+      className="product-image"
+    />
+  );
+}
+```
+
+### Use AR Video Component (Video.js)
+
+```tsx
+import { ARVideo } from '@autorender/sdk-react';
+
+function ProductVideo() {
+  return (
+    <ARVideo
+      src="docs/skateboarding.mp4"
+      width={720}
+      height={405}
+      controls
+      preload="metadata"
+      transformations={{ w: 720, h: 405 }}
+    />
+  );
+}
+```
+
+Supports MP4, HLS (`.m3u8`), and DASH (`.mpd`) sources.
+
+## API Reference
+
+### `<AutorenderUploader />`
+
+React component that wraps the uploader.
+
+**Props:** All `CreateUploaderOptions` except `target` (automatically handled).
+
+### `<AutoRenderProvider />`
+
+React Context Provider that makes AR instance available to child components.
+
+**Props:**
+- `baseUrl?: string` - Base URL (default: `'https://assets.autorender.io'`)
+- `workspace: string` - Your workspace ID
+- `defaults?: { f?: string, q?: string | number }` - Default transformations
+- `enableDPR?: boolean` - Enable device pixel ratio (default: `true`)
+- `enableResponsive?: boolean` - Enable responsive images (default: `true`)
+
+### `<ARImage />`
+
+React component that wraps `<img>` with AutoRender transformations.
+
+**Props:**
+- `src: string` - Image source path (required)
+- `width?: number` - Image width in pixels
+- `height?: number` - Image height in pixels
+- `transformations?: TransformOptions` - Transformation options
+- `responsive?: boolean` - Enable responsive images (default: `true`)
+- `lazy?: boolean` - Enable lazy loading (default: `true`)
+- `sizes?: string` - Sizes attribute for responsive images

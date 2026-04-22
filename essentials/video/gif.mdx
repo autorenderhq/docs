@@ -1,48 +1,50 @@
 ---
 title: "GIF"
-description: "Convert a segment of the video to GIF format"
-icon: "film"
+description: "Convert video segments into lightweight GIF animations"
 ---
 
 ## Overview
 
-Convert a segment of the video to GIF. Use `f_gif` with optional width. You can combine with `st_` (start time) and `d_` (duration) to choose which part of the video becomes the GIF.
+Convert a segment of your video into a high-quality GIF. You can control the output dimensions and exactly which part of the video is converted using start time and duration parameters.
 
-### URL Structure
+## GIF Parameter - (f_gif)
 
-```bash
-https://assets.autorender.io/LOKVTtKVGb/w_500,h_500,f_gif/doc/skateboarding.mp4
-```
+To trigger GIF conversion, simply add the `f_gif` parameter to your URL.
 
-<img src="https://assets.autorender.io/LOKVTtKVGb/w_500,h_500,f_gif/doc/skateboarding.mp4" alt="GIF preview" style={{ borderRadius: '0.5rem', maxWidth: '100%', display: 'block', marginLeft: 'auto', marginRight: 'auto', objectFit: 'contain' }} />
+| `f_gif`   | GIF   | Converts the output format to GIF            |
+| `so_`     | Start | Optional: Start offset in seconds (e.g., `so_5`) |
+| `eo_`     | End   | Optional: End offset in seconds (e.g., `eo_10`) |
+| `d_`      | Dur   | Optional: Duration in seconds (e.g., `d_10`)  |
 
-## Parameters
+<Tabs>
+  <Tab title="Full Video to GIF">
+    ```bash
+    https://assets.autorender.io/LOKVTtKVGb/f_gif,w_400/doc/skateboarding.mp4
+    ```
+    <div className="flex object-contain justify-center mt-4">
+      <img src="https://assets.autorender.io/LOKVTtKVGb/f_gif,w_400/doc/skateboarding.mp4" alt="Video to GIF conversion" className="shadow-lg max-w-full" />
+    </div>
+  </Tab>
+  <Tab title="Trim by duration (so_5, d_10)">
+    ```bash
+    https://assets.autorender.io/LOKVTtKVGb/f_gif,so_5,d_10,w_400/doc/skateboarding.mp4
+    ```
+    <div className="flex object-contain justify-center mt-4">
+      <img src="https://assets.autorender.io/LOKVTtKVGb/f_gif,so_5,d_10,w_400/doc/skateboarding.mp4" alt="Trimmed GIF by duration" className="max-w-full" />
+    </div>
+  </Tab>
+  <Tab title="Trim by end offset (so_5, eo_10)">
+    ```bash
+    https://assets.autorender.io/LOKVTtKVGb/f_gif,so_5,eo_10,w_400/doc/skateboarding.mp4
+    ```
+    <div className="flex object-contain justify-center mt-4">
+      <img src="https://assets.autorender.io/LOKVTtKVGb/f_gif,so_5,eo_10,w_400/doc/skateboarding.mp4" alt="Trimmed GIF by end offset" className="max-w-full" />
+    </div>
+  </Tab>
+</Tabs>
 
-| Parameter | Description                    |
-| --------- | ------------------------------ |
-| `f_gif`   | Output format GIF              |
-| `w_{n}`   | Optional width for GIF (e.g. `w_420`) |
-| `st_{sec}`| Optional start time in seconds |
-| `d_{sec}` | Optional duration in seconds  |
+## Best Practices
 
-## Examples
-
-Convert to GIF at 500px width:
-
-```bash
-https://assets.autorender.io/LOKVTtKVGb/w_500,h_500,f_gif/doc/skateboarding.mp4
-```
-
-<img src="https://assets.autorender.io/LOKVTtKVGb/w_500,h_500,f_gif,st_5,d_10/doc/skateboarding.mp4" alt="GIF at 420px width" style={{ borderRadius: '0.5rem', maxWidth: '100%', display: 'block', marginLeft: 'auto', marginRight: 'auto', objectFit: 'contain' }} />
-
-GIF from 5s, 10 seconds long (combine with `st_` and `d_`):
-
-```bash
-https://assets.autorender.io/LOKVTtKVGb/w_500,h_500,f_gif,st_5,d_10/doc/skateboarding.mp4
-```
-
-<img src="https://assets.autorender.io/LOKVTtKVGb/w_500,h_500,f_gif,st_5,d_10/doc/skateboarding.mp4" alt="GIF from 5s, 10s duration" style={{ borderRadius: '0.5rem', maxWidth: '100%', display: 'block', marginLeft: 'auto', marginRight: 'auto', objectFit: 'contain' }} />
-
-<Note>
-  For GIF you can use `st_{seconds}` and `d_{seconds}` to choose the start time and duration of the clip. This helps keep file size and load time under control.
-</Note>
+- **Keep it Short**: GIFs can grow very large in file size. Use `d_` (duration) to capture only the essential action.
+- **Resize**: Always specify a width (`w_`) for GIFs to ensure they load quickly on web pages.
+- **Static Previews**: Use GIFs for silent previews in lists or cards where full video controls are not needed.

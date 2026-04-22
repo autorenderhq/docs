@@ -1,55 +1,45 @@
 ---
 title: "Flip"
-description: "Flip video horizontally, vertically, or both"
-icon: "arrows-left-right"
+description: "Mirror your video horizontally or vertically"
 ---
 
 ## Overview
 
-Mirror the video horizontally, vertically, or both. Flipping is useful for correcting orientation, creating symmetrical previews, or matching layout requirements.
+Mirror your video horizontally (`flip_h`), vertically (`flip_v`), or both. This is useful for correcting camera orientation, creating artistic effects, or matching specific UI layouts.
 
-### URL Structure
+## Flip Parameters
 
-```bash
-https://assets.autorender.io/LOKVTtKVGb/w_400,h_400,flip_h/doc/skateboarding.mp4
-```
+| Parameter  | Action                          | Description                                  |
+| ---------- | ------------------------------- | -------------------------------------------- |
+| `flip_h`   | Horizontal Flip                 | Mirrors the video like a reflection in a pool|
+| `flip_v`   | Vertical Flip                   | Upside-down orientation                      |
+| `flip_hv`  | Horizontal & Vertical           | Combined effect (equivalent to 180° rotation)|
 
-<video src="https://assets.autorender.io/LOKVTtKVGb/w_400,h_400,flip_h/doc/skateboarding.mp4" controls style={{ borderRadius: '0.5rem', maxWidth: '100%', display: 'block', marginLeft: 'auto', marginRight: 'auto', objectFit: 'contain' }} />
+<Tabs>
+  <Tab title="Original">
+    <div className="flex object-contain justify-center mt-4">
+      <video src="https://assets.autorender.io/LOKVTtKVGb/w_400/doc/skateboarding.mp4" controls className="max-w-full" />
+    </div>
+  </Tab>
+  <Tab title="Horizontal Flip">
+    ```bash
+    https://assets.autorender.io/LOKVTtKVGb/flip_h,w_400/doc/skateboarding.mp4
+    ```
+    <div className="flex object-contain justify-center mt-4">
+      <video src="https://assets.autorender.io/LOKVTtKVGb/flip_h,w_400/doc/skateboarding.mp4" controls className="shadow-lg max-w-full" />
+    </div>
+  </Tab>
+  <Tab title="Vertical Flip">
+    ```bash
+    https://assets.autorender.io/LOKVTtKVGb/flip_v,w_400/doc/skateboarding.mp4
+    ```
+    <div className="flex object-contain justify-center mt-4">
+      <video src="https://assets.autorender.io/LOKVTtKVGb/flip_v,w_400/doc/skateboarding.mp4" controls className="shadow-lg max-w-full" />
+    </div>
+  </Tab>
+</Tabs>
 
-## Parameters
+## Best Practices
 
-| Parameter | Description                |
-| --------- | -------------------------- |
-| `flip_h`  | Flip horizontally          |
-| `flip_v`  | Flip vertically            |
-| `flip_hv` | Flip horizontally and vertically |
-
-## Examples
-
-Flip horizontally (with resize):
-
-```bash
-https://assets.autorender.io/LOKVTtKVGb/w_400,h_400,flip_h/doc/skateboarding.mp4
-```
-
-<video src="https://assets.autorender.io/LOKVTtKVGb/w_400,h_400,flip_h/doc/skateboarding.mp4" controls style={{ borderRadius: '0.5rem', maxWidth: '100%', display: 'block', marginLeft: 'auto', marginRight: 'auto', objectFit: 'contain' }} />
-
-Flip vertically:
-
-```bash
-https://assets.autorender.io/LOKVTtKVGb/w_400,h_400,flip_v/doc/skateboarding.mp4
-```
-
-<video src="https://assets.autorender.io/LOKVTtKVGb/w_400,h_400,flip_v/doc/skateboarding.mp4" controls style={{ borderRadius: '0.5rem', maxWidth: '100%', display: 'block', marginLeft: 'auto', marginRight: 'auto', objectFit: 'contain' }} />
-
-Flip both:
-
-```bash
-https://assets.autorender.io/LOKVTtKVGb/w_400,h_400,flip_hv/doc/skateboarding.mp4
-```
-
-<video src="https://assets.autorender.io/LOKVTtKVGb/w_400,h_400,flip_hv/doc/skateboarding.mp4" controls style={{ borderRadius: '0.5rem', maxWidth: '100%', display: 'block', marginLeft: 'auto', marginRight: 'auto', objectFit: 'contain' }} />
-
-<Note>
-  Flipping both horizontally and vertically (`flip_hv`) is equivalent to rotating the video 180 degrees (`r_180`).
-</Note>
+- **Preview**: Always verify the flip result, especially when text is present in the video, as it will also be mirrored.
+- **Combine**: Flipping can be combined with any other video transformations like resize, trim, or rotate.

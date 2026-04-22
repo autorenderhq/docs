@@ -1,0 +1,121 @@
+---
+title: "Svelte"
+description: "Autorender SDK adapter for Svelte - Upload and ViewTag functionality."
+---
+
+## Installation
+
+```bash
+npm install @autorender/sdk-svelte
+```
+
+## Upload SDK Usage
+
+```svelte
+<script lang="ts">
+  import { autorenderUploader } from '@autorender/sdk-svelte';
+  import '@autorender/sdk-svelte/styles';
+
+  const options = {
+    apiKey: import.meta.env.VITE_AUTORENDER_KEY,
+    type: 'inline',
+    allowMultiple: true,
+    onSuccess: ({ files }) => console.log('Uploaded', files),
+  };
+</script>
+
+<div use:autorenderUploader={options}></div>
+```
+
+## ViewTag SDK Usage
+
+### Setup Provider
+
+```svelte
+<script lang="ts">
+  import { AutoRenderProvider, ARImage } from '@autorender/sdk-svelte';
+</script>
+
+<AutoRenderProvider
+  baseUrl="https://assets.autorender.io"
+  workspace="ws_123"
+  defaults={{}}
+>
+  <ARImage
+    src="products/shoe.jpg"
+    width={400}
+    height={400}
+    alt="Shoe"
+    transformations={{ fit: 'cover' }}
+    responsive={true}
+    lazy={true}
+  />
+</AutoRenderProvider>
+```
+
+### Use ARVideo Component
+
+```svelte
+<script lang="ts">
+  import { AutoRenderProvider, ARVideo } from '@autorender/sdk-svelte';
+</script>
+
+<AutoRenderProvider
+  baseUrl="https://assets.autorender.io"
+  workspace="ws_123"
+  defaults={{}}
+>
+  <ARVideo
+    src="docs/skateboarding.mp4"
+    width={960}
+    height={540}
+    controls={true}
+    preload="metadata"
+    transformations={{ w: 960, h: 540 }}
+  />
+</AutoRenderProvider>
+```
+
+### Complete Transform Example
+
+```svelte
+<script lang="ts">
+  import { AutoRenderProvider, ARImage } from '@autorender/sdk-svelte';
+  import type { TransformOptions } from '@autorender/sdk-core';
+
+  const transform: TransformOptions = {
+    w: 1200,
+    h: 800,
+    fit: 'cover',
+    ar: '16:9',
+    position: 'center',
+    improve: true,
+    sharpen: 50,
+    layers: [
+      {
+        type: 'image',
+        imagePath: 'logo.png',
+        width: 200,
+        placement: 'north-east',
+      }
+    ],
+    blend: 'overlay',
+  };
+</script>
+
+<AutoRenderProvider
+  baseUrl="https://assets.autorender.io"
+  workspace="ws_123"
+  defaults={{}}
+>
+  <ARImage
+    src="hero.jpg"
+    width={1200}
+    height={800}
+    alt="Hero image"
+    {transform}
+    responsive={true}
+    class="hero-image"
+  />
+</AutoRenderProvider>
+```

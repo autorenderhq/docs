@@ -1,803 +1,183 @@
 ---
-title: 'Effects'
-description: 'Learn about AutoRender image enhancement effects and filters using e_ parameters'
-icon: 'wand-magic-sparkles'
+title: "Effects"
+description: "Professional image enhancement effects and artistic filters"
 ---
 
 ## Overview
 
-AutoRender provides a comprehensive suite of image enhancement effects that allow you to adjust colors, tones, sharpness, and apply artistic filters. All effects use the `e_` prefix and can be combined with other transformations for professional image processing.
-
-### URL Structure
-
-AutoRender URLs with effects follow this structure:
-
-```bash
-https://assets.autorender.io/LOKVTtKVGb/e_saturation:30,w_360/doc1/porsche.jpg
-```
-
-<img src="https://assets.autorender.io/LOKVTtKVGb/e_saturation:30,w_360/doc1/porsche.jpg" alt="Enhanced image" style={{ width: 360, maxWidth: '100%', height: 'auto', borderRadius: '0.5rem', display: 'block', marginLeft: 'auto', marginRight: 'auto', objectFit: 'contain' }} />
-
-## Color Enhancements
-
-Adjust the color properties of your images.
-
-### Saturation (`e_saturation`)
-
-Adjusts the intensity/vibrancy of colors.
-
-**Format:** `e_saturation:{level}`
-- **Range:** `-100` to `100`
-- **Negative values:** Desaturate (move toward grayscale)
-- **Positive values:** Increase color intensity
-
-Compare different saturation levels:
-
-<Tabs>
-<Tab title="Original">
-```bash
-https://assets.autorender.io/LOKVTtKVGb/doc1/porsche.jpg
-```
-
-<img src="https://assets.autorender.io/LOKVTtKVGb/doc1/porsche.jpg" alt="Original image" style={{ width: 360, maxWidth: '100%', height: 'auto', borderRadius: '0.5rem', display: 'block', marginLeft: 'auto', marginRight: 'auto', objectFit: 'contain' }} />
-</Tab>
-
-<Tab title="High (+30)">
-Increase saturation:
-
-```bash
-https://assets.autorender.io/LOKVTtKVGb/e_saturation:30/doc1/porsche.jpg
-```
-
-<img src="https://assets.autorender.io/LOKVTtKVGb/e_saturation:30/doc1/porsche.jpg" alt="Increased saturation" style={{ width: 360, maxWidth: '100%', height: 'auto', borderRadius: '0.5rem', display: 'block', marginLeft: 'auto', marginRight: 'auto', objectFit: 'contain' }} />
-</Tab>
-
-<Tab title="Low (-50)">
-Decrease saturation (washed out look):
-
-```bash
-https://assets.autorender.io/LOKVTtKVGb/e_saturation:-50/doc1/porsche.jpg
-```
-
-<img src="https://assets.autorender.io/LOKVTtKVGb/e_saturation:-50/doc1/porsche.jpg" alt="Decreased saturation" style={{ width: 360, maxWidth: '100%', height: 'auto', borderRadius: '0.5rem', display: 'block', marginLeft: 'auto', marginRight: 'auto', objectFit: 'contain' }} />
-</Tab>
-</Tabs>
-
-### Hue Rotation (`e_hue`)
-
-Rotates colors around the color wheel, creating dramatic color shifts.
-
-**Format:** `e_hue:{rotation}`
-- **Range:** `-180` to `180` degrees
-- **Effect:** Shifts all colors by the specified degree
-
-```bash
-https://assets.autorender.io/LOKVTtKVGb/e_hue:30/doc1/porsche.jpg
-```
-
-<img src="https://assets.autorender.io/LOKVTtKVGb/e_hue:30/doc1/porsche.jpg" alt="Hue shift warm" style={{ width: 360, maxWidth: '100%', height: 'auto', borderRadius: '0.5rem', display: 'block', marginLeft: 'auto', marginRight: 'auto', objectFit: 'contain' }} />
-
-Shift to cool tones:
-
-```bash
-https://assets.autorender.io/LOKVTtKVGb/e_hue:-45/doc1/porsche.jpg
-```
-
-<img src="https://assets.autorender.io/LOKVTtKVGb/e_hue:-45/doc1/porsche.jpg" alt="Hue shift cool" style={{ width: 360, maxWidth: '100%', height: 'auto', borderRadius: '0.5rem', display: 'block', marginLeft: 'auto', marginRight: 'auto', objectFit: 'contain' }} />
-
-### Temperature (`e_temperature`)
-
-Adjusts color temperature from cool (blue) to warm (orange/yellow).
-
-**Format:** `e_temperature:{level}`
-- **Range:** `-100` to `100`
-- **Negative values:** Cooler (more blue)
-- **Positive values:** Warmer (more orange/yellow)
-
-```bash
-https://assets.autorender.io/LOKVTtKVGb/e_temperature:40/doc1/porsche.jpg
-```
-
-<img src="https://assets.autorender.io/LOKVTtKVGb/e_temperature:40/doc1/porsche.jpg" alt="Warm temperature" style={{ width: 360, maxWidth: '100%', height: 'auto', borderRadius: '0.5rem', display: 'block', marginLeft: 'auto', marginRight: 'auto', objectFit: 'contain' }} />
-
-Add coolness:
-
-```bash
-https://assets.autorender.io/LOKVTtKVGb/e_temperature:-60/doc1/porsche.jpg
-```
-
-<img src="https://assets.autorender.io/LOKVTtKVGb/e_temperature:-60/doc1/porsche.jpg" alt="Cool temperature" style={{ width: 360, maxWidth: '100%', height: 'auto', borderRadius: '0.5rem', display: 'block', marginLeft: 'auto', marginRight: 'auto', objectFit: 'contain' }} />
-
-### Warmth (`e_warmth`)
-
-Adjusts red/blue balance with saturation preservation.
-
-**Format:** `e_warmth:{level}`
-- **Range:** `-100` to `100`
-- **Negative values:** Cooler (more blue)
-- **Positive values:** Warmer (more red)
-
-```bash
-https://assets.autorender.io/LOKVTtKVGb/e_warmth:30/doc1/porsche.jpg
-```
-
-<img src="https://assets.autorender.io/LOKVTtKVGb/e_warmth:30/doc1/porsche.jpg" alt="Warmth effect" style={{ width: 360, maxWidth: '100%', height: 'auto', borderRadius: '0.5rem', display: 'block', marginLeft: 'auto', marginRight: 'auto', objectFit: 'contain' }} />
-
-### Tint (`e_tint`)
-
-Adjusts green/magenta color balance.
-
-**Format:** `e_tint:{level}`
-- **Range:** `-100` to `100`
-- **Negative values:** Green tint
-- **Positive values:** Magenta tint
-
-```bash
-https://assets.autorender.io/LOKVTtKVGb/e_tint:20/doc1/porsche.jpg
-```
-
-<img src="https://assets.autorender.io/LOKVTtKVGb/e_tint:20/doc1/porsche.jpg" alt="Tint effect" style={{ width: 360, maxWidth: '100%', height: 'auto', borderRadius: '0.5rem', display: 'block', marginLeft: 'auto', marginRight: 'auto', objectFit: 'contain' }} />
+AutoRender provides a comprehensive suite of effects to adjust colors, tones, sharpness, and apply artistic filters. All effects use the `e_` prefix and can be combined for professional-grade image processing.
 
 ## Tonal Adjustments
 
-Control brightness, contrast, and exposure.
+Control the light and dark balance of your images.
 
-### Brightness (`e_brightness`)
-
-Adjusts overall image brightness.
-
-**Format:** `e_brightness:{level}`
-- **Range:** `-99` to `100`
-- **Negative values:** Darker
-- **Positive values:** Brighter
-
-Compare different brightness levels:
+| Effect       | Parameter      | Range         | Description                                  |
+| ------------ | -------------- | ------------- | -------------------------------------------- |
+| Brightness   | `e_brightness` | `-99` to `100`| Adjusts overall brightness                   |
+| Contrast     | `e_contrast`   | `-100` to `100`| Difference between light and dark areas      |
+| Exposure     | `e_exposure`   | `-100` to `100`| Camera-style exposure adjustment             |
+| Highlights   | `e_highlights` | `-100` to `100`| Adjusts only the brightest areas             |
+| Shadows      | `e_shadows`    | `-100` to `100`| Adjusts only the darkest areas               |
+| Gamma        | `e_gamma`      | `-50` to `150` | Adjusts mid-tone brightness                  |
 
 <Tabs>
-<Tab title="Original">
-```bash
-https://assets.autorender.io/LOKVTtKVGb/doc1/porsche.jpg
-```
-
-<img src="https://assets.autorender.io/LOKVTtKVGb/doc1/porsche.jpg" alt="Original image" style={{ width: 360, maxWidth: '100%', height: 'auto', borderRadius: '0.5rem', display: 'block', marginLeft: 'auto', marginRight: 'auto', objectFit: 'contain' }} />
-</Tab>
-
-<Tab title="Bright (+20)">
-Increase brightness:
-
-```bash
-https://assets.autorender.io/LOKVTtKVGb/e_brightness:20/doc1/porsche.jpg
-```
-
-<img src="https://assets.autorender.io/LOKVTtKVGb/e_brightness:20/doc1/porsche.jpg" alt="Increased brightness" style={{ width: 360, maxWidth: '100%', height: 'auto', borderRadius: '0.5rem', display: 'block', marginLeft: 'auto', marginRight: 'auto', objectFit: 'contain' }} />
-</Tab>
-
-<Tab title="Dark (-30)">
-Decrease brightness:
-
-```bash
-https://assets.autorender.io/LOKVTtKVGb/e_brightness:-30/doc1/porsche.jpg
-```
-
-<img src="https://assets.autorender.io/LOKVTtKVGb/e_brightness:-30/doc1/porsche.jpg" alt="Decreased brightness" style={{ width: 360, maxWidth: '100%', height: 'auto', borderRadius: '0.5rem', display: 'block', marginLeft: 'auto', marginRight: 'auto', objectFit: 'contain' }} />
-</Tab>
+  <Tab title="Original">
+    ```text
+    https://assets.autorender.io/LOKVTtKVGb/doc1/porsche.jpg
+    ```
+    <div className="flex object-contain justify-center mt-4">
+      <img src="https://assets.autorender.io/LOKVTtKVGb/doc1/porsche.jpg" alt="Original" className="border border-gray-200 dark:border-gray-800" />
+    </div>
+  </Tab>
+  <Tab title="Brightness (+20)">
+    ```bash
+    https://assets.autorender.io/LOKVTtKVGb/e_brightness:20/doc1/porsche.jpg
+    ```
+    <div className="flex object-contain justify-center mt-4">
+      <img src="https://assets.autorender.io/LOKVTtKVGb/e_brightness:20/doc1/porsche.jpg" alt="Brightness" className="border border-gray-200 dark:border-gray-800" />
+    </div>
+  </Tab>
+  <Tab title="Contrast (+30)">
+    ```bash
+    https://assets.autorender.io/LOKVTtKVGb/e_contrast:30/doc1/porsche.jpg
+    ```
+    <div className="flex object-contain justify-center mt-4">
+      <img src="https://assets.autorender.io/LOKVTtKVGb/e_contrast:30/doc1/porsche.jpg" alt="Contrast" className="border border-gray-200 dark:border-gray-800" />
+    </div>
+  </Tab>
+  <Tab title="Shadows (+40)">
+    ```bash
+    https://assets.autorender.io/LOKVTtKVGb/e_shadows:40/doc1/porsche.jpg
+    ```
+    <div className="flex object-contain justify-center mt-4">
+      <img src="https://assets.autorender.io/LOKVTtKVGb/e_shadows:40/doc1/porsche.jpg" alt="Shadows" className="border border-gray-200 dark:border-gray-800" />
+    </div>
+  </Tab>
 </Tabs>
 
-### Contrast (`e_contrast`)
+## Color Enhancements
 
-Adjusts the difference between light and dark areas.
+Adjust the vibrancy, temperature, and tint.
 
-**Format:** `e_contrast:{level}`
-- **Range:** `-100` to `100`
-- **Negative values:** Reduce contrast (softer)
-- **Positive values:** Increase contrast (more dramatic)
+| Effect       | Parameter       | Range          | Description                                  |
+| ------------ | --------------- | -------------- | -------------------------------------------- |
+| Saturation   | `e_saturation`  | `-100` to `100`| Intensity of colors                          |
+| Hue          | `e_hue`         | `-180` to `180`| Rotates colors on the color wheel            |
+| Temperature  | `e_temperature` | `-100` to `100`| Cool (blue) to Warm (orange)                 |
+| Tint         | `e_tint`        | `-100` to `100`| Green to Magenta balance                     |
 
-```bash
-https://assets.autorender.io/LOKVTtKVGb/e_contrast:30/doc1/porsche.jpg
-```
-
-<img src="https://assets.autorender.io/LOKVTtKVGb/e_contrast:30/doc1/porsche.jpg" alt="Increased contrast" style={{ width: 360, maxWidth: '100%', height: 'auto', borderRadius: '0.5rem', display: 'block', marginLeft: 'auto', marginRight: 'auto', objectFit: 'contain' }} />
-
-### Exposure (`e_exposure`)
-
-Camera-style exposure adjustment.
-
-**Format:** `e_exposure:{level}`
-- **Range:** `-100` to `100`
-- **Negative values:** Underexpose (darker)
-- **Positive values:** Overexpose (brighter)
-
-```bash
-https://assets.autorender.io/LOKVTtKVGb/e_exposure:25/doc1/porsche.jpg
-```
-
-<img src="https://assets.autorender.io/LOKVTtKVGb/e_exposure:25/doc1/porsche.jpg" alt="Increased exposure" style={{ width: 360, maxWidth: '100%', height: 'auto', borderRadius: '0.5rem', display: 'block', marginLeft: 'auto', marginRight: 'auto', objectFit: 'contain' }} />
-
-### Highlights (`e_highlights`)
-
-Adjusts bright areas of the image.
-
-**Format:** `e_highlights:{level}`
-- **Range:** `-100` to `100`
-- **Negative values:** Darken highlights
-- **Positive values:** Brighten highlights
-
-```bash
-https://assets.autorender.io/LOKVTtKVGb/e_highlights:-40/doc1/porsche.jpg
-```
-
-<img src="https://assets.autorender.io/LOKVTtKVGb/e_highlights:-40/doc1/porsche.jpg" alt="Darkened highlights" style={{ width: 360, maxWidth: '100%', height: 'auto', borderRadius: '0.5rem', display: 'block', marginLeft: 'auto', marginRight: 'auto', objectFit: 'contain' }} />
-
-### Shadows (`e_shadows`)
-
-Adjusts dark areas of the image.
-
-**Format:** `e_shadows:{level}`
-- **Range:** `-100` to `100`
-- **Negative values:** Darken shadows
-- **Positive values:** Brighten shadows
-
-```bash
-https://assets.autorender.io/LOKVTtKVGb/e_shadows:30/doc1/porsche.jpg
-```
-
-<img src="https://assets.autorender.io/LOKVTtKVGb/e_shadows:30/doc1/porsche.jpg" alt="Brightened shadows" style={{ width: 360, maxWidth: '100%', height: 'auto', borderRadius: '0.5rem', display: 'block', marginLeft: 'auto', marginRight: 'auto', objectFit: 'contain' }} />
-
-### Gamma (`e_gamma`)
-
-Gamma correction for tonal adjustment.
-
-**Format:** `e_gamma:{level}`
-- **Range:** `-50` to `150`
-- **Effect:** Adjusts mid-tone brightness
-
-```bash
-https://assets.autorender.io/LOKVTtKVGb/e_gamma:5/doc1/porsche.jpg
-```
-
-<img src="https://assets.autorender.io/LOKVTtKVGb/e_gamma:5/doc1/porsche.jpg" alt="Gamma correction" style={{ width: 360, maxWidth: '100%', height: 'auto', borderRadius: '0.5rem', display: 'block', marginLeft: 'auto', marginRight: 'auto', objectFit: 'contain' }} />
+<Tabs>
+  <Tab title="Original">
+    <div className="flex object-contain justify-center mt-4">
+      <img src="https://assets.autorender.io/LOKVTtKVGb/doc1/porsche.jpg" alt="Original" className="border border-gray-200 dark:border-gray-800" />
+    </div>
+  </Tab>
+  <Tab title="Vibrant (+40)">
+    ```bash
+    https://assets.autorender.io/LOKVTtKVGb/e_saturation:40/doc1/porsche.jpg
+    ```
+    <div className="flex object-contain justify-center mt-4">
+      <img src="https://assets.autorender.io/LOKVTtKVGb/e_saturation:40/doc1/porsche.jpg" alt="Saturation" className="border border-gray-200 dark:border-gray-800" />
+    </div>
+  </Tab>
+  <Tab title="Warmth (+30)">
+    ```bash
+    https://assets.autorender.io/LOKVTtKVGb/e_temperature:30/doc1/porsche.jpg
+    ```
+    <div className="flex object-contain justify-center mt-4">
+      <img src="https://assets.autorender.io/LOKVTtKVGb/e_temperature:30/doc1/porsche.jpg" alt="Temperature" className="border border-gray-200 dark:border-gray-800" />
+    </div>
+  </Tab>
+</Tabs>
 
 ## Sharpening & Clarity
 
-Enhance image sharpness and detail.
+Enhance textures and define edges.
 
-### Sharpen (`e_sharpen`)
-
-Basic image sharpening.
-
-**Format:** `e_sharpen` or `e_sharpen:{strength}`
-- **Default strength:** `100`
-- **Range:** `1` to `2000`
-
-```bash
-https://assets.autorender.io/LOKVTtKVGb/e_sharpen/doc1/porsche.jpg
-```
-
-<img src="https://assets.autorender.io/LOKVTtKVGb/e_sharpen/doc1/porsche.jpg" alt="Default sharpening" style={{ width: 360, maxWidth: '100%', height: 'auto', borderRadius: '0.5rem', display: 'block', marginLeft: 'auto', marginRight: 'auto', objectFit: 'contain' }} />
-
-Custom sharpening strength:
-
-```bash
-https://assets.autorender.io/LOKVTtKVGb/e_sharpen:150/doc1/porsche.jpg
-```
-
-<img src="https://assets.autorender.io/LOKVTtKVGb/e_sharpen:150/doc1/porsche.jpg" alt="Sharpened image" style={{ width: 360, maxWidth: '100%', height: 'auto', borderRadius: '0.5rem', display: 'block', marginLeft: 'auto', marginRight: 'auto', objectFit: 'contain' }} />
-
-### Unsharp Mask (`e_unsharp_mask`)
-
-Professional sharpening with configurable strength.
-
-**Format:** `e_unsharp_mask:{strength}`
-- **Range:** `1` to `2000`
-- **Higher values:** More aggressive sharpening
-
-```bash
-https://assets.autorender.io/LOKVTtKVGb/e_unsharp_mask:150/doc1/porsche.jpg
-```
-
-<img src="https://assets.autorender.io/LOKVTtKVGb/e_unsharp_mask:150/doc1/porsche.jpg" alt="Unsharp mask" style={{ width: 360, maxWidth: '100%', height: 'auto', borderRadius: '0.5rem', display: 'block', marginLeft: 'auto', marginRight: 'auto', objectFit: 'contain' }} />
-
-### Structure (`e_structure`)
-
-Enhances local contrast and texture detail.
-
-**Format:** `e_structure:{level}`
-- **Range:** `0` to `100`
-- **Effect:** Increases texture and detail without over-sharpening
-
-```bash
-https://assets.autorender.io/LOKVTtKVGb/e_structure:40/doc1/porsche.jpg
-```
-
-<img src="https://assets.autorender.io/LOKVTtKVGb/e_structure:40/doc1/porsche.jpg" alt="Structure enhancement" style={{ width: 360, maxWidth: '100%', height: 'auto', borderRadius: '0.5rem', display: 'block', marginLeft: 'auto', marginRight: 'auto', objectFit: 'contain' }} />
-
-## Color Space Transformations
-
-Convert images to different color representations.
-
-Compare color space transformations:
+| Effect       | Parameter         | Range        | Description                                  |
+| ------------ | ----------------- | ------------ | -------------------------------------------- |
+| Sharpen      | `e_sharpen`       | `1` to `2000`| Basic edge sharpening                        |
+| Unsharp Mask | `e_unsharp_mask`  | `1` to `2000`| Professional detail enhancement              |
+| Structure    | `e_structure`     | `0` to `100` | Local contrast for texture detail            |
 
 <Tabs>
-<Tab title="Original">
-```bash
-https://assets.autorender.io/LOKVTtKVGb/doc1/porsche.jpg
-```
-
-<img src="https://assets.autorender.io/LOKVTtKVGb/doc1/porsche.jpg" alt="Original image" style={{ width: 360, maxWidth: '100%', height: 'auto', borderRadius: '0.5rem', display: 'block', marginLeft: 'auto', marginRight: 'auto', objectFit: 'contain' }} />
-</Tab>
-
-<Tab title="Grayscale">
-Converts image to grayscale:
-
-```bash
-https://assets.autorender.io/LOKVTtKVGb/e_grayscale/doc1/porsche.jpg
-```
-
-<img src="https://assets.autorender.io/LOKVTtKVGb/e_grayscale/doc1/porsche.jpg" alt="Grayscale" style={{ width: 360, maxWidth: '100%', height: 'auto', borderRadius: '0.5rem', display: 'block', marginLeft: 'auto', marginRight: 'auto', objectFit: 'contain' }} />
-</Tab>
-
-<Tab title="Black & White">
-Converts to black and white with threshold control:
-
-```bash
-https://assets.autorender.io/LOKVTtKVGb/e_blackwhite:50/doc1/porsche.jpg
-```
-
-<img src="https://assets.autorender.io/LOKVTtKVGb/e_blackwhite:50/doc1/porsche.jpg" alt="Black and white" style={{ width: 360, maxWidth: '100%', height: 'auto', borderRadius: '0.5rem', display: 'block', marginLeft: 'auto', marginRight: 'auto', objectFit: 'contain' }} />
-</Tab>
-
-<Tab title="Invert">
-Creates a negative/inverted image:
-
-```bash
-https://assets.autorender.io/LOKVTtKVGb/e_invert/doc1/porsche.jpg
-```
-
-<img src="https://assets.autorender.io/LOKVTtKVGb/e_invert/doc1/porsche.jpg" alt="Inverted image" style={{ width: 360, maxWidth: '100%', height: 'auto', borderRadius: '0.5rem', display: 'block', marginLeft: 'auto', marginRight: 'auto', objectFit: 'contain' }} />
-</Tab>
+  <Tab title="Original">
+    <div className="flex object-contain justify-center mt-4">
+      <img src="https://assets.autorender.io/LOKVTtKVGb/doc1/porsche.jpg" alt="Original" className="border border-gray-200 dark:border-gray-800" />
+    </div>
+  </Tab>
+  <Tab title="Sharpen (+150)">
+    ```bash
+    https://assets.autorender.io/LOKVTtKVGb/e_sharpen:150/doc1/porsche.jpg
+    ```
+    <div className="flex object-contain justify-center mt-4">
+      <img src="https://assets.autorender.io/LOKVTtKVGb/e_sharpen:150/doc1/porsche.jpg" alt="Sharpen" className="border border-gray-200 dark:border-gray-800" />
+    </div>
+  </Tab>
+  <Tab title="Structure (+50)">
+    ```bash
+    https://assets.autorender.io/LOKVTtKVGb/e_structure:50/doc1/porsche.jpg
+    ```
+    <div className="flex object-contain justify-center mt-4">
+      <img src="https://assets.autorender.io/LOKVTtKVGb/e_structure:50/doc1/porsche.jpg" alt="Structure" className="border border-gray-200 dark:border-gray-800" />
+    </div>
+  </Tab>
 </Tabs>
 
-### Grayscale (`e_grayscale`)
+## Artistic Filters
 
-Converts image to grayscale.
+Apply creative and aesthetic looks.
 
-**Format:** `e_grayscale`
+| Filter       | Parameter      | Range        | Description                                  |
+| ------------ | -------------- | ------------ | -------------------------------------------- |
+| Grayscale    | `e_grayscale`  | -            | Classic black and white conversion           |
+| Fade         | `e_fade`       | `0` to `100` | Vintage washed-out appearance                |
+| Vignette     | `e_vignette`   | `0` to `100` | Darkens the edges of the image               |
+| Blur         | `e_blur`       | `0.3` to `1k`| Gaussian blur effect                         |
+| Invert       | `e_invert`     | -            | Negative image effect                        |
 
-### Black & White (`e_blackwhite`)
-
-Converts to black and white with threshold control.
-
-**Format:** `e_blackwhite:{level}`
-- **Range:** `0` to `100`
-- **Effect:** Controls the threshold for black/white conversion
-
-### Invert (`e_invert`)
-
-Creates a negative/inverted image.
-
-**Format:** `e_invert`
-
-## Effects & Filters
-
-Apply artistic effects and filters.
-
-### Fade (`e_fade`)
-
-Creates a vintage faded look.
-
-**Format:** `e_fade:{level}`
-- **Range:** `0` to `100`
-- **Higher values:** More faded appearance
-
-```bash
-https://assets.autorender.io/LOKVTtKVGb/e_fade:60/doc1/porsche.jpg
-```
-
-<img src="https://assets.autorender.io/LOKVTtKVGb/e_fade:60/doc1/porsche.jpg" alt="Faded effect" style={{ width: 360, maxWidth: '100%', height: 'auto', borderRadius: '0.5rem', display: 'block', marginLeft: 'auto', marginRight: 'auto', objectFit: 'contain' }} />
-
-### Vignette (`e_vignette`)
-
-Darkens the edges of the image.
-
-**Format:** `e_vignette:{level}`
-- **Range:** `0` to `100`
-- **Higher values:** Stronger vignette effect
-
-```bash
-https://assets.autorender.io/LOKVTtKVGb/e_vignette:45/doc1/porsche.jpg
-```
-
-<img src="https://assets.autorender.io/LOKVTtKVGb/e_vignette:45/doc1/porsche.jpg" alt="Vignette effect" style={{ width: 360, maxWidth: '100%', height: 'auto', borderRadius: '0.5rem', display: 'block', marginLeft: 'auto', marginRight: 'auto', objectFit: 'contain' }} />
-
-### Blur (`e_blur`)
-
-Applies Gaussian blur effect.
-
-**Format:** `e_blur:{radius}`
-- **Range:** `0.3` to `1000`
-- **Higher values:** More blur
-
-```bash
-https://assets.autorender.io/LOKVTtKVGb/e_blur:5/doc1/porsche.jpg
-```
-
-<img src="https://assets.autorender.io/LOKVTtKVGb/e_blur:5/doc1/porsche.jpg" alt="Blur effect" style={{ width: 360, maxWidth: '100%', height: 'auto', borderRadius: '0.5rem', display: 'block', marginLeft: 'auto', marginRight: 'auto', objectFit: 'contain' }} />
-
-### Median Filter (`e_median`)
-
-Reduces noise while preserving edges.
-
-**Format:** `e_median:{size}`
-- **Range:** `3` to `15` (odd numbers)
-- **Effect:** Noise reduction filter
-
-```bash
-https://assets.autorender.io/LOKVTtKVGb/e_median:5/doc1/porsche.jpg
-```
-
-<img src="https://assets.autorender.io/LOKVTtKVGb/e_median:5/doc1/porsche.jpg" alt="Median filter" style={{ width: 360, maxWidth: '100%', height: 'auto', borderRadius: '0.5rem', display: 'block', marginLeft: 'auto', marginRight: 'auto', objectFit: 'contain' }} />
+<Tabs>
+  <Tab title="Grayscale">
+    ```bash
+    https://assets.autorender.io/LOKVTtKVGb/e_grayscale/doc1/porsche.jpg
+    ```
+    <div className="flex object-contain justify-center mt-4">
+      <img src="https://assets.autorender.io/LOKVTtKVGb/e_grayscale/doc1/porsche.jpg" alt="Grayscale" className="border border-gray-200 dark:border-gray-800" />
+    </div>
+  </Tab>
+  <Tab title="Vintage (Fade)">
+    ```bash
+    https://assets.autorender.io/LOKVTtKVGb/e_fade:60/doc1/porsche.jpg
+    ```
+    <div className="flex object-contain justify-center mt-4">
+      <img src="https://assets.autorender.io/LOKVTtKVGb/e_fade:60/doc1/porsche.jpg" alt="Fade" className="border border-gray-200 dark:border-gray-800" />
+    </div>
+  </Tab>
+  <Tab title="Vignette">
+    ```bash
+    https://assets.autorender.io/LOKVTtKVGb/e_vignette:50/doc1/porsche.jpg
+    ```
+    <div className="flex object-contain justify-center mt-4">
+      <img src="https://assets.autorender.io/LOKVTtKVGb/e_vignette:50/doc1/porsche.jpg" alt="Vignette" className="border border-gray-200 dark:border-gray-800" />
+    </div>
+  </Tab>
+</Tabs>
 
 ## Auto Enhancements
 
-Automatic image optimization.
+Let AutoRender intelligently optimize your images.
 
-### Auto Enhance (`e_auto_enhance`)
-
-Automatically optimizes image quality.
-
-**Format:** `e_auto_enhance`
+- **Auto Enhance (`e_auto_enhance`)**: Broad optimization for clarity and color.
+- **Normalize (`e_normalize`)**: Stretches dynamic range for better contrast.
+- **Improve (`e_improve`)**: Scene-specific optimization (modes: `indoor`, `outdoor`).
 
 ```bash
 https://assets.autorender.io/LOKVTtKVGb/e_auto_enhance/doc1/porsche.jpg
 ```
 
-<img src="https://assets.autorender.io/LOKVTtKVGb/e_auto_enhance/doc1/porsche.jpg" alt="Auto enhanced" style={{ width: 360, maxWidth: '100%', height: 'auto', borderRadius: '0.5rem', display: 'block', marginLeft: 'auto', marginRight: 'auto', objectFit: 'contain' }} />
-
-### Normalize (`e_normalize`)
-
-Auto-stretches dynamic range for better contrast.
-
-**Format:** `e_normalize`
-
-```bash
-https://assets.autorender.io/LOKVTtKVGb/e_normalize/doc1/porsche.jpg
-```
-
-<img src="https://assets.autorender.io/LOKVTtKVGb/e_normalize/doc1/porsche.jpg" alt="Normalized" style={{ width: 360, maxWidth: '100%', height: 'auto', borderRadius: '0.5rem', display: 'block', marginLeft: 'auto', marginRight: 'auto', objectFit: 'contain' }} />
-
-### Improve (`e_improve`)
-
-Scene-specific optimization.
-
-**Format:** `e_improve` or `e_improve:{mode}` or `e_improve:{mode}:{blend}`
-- **Modes:** `indoor`, `outdoor`
-- **Blend:** `0` to `100` (optional)
-
-```bash
-https://assets.autorender.io/LOKVTtKVGb/e_improve/doc1/porsche.jpg
-```
-
-<img src="https://assets.autorender.io/LOKVTtKVGb/e_improve/doc1/porsche.jpg" alt="Improved" style={{ width: 360, maxWidth: '100%', height: 'auto', borderRadius: '0.5rem', display: 'block', marginLeft: 'auto', marginRight: 'auto', objectFit: 'contain' }} />
-
-Indoor scene optimization:
-
-```bash
-https://assets.autorender.io/LOKVTtKVGb/e_improve:indoor/doc1/porsche.jpg
-```
-
-<img src="https://assets.autorender.io/LOKVTtKVGb/e_improve:indoor/doc1/porsche.jpg" alt="Indoor improvement" style={{ width: 360, maxWidth: '100%', height: 'auto', borderRadius: '0.5rem', display: 'block', marginLeft: 'auto', marginRight: 'auto', objectFit: 'contain' }} />
-
-Outdoor scene with blend control:
-
-```bash
-https://assets.autorender.io/LOKVTtKVGb/e_improve:outdoor:80/doc1/porsche.jpg
-```
-
-<img src="https://assets.autorender.io/LOKVTtKVGb/e_improve:outdoor:80/doc1/porsche.jpg" alt="Outdoor improvement" style={{ width: 360, maxWidth: '100%', height: 'auto', borderRadius: '0.5rem', display: 'block', marginLeft: 'auto', marginRight: 'auto', objectFit: 'contain' }} />
-
-## Advanced Effects
-
-Advanced image processing operations.
-
-### Linear Adjust (`e_linear`)
-
-Mathematical pixel transformation: `output = a × input + b`
-
-**Format:** `e_linear:{a}` or `e_linear:{a}:{b}`
-- **`a`**: Multiplier (scaling factor)
-- **`b`**: Offset (addition factor)
-
-```bash
-https://assets.autorender.io/LOKVTtKVGb/e_linear:1.2/doc1/porsche.jpg
-```
-
-<img src="https://assets.autorender.io/LOKVTtKVGb/e_linear:1.2/doc1/porsche.jpg" alt="Linear adjust" style={{ width: 360, maxWidth: '100%', height: 'auto', borderRadius: '0.5rem', display: 'block', marginLeft: 'auto', marginRight: 'auto', objectFit: 'contain' }} />
-
-Brightness with offset:
-
-```bash
-https://assets.autorender.io/LOKVTtKVGb/e_linear:1.2:10/doc1/porsche.jpg
-```
-
-<img src="https://assets.autorender.io/LOKVTtKVGb/e_linear:1.2:10/doc1/porsche.jpg" alt="Linear adjust with offset" style={{ width: 360, maxWidth: '100%', height: 'auto', borderRadius: '0.5rem', display: 'block', marginLeft: 'auto', marginRight: 'auto', objectFit: 'contain' }} />
-
-### Threshold (`e_threshold`)
-
-Converts to binary black/white.
-
-**Format:** `e_threshold:{value}` or `e_threshold:{value}:gray`
-- **Range:** `0` to `255`
-- **Optional:** `:gray` for grayscale threshold
-
-```bash
-https://assets.autorender.io/LOKVTtKVGb/e_threshold:128/doc1/porsche.jpg
-```
-
-<img src="https://assets.autorender.io/LOKVTtKVGb/e_threshold:128/doc1/porsche.jpg" alt="Threshold" style={{ width: 360, maxWidth: '100%', height: 'auto', borderRadius: '0.5rem', display: 'block', marginLeft: 'auto', marginRight: 'auto', objectFit: 'contain' }} />
-
-### Flatten (`e_flatten`)
-
-Removes alpha channel, flattens transparency.
-
-**Format:** `e_flatten`
-
-```bash
-https://assets.autorender.io/LOKVTtKVGb/e_flatten/doc1/porsche.jpg
-```
-
-<img src="https://assets.autorender.io/LOKVTtKVGb/e_flatten/doc1/porsche.jpg" alt="Flattened" style={{ width: 360, maxWidth: '100%', height: 'auto', borderRadius: '0.5rem', display: 'block', marginLeft: 'auto', marginRight: 'auto', objectFit: 'contain' }} />
-
-### Unflatten (`e_unflatten`)
-
-Adds alpha channel to image.
-
-**Format:** `e_unflatten`
-
-```bash
-https://assets.autorender.io/LOKVTtKVGb/e_unflatten/doc1/porsche.jpg
-```
-
-<img src="https://assets.autorender.io/LOKVTtKVGb/e_unflatten/doc1/porsche.jpg" alt="Unflattened" style={{ width: 360, maxWidth: '100%', height: 'auto', borderRadius: '0.5rem', display: 'block', marginLeft: 'auto', marginRight: 'auto', objectFit: 'contain' }} />
-
-### Extend (`e_extend`)
-
-Adds padding around the image.
-
-**Format:** `e_extend:{top}:{right}:{bottom}:{left}:{color}`
-- **Color:** `white`, `black`, `rgb:RRGGBB`
-
-```bash
-https://assets.autorender.io/LOKVTtKVGb/e_extend:10:10:10:10:white/doc1/porsche.jpg
-```
-
-<img src="https://assets.autorender.io/LOKVTtKVGb/e_extend:10:10:10:10:white/doc1/porsche.jpg" alt="Extended with padding" style={{ width: 360, maxWidth: '100%', height: 'auto', borderRadius: '0.5rem', display: 'block', marginLeft: 'auto', marginRight: 'auto', objectFit: 'contain' }} />
-
-### Affine Transform (`e_affine`)
-
-Applies a 2D affine transformation matrix to the image.
-
-**Format:** `e_affine:{a},{b},{c},{d}`
-- **Matrix values:** Four numbers defining the transformation matrix
-- **Effect:** Allows rotation, scaling, shearing, and reflection
-
-```bash
-https://assets.autorender.io/LOKVTtKVGb/e_affine:1,0,0.5,1/doc1/porsche.jpg
-```
-
-<img src="https://assets.autorender.io/LOKVTtKVGb/e_affine:1,0,0.5,1/doc1/porsche.jpg" alt="Affine transform" style={{ width: 360, maxWidth: '100%', height: 'auto', borderRadius: '0.5rem', display: 'block', marginLeft: 'auto', marginRight: 'auto', objectFit: 'contain' }} />
-
-**Use cases:**
-- Advanced geometric transformations
-- Custom rotations and scaling
-- Perspective corrections
-- Image distortion effects
-
-### Extract Channel (`e_extract`)
-
-Extracts a single color channel from the image.
-
-**Format:** `e_extract:{channel}`
-- **Channels:** `red`/`r`, `green`/`g`, `blue`/`b`, `alpha`/`a`
-
-```bash
-https://assets.autorender.io/LOKVTtKVGb/e_extract:red/doc1/porsche.jpg
-```
-
-<img src="https://assets.autorender.io/LOKVTtKVGb/e_extract:red/doc1/porsche.jpg" alt="Extract red channel" style={{ width: 360, maxWidth: '100%', height: 'auto', borderRadius: '0.5rem', display: 'block', marginLeft: 'auto', marginRight: 'auto', objectFit: 'contain' }} />
-
-Extract green channel:
-
-```bash
-https://assets.autorender.io/LOKVTtKVGb/e_extract:green/doc1/porsche.jpg
-```
-
-Extract blue channel:
-
-```bash
-https://assets.autorender.io/LOKVTtKVGb/e_extract:blue/doc1/porsche.jpg
-```
-
-Extract alpha channel:
-
-```bash
-https://assets.autorender.io/LOKVTtKVGb/e_extract:alpha/doc1/porsche.jpg
-```
-
-**Use cases:**
-- Channel analysis
-- Color separation
-- Mask extraction
-- Image processing workflows
-
-### Ensure Alpha (`e_ensure_alpha`)
-
-Adds an alpha channel to the image if it doesn't already have one.
-
-**Format:** `e_ensure_alpha`
-
-```bash
-https://assets.autorender.io/LOKVTtKVGb/e_ensure_alpha/doc1/porsche.jpg
-```
-
-<img src="https://assets.autorender.io/LOKVTtKVGb/e_ensure_alpha/doc1/porsche.jpg" alt="Ensure alpha" style={{ width: 360, maxWidth: '100%', height: 'auto', borderRadius: '0.5rem', display: 'block', marginLeft: 'auto', marginRight: 'auto', objectFit: 'contain' }} />
-
-**Use cases:**
-- Preparing images for transparency operations
-- Ensuring compatibility with layer operations
-- Alpha channel manipulation workflows
-
-### Remove Alpha (`e_remove_alpha`)
-
-Removes the alpha channel and replaces transparency with a background color.
-
-**Format:** `e_remove_alpha` or `e_remove_alpha:{color}`
-- **Color:** `white`, `black`, `rgb:RRGGBB` (optional, defaults to white)
-
-```bash
-https://assets.autorender.io/LOKVTtKVGb/e_remove_alpha/doc1/porsche.jpg
-```
-
-<img src="https://assets.autorender.io/LOKVTtKVGb/e_remove_alpha/doc1/porsche.jpg" alt="Remove alpha" style={{ width: 360, maxWidth: '100%', height: 'auto', borderRadius: '0.5rem', display: 'block', marginLeft: 'auto', marginRight: 'auto', objectFit: 'contain' }} />
-
-Remove alpha with custom background:
-
-```bash
-https://assets.autorender.io/LOKVTtKVGb/e_remove_alpha:rgb:FF0000/doc1/porsche.jpg
-```
-
-**Use cases:**
-- Flattening transparent images
-- Converting PNG to JPEG
-- Removing transparency for compatibility
-- Adding solid backgrounds to transparent images
-
-## Combining Effects
-
-You can combine multiple effects for professional results:
-
-Compare different effect combinations:
-
-<Tabs>
-<Tab title="Original">
-```bash
-https://assets.autorender.io/LOKVTtKVGb/doc1/porsche.jpg
-```
-
-<img src="https://assets.autorender.io/LOKVTtKVGb/doc1/porsche.jpg" alt="Original image" style={{ width: 360, maxWidth: '100%', height: 'auto', borderRadius: '0.5rem', display: 'block', marginLeft: 'auto', marginRight: 'auto', objectFit: 'contain' }} />
-</Tab>
-
-<Tab title="Professional Portrait">
-Professional portrait enhancement:
-
-```bash
-https://assets.autorender.io/LOKVTtKVGb/w_360,e_auto_enhance,e_warmth:25,e_shadows:30,e_highlights:-20,e_structure:25,e_vignette:40/doc1/porsche.jpg
-```
-
-<img src="https://assets.autorender.io/LOKVTtKVGb/w_360,e_auto_enhance,e_warmth:25,e_shadows:30,e_highlights:-20,e_structure:25,e_vignette:40/doc1/porsche.jpg" alt="Professional portrait" style={{ width: 360, maxWidth: '100%', height: 'auto', borderRadius: '0.5rem', display: 'block', marginLeft: 'auto', marginRight: 'auto', objectFit: 'contain' }} />
-</Tab>
-
-<Tab title="Vibrant Landscape">
-Vibrant landscape:
-
-```bash
-https://assets.autorender.io/LOKVTtKVGb/w_360,e_normalize,e_saturation:35,e_contrast:20,e_structure:40,e_sharpen:120/doc1/porsche.jpg
-```
-
-<img src="https://assets.autorender.io/LOKVTtKVGb/w_360,e_normalize,e_saturation:35,e_contrast:20,e_structure:40,e_sharpen:120/doc1/porsche.jpg" alt="Vibrant landscape" style={{ width: 360, maxWidth: '100%', height: 'auto', borderRadius: '0.5rem', display: 'block', marginLeft: 'auto', marginRight: 'auto', objectFit: 'contain' }} />
-</Tab>
-
-<Tab title="Vintage Effect">
-Vintage effect:
-
-```bash
-https://assets.autorender.io/LOKVTtKVGb/e_fade:70,e_temperature:40,e_saturation:-20,e_vignette:60/doc1/porsche.jpg
-```
-
-<img src="https://assets.autorender.io/LOKVTtKVGb/e_fade:70,e_temperature:40,e_saturation:-20,e_vignette:60/doc1/porsche.jpg" alt="Vintage effect" style={{ width: 360, maxWidth: '100%', height: 'auto', borderRadius: '0.5rem', display: 'block', marginLeft: 'auto', marginRight: 'auto', objectFit: 'contain' }} />
-</Tab>
-</Tabs>
-
-## Effect Processing Order
-
-AutoRender applies effects in an optimized order for best results:
-
-1. Auto Enhance (`e_auto_enhance`)
-2. Normalize (`e_normalize`)
-3. Exposure & Tonal (`e_exposure`, `e_highlights`, `e_shadows`)
-4. Basic Adjustments (`e_brightness`, `e_contrast`, `e_saturation`)
-5. Color Adjustments (`e_hue`, `e_temperature`, `e_warmth`, `e_tint`)
-6. Gamma (`e_gamma`)
-7. Color Space (`e_invert`, `e_grayscale`, `e_blackwhite`)
-8. Fade (`e_fade`)
-9. Structure (`e_structure`)
-10. Sharpening (`e_unsharp_mask`, `e_sharpen`)
-11. Vignette (`e_vignette`)
-12. Scene Improvements (`e_improve`)
-
-<Note>
-  Effects are automatically ordered for optimal results, so you don't need to worry about the order when specifying multiple effects in your URL.
-</Note>
-
 ## Best Practices
 
-### Effect Combinations
-
-- **Portraits:** `e_auto_enhance`, `e_warmth`, `e_shadows`, `e_structure`, `e_vignette`
-- **Landscapes:** `e_normalize`, `e_saturation`, `e_contrast`, `e_structure`, `e_sharpen`
-- **Product Photos:** `e_auto_enhance`, `e_brightness`, `e_sharpen`, `e_contrast`
-- **Vintage Look:** `e_fade`, `e_temperature`, `e_saturation`, `e_vignette`
-
-### Performance
-
-- Effects processing is optimized for performance
-- Multiple effects can be combined efficiently
-- Cached results improve performance for repeated requests
-
-### Quality Considerations
-
-- Use moderate values for natural-looking results
-- Extreme values may produce artifacts
-- Test combinations to find the best balance
-
-## Examples
-
-### Example 1: Color Enhancement
-
-Increase saturation and add warmth:
-
-```bash
-https://assets.autorender.io/LOKVTtKVGb/e_saturation:30,e_warmth:25/doc1/porsche.jpg
-```
-
-<img src="https://assets.autorender.io/LOKVTtKVGb/e_saturation:30,e_warmth:25/doc1/porsche.jpg" alt="Color enhancement" style={{ width: 360, maxWidth: '100%', height: 'auto', borderRadius: '0.5rem', display: 'block', marginLeft: 'auto', marginRight: 'auto', objectFit: 'contain' }} />
-
-### Example 2: Professional Portrait
-
-Auto enhance with tonal adjustments:
-
-```bash
-https://assets.autorender.io/LOKVTtKVGb/e_auto_enhance,e_warmth:25,e_shadows:30,e_structure:25/doc1/porsche.jpg
-```
-
-<img src="https://assets.autorender.io/LOKVTtKVGb/e_auto_enhance,e_warmth:25,e_shadows:30,e_structure:25/doc1/porsche.jpg" alt="Professional portrait" style={{ width: 360, maxWidth: '100%', height: 'auto', borderRadius: '0.5rem', display: 'block', marginLeft: 'auto', marginRight: 'auto', objectFit: 'contain' }} />
-
-### Example 3: Dramatic Black & White
-
-Convert to grayscale with high contrast:
-
-```bash
-https://assets.autorender.io/LOKVTtKVGb/e_grayscale,e_contrast:40,e_structure:50/doc1/porsche.jpg
-```
-
-<img src="https://assets.autorender.io/LOKVTtKVGb/e_grayscale,e_contrast:40,e_structure:50/doc1/porsche.jpg" alt="Dramatic black and white" style={{ width: 360, maxWidth: '100%', height: 'auto', borderRadius: '0.5rem', display: 'block', marginLeft: 'auto', marginRight: 'auto', objectFit: 'contain' }} />
-
-### Example 4: Combined Transformations
-
-Resize, enhance, and apply effects:
-
-```bash
-https://assets.autorender.io/LOKVTtKVGb/w_360,e_saturation:25,e_contrast:15,e_sharpen:120,br_20/doc1/porsche.jpg
-```
-
-<img src="https://assets.autorender.io/LOKVTtKVGb/w_360,e_saturation:25,e_contrast:15,e_sharpen:120,br_20/doc1/porsche.jpg" alt="Combined transformations" style={{ width: 360, maxWidth: '100%', height: 'auto', borderRadius: '0.5rem', display: 'block', marginLeft: 'auto', marginRight: 'auto', objectFit: 'contain' }} />
-
+- **Order Matters**: Effects are applied in an optimized pipeline (Enhancements → Tonal → Color → Sharpen → Output).
+- **Subtle Adjustments**: Large values often look artificial. Start with 10-20% and adjust.
+- **Combined Effects**: You can chain multiple effects: `e_brightness:10,e_saturation:20,e_sharpen`.
+- **Performance**: Chaining effects does not significantly impact delivery speed as they are processed in a single pass.

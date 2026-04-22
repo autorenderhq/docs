@@ -1,0 +1,33 @@
+---
+title: "Google Cloud Storage"
+description: "Connect your GCS buckets to AutoRender."
+---
+
+Connect your Google Cloud Storage (GCS) buckets to AutoRender to serve and transform assets stored on Google Cloud.
+
+![Google Cloud Storage Configuration](https://assets.autorender.io/LOKVTtKVGb/doc1/external-storage-gcp.png)
+
+### Configuration Fields
+
+To set up a GCS source, you will need to provide:
+
+| Field | Description |
+| :--- | :--- |
+| **Origin Name** | A unique name for this source, used in your transformation URLs (e.g., `https://assets.autorender.io/{workspace}.{origin}/{file_path}`). |
+| **Bucket Name** | The name of your Google Cloud Storage bucket. |
+| **Service Account JSON** | The full JSON content of your Google Cloud service account key. |
+
+### Where to find this information
+
+1.  **Bucket Name**: Listed in the **Cloud Storage Browser** in your Google Cloud Console.
+2.  **Service Account JSON**:
+    *   Go to **IAM & Admin** → **Service Accounts**.
+    *   Create a new service account (e.g., `autorender-read-only`).
+    *   Grant it the **Storage Object Viewer** role for the specific bucket or project.
+    *   Navigate to the **Keys** tab for the service account.
+    *   Click **Add Key** → **Create new key** → **JSON**.
+    *   Download the file and paste its entire contents into the AutoRender configuration field.
+
+<Important>
+  Keep your Service Account JSON secure. AutoRender encrypts this data immediately upon submission and will never display it again.
+</Important>
