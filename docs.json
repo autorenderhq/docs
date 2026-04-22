@@ -3,73 +3,88 @@
   "theme": "mint",
   "name": "AutoRender Docs",
   "colors": {
-    "primary": "#16A34A",
-    "light": "#07C983",
-    "dark": "#15803D"
+    "primary": "#0F172A",
+    "light": "#4F46E5",
+    "dark": "#020617"
   },
   "favicon": "/favicon.ico",
+  "logo": {
+    "light": "/logo/light.svg",
+    "dark": "/logo/dark.svg"
+  },
   "navigation": {
     "tabs": [
       {
-        "tab": "Guides",
+        "tab": "Home",
         "groups": [
           {
-            "group": "Image Transformation",
+            "group": "Overview",
             "pages": [
-              "essentials/automatic",
-              "essentials/resize",
-              "essentials/crop",
-              "essentials/zoom",
-              "essentials/rotate",
-              "essentials/flip",
-              "essentials/border-radius",
-              {
-                "group": "Effects",
-                "pages": [
-                  "essentials/effects",
-                  "essentials/effects/brightness",
-                  "essentials/effects/contrast",
-                  "essentials/effects/saturation",
-                  "essentials/effects/exposure",
-                  "essentials/effects/sharpen",
-                  "essentials/effects/grayscale"
-                ]
-              },
-              "essentials/layers",
-              "essentials/recipes"
-            ]
-          },
-          {
-            "group": "Video Transformation",
-            "pages": [
-              "essentials/video/overview",
-              "essentials/video/thumbnail",
-              "essentials/video/resize",
-              "essentials/video/pad-resize",
-              "essentials/video/flip",
-              "essentials/video/gif",
-              "essentials/video/trim",
-              "essentials/video/aspect-ratio",
-              "essentials/video/rotate"
+              "index"
             ]
           }
         ]
       },
       {
-        "tab": "Industries",
+        "tab": "Guides",
         "groups": [
           {
-            "group": "Quick Commerce",
+            "group": "Getting Started",
             "pages": [
-              "blog/quick-commerce-best-practices",
+              "getting-started/quickstart",
               {
-                "group": "Guides",
+                "group": "External storage",
                 "pages": [
-                  "blog/quick-commerce/getting-started",
-                  "blog/quick-commerce/best-practices",
-                  "blog/quick-commerce/examples",
-                  "blog/quick-commerce/advanced",
-                  "blog/quick-commerce/performance"
+                  "integrations/external-storage/overview",
+                  "integrations/external-storage/s3",
+                  "integrations/external-storage/azure",
+                  "integrations/external-storage/gcp"
+                ]
+              },
+              {
+                "group": "SDKs",
+                "pages": [
+                  "getting-started/sdks/overview",
+                  "getting-started/sdks/javascript",
+                  "getting-started/sdks/react",
+                  "getting-started/sdks/vue",
+                  "getting-started/sdks/svelte",
+                  "getting-started/sdks/nextjs",
+                  "getting-started/sdks/angular"
+                ]
+              }
+            ]
+          },
+          {
+            "group": "IMAGE & VIDEO API",
+            "pages": [
+              "essentials/transformations",
+              {
+                "group": "Image",
+                "pages": [
+                  "essentials/overview",
+                  "essentials/automatic",
+                  "essentials/resize",
+                  "essentials/crop",
+                  "essentials/zoom",
+                  "essentials/rotate",
+                  "essentials/flip",
+                  "essentials/effects",
+                  "essentials/text-layers",
+                  "essentials/image-layers",
+                  "essentials/recipes"
+                ]
+              },
+              {
+                "group": "Video",
+                "pages": [
+                  "essentials/video/overview",
+                  "essentials/video/thumbnail",
+                  "essentials/video/resize",
+                  "essentials/video/trim",
+                  "essentials/video/rotate",
+                  "essentials/video/flip",
+                  "essentials/video/gif"
                 ]
               }
             ]
@@ -77,60 +92,95 @@
         ]
       },
       {
-        "tab": "API reference",
+        "tab": "API Reference",
         "groups": [
           {
-            "group": "Upload",
+            "group": "GET STARTED",
             "pages": [
-              "api-reference/direct-upload",
-              "api-reference/multipart-start",
-              "api-reference/multipart-upload-parts",
-              "api-reference/multipart-complete"
+              "api-reference/authentication"
             ]
           },
           {
-            "group": "File Management",
+            "group": "ENDPOINTS",
             "pages": [
-              "api-reference/list-files",
-              "api-reference/get-file-details",
-              "api-reference/rename-file",
-              "api-reference/delete-file"
+              {
+                "group": "Upload",
+                "pages": [
+                  "api-reference/direct-upload",
+                  {
+                    "group": "Multipart Upload",
+                    "pages": [
+                      "api-reference/multipart-start",
+                      "api-reference/multipart-upload-parts",
+                      "api-reference/multipart-complete"
+                    ]
+                  }
+                ]
+              },
+              {
+                "group": "File Management",
+                "pages": [
+                  "api-reference/list-files",
+                  "api-reference/get-file-details",
+                  "api-reference/rename-file",
+                  "api-reference/delete-file"
+                ]
+              },
+              {
+                "group": "Folder Management",
+                "pages": [
+                  "api-reference/list-folders",
+                  "api-reference/create-folder",
+                  "api-reference/rename-folder",
+                  "api-reference/delete-folder"
+                ]
+              }
             ]
-          },
+          }
+        ]
+      },
+      {
+        "tab": "MCP Server",
+        "groups": [
           {
-            "group": "Folder Management",
+            "group": "Documentation",
             "pages": [
-              "api-reference/list-folders",
-              "api-reference/create-folder",
-              "api-reference/rename-folder",
-              "api-reference/delete-folder"
+              "mcp-server/overview"
             ]
           }
         ]
       }
     ]
   },
-  "logo": {
-    "light": "/logo/light.svg",
-    "dark": "/logo/dark.svg"
-  },
   "navbar": {
     "primary": {
       "type": "button",
-      "label": "Login",
+      "label": "Open Dashboard",
       "href": "https://app.autorender.io"
     }
   },
   "contextual": {
     "options": [
-     "copy",
-     "view",
-     "chatgpt",
-     "claude",
-     "perplexity",
-     "mcp",
-     "cursor",
-     "vscode"
-   ]
+      "copy",
+      "view",
+      "chatgpt",
+      "claude",
+      "cursor",
+      "vscode"
+    ]
+  },
+  "fonts": {
+    "heading": {
+      "family": "Geist",
+      "source": "https://unpkg.com/geist@1.5.1/dist/fonts/geist-sans/Geist-Bold.woff2",
+      "format": "woff2",
+      "weight": 800
+    },
+    "body": {
+      "family": "Geist",
+      "source": "https://unpkg.com/geist@1.5.1/dist/fonts/geist-sans/Geist-Regular.woff2",
+      "format": "woff2",
+      "weight": 400
+    }
   }
 }

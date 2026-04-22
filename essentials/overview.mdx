@@ -1,12 +1,60 @@
 ---
-title: 'Overview'
-description: 'Learn about AutoRender dynamic URL transformations'
-icon: 'gear'
+title: "Overview"
+description: "Learn how to transform images using the AutoRender.io URL-based transformation parameters."
 ---
 
-## Overview
+<div className="flex gap-4 text-sm text-gray-500 dark:text-gray-400 mb-8">
+  <a href="#" className="flex items-center gap-1"><Icon icon="copy" /> Copy for LLM</a>
+  <a href="#" className="flex items-center gap-1"><Icon icon="file-code" /> View Markdown</a>
+</div>
 
-AutoRender's dynamic URL transformations enable you to programmatically generate multiple variations of your high quality original images on the fly, without the need for graphic designers and fancy editing tools.
+AutoRender lets you manipulate images on-the-fly using URL-based transformations. You can resize, crop, rotate, and apply various other transformations to images using simple URL parameters.
 
-You can build these URLs manually in your code, or take advantage of AutoRender's SDKs, which enable you to write your transformation code using intuitive syntax designed for your preferred programming language or framework and let the SDK automatically build these URLs for you.
+## Basic example
 
+Here's the basic structure of a URL-based image transformation:
+
+<div className="ar-url-block">
+  <span className="ar-domain">https://assets.autorender.io/</span>
+  <span className="ar-workspace">LOKVTtKVGb</span>
+  <span>/</span>
+  <span className="ar-transform">w_300,h_300</span>
+  <span>/</span>
+  <span className="ar-path">example-asset.jpg</span>
+</div>
+
+<Tabs>
+  <Tab title="Resized with as 300px">
+    ```text
+    https://assets.autorender.io/LOKVTtKVGb/fo_face,w_300/doc1/face-crop.jpg
+    ```
+    <div className="flex object-contain justify-center">
+    <img src="https://assets.autorender.io/LOKVTtKVGb/fo_face,w_300/doc1/face-crop.jpg" alt="200px wide image" className="flex object-contain justify-center" />
+    </div>
+  </Tab>
+  <Tab title="Avatar image">
+    ```text
+  https://assets.autorender.io/LOKVTtKVGb/fo_face,w_300,h_300,br_150/doc1/face-crop.jpg
+    ```
+    <div className="flex object-contain justify-center">
+    <img src="https://assets.autorender.io/LOKVTtKVGb/fo_face,w_300,h_300,br_150/doc1/face-crop.jpg" alt="Avatar image"/>
+    </div>
+  </Tab>
+</Tabs>
+
+## Transformation Summary
+
+| Category | Parameter | Example | Description |
+| :--- | :--- | :--- | :--- |
+| **Dimensions** | `w_{n}` | `w_500` | Width in pixels |
+| | `h_{n}` | `h_500` | Height in pixels |
+| | `ar_{ratio}` | `ar_1:1` | Aspect ratio |
+| **Crop Modes** | `c_fill` | `c_fill` | Fill dimensions (crops excess) |
+| | `c_fit` | `c_fit` | Fit within dimensions (no crop) |
+| **Positioning**| `p_{gravity}` | `p_face` | Center transformation on face/object |
+| | `ps_{x,y}` | `ps_10,20` | Specific X,Y coordinate positioning |
+| **Effects** | `e_{effect}` | `e_grayscale` | Apply filter (grayscale, blur, etc.) |
+| **Format** | `f_{type}` | `f_webp` | Output format (webp, auto, jpg, png) |
+| **Quality** | `q_{n}` | `q_auto` | Output quality (auto, 1-100) |
+| **Flip** | `flip_h` / `flip_v` / `flip_hv` | `flip_h` | Horizontal, vertical, or both |
+| **Rotation** | `r_{deg}` | `r_90` | Rotate 90, 180, or 270 degrees |

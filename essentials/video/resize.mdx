@@ -1,68 +1,92 @@
 ---
-title: "Resize"
-description: "Resize video by width, height, or both using AutoRender video parameters"
-icon: "arrows-maximize"
+title: "Resize & Aspect Ratio"
+description: "Control video dimensions and proportions for any player or platform"
 ---
 
 ## Overview
 
-Resize video by specifying width only, or both width and height. Dimensions are automatically rounded to even values for encoding compatibility. When only width is specified, height is derived to maintain aspect ratio.
+AutoRender allows you to resize videos to exact dimensions or force specific aspect ratios while maintaining visual quality. Dimensions are automatically optimized for video encoding compatibility.
 
-Previews below use **fit** (contain): the image or video is shown at the dimensions from the URL (`w_` / `h_`) and scales down only if needed to fit the page; aspect ratio is preserved and nothing is cropped.
+## Basic Resize - (w, h)
 
-### URL Structure
+Specify the output width and height in pixels. If only one dimension is provided, the other is calculated automatically to maintain the original proportion.
 
-AutoRender video URLs with resize follow this structure:
-
-```bash
-https://assets.autorender.io/LOKVTtKVGb/w_500/doc/skateboarding.mp4
-```
-
-<video src="https://assets.autorender.io/LOKVTtKVGb/w_500/doc/skateboarding.mp4" controls style={{ borderRadius: '0.5rem', maxWidth: '100%', display: 'block', marginLeft: 'auto', marginRight: 'auto', objectFit: 'contain' }} />
-
-## Width only vs width and height
-
-Compare width-only resize with exact width and height:
+| Parameter | Range        | Description                                  |
+| --------- | ------------ | -------------------------------------------- |
+| `w_`      | `1` to `4320`| Sets the output width                        |
+| `h_`      | `1` to `4320`| Sets the output height                       |
 
 <Tabs>
-<Tab title="Width only (w_500)">
-Resize to a specific width; height is calculated automatically to maintain aspect ratio:
-
-```bash
-https://assets.autorender.io/LOKVTtKVGb/w_500/doc/skateboarding.mp4
-```
-
-<video src="https://assets.autorender.io/LOKVTtKVGb/w_500/doc/skateboarding.mp4" controls style={{ borderRadius: '0.5rem', maxWidth: '100%', display: 'block', marginLeft: 'auto', marginRight: 'auto', objectFit: 'contain' }} />
-</Tab>
-
-<Tab title="Width & height (w_500,h_500)">
-Resize to exact dimensions. Combine with crop modes (e.g. `cm_pad_resize`) if you need padding or cropping behavior:
-
-```bash
-https://assets.autorender.io/LOKVTtKVGb/w_500,h_500/doc/skateboarding.mp4
-```
-
-<video src="https://assets.autorender.io/LOKVTtKVGb/w_500,h_500/doc/skateboarding.mp4" controls style={{ borderRadius: '0.5rem', maxWidth: '100%', display: 'block', marginLeft: 'auto', marginRight: 'auto', objectFit: 'contain' }} />
-</Tab>
-
-<Tab title="Width & height (w_100,h_100)">
-Resize to smaller exact dimensions (100×100). Useful for thumbnails or small previews:
-
-```bash
-https://assets.autorender.io/LOKVTtKVGb/w_100,h_100/doc/skateboarding.mp4
-```
-
-<video src="https://assets.autorender.io/LOKVTtKVGb/w_100,h_100/doc/skateboarding.mp4" controls style={{ borderRadius: '0.5rem', maxWidth: '100%', display: 'block', marginLeft: 'auto', marginRight: 'auto', objectFit: 'contain' }} />
-</Tab>
+  <Tab title="Original (16:9)">
+    <div className="flex object-contain justify-center mt-4">
+      <video src="https://assets.autorender.io/LOKVTtKVGb/doc/skateboarding.mp4" controls className="shadow-lg max-w-full" />
+    </div>
+  </Tab>
+  <Tab title="Resized (w_400)">
+    ```bash
+    https://assets.autorender.io/LOKVTtKVGb/w_400/doc/skateboarding.mp4
+    ```
+    <div className="flex object-contain justify-center mt-4">
+      <video src="https://assets.autorender.io/LOKVTtKVGb/w_400/doc/skateboarding.mp4" controls className="shadow-lg max-w-full" />
+    </div>
+  </Tab>
 </Tabs>
 
-## Parameters
+## Aspect Ratio - (ar)
 
-| Parameter | Format      | Description                    |
-| --------- | ----------- | ------------------------------ |
-| `w_{n}`   | `w_500`     | Width in pixels (1–10000)      |
-| `h_{n}`   | `h_500`     | Height in pixels (1–10000)    |
+Force a specific proportion (e.g., 1:1 for social feeds) regardless of the source video's original ratio.
 
-<Note>
-  Width and height are automatically rounded to even numbers for H.264 compatibility.
-</Note>
+**Common Ratios:** `ar_1:1`, `ar_16:9`, `ar_9:16`, `ar_4:5`
+
+<Tabs>
+  <Tab title="Original (16:9)">
+    <div className="flex object-contain justify-center mt-4">
+      <video src="https://assets.autorender.io/LOKVTtKVGb/doc/skateboarding.mp4" controls className="shadow-lg max-w-full" />
+    </div>
+  </Tab>
+  <Tab title="Square (ar_1:1)">
+    ```bash
+    https://assets.autorender.io/LOKVTtKVGb/w_400,ar_1:1/doc/skateboarding.mp4
+    ```
+    <div className="flex object-contain justify-center mt-4">
+      <video src="https://assets.autorender.io/LOKVTtKVGb/w_400,ar_1:1/doc/skateboarding.mp4" controls className="shadow-lg max-w-full" />
+    </div>
+  </Tab>
+</Tabs>
+
+## Padding & Extraction - (cm)
+
+Control how the video fills the specified dimensions. This is essential when trying to fit a widescreen video into a square frame without cropping important content.
+
+- **`cm_pad_resize`**: Resizes the video to fit within the dimensions and adds padding to fill the empty space.
+- **`cm_extract`**: Crops the video to fill the exact dimensions.
+
+### Background Color - (bg)
+
+When using `cm_pad_resize`, you can specify the color of the padding area.
+
+| Parameter | Values              | Description                                  |
+| --------- | ------------------- | -------------------------------------------- |
+| `bg_{c}`  | `white`, `000000`   | Sets the padding color (Name or Hex)         |
+
+<Tabs>
+  <Tab title="Original (16:9)">
+    <div className="flex object-contain justify-center mt-4">
+      <video src="https://assets.autorender.io/LOKVTtKVGb/doc/skateboarding.mp4" controls className="shadow-lg max-w-full" />
+    </div>
+  </Tab>
+  <Tab title="Padded (400x400)">
+    ```bash
+    https://assets.autorender.io/LOKVTtKVGb/w_400,h_400,cm_pad_resize,bg_white/doc/skateboarding.mp4
+    ```
+    <div className="flex object-contain justify-center mt-4">
+      <video src="https://assets.autorender.io/LOKVTtKVGb/w_400,h_400,cm_pad_resize,bg_white/doc/skateboarding.mp4" controls className="shadow-lg max-w-full" />
+    </div>
+  </Tab>
+</Tabs>
+
+## Best Practices
+
+- **Maintain Ratios**: Use `ar_` whenever possible to ensure your video stays correctly proportioned across devices.
+- **Optimization**: Smaller dimensions result in significantly faster initial processing and lower bandwidth costs.
+- **Encoding**: AutoRender handles all the technical complexity of aspect ratio padding and coordinate snapping for you.

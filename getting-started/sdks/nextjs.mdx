@@ -1,0 +1,152 @@
+---
+title: "Next.js"
+description: "Autorender SDK adapter for Next.js - Upload and ViewTag functionality."
+---
+
+## Installation
+
+```bash
+npm install @autorender/sdk-nextjs
+```
+
+## Next.js configuration
+
+Wrap your config with `withAutorender` in `next.config.js` or `next.config.ts`:
+
+```ts
+import type { NextConfig } from 'next';
+import { withAutorender } from '@autorender/sdk-nextjs/next-config';
+
+const nextConfig: NextConfig = {
+  // your other options
+};
+
+export default withAutorender(nextConfig);
+```
+
+## Upload SDK Usage
+
+```tsx
+'use client';
+
+import { AutorenderUploader } from '@autorender/sdk-nextjs';
+import '@autorender/sdk-nextjs/styles';
+
+export default function UploadPage() {
+  return (
+    <AutorenderUploader
+      apiKey={process.env.NEXT_PUBLIC_AUTORENDER_API_KEY!}
+      folderPath="uploads"
+    />
+  );
+}
+```
+
+## ViewTag SDK Usage
+
+### Setup Provider
+
+```tsx
+'use client';
+
+import { AutoRenderProvider } from '@autorender/sdk-nextjs';
+
+export default function RootLayout({ children }) {
+  return (
+    <AutoRenderProvider
+      baseUrl="https://assets.autorender.io"
+      workspace="ws_123"
+      defaults={{}}
+    >
+      {children}
+    </AutoRenderProvider>
+  );
+}
+```
+
+### Use ARImage Component
+
+```tsx
+'use client';
+
+import { ARImage } from '@autorender/sdk-nextjs';
+
+export default function ProductPage() {
+  return (
+    <ARImage
+      src="products/shoe.jpg"
+      width={400}
+      height={400}
+      alt="Shoe"
+      transformations={{ fit: 'cover' }}
+      responsive={true}
+      lazy={true}
+    />
+  );
+}
+```
+
+### Use ARVideo Component
+
+```tsx
+'use client';
+
+import { ARVideo } from '@autorender/sdk-nextjs';
+
+export default function ProductVideoPage() {
+  return (
+    <ARVideo
+      src="docs/skateboarding.mp4"
+      width={960}
+      height={540}
+      controls
+      preload="metadata"
+      transformations={{ w: 960, h: 540 }}
+    />
+  );
+}
+```
+
+### Complete Transform Example
+
+```tsx
+'use client';
+
+import { ARImage } from '@autorender/sdk-nextjs';
+import type { TransformOptions } from '@autorender/sdk-core';
+
+export default function HeroPage() {
+  const transform: TransformOptions = {
+    w: 1200,
+    h: 800,
+    fit: 'cover',
+    ar: '16:9',
+    position: 'center',
+    
+    improve: true,
+    sharpen: 50,
+    
+    layers: [
+      {
+        type: 'image',
+        imagePath: 'logo.png',
+        width: 200,
+        placement: 'north-east',
+      }
+    ],
+    blend: 'overlay',
+  };
+
+  return (
+    <ARImage
+      src="hero.jpg"
+      width={1200}
+      height={800}
+      alt="Hero image"
+      transformations={transform}
+      responsive={true}
+      className="hero-image"
+    />
+  );
+}
+```

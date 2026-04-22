@@ -11,38 +11,36 @@ The AutoRender API uses token-based authentication. You can generate an API toke
 Authorization: Bearer YOUR_API_TOKEN
 ```
 
-## Managing API Tokens
+## Obtaining an API Key
 
-You can manage your API tokens from your AutoRender workspace settings. Navigate to the API tokens section to create, view, and revoke your tokens.
+To get your API key, follow these simple steps within the AutoRender dashboard:
 
-### Create an API Token
+1. **Login** to the [AutoRender App](https://app.autorender.io).
+2. Navigate to **Settings** in the bottom-left sidebar.
+3. Click on the **API Key** tab.
+4. Click the **Create** button to generate your new secret token.
 
-To create a new API token, follow these steps:
-
-1. Navigate to your AutoRender workspace settings
-2. Click on the "API tokens" section in the sidebar
-3. Click the "Create API Token" button
-4. Enter a descriptive name for your token to help you identify its purpose
-5. Select an expiration period for the token
-6. Click "Create" to generate your new API token
+<div className="flex object-contain justify-center mt-6">
+  <img src="https://assets.autorender.io/LOKVTtKVGb/doc1/apikey-creation.png" alt="API Key Creation Dashboard" className="rounded-xl shadow-2xl border border-gray-200 dark:border-gray-800 max-w-full" />
+</div>
 
 <Warning>
-  Make sure to copy your API token immediately after creation, as it will only be displayed once for security reasons. Store it securely and never share it publicly.
+  **Security first**: Copy your API token immediately after creation. For your security, it will only be displayed once. If you lose it, you will need to revoke it and create a new one.
 </Warning>
 
 ### Revoke an API Token
 
-To revoke an API token that you no longer need or that may have been compromised, follow these steps:
+### Revoking an API Token
 
-1. Navigate to your AutoRender workspace settings
-2. Click on the "API tokens" section in the sidebar
-3. Find the API token you want to revoke in the list
-4. Click the "Revoke" button next to the token
-5. Confirm your password when prompted
-6. Click "Revoke API token" to permanently delete the token
+To permanently delete an API key that is no longer needed, follow these steps:
+
+1. **Login** to the [AutoRender App](https://app.autorender.io).
+2. Navigate to **Settings** in the bottom-left sidebar.
+3. Click on the **API Key** tab.
+4. Find the key in the list and click **Delete**.
 
 <Warning>
-  Once an API token is revoked, it cannot be restored. Any applications using this token will immediately lose access to the API. Make sure to update your applications with a new token before revoking the old one if you need continued access.
+  **Irreversible Action**: Once an API key is deleted, it cannot be restored. Any applications using that key will immediately lose access. Ensure you have replaced it with a new key in your production environment before deleting.
 </Warning>
 
 

@@ -1,10 +1,7 @@
 ---
 title: "Overview"
 description: "Video transformation URL structure, parameters reference, and best practices"
-icon: "video"
 ---
-
-## Overview
 
 AutoRender supports video transformations using the same URL-based pattern as images. You can generate thumbnails, resize videos, add padding, flip, convert to GIF, trim by start time and duration, apply aspect ratios, and rotate—all by appending transformation parameters to the video URL.
 
@@ -15,6 +12,18 @@ Video transformation URLs follow this structure:
 ```bash
 https://assets.autorender.io/{workspace}/{transformations}/{path/to/video.mp4}
 ```
+
+## Video Processing Lifecycle
+
+Unlike images, video transformations are processed asynchronously. When you request a new transformation for the first time, AutoRender returns a JSON status instead of the video file:
+
+1. **Triggered**: `{"status":"triggered", ...}` — The request has been received and queued.
+2. **Processing**: `{"status":"processing", ...}` — The video is currently being rendered.
+3. **Completed**: Once finished, the URL will automatically serve the transformed video file.
+
+<Info>
+  Subsequent requests for the same transformation are served instantly from the global CDN cache.
+</Info>
 
 - **Domain**: `https://assets.autorender.io` — AutoRender CDN
 - **Workspace**: Your workspace identifier (e.g. `LOKVTtKVGb`)
@@ -38,7 +47,7 @@ Parameters can be combined in one URL, comma-separated. Order does not need to m
 | **Crop/pad**  | `cm_pad_resize`  | `cm_pad_resize` | Pad and resize to fit |
 |               | `cm_extract`     | `cm_extract`  | Extract/crop region |
 | **Background**| `bg_{color}`     | `bg_white`    | Padding color (name or hex) |
-| **Time**      | `st_{sec}`       | `st_5`        | Start time (seconds) |
+| **Time**      | `so_{sec}`       | `so_5`        | Start offset (seconds) |
 |               | `d_{sec}`        | `d_10`        | Duration (seconds) |
 | **Format**    | `f_gif`          | `f_gif`       | Output as GIF |
 | **Flip**      | `flip_h` / `flip_v` / `flip_hv` | | Horizontal / vertical / both |
@@ -48,8 +57,8 @@ Parameters can be combined in one URL, comma-separated. Order does not need to m
 
 - **Thumbnails**: Use `thumb_ar` for preview images; they are generated once and then cached.
 - **Dimensions**: Width and height are rounded to even values for compatibility with common codecs.
-- **GIF**: Combine `f_gif` with `st_` and `d_` to control which part of the video becomes the GIF.
-- **Trim**: Use `st_` and `d_` for short clips to reduce size and processing time.
+- **GIF**: Combine `f_gif` with `so_` and `d_` to control which part of the video becomes the GIF.
+- **Trim**: Use `so_` and `d_` for short clips to reduce size and processing time.
 
 <Warning>
   Video transformations can take longer than image transformations. First request may return a processing status; retry or poll until the transformed asset is available.

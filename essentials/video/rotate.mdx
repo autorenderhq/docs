@@ -1,47 +1,48 @@
 ---
 title: "Rotate"
-description: "Rotate video by 90, 180, or 270 degrees"
-icon: "rotate-cw"
+description: "Correct video orientation by 90, 180, or 270 degrees"
 ---
 
 ## Overview
 
-Rotate the video by 90, 180, or 270 degrees. Use with width/height as needed for output dimensions. Useful for correcting orientation or fitting layout requirements.
+Rotate your video to correct its orientation or match your desired playback layout. AutoRender supports standard 90-degree step rotations.
 
-### URL Structure
+## Rotate Parameter - (r)
 
-```bash
-https://assets.autorender.io/LOKVTtKVGb/w_200,r_90/doc/skateboarding.mp4
-```
+Use the `r_` parameter followed by the rotation angle.
 
-<video src="https://assets.autorender.io/LOKVTtKVGb/w_200,r_90/doc/skateboarding.mp4" controls style={{ borderRadius: '0.5rem', maxWidth: '100%', display: 'block', marginLeft: 'auto', marginRight: 'auto', objectFit: 'contain' }} />
+| Parameter | Angle | Description                                  |
+| --------- | ----- | -------------------------------------------- |
+| `r_90`    | 90°   | Rotates clockwise by 90 degrees              |
+| `r_180`   | 180°  | Rotates 180 degrees (upside-down)            |
+| `r_270`   | 270°  | Rotates clockwise by 270 degrees             |
 
-## Parameters
+<Tabs>
+  <Tab title="Original">
+    <div className="flex object-contain justify-center mt-4">
+      <video src="https://assets.autorender.io/LOKVTtKVGb/w_400/doc/skateboarding.mp4" controls className="shadow-lg max-w-full" />
+    </div>
+  </Tab>
+  <Tab title="Rotate 90°">
+    ```bash
+    https://assets.autorender.io/LOKVTtKVGb/r_90,w_400/doc/skateboarding.mp4
+    ```
+    <div className="flex object-contain justify-center mt-4">
+      <video src="https://assets.autorender.io/LOKVTtKVGb/r_90,w_400/doc/skateboarding.mp4" controls className="max-w-full" />
+    </div>
+  </Tab>
+  <Tab title="Rotate 180°">
+    ```bash
+    https://assets.autorender.io/LOKVTtKVGb/r_180,w_400/doc/skateboarding.mp4
+    ```
+    <div className="flex object-contain justify-center mt-4">
+      <video src="https://assets.autorender.io/LOKVTtKVGb/r_180,w_400/doc/skateboarding.mp4" controls className="max-w-full" />
+    </div>
+  </Tab>
+</Tabs>
 
-| Parameter   | Format  | Description        |
-| ----------- | ------- | ------------------ |
-| `r_90`      | 90°     | Rotate 90 degrees  |
-| `r_180`     | 180°    | Rotate 180 degrees |
-| `r_270`     | 270°    | Rotate 270 degrees |
+## Best Practices
 
-## Examples
-
-200px width, rotated 90°:
-
-```bash
-https://assets.autorender.io/LOKVTtKVGb/w_200,r_90/doc/skateboarding.mp4
-```
-
-<video src="https://assets.autorender.io/LOKVTtKVGb/w_200,r_90/doc/skateboarding.mp4" controls style={{ borderRadius: '0.5rem', maxWidth: '100%', display: 'block', marginLeft: 'auto', marginRight: 'auto', objectFit: 'contain' }} />
-
-Rotate 180° (equivalent to `flip_hv`):
-
-```bash
-https://assets.autorender.io/LOKVTtKVGb/w_400,r_180/doc/skateboarding.mp4
-```
-
-<video src="https://assets.autorender.io/LOKVTtKVGb/w_400,r_180/doc/skateboarding.mp4" controls style={{ borderRadius: '0.5rem', maxWidth: '100%', display: 'block', marginLeft: 'auto', marginRight: 'auto', objectFit: 'contain' }} />
-
-<Note>
-  Only 90, 180, and 270 degree rotations are supported. Dimensions are adjusted automatically after rotation.
-</Note>
+- **Auto-Snap**: Output dimensions are automatically snapped to even values after rotation to ensure compatibility.
+- **Combined with Flip**: While `r_180` is same as `flip_hv`, using rotation is often more intuitive for orientation correction.
+- **Mobile Videos**: Essential for correcting videos captured vertically that need to be displayed in a horizontal player.

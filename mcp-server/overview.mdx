@@ -1,0 +1,44 @@
+---
+title: "MCP Server (Experimental)"
+description: "Connect AutoRender to your AI models using the Model Context Protocol."
+---
+
+<Warning>
+  The AutoRender MCP server is currently in an **Experimental Stage**. Expect frequent updates and potential breaking changes as we refine the interface.
+</Warning>
+
+AutoRender now supports the **Model Context Protocol (MCP)**, allowing you to connect our transformation tools directly to AI models like Claude. This enables LLMs to understand, manipulate, and generate media assets autonomously using the AutoRender API.
+
+### Connection URL
+
+Use the following endpoint to connect AutoRender as an MCP server:
+
+```text
+https://api-mcp.autorender.io/see
+```
+
+### Setup Flow
+
+#### 1. Add Connector
+In your LLM interface (e.g., Claude), navigate to **Connectors** and add a new custom MCP server using the connection URL provided above.
+
+#### 2. Authenticate
+Once you click **Connect**, you will be redirected to the AutoRender authorization page.
+
+![MCP Authorization](https://assets.autorender.io/LOKVTtKVGb/doc1/autorender-mcp.png)
+
+#### 3. Authorize with API Key
+Enter your **AutoRender API Key** from your [Dashboard Settings](https://app.autorender.io/settings) to authorize the connection. 
+
+<Note>
+  If you don't have an API key, follow our [Authentication Guide](/api-reference/authentication) to create one.
+</Note>
+
+#### 4. Success
+Once successfully connected, the LLM can access specific AutoRender tools. The server will automatically guide the LLM on how to use our APIs, making it easier than ever to integrate media processing into your AI workflows.
+
+### Why use the MCP Server?
+
+*   **AI-Driven Transformations**: Let the model decide the best crop or effect based on context.
+*   **Rapid Integration**: No need to write complex boilerplate for simple media tasks.
+*   **Interactive Testing**: Chat with your media library to experiment with different transformation strings.

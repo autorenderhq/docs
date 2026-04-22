@@ -1,118 +1,59 @@
-# AutoRender Video Transformations
-
-This guide lists the video transformation parameters, what they do, and practical examples.
+---
+title: "Video Reference"
+description: "Quick reference guide for all AutoRender video transformation parameters"
+---
 
 ## URL Format
+
+Standard AutoRender video URLs follow this structure:
 
 ```text
 https://assets.autorender.io/{workspace}/{transformations}/{path/to/video.mp4}
 ```
 
-Example base:
-
-```text
-https://assets.autorender.io/LOKVTtKVGb/{transformations}/doc/skateboarding.mp4
-```
-
-- `workspace`: your workspace id
-- `transformations`: comma-separated parameters
-- `path/to/video.mp4`: source video path
-
----
-
 ## Parameter Reference
 
-| Category | Param | Meaning | Example |
-|---|---|---|---|
-| Thumbnail | `thumb_ar` | Generate thumbnail (WebP), keep original aspect ratio | `thumb_ar` |
-| Size | `w_{n}` | Output width in pixels | `w_500` |
-| Size | `h_{n}` | Output height in pixels | `h_500` |
-| Aspect ratio | `ar_{ratio}` | Force output ratio | `ar_1:1` |
-| Crop/Pad | `cm_pad_resize` | Resize with padding to fit | `cm_pad_resize` |
-| Crop/Pad | `cm_extract` | Extract/crop region mode | `cm_extract` |
-| Background | `bg_{color}` | Pad color (name or hex) | `bg_white` |
-| Trim | `so_{sec}` | Start offset in seconds | `so_5` |
-| Trim | `eo_{sec}` | End offset in seconds | `eo_15` |
-| Format | `f_gif` | Convert output to GIF | `f_gif` |
-| Flip | `flip_h` | Horizontal flip | `flip_h` |
-| Flip | `flip_v` | Vertical flip | `flip_v` |
-| Flip | `flip_hv` | Horizontal + vertical flip | `flip_hv` |
-| Rotate | `r_{deg}` | Rotate by degrees | `r_90` |
+| Category      | Param        | Meaning                             | Example        |
+| ------------- | ------------ | ----------------------------------- | -------------- |
+| **Thumbnail** | `thumb_ar`   | Generate WebP thumbnail             | `thumb_ar`     |
+| **Size**      | `w_{n}`      | Output width                        | `w_500`        |
+| **Size**      | `h_{n}`      | Output height                       | `h_500`        |
+| **Ratio**     | `ar_{ratio}` | Force aspect ratio                  | `ar_16:9`      |
+| **Mode**      | `cm_pad_resize` | Resize with padding              | `cm_pad_resize`|
+| **Trim**      | `so_{sec}`   | Start offset                        | `so_5`         |
+| **Trim**      | `eo_{sec}`   | End offset                          | `eo_15`        |
+| **Format**    | `f_gif`      | Convert to GIF                      | `f_gif`        |
+| **Flip**      | `flip_h`     | Horizontal flip                     | `flip_h`       |
+| **Rotate**    | `r_{deg}`    | Rotate (90, 180, 270)               | `r_90`         |
 
----
+## Common Workflow Examples
 
-## Examples
-
-### 1) Thumbnail from video
-
+### 1. Generating a Video Thumbnail
+Returns a high-quality WebP image of the first frame.
 ```text
 https://assets.autorender.io/LOKVTtKVGb/thumb_ar/doc/skateboarding.mp4
 ```
 
-Returns a thumbnail image for preview cards/lists.
-
-### 2) Resize video
-
-```text
-https://assets.autorender.io/LOKVTtKVGb/w_500,h_500/doc/skateboarding.mp4
-```
-
-Good for standard player viewport sizes.
-
-### 3) Aspect-ratio output
-
+### 2. Social Media Ready (Square)
+Forces a 1:1 ratio and resizes for mobile feeds.
 ```text
 https://assets.autorender.io/LOKVTtKVGb/ar_1:1,w_500/doc/skateboarding.mp4
 ```
 
-Useful for square feed layouts.
-
-### 4) Pad resize with background
-
+### 3. Creating a 10s Preview Clip
+Trims the video from 5 to 15 seconds.
 ```text
-https://assets.autorender.io/LOKVTtKVGb/w_500,h_500,cm_pad_resize,bg_white/doc/skateboarding.mp4
+https://assets.autorender.io/LOKVTtKVGb/so_5,eo_15/doc/skateboarding.mp4
 ```
 
-Fits full source without cutting content; empty area is padded.
-
-### 5) Trim clip (start/end offsets)
-
+### 4. Animated GIF Preview
+Converts a trimmed segment to a lightweight GIF.
 ```text
-https://assets.autorender.io/LOKVTtKVGb/so_5,eo_15,w_500,h_500/doc/skateboarding.mp4
+https://assets.autorender.io/LOKVTtKVGb/f_gif,so_0,eo_5,w_300/doc/skateboarding.mp4
 ```
 
-Creates a clip from 5s to 15s, then resizes.
+## Best Practices
 
-### 6) Convert a trimmed segment to GIF
-
-```text
-https://assets.autorender.io/LOKVTtKVGb/w_500,h_500,f_gif,so_5,eo_15/doc/skateboarding.mp4
-```
-
-Great for short previews; keep duration small to control file size.
-
-### 7) Flip video
-
-```text
-https://assets.autorender.io/LOKVTtKVGb/w_500,flip_h/doc/skateboarding.mp4
-```
-
-Mirrors the video horizontally.
-
-### 8) Rotate video
-
-```text
-https://assets.autorender.io/LOKVTtKVGb/w_500,r_90/doc/skateboarding.mp4
-```
-
-Rotates output by 90 degrees.
-
----
-
-## Notes / Best Practices
-
-- First request can take longer (processing), later requests are usually cached.
-- For GIF output, use small dimensions and short trims to keep response size manageable.
-- Prefer combining only the params you need; simpler URLs are easier to debug.
-- Use `so_` and `eo_` for trim windows (start/end offsets).
-
+- **Caching**: The first request triggers processing; subsequent requests are served from the global CDN.
+- **Clip Length**: For GIF conversion, keep durations under 15 seconds for optimal performance.
+- **Responsive**: Use `ar_` with `w_` for flexible, responsive video layouts.

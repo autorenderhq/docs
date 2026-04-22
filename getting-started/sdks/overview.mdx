@@ -1,0 +1,52 @@
+---
+title: "Overview"
+description: "Integrate AutoRender into your application with quick start guides for different programming languages, frameworks, and CMS."
+---
+
+<div className="flex gap-4 text-sm text-gray-500 dark:text-gray-400 mb-8">
+  <a href="#" className="flex items-center gap-1"><Icon icon="copy" /> Copy for LLM</a>
+  <a href="#" className="flex items-center gap-1"><Icon icon="file-code" /> View Markdown</a>
+</div>
+
+We maintain SDKs for various front-end, back-end, and mobile platforms and have listed plugins in marketplaces like WordPress, Magento, etc. The following quick start guides will help you integrate AutoRender using SDKs.
+
+## Front-end
+
+Front-end guides cover the following media use cases:
+
+*   Loading optimized images & videos.
+*   Basic resizing & cropping of images & videos.
+*   Adding text & image overlays.
+*   Using chained transformations to apply multiple transformations in a single request.
+*   Lazy loading images.
+*   Low-quality image placeholders.
+*   File upload, tagging, and metadata operations.
+
+### Upload SDK
+
+AutoRender provides a powerful, easy-to-integrate Upload SDK that handles everything from file selection to real-time progress tracking. It works as a plug-and-play component for any web application, allowing your users to upload media assets directly to your workspace with minimal configuration.
+
+<div className="grid grid-cols-2 gap-2 mb-4">
+  <img src="https://assets.autorender.io/LOKVTtKVGb/upload-sdk.png" className="rounded-lg border border-gray-200 dark:border-gray-800 max-h-[150px] object-contain mx-auto" />
+  <img src="https://assets.autorender.io/LOKVTtKVGb/upload-sdk-complete.png" className="rounded-lg border border-gray-200 dark:border-gray-800 max-h-[150px] object-contain mx-auto" />
+</div>
+
+### View SDK
+
+The View SDK (also known as ViewTag) replaces standard HTML image tags with intelligent components. It automatically handles complex tasks like generating responsive image sets, managing Device Pixel Ratio (DPR), and implementing advanced lazy loading. By using the View SDK, you ensure that your media is always optimized for the user's specific device and connection.
+
+Choose your technology to get started with AutoRender:
+
+<CardGroup cols={2}>
+  <Card title="Angular" icon="angular" iconType="brands" href="/getting-started/sdks/angular" />
+  <Card title="JavaScript" icon="js" iconType="brands" href="/getting-started/sdks/javascript" />
+  <Card title="Next.js" icon="n" iconType="solid" href="/getting-started/sdks/nextjs" />
+  <Card title="React" icon="react" iconType="brands" href="/getting-started/sdks/react" />
+  <Card title="Svelte" icon="bolt" iconType="solid" href="/getting-started/sdks/svelte" />
+  <Card title="Vue.js" icon="vuejs" iconType="brands" href="/getting-started/sdks/vue" />
+</CardGroup>
+
+<Note>
+  All front-end SDKs use the **AutoRender JavaScript SDK**. For more control and customization, use the JS SDK directly in your application.
+</Note>
+

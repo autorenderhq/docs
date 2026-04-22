@@ -1,29 +1,90 @@
-/* AutoRender CDN URL Visualization Styles - Cloudinary-style segmented URLs */
+:root {
+  --ar-border: rgba(30, 41, 59, 0.14);
+  --ar-text: #0f172a;
+  --ar-accent: #4f46e5;
+  --ar-radius: 14px;
+}
 
+/* Hide search bar as requested */
+#search-bar-entry,
+#search-bar-entry-mobile {
+  display: none !important;
+}
+
+/* Subtle, Mintlify-friendly polish */
+.ar-hero {
+  padding: 20px 22px;
+  border: 1px solid var(--ar-border);
+  border-radius: 18px;
+  background: linear-gradient(135deg, rgba(79, 70, 229, 0.12), rgba(14, 165, 233, 0.06));
+  margin-bottom: 16px;
+}
+
+.ar-hero h2 {
+  margin: 0 0 8px;
+  font-size: 1.9rem;
+  line-height: 1.2;
+  color: var(--ar-text);
+}
+
+.ar-hero p {
+  margin: 0;
+}
+
+.ar-eyebrow {
+  letter-spacing: 0.08em;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--ar-accent);
+  margin-bottom: 8px !important;
+}
+
+img.rounded-xl {
+  border-radius: 16px;
+}
+
+img.border {
+  border: 1px solid var(--ar-border);
+}
+
+.card,
+[data-component='card'] {
+  border-radius: var(--ar-radius) !important;
+  border: 1px solid var(--ar-border) !important;
+  background: linear-gradient(180deg, #ffffff 0%, #fbfcff 100%);
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.card:hover,
+[data-component='card']:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(79, 70, 229, 0.12);
+  border-color: rgba(79, 70, 229, 0.24) !important;
+}
+
+/* Existing segmented URL helper */
 .ar-url-block {
-  font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Fira Code', 'Droid Sans Mono', 'Source Code Pro', 'Courier New', monospace;
-  font-size: 0; /* Remove whitespace between inline elements */
+  font-family: 'Geist Mono', 'SF Mono', 'Monaco', 'Inconsolata', 'Fira Code', 'Courier New', monospace;
+  font-size: 0;
   line-height: 1.5;
   padding: 12px 16px;
-  border-radius: 6px;
+  border-radius: 8px;
   display: block;
   overflow-x: auto;
   margin: 1rem 0;
   text-decoration: none;
   white-space: nowrap;
-  /* Light mode (default) - Cloudinary style */
   background: #f8f9fa;
-  border: 1px solid #e1e4e8;
-  color: #24292e;
+  border: 1px solid #e2e8f0;
+  color: #0f172a;
 }
 
-/* Remove whitespace from all nested elements */
 .ar-url-block * {
   font-size: 0;
   white-space: nowrap;
 }
 
-/* Remove hyperlink behavior - make URLs non-clickable */
 .ar-url-block,
 .ar-url-block span,
 .ar-url-block a {
@@ -33,31 +94,10 @@
   user-select: text;
 }
 
-/* Prevent any anchor tags from being clickable */
 .ar-url-block a {
-  pointer-events: none !important;
-  cursor: default !important;
   color: inherit;
 }
 
-/* Ensure no hover effects on URL blocks */
-.ar-url-block:hover,
-.ar-url-block a:hover,
-.ar-url-block span:hover {
-  text-decoration: none !important;
-  cursor: default !important;
-}
-
-/* Dark mode support - Cloudinary style */
-@media (prefers-color-scheme: dark) {
-  .ar-url-block {
-    background: #161b22;
-    border: 1px solid #30363d;
-    color: #c9d1d9;
-  }
-}
-
-/* Cloudinary-style segmented colors - restore font-size and apply colors */
 .ar-url-block span,
 .ar-url-block a,
 .ar-url-block span[data-as],
@@ -69,100 +109,63 @@
   text-decoration: none;
 }
 
-/* Domain - Gray (like Cloudinary's prefix) */
 .ar-domain,
 .ar-domain a {
-  color: #6a737d;
-  font-weight: 400;
+  color: #64748b;
+  font-weight: 500;
+}
+
+.ar-workspace {
+  color: #4f46e5;
+  font-weight: 600;
+}
+
+.ar-transform {
+  color: #db2777;
+  font-weight: 600;
+}
+
+.ar-path {
+  color: #059669;
+  font-weight: 600;
 }
 
 @media (prefers-color-scheme: dark) {
+  :root {
+    --ar-border: rgba(148, 163, 184, 0.26);
+    --ar-text: #e2e8f0;
+    --ar-accent: #a5b4fc;
+  }
+
+  .ar-hero {
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.24), rgba(14, 165, 233, 0.16));
+  }
+
+  .card,
+  [data-component='card'] {
+    background: linear-gradient(180deg, rgba(15, 23, 42, 0.86) 0%, rgba(15, 23, 42, 0.72) 100%);
+  }
+
+  .ar-url-block {
+    background: #0b1220;
+    border: 1px solid #334155;
+    color: #cbd5e1;
+  }
+
   .ar-domain,
   .ar-domain a {
-    color: #8b949e;
+    color: #94a3b8;
   }
-}
 
-/* Workspace - Teal/Cyan (like Cloudinary's kind) */
-.ar-workspace {
-  color: #0969da;
-  font-weight: 400;
-}
-
-@media (prefers-color-scheme: dark) {
   .ar-workspace {
-    color: #58a6ff;
+    color: #a5b4fc;
   }
-}
 
-/* Transformations - Red/Orange (like Cloudinary's transformation) */
-.ar-transform {
-  color: #cf222e;
-  font-weight: 400;
-}
-
-@media (prefers-color-scheme: dark) {
   .ar-transform {
-    color: #f85149;
+    color: #f472b6;
   }
-}
 
-/* Image Path - Green (like Cloudinary's publicId) */
-.ar-path {
-  color: #1a7f37;
-  font-weight: 400;
-}
-
-@media (prefers-color-scheme: dark) {
   .ar-path {
-    color: #3fb950;
+    color: #34d399;
   }
-}
-
-/* URL Open Button Styles */
-.ar-url-button {
-  display: inline-block;
-  margin-top: 8px;
-  padding: 6px 12px;
-  background-color: #0070f3;
-  color: white;
-  text-decoration: none;
-  border-radius: 4px;
-  font-size: 14px;
-  transition: background-color 0.2s;
-}
-
-.ar-url-button:hover {
-  background-color: #0051cc;
-  color: white;
-  text-decoration: none;
-}
-
-.ar-url-buttons {
-  display: flex;
-  gap: 8px;
-  margin-top: 8px;
-}
-
-.ar-url-buttons .ar-url-button {
-  margin-top: 0;
-}
-
-/* Embedded URL Images */
-.ar-url-image {
-  max-width: 100%;
-  margin-top: 16px;
-  border-radius: 4px;
-  display: block;
-}
-
-.ar-responsive-images {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  margin-top: 16px;
-}
-
-.ar-responsive-images .ar-url-image {
-  margin-top: 8px;
 }

@@ -1,0 +1,53 @@
+---
+title: "Quickstart"
+description: "Go from zero to a production-ready transformed URL in under 10 minutes."
+---
+
+<div className="flex gap-4 text-sm text-gray-500 dark:text-gray-400 mb-8">
+  <a href="#" className="flex items-center gap-1"><Icon icon="copy" /> Copy for LLM</a>
+  <a href="#" className="flex items-center gap-1"><Icon icon="file-code" /> View Markdown</a>
+</div>
+
+## What you need
+
+- An AutoRender account
+- One image file (JPG/PNG)
+- Your workspace ID
+
+## Step 1: Create/select workspace
+
+1. Sign in to [AutoRender](https://app.autorender.io).
+2. Copy your workspace ID from settings/dashboard.
+
+<Note>
+  The workspace ID is required in every delivery URL.
+</Note>
+
+## Step 2: Upload one test image
+
+Upload a test file such as `shoe.jpg` in the dashboard and place it in a predictable path (for example `products/shoe.jpg`).
+
+## Step 3: Generate your first transformed URL
+
+```text
+https://assets.autorender.io/{workspace_id}/w_800,h_800,c_fill/{file_path}
+```
+
+Example:
+
+```text
+https://assets.autorender.io/WORKSPACE123/w_800,h_800,c_fill/products/shoe.jpg
+```
+
+## Step 4: Add optimization defaults
+
+```text
+https://assets.autorender.io/WORKSPACE123/w_800,h_800,c_fill,q_auto,f_auto/products/shoe.jpg
+```
+
+`q_auto,f_auto` is the safest default for better load speed with minimal quality trade-offs.
+
+## Next steps
+
+- Learn token combinations in [First transformed image](/getting-started/first-image)
+- Implement backend uploads in [Upload assets with API](/getting-started/upload-assets)

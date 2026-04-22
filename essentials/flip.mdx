@@ -1,233 +1,66 @@
 ---
-title: 'Flip'
-description: 'Learn how to flip images horizontally and vertically using AutoRender flip parameter'
-icon: 'arrows-left-right'
+title: "Flip"
+description: "Learn how to flip images horizontally and vertically using AutoRender flip parameter"
 ---
 
 ## Overview
 
-AutoRender's flip feature allows you to mirror images horizontally, vertically, or both. Flipping is useful for correcting mirrored images, creating symmetrical designs, or adjusting image orientation for different use cases.
+AutoRender's flip feature allows you to mirror images horizontally, vertically, or both. Flipping is useful for correcting mirrored images, creating symmetrical designs, or adjusting image orientation for better presentation.
 
-### URL Structure
+## Flip Parameter - (f)
 
-AutoRender URLs with flip follow this structure:
-
-```bash
-https://assets.autorender.io/LOKVTtKVGb/w_360,flip_h/doc1/gpose.jpg
-```
-
-<img src="https://assets.autorender.io/LOKVTtKVGb/w_360,flip_h/doc1/gpose.jpg" alt="Flipped image" style={{ width: 360, maxWidth: '100%', height: 'auto', borderRadius: '0.5rem', display: 'block', marginLeft: 'auto', marginRight: 'auto', objectFit: 'contain' }} />
-
-## How Flipping Works
-
-Flipping mirrors the image along an axis:
-- **Horizontal flip** (`flip_h`): Mirrors the image left-to-right
-- **Vertical flip** (`flip_v`): Mirrors the image top-to-bottom
-- **Both** (`flip_hv`): Mirrors the image both horizontally and vertically (equivalent to 180° rotation)
-
-Compare different flip directions:
-
-<Tabs>
-<Tab title="Original">
-```bash
-https://assets.autorender.io/LOKVTtKVGb/w_360/doc1/gpose.jpg
-```
-
-<img src="https://assets.autorender.io/LOKVTtKVGb/w_360/doc1/gpose.jpg" alt="Original image" style={{ width: 360, maxWidth: '100%', height: 'auto', borderRadius: '0.5rem', display: 'block', marginLeft: 'auto', marginRight: 'auto', objectFit: 'contain' }} />
-</Tab>
-
-<Tab title="Horizontal (flip_h)">
-Flip the image horizontally (left-to-right mirror):
-
-```bash
-https://assets.autorender.io/LOKVTtKVGb/w_360,flip_h/doc1/gpose.jpg
-```
-
-<img src="https://assets.autorender.io/LOKVTtKVGb/w_360,flip_h/doc1/gpose.jpg" alt="Horizontal flip" style={{ width: 360, maxWidth: '100%', height: 'auto', borderRadius: '0.5rem', display: 'block', marginLeft: 'auto', marginRight: 'auto', objectFit: 'contain' }} />
-</Tab>
-
-<Tab title="Vertical (flip_v)">
-Flip the image vertically (top-to-bottom mirror):
-
-```bash
-https://assets.autorender.io/LOKVTtKVGb/w_360,flip_v/doc1/gpose.jpg
-```
-
-<img src="https://assets.autorender.io/LOKVTtKVGb/w_360,flip_v/doc1/gpose.jpg" alt="Vertical flip" style={{ width: 360, maxWidth: '100%', height: 'auto', borderRadius: '0.5rem', display: 'block', marginLeft: 'auto', marginRight: 'auto', objectFit: 'contain' }} />
-</Tab>
-
-<Tab title="Both (flip_hv)">
-Flip the image both horizontally and vertically:
-
-```bash
-https://assets.autorender.io/LOKVTtKVGb/w_360,flip_hv/doc1/gpose.jpg
-```
-
-<img src="https://assets.autorender.io/LOKVTtKVGb/w_360,flip_hv/doc1/gpose.jpg" alt="Flip both" style={{ width: 360, maxWidth: '100%', height: 'auto', borderRadius: '0.5rem', display: 'block', marginLeft: 'auto', marginRight: 'auto', objectFit: 'contain' }} />
-</Tab>
-</Tabs>
-
-## Horizontal Flip
-
-Flip the image horizontally (left-to-right mirror).
-
-**Use cases:**
-- Correcting mirrored selfies
-- Creating symmetrical designs
-- Adjusting text direction
-- Product photography adjustments
-
-## Vertical Flip
-
-Flip the image vertically (top-to-bottom mirror).
-
-**Use cases:**
-- Creating upside-down effects
-- Correcting inverted images
-- Artistic effects
-- Reflection effects
-
-## Flip Both
-
-Flip the image both horizontally and vertically.
+The flip parameter mirrors the image along a specified axis.
 
 <Note>
-  Flipping both horizontally and vertically (`flip_hv`) produces the same result as rotating the image 180 degrees (`r_180`).
+  Flipping mirrors the content without rotating it. Combining horizontal and vertical flips (`flip_hv`) is equivalent to a 180° rotation.
 </Note>
 
-## Combining Flip with Other Transformations
+<Tabs>
+  <Tab title="Original">
+    ```text
+    https://assets.autorender.io/LOKVTtKVGb/w_360/doc1/gpose.jpg
+    ```
+    <div className="flex object-contain justify-center mt-4">
+      <img src="https://assets.autorender.io/LOKVTtKVGb/w_360/doc1/gpose.jpg" alt="Original image" className="border border-gray-200 dark:border-gray-800" />
+    </div>
+  </Tab>
+  <Tab title="Horizontal (flip_h)">
+    ```bash
+    https://assets.autorender.io/LOKVTtKVGb/w_360,flip_h/doc1/gpose.jpg
+    ```
+    <div className="flex object-contain justify-center mt-4">
+      <img src="https://assets.autorender.io/LOKVTtKVGb/w_360,flip_h/doc1/gpose.jpg" alt="Horizontal flip" className="border border-gray-200 dark:border-gray-800" />
+    </div>
+  </Tab>
+  <Tab title="Vertical (flip_v)">
+    ```bash
+    https://assets.autorender.io/LOKVTtKVGb/w_360,flip_v/doc1/gpose.jpg
+    ```
+    <div className="flex object-contain justify-center mt-4">
+      <img src="https://assets.autorender.io/LOKVTtKVGb/w_360,flip_v/doc1/gpose.jpg" alt="Vertical flip" className="border border-gray-200 dark:border-gray-800" />
+    </div>
+  </Tab>
+  <Tab title="Both (flip_hv)">
+    ```bash
+    https://assets.autorender.io/LOKVTtKVGb/w_360,flip_hv/doc1/gpose.jpg
+    ```
+    <div className="flex object-contain justify-center mt-4">
+      <img src="https://assets.autorender.io/LOKVTtKVGb/w_360,flip_hv/doc1/gpose.jpg" alt="Flip both" className="border border-gray-200 dark:border-gray-800" />
+    </div>
+  </Tab>
+</Tabs>
 
-Flip works well when combined with other transformations like resize, crop, and rotation.
+### Flip Modes
 
-### Flip with Resize
-
-Flip horizontally, then resize to 360px width:
-
-```bash
-https://assets.autorender.io/LOKVTtKVGb/flip_h,w_360/doc1/gpose.jpg
-```
-
-<img src="https://assets.autorender.io/LOKVTtKVGb/flip_h,w_360/doc1/gpose.jpg" alt="Flip with resize" style={{ width: 360, maxWidth: '100%', height: 'auto', borderRadius: '0.5rem', display: 'block', marginLeft: 'auto', marginRight: 'auto', objectFit: 'contain' }} />
-
-### Flip with Crop
-
-Flip vertically, then crop to 360×360:
-
-```bash
-https://assets.autorender.io/LOKVTtKVGb/flip_v,w_360,h_360,c_crop/doc1/gpose.jpg
-```
-
-<img src="https://assets.autorender.io/LOKVTtKVGb/flip_v,w_360,h_360,c_crop/doc1/gpose.jpg" alt="Flip with crop" style={{ width: 360, maxWidth: '100%', height: 'auto', borderRadius: '0.5rem', display: 'block', marginLeft: 'auto', marginRight: 'auto', objectFit: 'contain' }} />
-
-### Flip with Rotation
-
-Flip horizontally, then rotate 90 degrees:
-
-```bash
-https://assets.autorender.io/LOKVTtKVGb/flip_h,r_90,w_360/doc1/gpose.jpg
-```
-
-<img src="https://assets.autorender.io/LOKVTtKVGb/flip_h,r_90,w_360/doc1/gpose.jpg" alt="Flip with rotation" style={{ width: 360, maxWidth: '100%', height: 'auto', borderRadius: '0.5rem', display: 'block', marginLeft: 'auto', marginRight: 'auto', objectFit: 'contain' }} />
-
-## Use Cases
-
-### Correcting Mirrored Images
-
-Fix images that were captured in mirror mode:
-
-Correct selfie taken in mirror:
-
-```bash
-https://assets.autorender.io/LOKVTtKVGb/flip_h/doc1/gpose.jpg
-```
-
-### Creating Symmetrical Designs
-
-Create symmetrical patterns and designs:
-
-Horizontal symmetry:
-
-```bash
-https://assets.autorender.io/LOKVTtKVGb/flip_h,w_360/doc1/gpose.jpg
-```
-
-Vertical symmetry:
-
-```bash
-https://assets.autorender.io/LOKVTtKVGb/flip_v,w_360/doc1/gpose.jpg
-```
-
-### Product Photography
-
-Adjust product images for different viewing angles:
-
-Flip product for different perspective:
-
-```bash
-https://assets.autorender.io/LOKVTtKVGb/flip_h,w_360,h_360,c_crop/doc1/gpose.jpg
-```
-
-### Text and Logo Adjustments
-
-Correct text direction or logo orientation:
-
-Flip text/image that was mirrored:
-
-```bash
-https://assets.autorender.io/LOKVTtKVGb/flip_h/doc1/gpose.jpg
-```
+| Mode      | Description                                      |
+| --------- | ------------------------------------------------ |
+| `flip_h`  | Mirrors the image horizontally (Left-to-Right)   |
+| `flip_v`  | Mirrors the image vertically (Top-to-Bottom)     |
+| `flip_hv` | Mirrors the image on both axes                    |
 
 ## Best Practices
 
-### When to Use Each Flip Type
-
-- **Horizontal flip** (`flip_h`): Most common, used for correcting mirrored images
-- **Vertical flip** (`flip_v`): Less common, used for artistic effects or corrections
-- **Both** (`flip_hv`): Equivalent to 180° rotation, use when you need both axes flipped
-
-### Performance
-
-- Flip processing is very fast and efficient
-- No quality loss when flipping
-- Cached results improve performance for repeated requests
-
-### Combining with Other Transformations
-
-- Flip is typically applied after resize and crop operations
-- Flip can be combined with rotation for complex orientations
-- Consider the final use case when deciding flip direction
-
-## Examples
-
-### Example 1: Simple Horizontal Flip
-
-```bash
-https://assets.autorender.io/LOKVTtKVGb/w_360,flip_h/doc1/gpose.jpg
-```
-
-<img src="https://assets.autorender.io/LOKVTtKVGb/w_360,flip_h/doc1/gpose.jpg" alt="Simple horizontal flip" style={{ width: 360, maxWidth: '100%', height: 'auto', borderRadius: '0.5rem', display: 'block', marginLeft: 'auto', marginRight: 'auto', objectFit: 'contain' }} />
-
-### Example 2: Flip with Resize
-
-```bash
-https://assets.autorender.io/LOKVTtKVGb/flip_h,w_360/doc1/gpose.jpg
-```
-
-<img src="https://assets.autorender.io/LOKVTtKVGb/flip_h,w_360/doc1/gpose.jpg" alt="Flip with resize" style={{ width: 360, maxWidth: '100%', height: 'auto', borderRadius: '0.5rem', display: 'block', marginLeft: 'auto', marginRight: 'auto', objectFit: 'contain' }} />
-
-### Example 3: Flip with Crop
-
-```bash
-https://assets.autorender.io/LOKVTtKVGb/flip_v,w_360,h_360,c_crop/doc1/gpose.jpg
-```
-
-<img src="https://assets.autorender.io/LOKVTtKVGb/flip_v,w_360,h_360,c_crop/doc1/gpose.jpg" alt="Flip with crop" style={{ width: 360, maxWidth: '100%', height: 'auto', borderRadius: '0.5rem', display: 'block', marginLeft: 'auto', marginRight: 'auto', objectFit: 'contain' }} />
-
-### Example 4: Flip Both Directions
-
-```bash
-https://assets.autorender.io/LOKVTtKVGb/w_360,flip_hv/doc1/gpose.jpg
-```
-
-<img src="https://assets.autorender.io/LOKVTtKVGb/w_360,flip_hv/doc1/gpose.jpg" alt="Flip both" style={{ width: 360, maxWidth: '100%', height: 'auto', borderRadius: '0.5rem', display: 'block', marginLeft: 'auto', marginRight: 'auto', objectFit: 'contain' }} />
-
+- **Correct Orientation**: Use `flip_h` to correct "mirror mode" selfies or product photos.
+- **Symmetry**: Combine flipped versions of the same image to create symmetrical layouts.
+- **Transformation Order**: Flip is typically applied after basic resizing but before adding text or image layers.
+- **Performance**: Flip operations are instantaneous and do not affect image quality or processing time.

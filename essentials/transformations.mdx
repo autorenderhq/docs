@@ -1,0 +1,57 @@
+---
+title: "Overview"
+description: "Learn how URL-based transformations work in AutoRender and how to adapt media assets to your requirements."
+---
+
+<div className="flex gap-4 text-sm text-gray-500 dark:text-gray-400 mb-8">
+  <a href="#" className="flex items-center gap-1"><Icon icon="copy" /> Copy for LLM</a>
+  <a href="#" className="flex items-center gap-1"><Icon icon="file-code" /> View Markdown</a>
+</div>
+
+AutoRender offers 50+ real-time URL-based transformations, empowering you to adapt your media assets to your needs. These transformations enable you to resize, crop, rotate, and optimize images and videos on the fly. You can even add text and image overlays to create personalized and captivating media experiences.
+
+With AutoRender, engineering teams can modify assets on the fly without generating and storing multiple versions of the same asset. This allows you to avoid the complexity of multiple asynchronous tools and provider-specific processing implementations. AutoRender's developer-friendly, real-time media processing API simplifies your workflow, allowing you to quickly create high-quality, media-rich experiences.
+
+## Basic example and URL structure
+
+You can apply transformations by adding specific parameters to the asset's URL. When a request is made to the transformed URL, AutoRender processes the request and returns the transformed asset.
+
+Here's the basic structure of a URL-based transformation:
+
+<div className="ar-url-block">
+  <span className="ar-domain">https://assets.autorender.io/</span>
+  <span className="ar-workspace">demo</span>
+  <span>/</span>
+  <span className="ar-transform">w_300,h_300</span>
+  <span>/</span>
+  <span className="ar-path">example-asset.jpg</span>
+</div>
+
+For example, let's say you have an image asset at the following URL:
+
+```text
+https://assets.autorender.io/demo/example-asset.jpg
+```
+
+To resize this image to 300x300 pixels, you can append the `w_300,h_300` transformation parameter to the asset URL as shown above.
+
+
+<Tabs>
+  <Tab title="Original image">
+    ```text
+    https://assets.autorender.io/LOKVTtKVGb/doc1/earring.jpg
+    ```
+    <div className="flex object-contain justify-center">
+    <img src="https://assets.autorender.io/LOKVTtKVGb/doc1/earring.jpg" alt="200px wide image" className="flex object-contain justify-center" />
+    </div>
+  </Tab>
+  <Tab title="Resized 300x300 image">
+    ```text
+    https://assets.autorender.io/LOKVTtKVGb/w_360,h_360/doc1/earring.jpg
+    ```
+    <div className="flex object-contain justify-center">
+    <img src="https://assets.autorender.io/LOKVTtKVGb/w_360,h_360/doc1/earring.jpg" alt="Avatar image"/>
+    </div>
+  </Tab>
+</Tabs>
+

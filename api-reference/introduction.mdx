@@ -1,33 +1,44 @@
 ---
-title: 'Introduction'
-description: 'Example section for showcasing API endpoints'
+title: "AutoRender API"
+description: "Everything you need to know to use AutoRender's APIs."
 ---
 
-<Note>
-  If you're not looking to build API reference documentation, you can delete
-  this section by removing the api-reference folder.
-</Note>
+<div className="flex items-center gap-2 mb-8">
+  <h1 className="text-4xl font-bold">AutoRender API</h1>
+  <span className="bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 text-xs px-2 py-1 rounded">v1.0.0</span>
+</div>
 
-## Welcome
+<div className="border border-gray-200 dark:border-gray-800 rounded-lg mb-8 overflow-hidden">
+  <div className="bg-gray-50 dark:bg-white/5 px-4 py-2 border-b border-gray-200 dark:border-gray-800 font-semibold text-sm">
+    API Base URL
+  </div>
+  <div className="p-4 bg-white dark:bg-transparent">
+    <div className="flex gap-2 text-sm">
+      <span className="font-semibold text-gray-700 dark:text-gray-300">Live Server:</span>
+      <code className="text-blue-600 dark:text-blue-400">https://api.autorender.io</code>
+    </div>
+  </div>
+</div>
 
-There are two ways to build API documentation: [OpenAPI](https://mintlify.com/docs/api-playground/openapi/setup) and [MDX components](https://mintlify.com/docs/api-playground/mdx/configuration). For the starter kit, we are using the following OpenAPI specification.
+<div className="border border-gray-200 dark:border-gray-800 rounded-lg mb-8 overflow-hidden">
+  <div className="bg-gray-50 dark:bg-white/5 px-4 py-2 border-b border-gray-200 dark:border-gray-800 font-semibold text-sm">
+    Authentication
+  </div>
+  <div className="p-4 text-sm text-gray-600 dark:text-gray-400 leading-relaxed bg-white dark:bg-transparent">
+    Basic HTTP authentication. Allowed headers — Authorization: Basic `<private_api_key>` | Authorization: Basic `<base64 hash of private_api_key>`. AutoRender API uses API keys to authenticate requests. You can view and manage your API keys in <a href="https://app.autorender.io" className="text-blue-600 dark:text-blue-400 underline">the dashboard</a>. All API requests must be made over HTTPS. Calls made over plain HTTP will fail. API requests without authentication will also fail.
+  </div>
+</div>
 
-<Card
-  title="Plant Store Endpoints"
-  icon="leaf"
-  href="https://github.com/mintlify/starter/blob/main/api-reference/openapi.json"
->
-  View the OpenAPI specification file
-</Card>
+<div className="border border-gray-200 dark:border-gray-800 rounded-lg mb-8 overflow-hidden">
+  <div className="bg-gray-50 dark:bg-white/5 px-4 py-2 border-b border-gray-200 dark:border-gray-800 font-semibold text-sm">
+    Additional Information
+  </div>
+  <div className="p-4 text-sm bg-white dark:bg-transparent">
+    <div className="flex flex-col gap-2">
+      <a href="https://autorender.io/contact" className="text-blue-600 dark:text-blue-400">Contact AutoRender Team</a>
+      <a href="https://autorender.io/terms" className="text-blue-600 dark:text-blue-400">Terms of Service</a>
+    </div>
+  </div>
+</div>
 
-## Authentication
-
-All API endpoints are authenticated using Bearer tokens and picked up from the specification file.
-
-```json
-"security": [
-  {
-    "bearerAuth": []
-  }
-]
-```
+Checkout <a href="/api-reference/introduction" className="text-blue-600 dark:text-blue-400">API overview</a> to learn about AutoRender's APIs, authentication, rate limits, and error codes etc.

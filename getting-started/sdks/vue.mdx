@@ -1,0 +1,157 @@
+---
+title: "Vue.js"
+description: "Autorender SDK adapter for Vue - Upload and ViewTag functionality."
+---
+
+## Installation
+
+```bash
+npm install @autorender/sdk-vue
+```
+
+> Requires **Vue ≥ 3.0**. The plugin works with **Vite ^4 / ^5 / ^6 / ^7**.
+
+## Vite setup (required for `<ARVideo>`)
+
+If you use **`<ARVideo>`** (Video.js / HLS / DASH), add the **`autorenderVue()` Vite plugin** to your `vite.config.ts`:
+
+```ts
+import { defineConfig } from 'vite';
+import vue from '@vitejs/plugin-vue';
+import { autorenderVue } from '@autorender/sdk-vue/vite';
+
+export default defineConfig({
+  plugins: [vue(), autorenderVue()],
+});
+```
+
+## Upload SDK Usage
+
+```vue
+<script setup lang="ts">
+import { onMounted, onUnmounted, ref } from 'vue';
+import { createAutorenderUploader } from '@autorender/sdk-vue';
+import type { UploaderInstance } from '@autorender/sdk-vue';
+import '@autorender/sdk-vue/styles';
+
+const containerRef = ref<HTMLDivElement | null>(null);
+let uploader: UploaderInstance | null = null;
+
+onMounted(() => {
+  if (!containerRef.value) return;
+  
+  uploader = createAutorenderUploader(containerRef.value, {
+    apiKey: import.meta.env.VITE_AUTORENDER_API_KEY,
+    type: 'inline',
+    allowMultiple: true,
+    onSuccess: ({ files }) => console.log('Uploaded', files),
+  });
+});
+
+onUnmounted(() => {
+  uploader?.destroy();
+});
+</script>
+
+<template>
+  <div ref="containerRef" class="uploader-container"></div>
+</template>
+```
+
+## ViewTag SDK Usage
+
+### Setup Provider
+
+```vue
+<script setup lang="ts">
+import { useAutoRenderProvider } from '@autorender/sdk-vue';
+
+useAutoRenderProvider({
+  baseUrl: 'https://assets.autorender.io',
+  workspace: 'ws_123',
+});
+</script>
+```
+
+### Use ARImage Component
+
+```vue
+<template>
+  <ARImage
+    src="products/shoe.jpg"
+    :width="400"
+    :height="400"
+    alt="Shoe"
+    :transformations="{ fit: 'cover' }"
+    :responsive="true"
+    :lazy="true"
+  />
+</template>
+
+<script setup lang="ts">
+import { ARImage } from '@autorender/sdk-vue';
+</script>
+```
+
+### Use ARVideo Component
+
+```vue
+<template>
+  <ARVideo
+    src="docs/skateboarding.mp4"
+    :width="960"
+    :height="540"
+    :controls="true"
+    preload="metadata"
+    :transformations="{ w: 960, h: 540 }"
+  />
+</template>
+
+<script setup lang="ts">
+import { ARVideo } from '@autorender/sdk-vue';
+</script>
+
+### Complete Transform Example
+
+```vue
+<template>
+  <ARImage
+    src="hero.jpg"
+    :width="1200"
+    :height="800"
+    alt="Hero image"
+    :transformations="transform"
+    :responsive="true"
+    :lazy="true"
+    class="hero-image"
+  />
+</template>
+
+<script setup lang="ts">
+import { ref } from 'vue';
+import { ARImage } from '@autorender/sdk-vue';
+import type { TransformOptions } from '@autorender/sdk-core';
+
+const transform = ref<TransformOptions>({
+  w: 1200,
+  h: 800,
+  fit: 'cover',
+  ar: '16:9',
+  position: 'center',
+  
+  improve: true,
+  sharpen: 50,
+  
+  layers: [
+    {
+      type: 'image',
+      imagePath: 'logo.png',
+      width: 200,
+      placement: 'north-east',
+    }
+  ],
+  blend: 'overlay',
+});
+</script>
+```
+```

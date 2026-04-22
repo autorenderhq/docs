@@ -1,0 +1,89 @@
+---
+title: "Image Layers"
+description: "Add image overlays to your base image for watermarks, logos, and compositions"
+---
+
+## Overview
+
+Image layers allow you to overlay other images on top of your base image. This is the primary method for adding watermarks, brand logos, or combining multiple visual elements into a single composition.
+
+## Image Overlay - (l_image)
+
+To add an image overlay, use the `l_image:` parameter followed by the path to the overlay asset.
+
+**Format:** `l_image:{image_path}`
+
+<Tabs>
+  <Tab title="Basic Overlay">
+    ```bash
+    https://assets.autorender.io/LOKVTtKVGb/l_image:logo.svg,fl_layer_apply/doc1/porsche.jpg
+    ```
+    <div className="flex object-contain justify-center mt-4">
+      <img src="https://assets.autorender.io/LOKVTtKVGb/l_image:logo.svg,fl_layer_apply/doc1/porsche.jpg" alt="Basic image overlay" className="border border-gray-200 dark:border-gray-800" />
+    </div>
+  </Tab>
+  <Tab title="Resized Logo (lw)">
+    ```bash
+    https://assets.autorender.io/LOKVTtKVGb/l_image:logo.svg,lw_300,fl_layer_apply/doc1/porsche.jpg
+    ```
+    <div className="flex object-contain justify-center mt-4">
+      <img src="https://assets.autorender.io/LOKVTtKVGb/l_image:logo.svg,lw_300,fl_layer_apply/doc1/porsche.jpg" alt="Resized logo" className="border border-gray-200 dark:border-gray-800" />
+    </div>
+  </Tab>
+  <Tab title="Watermark (tp)">
+    ```bash
+    https://assets.autorender.io/LOKVTtKVGb/l_image:logo.svg,lw_300,tp_south-east,fl_layer_apply/doc1/porsche.jpg
+    ```
+    <div className="flex object-contain justify-center mt-4">
+      <img src="https://assets.autorender.io/LOKVTtKVGb/l_image:logo.svg,lw_300,tp_south-east,fl_layer_apply/doc1/porsche.jpg" alt="Watermark placement" className="border border-gray-200 dark:border-gray-800" />
+    </div>
+  </Tab>
+  <Tab title="Absolute Position (lx, ly)">
+    ```bash
+    https://assets.autorender.io/LOKVTtKVGb/l_image:logo.svg,lw_200,lx_150,ly_150,fl_layer_apply/doc1/porsche.jpg
+    ```
+    <div className="flex object-contain justify-center mt-4">
+      <img src="https://assets.autorender.io/LOKVTtKVGb/l_image:logo.svg,lw_200,lx_150,ly_150,fl_layer_apply/doc1/porsche.jpg" alt="Absolute positioning" className="border border-gray-200 dark:border-gray-800" />
+    </div>
+  </Tab>
+</Tabs>
+
+## Layer Dimensions - (lw, lh)
+
+Control the size of the overlay independently of the base image.
+
+| Parameter | Alias | Description                                  |
+| --------- | ----- | -------------------------------------------- |
+| `lw_`     | Width | Sets the width of the overlay layer in pixels |
+| `lh_`     | Height| Sets the height of the overlay layer in pixels|
+
+<Info>
+  If you specify only one dimension (width or height), the overlay will automatically scale while maintaining its original aspect ratio.
+</Info>
+
+## Layer Placement - (tp)
+
+Anchor your overlay to specific regions using the **Top Placement** parameter.
+
+| Code | Placement       | Code | Placement       |
+| ---- | --------------- | ---- | --------------- |
+| `nw` | Top-left        | `n`  | Top-center      |
+| `ne` | Top-right       | `c`  | Center          |
+| `sw` | Bottom-left     | `s`  | Bottom-center   |
+| `se` | Bottom-right    |      |                 |
+
+## Absolute Positioning - (lx, ly)
+
+Specify exact pixel coordinates for the overlay image instead of using relative regions.
+
+| Parameter | Alias | Description                                  |
+| --------- | ----- | -------------------------------------------- |
+| `lx_`     | X     | Absolute X coordinate from the left edge     |
+| `ly_`     | Y     | Absolute Y coordinate from the top edge      |
+
+## Best Practices
+
+- **SVG for Logos**: Use SVG files for image layers whenever possible to ensure logos look sharp at any scale.
+- **Layer Stacking**: Multiple layers can be stacked! Each `l_image` block must conclude with `fl_layer_apply`.
+- **Transparency**: AutoRender fully supports PNG and WebP transparency in overlay layers.
+- **Positioning**: Combine `tp_` with `x_` and `y_` parameters within the layer block for precise positioning relative to the anchor point.

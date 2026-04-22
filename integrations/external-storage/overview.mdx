@@ -1,0 +1,49 @@
+---
+title: "Overview"
+description: "Connect your existing data stores to AutoRender for seamless media processing."
+---
+
+AutoRender allows you to integrate your existing storage buckets directly into your workspace. By connecting an external source, you can transform and deliver assets stored in your own infrastructure without having to migrate or manually upload them to AutoRender.
+
+### Setup Flow
+
+Connecting your external storage follows a simple three-step process in the AutoRender dashboard:
+
+1.  **Login**: Sign in to your [AutoRender Dashboard](https://app.autorender.io).
+2.  **Navigate to Sources**: Click on the **Sources** menu in the sidebar.
+3.  **Create Config**: Click **Connect** or **Create Source** to configure your external storage provider.
+
+![External Storage Configuration](https://assets.autorender.io/LOKVTtKVGb/doc1/external-storage-s3.png)
+
+### Accessing Assets
+
+Once your external storage is connected, you can access your assets using the following URL structure:
+
+```text
+https://assets.autorender.io/{workspace}.{origin}/{file_path}
+```
+
+*   **workspace**: Your AutoRender workspace ID.
+*   **origin**: The **Origin Name** you assigned when creating the source.
+*   **file_path**: The relative path to the asset within your bucket or container.
+
+### Why use External Storage?
+
+*   **Zero Migration**: Keep your existing assets where they are.
+*   **Security**: AutoRender only reads from your storage when a transformation is requested.
+*   **Scalability**: Leverage your existing enterprise-grade storage providers.
+
+### Supported Providers
+
+We currently support the following major storage providers:
+*   **Amazon S3**
+*   **Azure Blob Storage**
+*   **Google Cloud Storage**
+
+### Security & Encryption
+
+<Note>
+  All credentials, access keys, and connection strings provided for external storage are stored in a **fully encrypted format**. For security purposes, these details are never displayed again after the source is created.
+</Note>
+
+When you connect a source, AutoRender uses the provided credentials to generate a secure, read-only connection to your specific bucket or container. We recommend following the principle of least privilege by creating dedicated IAM users or service accounts with only `GetObject` permissions for these integrations.

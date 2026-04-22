@@ -1,154 +1,67 @@
 ---
 title: 'Direct upload'
-description: 'Upload a file with multipart/form-data and your API key.'
+description: 'Upload a file with multipart/form-data using an API key.'
 openapi: api-reference/openapi.json POST /api/v1/uploads
 ---
 
 ## Overview
 
-Upload a file directly using API key authentication. This is the simplest method for server-side uploads. This endpoint supports multipart form data uploads with optional transformations, tags, folder organization, and metadata. Files are automatically processed and optimized during upload.
+`POST /api/v1/uploads` is the primary upload endpoint for backend services.
 
-## Authentication
+## Required request
 
-This endpoint requires API key authentication. Include your API key in the Authorization header:
+### Headers
 
-```
-Authorization: Bearer YOUR_API_KEY
-```
+| Header | Value |
+| --- | --- |
+| `Authorization` | `Bearer YOUR_API_KEY` |
+| `Content-Type` | `multipart/form-data` |
 
-## Request
+### Form fields
 
-### Content Type
+| Field | Required | Description |
+| --- | --- | --- |
+| `file` | Yes | Binary file payload |
+| `file_name` | Yes | Final filename in your workspace |
 
-```
-Content-Type: multipart/form-data
-```
-
-### Request Headers
-
-| Header | Type | Required | Description |
-|--------|------|----------|-------------|
-| `Authorization` | string | ✅ Yes | Bearer token with API key: `Bearer YOUR_API_KEY` |
-| `Content-Type` | string | ✅ Yes | Must be `multipart/form-data` (automatically set by curl with `-F` flag) |
-
-### Form Fields
-
-| Field | Type | Required | Description |
-|-------|------|----------|-------------|
-| `file` | file | ✅ Yes | The file to upload (binary data) |
-| `file_name` | string | ✅ Yes | File name for the uploaded file (e.g., `my-image.jpg`) |
-| `folder` | string | ❌ No | Folder path where the file will be stored (e.g., `uploads/my-folder`) |
-| `tags` | string | ❌ No | Comma-separated tags (e.g., `tag1,tag2,tag3`) |
-| `transform` | string | ❌ No | Image transformation string (e.g., `w_800,h_600,q_90`) |
-| `metadata` | string | ❌ No | JSON string for custom metadata (e.g., `{"key": "value"}`) |
-| `custom_id` | string | ❌ No | Custom identifier for the file |
-| `random_prefix` | string | ❌ No | Set to `"true"` to add a random suffix to filename |
-
-## Request Examples
-
-### Minimal Request (Required Fields Only)
+## Minimal example
 
 ```bash
 curl -X POST \
   https://upload.autorender.io/api/v1/uploads \
-  -H "Authorization: Bearer YOUR_API_KEY_HERE" \
-  -F "file=@/path/to/your/image.jpg" \
-  -F "file_name=my-image.jpg"
+  -H "Authorization: Bearer YOUR_API_KEY" \
+  -F "file=@./image.jpg" \
+  -F "file_name=image.jpg"
 ```
 
-### Full Request (All Fields)
+## Common optional fields
 
-```bash
-curl -X POST \
-  https://upload.autorender.io/api/v1/uploads \
-  -H "Authorization: Bearer YOUR_API_KEY_HERE" \
-  -F "file=@/path/to/your/image.jpg" \
-  -F "file_name=my-image.jpg" \
-  -F "folder=uploads/my-folder" \
-  -F "tags=tag1,tag2,tag3" \
-  -F "transform=w_800,h_600,q_90" \
-  -F "metadata={\"user_id\":\"12345\",\"category\":\"profile\"}" \
-  -F "custom_id=my-custom-id-123" \
-  -F "random_prefix=true"
-```
+| Field | Description |
+| --- | --- |
+| `folder` | Organize destination path (`products/shoes`) |
+| `tags` | Comma-separated labels for filtering |
+| `transform` | Apply transformation during upload |
+| `metadata` | JSON object string with custom fields |
+| `custom_id` | Internal reference ID from your app |
+| `random_prefix` | Add random suffix to reduce name collisions |
 
-### Upload with Image Transformations
-
-```bash
-curl -X POST \
-  https://upload.autorender.io/api/v1/uploads \
-  -H "Authorization: Bearer YOUR_API_KEY_HERE" \
-  -F "file=@/path/to/your/image.jpg" \
-  -F "file_name=thumbnail.jpg" \
-  -F "folder=processed-images" \
-  -F "transform=w_500,h_500,fit_cover,q_80" \
-  -F "tags=processed,thumbnail"
-```
-
-### Upload with Custom Metadata
-
-```bash
-curl -X POST \
-  https://upload.autorender.io/api/v1/uploads \
-  -H "Authorization: Bearer YOUR_API_KEY_HERE" \
-  -F "file=@/path/to/your/image.jpg" \
-  -F "file_name=avatar.jpg" \
-  -F "folder=user-uploads" \
-  -F "metadata={\"user_id\":\"12345\",\"upload_source\":\"mobile_app\",\"timestamp\":\"2025-01-19T10:00:00Z\"}" \
-  -F "custom_id=user-12345-avatar"
-```
-
-## Response
-
-### Success Response (200 OK)
+## Success response shape
 
 ```json
 {
   "success": true,
   "data": {
-    "id": "file-id",
-    "file_no": "FILE123",
-    "name": "my-image.jpg",
-    "url": "https://...",
-    "path": "uploads",
-  "width": 1920,
-  "height": 1080,
+    "file_no": "1234567890",
+    "name": "image.jpg",
+    "url": "https://assets.autorender.io/...",
+    "path": "products/image.jpg",
     "format": "jpg",
-    "file_size": 1024000,
-    "workspace_no": "WS123"
+    "file_size": 102400
   }
 }
 ```
 
-### Response Fields
-
-| Field | Type | Description |
-|-------|------|-------------|
-| `success` | boolean | Indicates if the upload was successful |
-| `data` | object | File upload data |
-| `data.id` | string | Unique file record ID |
-| `data.file_no` | string | 10-character file number identifier |
-| `data.name` | string | Final filename (may include random suffix if requested) |
-| `data.url` | string | Full CDN URL to access the uploaded file |
-| `data.path` | string | Folder path where the file is stored |
-| `data.width` | integer\|null | Image width in pixels (null for non-image files) |
-| `data.height` | integer\|null | Image height in pixels (null for non-image files) |
-| `data.format` | string | File format/extension (e.g., jpg, png, webp) |
-| `data.file_size` | integer | File size in bytes (after processing) |
-| `data.workspace_no` | string | Workspace identifier |
-
-## Error Responses
-
-### 400 Bad Request
-
-```json
-{
-  "success": false,
-  "error": "Validation error message"
-}
-```
-
-### 401 Unauthorized
+## Error pattern
 
 ```json
 {
@@ -157,44 +70,3 @@ curl -X POST \
   "message": "Invalid or missing API key"
 }
 ```
-
-### 500 Internal Server Error
-
-```json
-{
-  "success": false,
-  "error": "Upload failed",
-  "message": "Detailed error message"
-}
-```
-
----
-
-## Why
-
-**Primary method for uploading files to your workspace.** The Direct File Upload endpoint is the core API for adding files to your AutoRender workspace. It provides comprehensive upload capabilities with automatic processing, organization, and optimization features that make it the foundation of any asset management workflow.
-
-## Features
-
-- **Multipart form upload**: Standard HTTP multipart form data for easy integration
-- **Automatic image processing**: Images are automatically processed and optimized during upload
-- **Transformations**: Apply transformations (resize, crop, effects) during upload
-- **Folder organization**: Automatically organize files into folders (folders created if needed)
-- **Tag management**: Apply tags to files for organization and filtering
-- **Custom metadata**: Attach custom metadata objects to track additional file information
-- **Random filename suffix**: Generate unique filenames to prevent collisions
-- **Webhook notifications**: Receive notifications when upload completes
-- **Format support**: Supports JPEG, PNG, GIF, WebP, BMP, TIFF, AVIF, HEIC, HEIF
-- **Size validation**: Validates file size (max 100MB) before processing
-- **Duplicate detection**: Identifies if a file with the same name already exists
-
-## Use Cases
-
-- **Direct file uploads**: Upload images directly from server-side applications
-- **Backend integrations**: Integrate AutoRender into your backend services
-- **Automated workflows**: Upload files as part of automated processes or scripts
-- **Content management**: Upload and organize content for CMS or DAM systems
-- **E-commerce**: Upload product images with automatic optimization and organization
-- **Media processing**: Upload and process images with transformations in a single request
-- **Asset migration**: Import files from other systems with metadata and organization
-- **API integrations**: Build integrations that programmatically upload files to AutoRender
