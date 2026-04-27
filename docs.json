@@ -33,12 +33,19 @@
             "pages": [
               "getting-started/quickstart",
               {
-                "group": "External storage",
+                "group": "Integrations",
                 "pages": [
-                  "integrations/external-storage/overview",
-                  "integrations/external-storage/s3",
-                  "integrations/external-storage/azure",
-                  "integrations/external-storage/gcp"
+                  "integrations/web-server",
+                  "integrations/shopify",
+                  {
+                    "group": "External storage",
+                    "pages": [
+                      "integrations/external-storage/overview",
+                      "integrations/external-storage/s3",
+                      "integrations/external-storage/azure",
+                      "integrations/external-storage/gcp"
+                    ]
+                  }
                 ]
               },
               {

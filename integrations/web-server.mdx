@@ -1,0 +1,61 @@
+---
+title: "Web Server"
+description: "Fetch and transform images hosted on any publicly accessible web server through Autorender."
+---
+
+A **Web Server** source lets you point Autorender at any HTTP origin — your own server, a CDN, or a third-party host — and start delivering optimized images without moving a single file.
+
+## How it works
+
+When a request hits your Autorender delivery URL, Autorender fetches the original image from your configured base URL, applies any requested transformations, and serves the result. The original asset stays exactly where it is.
+
+```
+Request  →  https://assets.autorender.io/{workspace}-{origin}/{file_path}
+Fetch    →  {base_url}/{file_path}
+Response ←  Optimized, transformed image
+```
+
+## Step 1: Create an Image Source origin
+
+1. Sign in to [AutoRender](https://app.autorender.io) and go to **Sources**.
+2. Click **Create Source**.
+3. Set **Origin Type** to **Image Source**.
+4. Fill in the fields below, then click **Create Source**.
+
+### Configuration fields
+
+| Field | Required | Description |
+| :--- | :---: | :--- |
+| **Origin Name** | Yes | A short identifier for this source (letters, numbers, and hyphens only). This becomes part of your delivery URL: `https://assets.autorender.io/{workspace}-{origin}/{file_path}` |
+| **Base URL** | Yes | The root URL of your image server (e.g., `https://example.com/images`). Autorender appends the requested path to this when fetching the original asset. |
+| **Canonical Header** | No | The request header Autorender reads to resolve the canonical host. Defaults to `x-forwarded-host`. Only set this if your origin requires a specific host header for routing. |
+| **Forward Header** | No | When checked, Autorender forwards the incoming request's headers to your origin. Useful if your server validates headers such as `Authorization` or custom tokens. |
+
+<Note>
+  Origin names cannot be changed after creation. Choose a name that reflects the source (e.g., `store-images`, `cdn-prod`).
+</Note>
+
+## Step 2: Verify your delivery URL
+
+Once the source is created, your assets are reachable at:
+
+```
+https://assets.autorender.io/{workspace}-{origin}/{file_path}
+```
+
+For example, if your workspace ID is `aqucPWk0NG`, your origin name is `store`, and you have an image at `https://example.com/images/products/shoe.jpg`, the Autorender URL is:
+
+```
+https://assets.autorender.io/aqucPWk0NG-store/products/shoe.jpg
+```
+
+You can add [transformation parameters](/essentials/transformations) in the URL path to resize, crop, convert format, and more. Transforms are placed between the workspace-origin segment and the file path:
+
+```
+https://assets.autorender.io/aqucPWk0NG-store/w_800/products/shoe.jpg
+https://assets.autorender.io/aqucPWk0NG-store/w_800,h_600,c_fill/products/shoe.jpg
+```
+
+<Tip>
+  Test the URL in your browser first. A successful response means Autorender can reach your origin and the source is configured correctly.
+</Tip>

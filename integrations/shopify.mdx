@@ -1,0 +1,278 @@
+---
+title: "Shopify"
+description: "Route Shopify store images through Autorender for automatic optimization and modern format delivery."
+---
+
+This guide walks you through connecting your Shopify store to Autorender so that product and collection images are automatically optimized — without changing your storefront's image upload workflow.
+
+## How it works
+
+Shopify serves store images from URLs like:
+
+```
+https://your-store.myshopify.com/cdn/shop/files/product.jpg?v=123&width=360
+```
+
+After setup, your theme rewrites those URLs to route through Autorender:
+
+```
+https://assets.autorender.io/{workspace}-{origin}/cdn/shop/files/product.jpg?v=123&width=360
+```
+
+You apply Autorender's transform syntax directly in your template to control resizing and format:
+
+```
+https://assets.autorender.io/{workspace}-{origin}/w_360/cdn/shop/files/product.jpg?v=123&width=360
+```
+
+Autorender fetches the original from Shopify, applies your transforms, and serves the result from its global edge network. No files are migrated or duplicated.
+
+## Prerequisites
+
+- An AutoRender account with a workspace
+- A Shopify store with theme editing access (Online Store → Themes → Edit code)
+
+---
+
+## Step 1: Create a Web Server source
+
+You need a source that tells Autorender where to fetch images from.
+
+1. Go to **Sources** in your [AutoRender dashboard](https://app.autorender.io/origins).
+2. Click **Create Source**.
+3. Fill in the form:
+
+| Field | Value |
+| :--- | :--- |
+| **Origin Name** | A short identifier, e.g. `shopify` (letters, numbers, hyphens only) |
+| **Origin Type** | Image Source |
+| **Base URL** | `https://your-store.myshopify.com` |
+
+Leave **Canonical Header** and **Forward Header** at their defaults unless your store requires otherwise.
+
+4. Click **Create Source** and note your **workspace ID** and **origin name** — you'll need both below.
+
+<Note>
+  Your workspace ID is visible in the dashboard URL or under workspace settings. It looks like `aqucPWk0NG`.
+</Note>
+
+---
+
+## Step 2: Verify the URL mapping
+
+Before touching any theme code, confirm the integration works. Take any image URL from your store:
+
+```
+https://your-store.myshopify.com/cdn/shop/files/product.jpg?v=1776855235&width=360
+```
+
+Swap the host for your Autorender delivery prefix:
+
+```
+https://assets.autorender.io/{workspace}-{origin}/cdn/shop/files/product.jpg?v=1776855235&width=360
+```
+
+Open that URL in a browser. You should see the same image served by Autorender. If it loads, the source is working correctly.
+
+<Warning>
+  Do not proceed to Step 3 until this works. Continuing with a misconfigured source will cause images to break once you update your theme files.
+</Warning>
+
+<Tip>
+  To find the correct image URL to test, open your store in a browser, right-click any product image, and copy the image address. The host in that URL is what you should use as the **Base URL** in your source configuration.
+</Tip>
+
+---
+
+## Step 3: Add Autorender settings to your theme
+
+These settings give store owners a toggle to enable/disable Autorender and a place to enter their workspace credentials — all from the Shopify admin, no code edits required.
+
+In your Shopify admin, go to **Online Store → Themes → Edit code**. Under `config/`, open (or create) `settings_schema.json`.
+
+Add the following object to the top-level array in that file:
+
+```json
+{
+  "name": "Autorender",
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "Serve images through Autorender for automatic optimization and WebP conversion. [Learn more](https://autorender.io)"
+    },
+    {
+      "type": "checkbox",
+      "id": "autorender_enabled",
+      "label": "Enable Autorender",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "autorender_workspace_id",
+      "label": "Workspace ID",
+      "info": "Your Autorender workspace ID. Find it in your Autorender dashboard."
+    },
+    {
+      "type": "text",
+      "id": "autorender_origin_name",
+      "label": "Origin Name",
+      "info": "The origin name you chose when creating the source in Autorender."
+    }
+  ]
+}
+```
+
+After saving, these fields will appear under **Customize → Theme settings → Autorender** in your Shopify admin.
+
+---
+
+## Step 4: Create the Autorender snippet
+
+This snippet rewrites any Shopify image URL to go through Autorender. It's a drop-in helper you'll call from other templates.
+
+Under `snippets/` in your theme, create a new file named `autorender.liquid` and paste the following:
+
+```liquid
+{% comment %}
+  Rewrites a Shopify image URL to serve through Autorender.
+
+  Accepts:
+  - src:   {String} Protocol-relative URL from image_url filter (required)
+  - width: {Number} Width in pixels — adds /w_N/ transform to the URL (optional)
+
+  Usage (no transform):
+    {% assign img_src = product.featured_image | image_url: width: 800 %}
+    <img src="{% render 'autorender', src: img_src %}">
+
+  Usage (with width transform):
+    {% assign img_src = product.featured_image | image_url: width: 800 %}
+    <img src="{% render 'autorender', src: img_src, width: 800 %}">
+
+  For other transforms (height, crop, etc.) build the Autorender URL directly
+  in your template rather than passing through this snippet.
+{% endcomment %}
+
+{% capture autorender %}
+  {% if settings.autorender_enabled %}
+    {% for i in (1..1) %}
+      {% if src == blank or settings.autorender_workspace_id == blank %}
+        {{ src }}
+        {% break %}
+      {% endif %}
+      {% assign no_proto = src | remove_first: "//" %}
+      {% assign host = no_proto | split: "/" | first %}
+      {% assign path = no_proto | remove_first: host %}
+      {% if width != blank %}
+        {% assign transform = "/w_" | append: width %}
+      {% else %}
+        {% assign transform = "" %}
+      {% endif %}
+      {{ "https://assets.autorender.io/" | append: settings.autorender_workspace_id | append: "-" | append: settings.autorender_origin_name | append: transform | append: path }}
+    {% endfor %}
+  {% else %}
+    {{ src }}
+  {% endif %}
+{% endcapture %}{{ autorender | strip | replace:'  ', '' | strip_newlines }}
+```
+
+The `width` param is optional. When omitted, the URL is rewritten without any transform — useful when you want Autorender for format conversion and caching only. When Autorender is disabled entirely, the snippet outputs the original Shopify URL unchanged.
+
+---
+
+## Step 5: Enable Autorender in your theme settings
+
+1. In your Shopify admin, go to **Online Store → Themes → Customize**.
+2. Open **Theme settings** (gear icon) → **Autorender**.
+3. Enter your **Workspace ID** and **Origin Name** from Step 1.
+4. Check **Enable Autorender**.
+5. Save.
+
+Open a collection or product page and inspect an image URL in browser devtools. A correctly rewritten URL will start with your Autorender delivery prefix:
+
+```
+https://assets.autorender.io/{workspace}-{origin}/...
+```
+
+If the URL still points to Shopify's CDN, the theme template hasn't been updated yet.
+
+---
+
+## Step 6: Update your theme templates
+
+<Warning>
+  Back up your theme before making any changes to template files. In your Shopify admin, go to **Online Store → Themes → ⋯ → Duplicate** to create a safe copy you can restore from.
+</Warning>
+
+Most Shopify themes render product images using `srcset` for responsive loading. The `autorender.liquid` snippet handles a single URL, so for `srcset` you need to apply the same URL rewriting logic inline in your snippet files.
+
+The pattern has three parts.
+
+**1. Build the Autorender prefix once**
+
+Add this at the top of any snippet that renders images:
+
+```liquid
+{%- liquid
+  assign ar_prefix = ''
+  if settings.autorender_enabled and settings.autorender_workspace_id != blank and settings.autorender_origin_name != blank
+    assign ar_prefix = 'https://assets.autorender.io/' | append: settings.autorender_workspace_id | append: '-' | append: settings.autorender_origin_name
+  endif
+  assign _np = media | image_url | remove_first: '//'
+  assign _host = _np | split: '/' | first
+-%}
+```
+
+**2. Rewrite each srcset entry**
+
+Since the width is known at each entry, insert `/w_{width}` directly between the prefix and the path. Autorender applies the resize; Shopify's `?width=` param remains for the origin fetch:
+
+```liquid
+{%- assign _p = media | image_url: width: 533 | remove_first: '//' | remove_first: _host -%}
+{% if ar_prefix != blank %}{{ ar_prefix }}/w_533{{ _p }}{% else %}{{ media | image_url: width: 533 }}{% endif %} 533w,
+```
+
+**3. Output the `<img>` tag**
+
+Use a `capture` block to build the full srcset string, then output the `<img>`:
+
+```liquid
+{%- capture _srcset -%}
+  {%- assign _p = media | image_url: width: 533 | remove_first: '//' | remove_first: _host -%}
+  {% if ar_prefix != blank %}{{ ar_prefix }}/w_533{{ _p }}{% else %}{{ media | image_url: width: 533 }}{% endif %} 533w,
+  {%- assign _p = media | image_url: width: 1066 | remove_first: '//' | remove_first: _host -%}
+  {% if ar_prefix != blank %}{{ ar_prefix }}/w_1066{{ _p }}{% else %}{{ media | image_url: width: 1066 }}{% endif %} 1066w
+{%- endcapture -%}
+
+{%- assign _src_p = media | image_url: width: 533 | remove_first: '//' | remove_first: _host -%}
+<img
+  srcset="{{ _srcset | strip_newlines | strip }}"
+  src="{% if ar_prefix != blank %}{{ ar_prefix }}/w_533{{ _src_p }}{% else %}{{ media | image_url: width: 533 }}{% endif %}"
+  alt="{{ media.alt | escape }}"
+  loading="lazy"
+  width="{{ media.width }}"
+  height="{{ media.height }}"
+>
+```
+
+When `ar_prefix` is blank (Autorender disabled), every branch falls back to the original Shopify URL — so toggling the setting is safe without further code changes.
+
+<Note>
+  Start with the snippets that render product cards and gallery images — those typically cover the majority of image traffic in any Shopify store.
+</Note>
+
+**Verify after each template change**
+
+After saving a file, reload your store and open browser devtools (Network tab, filter by image). Confirm the updated template's images are coming from `assets.autorender.io`. Any images still loading from Shopify's CDN indicate a template file you haven't updated yet.
+
+---
+
+## Troubleshooting
+
+**Image returns a 404 through Autorender**
+Confirm the Base URL in your source matches the exact host Shopify uses (check the raw image URL in your store). Also verify the origin name and workspace ID entered in theme settings match what's in your Autorender dashboard.
+
+**Images still load from Shopify directly**
+Check that **Enable Autorender** is checked in theme settings and that you've called `render 'autorender'` in the correct template file.
+
+**Format is not WebP**
+Autorender serves WebP automatically when the browser signals support via the `Accept` header. If you're testing with a tool that doesn't send browser-like headers, the original format may be returned.
