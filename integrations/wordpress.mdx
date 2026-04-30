@@ -1,0 +1,86 @@
+---
+title: "WordPress"
+description: "Integrate Autorender into your WordPress site to automatically optimize media delivery and use the native Gutenberg media picker."
+---
+
+This guide shows you how to connect your WordPress site to Autorender using the official plugin. The plugin automatically rewrites your media URLs to serve through the Autorender edge network, optimizing image formats (WebP, AVIF) and sizes on the fly.
+
+## How it works
+
+The Autorender WordPress plugin works in two main ways:
+1. **URL Rewriting:** It intercepts the native WordPress rendering (like `the_content` and attachment hooks) to seamlessly rewrite your existing image and media URLs to point to your Autorender CDN. It also generates custom responsive `srcset` resolutions automatically.
+2. **Media Picker Integration:** It injects a native "Import from Autorender" button directly into the Gutenberg block editor and the Classic Media Modal, allowing you to browse and insert assets seamlessly from your cloud library.
+
+---
+
+## Step 1: Install the Plugin
+
+1. Download the latest `autorender.zip` plugin file.
+2. Log into your WordPress admin dashboard.
+3. Navigate to **Plugins → Add New**, then click **Upload Plugin**.
+4. Choose the `autorender.zip` file, click **Install Now**, and then **Activate**.
+
+---
+
+## Step 2: Create a Source in AutoRender
+
+Autorender needs to know where to fetch your original files.
+
+1. Go to **Sources** in your [AutoRender dashboard](https://app.autorender.io/origins).
+2. Click **Create Source**.
+3. Fill in the form:
+
+| Field | Value |
+| :--- | :--- |
+| **Origin Name** | A short identifier, e.g. `wordpress` (letters, numbers, hyphens only) |
+| **Origin Type** | Image Source / Web Server |
+| **Base URL** | `https://your-wordpress-site.com` (Your main site URL) |
+
+4. Click **Create source** and copy the generated **API Key**.
+
+---
+
+## Step 3: Connect the Plugin
+
+Use the setup wizard built into the WordPress plugin to finalize the connection.
+
+1. In your WordPress admin menu, click on **Autorender**.
+2. Click **Next** on the welcome screen.
+3. Enter the **API Key** generated in Step 2.
+4. Enter the **Origin Name** you chose (e.g. `wordpress`).
+5. Click **Next** to proceed.
+6. Choose which asset types (Images, Videos, Documents) you want Autorender to handle. By default, all should be selected.
+7. Click **Connect & Finish**.
+
+Your dashboard will now show you are connected, and background hooks are active!
+
+---
+
+## Step 4: Configure Image Delivery & Responsive Sizes
+
+Autorender gives you high-level control over how images are globally processed and resized for mobile devices.
+
+1. Navigate to **Autorender → Image Settings** in WordPress.
+2. **Global Transformations:** Enter any base ImageKit transformations here (e.g., `q-auto,f-webp`) if you want them applied to *every* image globally.
+3. **Responsive Images:** Toggle this on to let Autorender dynamically calculate `srcset` versions of your images. 
+   - Set the **Maximum image variations** (e.g., 5-15).
+   - Set the **Image size step** (e.g., 150 to generate sizes at 300w, 450w, 600w, etc.).
+4. Click **Save Changes**.
+
+<Note>
+Autorender completely leaves your original files on your server untouched. It simply rewrites the `src` and `srcset` tags on the frontend to point to the edge CDN.
+</Note>
+
+---
+
+## Step 5: Using the Gutenberg Picker
+
+If you upload an image directly to Autorender (or want to reuse an optimized cloud asset), you can access the picker natively while editing posts.
+
+1. Open a Post or Page in the Gutenberg editor.
+2. Add a new **Image Block**.
+3. In the placeholder, click the new **Import from Autorender** button.
+4. The media modal will open directly to the Autorender interface. 
+5. Select an image. Autorender will automatically generate the appropriate `img` code (including responsive `srcset`) and embed it seamlessly into the editor.
+
+---
