@@ -1,0 +1,108 @@
+---
+title: "Node.js / TypeScript"
+description: "Official AutoRender SDK for Node.js and TypeScript — upload files, manage folders, and access the full AutoRender API from your server."
+---
+
+## Installation
+
+```bash
+npm install @autorender/nodejs
+```
+
+## Authentication
+
+Generate an API key from your AutoRender dashboard and set it as an environment variable:
+
+```bash
+export AUTORENDER_API_KEY=your-api-key
+```
+
+## Usage
+
+```typescript
+import Autorender from '@autorender/nodejs';
+
+const client = new Autorender({
+  apiKey: process.env.AUTORENDER_API_KEY,
+});
+```
+
+## Upload a File
+
+```typescript
+import fs from 'fs';
+
+const upload = await client.uploads.create({
+  file: fs.createReadStream('photo.jpg'),
+  file_name: 'photo.jpg',
+});
+
+console.log(upload.file_no); // e.g. 1234567890
+```
+
+## Upload from URL
+
+```typescript
+const upload = await client.uploads.createFromURL({
+  remote_url: 'https://example.com/image.jpg',
+});
+```
+
+## List Files
+
+```typescript
+const result = await client.files.list({ limit: 10 });
+
+for (const file of result.files) {
+  console.log(file.file_no, file.file_name, file.size);
+}
+```
+
+## Multipart Upload (large files)
+
+```typescript
+import fs from 'fs';
+
+const fileBuffer = fs.readFileSync('large-video.mp4');
+const fileSize = fileBuffer.length;
+
+// Start session
+const session = await client.multipartUploads.start({
+  file_name: 'large-video.mp4',
+  file_size: fileSize,
+});
+
+// Upload parts
+const partRes = await fetch(session.parts[0].url, {
+  method: 'PUT',
+  body: fileBuffer,
+});
+const etag = partRes.headers.get('etag')!;
+
+// Complete
+const result = await client.multipartUploads.complete({
+  upload_id: session.upload_id,
+  parts: [{ part_number: 1, etag }],
+});
+```
+
+## Error Handling
+
+```typescript
+import Autorender from '@autorender/nodejs';
+
+try {
+  const file = await client.files.retrieve(999999999);
+} catch (err) {
+  if (err instanceof Autorender.APIError) {
+    console.log(err.status);  // 404
+    console.log(err.message); // Not found
+  }
+}
+```
+
+## Resources
+
+- [npm package](https://www.npmjs.com/package/@autorender/nodejs)
+- [GitHub](https://github.com/autorenderhq/autorender-nodejs)
+- [API Reference](https://github.com/autorenderhq/autorender-nodejs/blob/main/api.md)

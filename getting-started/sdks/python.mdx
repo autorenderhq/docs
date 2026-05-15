@@ -1,0 +1,99 @@
+---
+title: "Python"
+description: "Official AutoRender SDK for Python — upload files, manage folders, and access the full AutoRender API from your server."
+---
+
+## Installation
+
+```bash
+pip install autorender
+```
+
+## Authentication
+
+Generate an API key from your AutoRender dashboard and set it as an environment variable:
+
+```bash
+export AUTORENDER_API_KEY=your-api-key
+```
+
+## Usage
+
+```python
+import autorender
+
+client = autorender.Autorender(
+    api_key=os.environ.get("AUTORENDER_API_KEY"),
+)
+```
+
+## Upload a File
+
+```python
+with open("photo.jpg", "rb") as f:
+    upload = client.uploads.create(
+        file=f,
+        file_name="photo.jpg",
+    )
+
+print(upload.file_no)  # e.g. 1234567890
+```
+
+## Upload from URL
+
+```python
+upload = client.uploads.create_from_url(
+    remote_url="https://example.com/image.jpg",
+)
+```
+
+## List Files
+
+```python
+result = client.files.list(limit=10)
+
+for file in result.files:
+    print(file.file_no, file.file_name, file.size)
+```
+
+## Multipart Upload (large files)
+
+```python
+import httpx
+
+with open("large-video.mp4", "rb") as f:
+    file_data = f.read()
+
+# Start session
+session = client.multipart_uploads.start(
+    file_name="large-video.mp4",
+    file_size=len(file_data),
+)
+
+# Upload parts
+res = httpx.put(session.parts[0].url, content=file_data)
+etag = res.headers["etag"]
+
+# Complete
+result = client.multipart_uploads.complete(
+    upload_id=session.upload_id,
+    parts=[{"part_number": 1, "etag": etag}],
+)
+```
+
+## Error Handling
+
+```python
+import autorender
+
+try:
+    file = client.files.retrieve(999999999)
+except autorender.APIStatusError as e:
+    print(e.status_code)  # 404
+    print(e.message)      # Not found
+```
+
+## Resources
+
+- [PyPI package](https://pypi.org/project/autorender/)
+- [GitHub](https://github.com/autorenderhq/autorender-python)

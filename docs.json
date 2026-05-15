@@ -53,6 +53,9 @@
                 "group": "SDKs",
                 "pages": [
                   "getting-started/sdks/overview",
+                  "getting-started/sdks/nodejs",
+                  "getting-started/sdks/python",
+                  "getting-started/sdks/dotnet",
                   "getting-started/sdks/javascript",
                   "getting-started/sdks/react",
                   "getting-started/sdks/vue",

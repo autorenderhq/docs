@@ -1,0 +1,110 @@
+---
+title: "C# / .NET"
+description: "Official AutoRender SDK for .NET — upload files, manage folders, and access the full AutoRender API from your server."
+---
+
+## Installation
+
+```bash
+dotnet add package Autorender
+```
+
+## Authentication
+
+Generate an API key from your AutoRender dashboard and set it as an environment variable:
+
+```bash
+export AUTORENDER_API_KEY=your-api-key
+```
+
+## Usage
+
+```csharp
+using Autorender;
+
+var client = new AutorenderClient(apiKey: Environment.GetEnvironmentVariable("AUTORENDER_API_KEY"));
+```
+
+## Upload a File
+
+```csharp
+using System.IO;
+
+await using var file = File.OpenRead("photo.jpg");
+
+var upload = await client.Uploads.CreateAsync(new UploadCreateParams
+{
+    File = file,
+    FileName = "photo.jpg",
+});
+
+Console.WriteLine(upload.FileNo);
+```
+
+## Upload from URL
+
+```csharp
+var upload = await client.Uploads.CreateFromUrlAsync(new UploadCreateFromUrlParams
+{
+    RemoteUrl = "https://example.com/image.jpg",
+});
+```
+
+## List Files
+
+```csharp
+var result = await client.Files.ListAsync(new FileListParams { Limit = 10 });
+
+foreach (var file in result.Files)
+{
+    Console.WriteLine($"{file.FileNo} {file.FileName} {file.Size}");
+}
+```
+
+## Multipart Upload (large files)
+
+```csharp
+using System.Net.Http;
+
+var fileData = await File.ReadAllBytesAsync("large-video.mp4");
+
+// Start session
+var session = await client.MultipartUploads.StartAsync(new MultipartUploadStartParams
+{
+    FileName = "large-video.mp4",
+    FileSize = fileData.Length,
+});
+
+// Upload parts
+using var http = new HttpClient();
+var res = await http.PutAsync(session.Parts[0].Url, new ByteArrayContent(fileData));
+var etag = res.Headers.ETag!.Tag;
+
+// Complete
+var result = await client.MultipartUploads.CompleteAsync(new MultipartUploadCompleteParams
+{
+    UploadId = session.UploadId,
+    Parts = [new() { PartNumber = 1, Etag = etag }],
+});
+```
+
+## Error Handling
+
+```csharp
+using Autorender;
+
+try
+{
+    var file = await client.Files.RetrieveAsync(999999999);
+}
+catch (AutorenderException e)
+{
+    Console.WriteLine(e.StatusCode); // 404
+    Console.WriteLine(e.Message);    // Not found
+}
+```
+
+## Resources
+
+- [NuGet package](https://www.nuget.org/packages/Autorender/)
+- [GitHub](https://github.com/autorenderhq/autorender-dotnet)
