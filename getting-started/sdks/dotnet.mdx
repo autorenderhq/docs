@@ -22,29 +22,40 @@ export AUTORENDER_API_KEY=your-api-key
 ```csharp
 using Autorender;
 
-var client = new AutorenderClient(apiKey: Environment.GetEnvironmentVariable("AUTORENDER_API_KEY"));
+// Reads AUTORENDER_API_KEY from the environment automatically
+AutorenderClient client = new();
+```
+
+Or pass the key explicitly:
+
+```csharp
+AutorenderClient client = new() { ApiKey = "your-api-key" };
 ```
 
 ## Upload a File
 
 ```csharp
 using System.IO;
+using Autorender.Models.Uploads;
 
 await using var file = File.OpenRead("photo.jpg");
 
-var upload = await client.Uploads.CreateAsync(new UploadCreateParams
+var upload = await client.Uploads.Create(new UploadCreateParams
 {
     File = file,
     FileName = "photo.jpg",
 });
 
-Console.WriteLine(upload.FileNo);
+Console.WriteLine(upload.FileNo);  // e.g. "fi_abc123"
+Console.WriteLine(upload.Url);     // CDN URL
 ```
 
 ## Upload from URL
 
 ```csharp
-var upload = await client.Uploads.CreateFromUrlAsync(new UploadCreateFromUrlParams
+using Autorender.Models.Uploads;
+
+var upload = await client.Uploads.CreateFromUrl(new UploadCreateFromUrlParams
 {
     RemoteUrl = "https://example.com/image.jpg",
 });
@@ -53,23 +64,67 @@ var upload = await client.Uploads.CreateFromUrlAsync(new UploadCreateFromUrlPara
 ## List Files
 
 ```csharp
-var result = await client.Files.ListAsync(new FileListParams { Limit = 10 });
+using Autorender.Models.Files;
+
+var result = await client.Files.List(new FileListParams { Limit = 10 });
 
 foreach (var file in result.Files)
 {
-    Console.WriteLine($"{file.FileNo} {file.FileName} {file.Size}");
+    Console.WriteLine($"{file.FileNo} {file.Name} {file.Url}");
 }
 ```
 
-## Multipart Upload (large files)
+## Get File Details
+
+```csharp
+var file = await client.Files.Retrieve("fi_abc123");
+Console.WriteLine(file.Data.Url);
+```
+
+## Rename a File
+
+```csharp
+using Autorender.Models.Files;
+
+await client.Files.Rename("fi_abc123", new FileRenameParams { Name = "new-name" });
+```
+
+## Delete a File
+
+```csharp
+await client.Files.Delete("fi_abc123");
+```
+
+## Folders
+
+```csharp
+using Autorender.Models.Folders;
+
+// List folders
+var folders = await client.Folders.List();
+
+// Create a folder
+var folder = await client.Folders.Create(new FolderCreateParams { Name = "products" });
+
+// Rename a folder
+await client.Folders.Rename(folder.Data.FolderNo, new FolderRenameParams { Name = "product-images" });
+
+// Delete a folder
+await client.Folders.Delete(folder.Data.FolderNo);
+```
+
+## Multipart Upload
+
+For large files (>100MB), use multipart upload to split the file into parts:
 
 ```csharp
 using System.Net.Http;
+using Autorender.Models.MultipartUploads;
 
 var fileData = await File.ReadAllBytesAsync("large-video.mp4");
 
 // Start session
-var session = await client.MultipartUploads.StartAsync(new MultipartUploadStartParams
+var session = await client.MultipartUploads.Start(new MultipartUploadStartParams
 {
     FileName = "large-video.mp4",
     FileSize = fileData.Length,
@@ -81,7 +136,7 @@ var res = await http.PutAsync(session.Parts[0].Url, new ByteArrayContent(fileDat
 var etag = res.Headers.ETag!.Tag;
 
 // Complete
-var result = await client.MultipartUploads.CompleteAsync(new MultipartUploadCompleteParams
+var result = await client.MultipartUploads.Complete(new MultipartUploadCompleteParams
 {
     UploadId = session.UploadId,
     Parts = [new() { PartNumber = 1, Etag = etag }],
@@ -91,16 +146,15 @@ var result = await client.MultipartUploads.CompleteAsync(new MultipartUploadComp
 ## Error Handling
 
 ```csharp
-using Autorender;
+using Autorender.Exceptions;
 
 try
 {
-    var file = await client.Files.RetrieveAsync(999999999);
+    var file = await client.Files.Retrieve("fi_notexist");
 }
 catch (AutorenderException e)
 {
-    Console.WriteLine(e.StatusCode); // 404
-    Console.WriteLine(e.Message);    // Not found
+    Console.WriteLine(e.Message);
 }
 ```
 

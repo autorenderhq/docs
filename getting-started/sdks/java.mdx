@@ -1,12 +1,7 @@
 ---
 title: "Java"
-description: "Java SDK for file uploads and asset management. Requires Java 8 or later."
+description: "Official AutoRender SDK for Java — upload files, manage folders, and access the full AutoRender API from your server. Requires Java 8 or later."
 ---
-
-<CardGroup cols={2}>
-  <Card title="GitHub" icon="github" iconType="brands" href="https://github.com/autorenderhq/autorender-java" />
-  <Card title="Maven Central" icon="java" iconType="brands" href="https://central.sonatype.com/artifact/io.autorender/autorender-java" />
-</CardGroup>
 
 ## Installation
 
@@ -26,7 +21,15 @@ implementation("io.autorender:autorender-java:0.0.1")
 
 </CodeGroup>
 
-## Setup
+## Authentication
+
+Generate an API key from your AutoRender dashboard and set it as an environment variable:
+
+```bash
+export AUTORENDER_API_KEY=your-api-key
+```
+
+## Usage
 
 ```java
 import io.autorender.client.AutorenderClient;
@@ -36,7 +39,7 @@ import io.autorender.client.okhttp.AutorenderOkHttpClient;
 AutorenderClient client = AutorenderOkHttpClient.fromEnv();
 ```
 
-Or configure manually:
+Or pass the key explicitly:
 
 ```java
 AutorenderClient client = AutorenderOkHttpClient.builder()
@@ -44,20 +47,16 @@ AutorenderClient client = AutorenderOkHttpClient.builder()
     .build();
 ```
 
-## Upload a file
+## Upload a File
 
 ```java
-import io.autorender.client.AutorenderClient;
-import io.autorender.client.okhttp.AutorenderOkHttpClient;
 import io.autorender.models.uploads.UploadCreateParams;
 import io.autorender.models.uploads.UploadCreateResponse;
 import java.nio.file.Paths;
 
-AutorenderClient client = AutorenderOkHttpClient.fromEnv();
-
 UploadCreateParams params = UploadCreateParams.builder()
-    .fileName("product.jpg")
-    .file(Paths.get("/path/to/product.jpg"))
+    .fileName("photo.jpg")
+    .file(Paths.get("photo.jpg"))
     .build();
 
 UploadCreateResponse upload = client.uploads().create(params);
@@ -77,23 +76,23 @@ UploadCreateFromUrlParams params = UploadCreateFromUrlParams.builder()
 client.uploads().createFromUrl(params);
 ```
 
-## List files
+## List Files
 
 ```java
 import io.autorender.models.files.FileListParams;
 import io.autorender.models.files.FileListResponse;
 
 FileListParams params = FileListParams.builder()
-    .limit(20L)
+    .limit(10L)
     .build();
 
 FileListResponse result = client.files().list(params);
 result.files().forEach(file ->
-    System.out.println(file.fileNo() + " " + file.url())
+    System.out.println(file.fileNo() + " " + file.name() + " " + file.url())
 );
 ```
 
-## Get file details
+## Get File Details
 
 ```java
 import io.autorender.models.files.FileRetrieveResponse;
@@ -102,7 +101,20 @@ FileRetrieveResponse file = client.files().retrieve("fi_abc123");
 System.out.println(file.data().url());
 ```
 
-## Delete a file
+## Rename a File
+
+```java
+import io.autorender.models.files.FileRenameParams;
+
+FileRenameParams params = FileRenameParams.builder()
+    .fileNo("fi_abc123")
+    .name("new-name")
+    .build();
+
+client.files().rename(params);
+```
+
+## Delete a File
 
 ```java
 client.files().delete("fi_abc123");
@@ -112,16 +124,90 @@ client.files().delete("fi_abc123");
 
 ```java
 import io.autorender.models.folders.FolderCreateParams;
-
-// Create a folder
-FolderCreateParams params = FolderCreateParams.builder()
-    .name("products")
-    .build();
-client.folders().create(params);
+import io.autorender.models.folders.FolderRenameParams;
 
 // List folders
 client.folders().list();
 
+// Create a folder
+FolderCreateParams createParams = FolderCreateParams.builder()
+    .name("products")
+    .build();
+var folder = client.folders().create(createParams);
+
+// Rename a folder
+FolderRenameParams renameParams = FolderRenameParams.builder()
+    .folderNo(folder.data().folderNo())
+    .name("product-images")
+    .build();
+client.folders().rename(renameParams);
+
 // Delete a folder
-client.folders().delete("fol_abc123");
+client.folders().delete(folder.data().folderNo());
 ```
+
+## Multipart Upload
+
+For large files (>100MB), use multipart upload to split the file into parts:
+
+```java
+import io.autorender.models.multipartuploads.MultipartUploadStartParams;
+import io.autorender.models.multipartuploads.MultipartUploadCompleteParams;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+import java.net.URI;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+
+byte[] fileData = Files.readAllBytes(Paths.get("large-video.mp4"));
+
+// Start session
+MultipartUploadStartParams startParams = MultipartUploadStartParams.builder()
+    .fileName("large-video.mp4")
+    .fileSize((long) fileData.length)
+    .build();
+var session = client.multipartUploads().start(startParams);
+
+// Upload parts
+HttpClient http = HttpClient.newHttpClient();
+HttpRequest req = HttpRequest.newBuilder()
+    .uri(URI.create(session.parts().get(0).url()))
+    .PUT(HttpRequest.BodyPublishers.ofByteArray(fileData))
+    .build();
+HttpResponse<Void> res = http.send(req, HttpResponse.BodyHandlers.discarding());
+String etag = res.headers().firstValue("etag").orElseThrow();
+
+// Complete
+MultipartUploadCompleteParams completeParams = MultipartUploadCompleteParams.builder()
+    .uploadId(session.uploadId())
+    .addPart(MultipartUploadCompleteParams.Part.builder()
+        .partNumber(1L)
+        .etag(etag)
+        .build())
+    .build();
+client.multipartUploads().complete(completeParams);
+```
+
+## Error Handling
+
+```java
+import io.autorender.errors.AutorenderServiceException;
+import io.autorender.errors.NotFoundException;
+
+try {
+    client.files().retrieve("fi_notexist");
+} catch (NotFoundException e) {
+    System.out.println(e.statusCode());  // 404
+    System.out.println(e.getMessage());
+} catch (AutorenderServiceException e) {
+    System.out.println(e.statusCode());
+    System.out.println(e.getMessage());
+}
+```
+
+## Resources
+
+- [Maven Central](https://central.sonatype.com/artifact/io.autorender/autorender-java)
+- [GitHub](https://github.com/autorenderhq/autorender-java)
+- [Javadoc](https://javadoc.io/doc/io.autorender/autorender-java)

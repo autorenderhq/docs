@@ -1,12 +1,7 @@
 ---
 title: "Ruby"
-description: "Ruby SDK for file uploads and asset management."
+description: "Official AutoRender SDK for Ruby — upload files, manage folders, and access the full AutoRender API from your server."
 ---
-
-<CardGroup cols={2}>
-  <Card title="GitHub" icon="github" iconType="brands" href="https://github.com/autorenderhq/autorender-ruby" />
-  <Card title="RubyGems" icon="gem" iconType="solid" href="https://rubygems.org/gems/autorender" />
-</CardGroup>
 
 ## Installation
 
@@ -18,11 +13,19 @@ gem "autorender", "~> 0.0.1"
 
 Then run:
 
-```sh
+```bash
 bundle install
 ```
 
-## Setup
+## Authentication
+
+Generate an API key from your AutoRender dashboard and set it as an environment variable:
+
+```bash
+export AUTORENDER_API_KEY=your-api-key
+```
+
+## Usage
 
 ```ruby
 require "autorender"
@@ -30,16 +33,12 @@ require "autorender"
 client = Autorender::Client.new(api_key: ENV["AUTORENDER_API_KEY"])
 ```
 
-## Upload a file
+## Upload a File
 
 ```ruby
-require "autorender"
-
-client = Autorender::Client.new(api_key: ENV["AUTORENDER_API_KEY"])
-
 upload = client.uploads.create(
-  file: File.open("/path/to/product.jpg"),
-  file_name: "product.jpg"
+  file: File.open("photo.jpg"),
+  file_name: "photo.jpg"
 )
 
 puts upload.file_no  # e.g. "fi_abc123"
@@ -54,30 +53,30 @@ upload = client.uploads.create_from_url(
 )
 ```
 
-## List files
+## List Files
 
 ```ruby
-result = client.files.list(limit: 20)
+result = client.files.list(limit: 10)
 
 result.files.each do |file|
   puts "#{file.file_no} #{file.name} #{file.url}"
 end
 ```
 
-## Get file details
+## Get File Details
 
 ```ruby
 file = client.files.retrieve("fi_abc123")
 puts file.data.url
 ```
 
-## Rename a file
+## Rename a File
 
 ```ruby
 client.files.rename("fi_abc123", name: "new-name")
 ```
 
-## Delete a file
+## Delete a File
 
 ```ruby
 client.files.delete("fi_abc123")
@@ -98,3 +97,52 @@ client.folders.rename(folder.data.folder_no, name: "product-images")
 # Delete a folder
 client.folders.delete(folder.data.folder_no)
 ```
+
+## Multipart Upload
+
+For large files (>100MB), use multipart upload to split the file into parts:
+
+```ruby
+require "net/http"
+require "uri"
+
+file_data = File.binread("large-video.mp4")
+
+# Start session
+session = client.multipart_uploads.start(
+  file_name: "large-video.mp4",
+  file_size: file_data.bytesize
+)
+
+# Upload parts
+uri = URI(session.parts[0].url)
+res = Net::HTTP.start(uri.host, uri.port, use_ssl: true) do |http|
+  http.send_request("PUT", uri.request_uri, file_data)
+end
+etag = res["etag"]
+
+# Complete
+client.multipart_uploads.complete(
+  upload_id: session.upload_id,
+  parts: [{ part_number: 1, etag: etag }]
+)
+```
+
+## Error Handling
+
+```ruby
+begin
+  client.files.retrieve("fi_notexist")
+rescue Autorender::Errors::NotFoundError => e
+  puts e.status   # 404
+  puts e.message
+rescue Autorender::Errors::APIStatusError => e
+  puts e.status
+  puts e.message
+end
+```
+
+## Resources
+
+- [RubyGems](https://rubygems.org/gems/autorender)
+- [GitHub](https://github.com/autorenderhq/autorender-ruby)

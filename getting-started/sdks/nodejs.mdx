@@ -37,7 +37,8 @@ const upload = await client.uploads.create({
   file_name: 'photo.jpg',
 });
 
-console.log(upload.file_no); // e.g. 1234567890
+console.log(upload.file_no); // e.g. "fi_abc123"
+console.log(upload.url);     // CDN URL
 ```
 
 ## Upload from URL
@@ -54,22 +55,58 @@ const upload = await client.uploads.createFromURL({
 const result = await client.files.list({ limit: 10 });
 
 for (const file of result.files) {
-  console.log(file.file_no, file.file_name, file.size);
+  console.log(file.file_no, file.name, file.url);
 }
 ```
 
-## Multipart Upload (large files)
+## Get File Details
+
+```typescript
+const file = await client.files.retrieve('fi_abc123');
+console.log(file.data.url);
+```
+
+## Rename a File
+
+```typescript
+await client.files.rename('fi_abc123', { name: 'new-name' });
+```
+
+## Delete a File
+
+```typescript
+await client.files.delete('fi_abc123');
+```
+
+## Folders
+
+```typescript
+// List folders
+const { folders } = await client.folders.list();
+
+// Create a folder
+const folder = await client.folders.create({ name: 'products' });
+
+// Rename a folder
+await client.folders.rename(folder.data.folder_no, { name: 'product-images' });
+
+// Delete a folder
+await client.folders.delete(folder.data.folder_no);
+```
+
+## Multipart Upload
+
+For large files (>100MB), use multipart upload to split the file into parts:
 
 ```typescript
 import fs from 'fs';
 
 const fileBuffer = fs.readFileSync('large-video.mp4');
-const fileSize = fileBuffer.length;
 
 // Start session
 const session = await client.multipartUploads.start({
   file_name: 'large-video.mp4',
-  file_size: fileSize,
+  file_size: fileBuffer.length,
 });
 
 // Upload parts
@@ -92,11 +129,11 @@ const result = await client.multipartUploads.complete({
 import Autorender from '@autorender/nodejs';
 
 try {
-  const file = await client.files.retrieve(999999999);
+  const file = await client.files.retrieve('fi_notexist');
 } catch (err) {
   if (err instanceof Autorender.APIError) {
     console.log(err.status);  // 404
-    console.log(err.message); // Not found
+    console.log(err.message);
   }
 }
 ```
@@ -105,4 +142,4 @@ try {
 
 - [npm package](https://www.npmjs.com/package/@autorender/nodejs)
 - [GitHub](https://github.com/autorenderhq/autorender-nodejs)
-- [API Reference](https://github.com/autorenderhq/autorender-nodejs/blob/main/api.md)
+- [API reference](https://github.com/autorenderhq/autorender-nodejs/blob/main/api.md)

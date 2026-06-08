@@ -36,7 +36,8 @@ with open("photo.jpg", "rb") as f:
         file_name="photo.jpg",
     )
 
-print(upload.file_no)  # e.g. 1234567890
+print(upload.file_no)  # e.g. "fi_abc123"
+print(upload.url)      # CDN URL
 ```
 
 ## Upload from URL
@@ -53,10 +54,47 @@ upload = client.uploads.create_from_url(
 result = client.files.list(limit=10)
 
 for file in result.files:
-    print(file.file_no, file.file_name, file.size)
+    print(file.file_no, file.name, file.url)
 ```
 
-## Multipart Upload (large files)
+## Get File Details
+
+```python
+file = client.files.retrieve("fi_abc123")
+print(file.data.url)
+```
+
+## Rename a File
+
+```python
+client.files.rename("fi_abc123", name="new-name")
+```
+
+## Delete a File
+
+```python
+client.files.delete("fi_abc123")
+```
+
+## Folders
+
+```python
+# List folders
+result = client.folders.list()
+
+# Create a folder
+folder = client.folders.create(name="products")
+
+# Rename a folder
+client.folders.rename(folder.data.folder_no, name="product-images")
+
+# Delete a folder
+client.folders.delete(folder.data.folder_no)
+```
+
+## Multipart Upload
+
+For large files (>100MB), use multipart upload to split the file into parts:
 
 ```python
 import httpx
@@ -87,13 +125,14 @@ result = client.multipart_uploads.complete(
 import autorender
 
 try:
-    file = client.files.retrieve(999999999)
+    file = client.files.retrieve("fi_notexist")
 except autorender.APIStatusError as e:
     print(e.status_code)  # 404
-    print(e.message)      # Not found
+    print(e.message)
 ```
 
 ## Resources
 
 - [PyPI package](https://pypi.org/project/autorender/)
 - [GitHub](https://github.com/autorenderhq/autorender-python)
+- [API reference](https://github.com/autorenderhq/autorender-python/blob/main/api.md)
