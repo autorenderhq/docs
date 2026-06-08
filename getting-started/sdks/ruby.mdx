@@ -1,0 +1,100 @@
+---
+title: "Ruby"
+description: "Ruby SDK for file uploads and asset management."
+---
+
+<CardGroup cols={2}>
+  <Card title="GitHub" icon="github" iconType="brands" href="https://github.com/autorenderhq/autorender-ruby" />
+  <Card title="RubyGems" icon="gem" iconType="solid" href="https://rubygems.org/gems/autorender" />
+</CardGroup>
+
+## Installation
+
+Add to your `Gemfile`:
+
+```ruby
+gem "autorender", "~> 0.0.1"
+```
+
+Then run:
+
+```sh
+bundle install
+```
+
+## Setup
+
+```ruby
+require "autorender"
+
+client = Autorender::Client.new(api_key: ENV["AUTORENDER_API_KEY"])
+```
+
+## Upload a file
+
+```ruby
+require "autorender"
+
+client = Autorender::Client.new(api_key: ENV["AUTORENDER_API_KEY"])
+
+upload = client.uploads.create(
+  file: File.open("/path/to/product.jpg"),
+  file_name: "product.jpg"
+)
+
+puts upload.file_no  # e.g. "fi_abc123"
+puts upload.url      # CDN URL
+```
+
+## Upload from URL
+
+```ruby
+upload = client.uploads.create_from_url(
+  remote_url: "https://example.com/image.jpg"
+)
+```
+
+## List files
+
+```ruby
+result = client.files.list(limit: 20)
+
+result.files.each do |file|
+  puts "#{file.file_no} #{file.name} #{file.url}"
+end
+```
+
+## Get file details
+
+```ruby
+file = client.files.retrieve("fi_abc123")
+puts file.data.url
+```
+
+## Rename a file
+
+```ruby
+client.files.rename("fi_abc123", name: "new-name")
+```
+
+## Delete a file
+
+```ruby
+client.files.delete("fi_abc123")
+```
+
+## Folders
+
+```ruby
+# List folders
+result = client.folders.list
+
+# Create a folder
+folder = client.folders.create(name: "products")
+
+# Rename a folder
+client.folders.rename(folder.data.folder_no, name: "product-images")
+
+# Delete a folder
+client.folders.delete(folder.data.folder_no)
+```

@@ -56,6 +56,8 @@
                   "getting-started/sdks/nodejs",
                   "getting-started/sdks/python",
                   "getting-started/sdks/dotnet",
+                  "getting-started/sdks/ruby",
+                  "getting-started/sdks/java",
                   "getting-started/sdks/javascript",
                   "getting-started/sdks/react",
                   "getting-started/sdks/vue",

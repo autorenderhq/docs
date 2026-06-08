@@ -1,0 +1,127 @@
+---
+title: "Java"
+description: "Java SDK for file uploads and asset management. Requires Java 8 or later."
+---
+
+<CardGroup cols={2}>
+  <Card title="GitHub" icon="github" iconType="brands" href="https://github.com/autorenderhq/autorender-java" />
+  <Card title="Maven Central" icon="java" iconType="brands" href="https://central.sonatype.com/artifact/io.autorender/autorender-java" />
+</CardGroup>
+
+## Installation
+
+<CodeGroup>
+
+```kotlin Gradle
+implementation("io.autorender:autorender-java:0.0.1")
+```
+
+```xml Maven
+<dependency>
+  <groupId>io.autorender</groupId>
+  <artifactId>autorender-java</artifactId>
+  <version>0.0.1</version>
+</dependency>
+```
+
+</CodeGroup>
+
+## Setup
+
+```java
+import io.autorender.client.AutorenderClient;
+import io.autorender.client.okhttp.AutorenderOkHttpClient;
+
+// Reads AUTORENDER_API_KEY from the environment automatically
+AutorenderClient client = AutorenderOkHttpClient.fromEnv();
+```
+
+Or configure manually:
+
+```java
+AutorenderClient client = AutorenderOkHttpClient.builder()
+    .apiKey("your-api-key")
+    .build();
+```
+
+## Upload a file
+
+```java
+import io.autorender.client.AutorenderClient;
+import io.autorender.client.okhttp.AutorenderOkHttpClient;
+import io.autorender.models.uploads.UploadCreateParams;
+import io.autorender.models.uploads.UploadCreateResponse;
+import java.nio.file.Paths;
+
+AutorenderClient client = AutorenderOkHttpClient.fromEnv();
+
+UploadCreateParams params = UploadCreateParams.builder()
+    .fileName("product.jpg")
+    .file(Paths.get("/path/to/product.jpg"))
+    .build();
+
+UploadCreateResponse upload = client.uploads().create(params);
+System.out.println(upload.fileNo());  // e.g. "fi_abc123"
+System.out.println(upload.url());     // CDN URL
+```
+
+## Upload from URL
+
+```java
+import io.autorender.models.uploads.UploadCreateFromUrlParams;
+
+UploadCreateFromUrlParams params = UploadCreateFromUrlParams.builder()
+    .remoteUrl("https://example.com/image.jpg")
+    .build();
+
+client.uploads().createFromUrl(params);
+```
+
+## List files
+
+```java
+import io.autorender.models.files.FileListParams;
+import io.autorender.models.files.FileListResponse;
+
+FileListParams params = FileListParams.builder()
+    .limit(20L)
+    .build();
+
+FileListResponse result = client.files().list(params);
+result.files().forEach(file ->
+    System.out.println(file.fileNo() + " " + file.url())
+);
+```
+
+## Get file details
+
+```java
+import io.autorender.models.files.FileRetrieveResponse;
+
+FileRetrieveResponse file = client.files().retrieve("fi_abc123");
+System.out.println(file.data().url());
+```
+
+## Delete a file
+
+```java
+client.files().delete("fi_abc123");
+```
+
+## Folders
+
+```java
+import io.autorender.models.folders.FolderCreateParams;
+
+// Create a folder
+FolderCreateParams params = FolderCreateParams.builder()
+    .name("products")
+    .build();
+client.folders().create(params);
+
+// List folders
+client.folders().list();
+
+// Delete a folder
+client.folders().delete("fol_abc123");
+```
