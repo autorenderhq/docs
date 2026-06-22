@@ -1,11 +1,11 @@
-# @autorender/sdk-core
+# @autorender/js
 
 Core Autorender SDK - shared functionality for upload and viewTag features across all framework adapters.
 
 ## Installation
 
 ```bash
-npm install @autorender/sdk-core
+npm install @autorender/js
 ```
 
 ## Features
@@ -16,19 +16,18 @@ This package contains:
 
 For framework-specific adapters, use:
 
-- `@autorender/sdk-react` - React adapter
-- `@autorender/sdk-vue` - Vue adapter
-- `@autorender/sdk-angular` - Angular adapter
-- `@autorender/sdk-svelte` - Svelte adapter
-- `@autorender/sdk-nextjs` - Next.js adapter
-- `@autorender/sdk-react-native` - React Native adapter
-- `@autorender/sdk-flutter` - Flutter adapter
+- `@autorender/react` - React adapter
+- `@autorender/vue` - Vue adapter
+- `@autorender/angular` - Angular adapter
+- `@autorender/svelte` - Svelte adapter
+- `@autorender/nextjs` - Next.js adapter
+- `@autorender/react-native` - React Native adapter
 
 ## Upload SDK Usage
 
 ```javascript
-import { createUploader } from '@autorender/sdk-core';
-import '@autorender/sdk-core/styles';
+import { createUploader } from '@autorender/js';
+import '@autorender/js/styles';
 
 const uploader = createUploader({
   apiKey: 'your-api-key',
@@ -46,7 +45,7 @@ const uploader = createUploader({
 ### Basic Setup
 
 ```javascript
-import { createAR } from '@autorender/sdk-core';
+import { createAR } from '@autorender/js';
 
 const AR = createAR({
   baseUrl: 'https://assets.autorender.io',
@@ -104,21 +103,6 @@ const attrs = AR.responsiveImageAttributes({
 const dpr = AR.getDPR(); // 1 or 2
 ```
 
-## Playground
-
-A **vanilla TypeScript + Vite** sample lives in [`playground/html`](../../playground/html). It uses `createUploader` and `createAR` from `@autorender/sdk-core` (no framework adapter).
-
-From the **repository root**:
-
-```bash
-npm install --prefix playground/html
-npm run dev --prefix playground/html
-```
-
-Entry: `playground/html/src/main.ts` and `style.css`.
-
-For richer **ViewTag + uploader** examples (React components wrapping the same core), see [`playground/react`](../../playground/react) and the other framework playgrounds in the [root README](../../README.md) (section **Development → Playgrounds**).
-
 ## API Reference
 
 ### `createAR(config: CreateARConfig): ARInstance`
@@ -139,6 +123,6 @@ Creates a new AutoRender client instance for image transformations.
 - `transformString(transform: TransformOptions): string` - Get transformation string only
 - `responsiveImageAttributes(options: ResponsiveOptions): ResponsiveAttributes` - Generate responsive image attributes
 - `getDPR(): number` - Get device pixel ratio (1 or 2)
-See the main [@autorender/sdk](../README.md) documentation for full API reference.
+See the main [full documentation](https://autorender.mintlify.app) documentation for full API reference.
 
 

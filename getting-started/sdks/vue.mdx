@@ -6,7 +6,7 @@ description: "Autorender SDK adapter for Vue - Upload and ViewTag functionality.
 ## Installation
 
 ```bash
-npm install @autorender/sdk-vue
+npm install @autorender/vue
 ```
 
 > Requires **Vue ≥ 3.0**. The plugin works with **Vite ^4 / ^5 / ^6 / ^7**.
@@ -18,7 +18,7 @@ If you use **`<ARVideo>`** (Video.js / HLS / DASH), add the **`autorenderVue()` 
 ```ts
 import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
-import { autorenderVue } from '@autorender/sdk-vue/vite';
+import { autorenderVue } from '@autorender/vue/vite';
 
 export default defineConfig({
   plugins: [vue(), autorenderVue()],
@@ -30,9 +30,9 @@ export default defineConfig({
 ```vue
 <script setup lang="ts">
 import { onMounted, onUnmounted, ref } from 'vue';
-import { createAutorenderUploader } from '@autorender/sdk-vue';
-import type { UploaderInstance } from '@autorender/sdk-vue';
-import '@autorender/sdk-vue/styles';
+import { createAutorenderUploader } from '@autorender/vue';
+import type { UploaderInstance } from '@autorender/vue';
+import '@autorender/vue/styles';
 
 const containerRef = ref<HTMLDivElement | null>(null);
 let uploader: UploaderInstance | null = null;
@@ -64,7 +64,7 @@ onUnmounted(() => {
 
 ```vue
 <script setup lang="ts">
-import { useAutoRenderProvider } from '@autorender/sdk-vue';
+import { useAutoRenderProvider } from '@autorender/vue';
 
 useAutoRenderProvider({
   baseUrl: 'https://assets.autorender.io',
@@ -89,7 +89,7 @@ useAutoRenderProvider({
 </template>
 
 <script setup lang="ts">
-import { ARImage } from '@autorender/sdk-vue';
+import { ARImage } from '@autorender/vue';
 </script>
 ```
 
@@ -108,7 +108,7 @@ import { ARImage } from '@autorender/sdk-vue';
 </template>
 
 <script setup lang="ts">
-import { ARVideo } from '@autorender/sdk-vue';
+import { ARVideo } from '@autorender/vue';
 </script>
 
 ### Complete Transform Example
@@ -129,8 +129,8 @@ import { ARVideo } from '@autorender/sdk-vue';
 
 <script setup lang="ts">
 import { ref } from 'vue';
-import { ARImage } from '@autorender/sdk-vue';
-import type { TransformOptions } from '@autorender/sdk-core';
+import { ARImage } from '@autorender/vue';
+import type { TransformOptions } from '@autorender/js';
 
 const transform = ref<TransformOptions>({
   w: 1200,

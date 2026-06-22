@@ -1,19 +1,19 @@
-# @autorender/sdk-angular
+# @autorender/angular
 
 Autorender SDK adapter for Angular - Upload and ViewTag functionality.
 
 ## Installation
 
 ```bash
-npm install @autorender/sdk-angular
+npm install @autorender/angular
 ```
 
 ## Upload SDK Usage
 
 ```typescript
 import { Component, ElementRef, OnInit } from '@angular/core';
-import { bootstrapAutorenderUploader } from '@autorender/sdk-angular';
-import '@autorender/sdk-angular/styles';
+import { bootstrapAutorenderUploader } from '@autorender/angular';
+import '@autorender/angular/styles';
 
 @Component({
   selector: 'app-upload',
@@ -45,8 +45,8 @@ export class UploadComponent implements OnInit {
 
 ```typescript
 import { Component } from '@angular/core';
-import { AutoRenderService, AUTORENDER_CONFIG } from '@autorender/sdk-angular';
-import type { CreateARConfig } from '@autorender/sdk-core';
+import { AutoRenderService, AUTORENDER_CONFIG } from '@autorender/angular';
+import type { CreateARConfig } from '@autorender/js';
 
 @Component({
   selector: 'app-root',
@@ -69,8 +69,8 @@ export class AppComponent {}
 
 ```typescript
 import { Component } from '@angular/core';
-import { ARImageComponent } from '@autorender/sdk-angular';
-import type { TransformOptions } from '@autorender/sdk-core';
+import { ARImageComponent } from '@autorender/angular';
+import type { TransformOptions } from '@autorender/js';
 
 @Component({
   selector: 'app-product',
@@ -99,7 +99,7 @@ export class ProductComponent {
 
 ```typescript
 import { Component } from '@angular/core';
-import { ARVideoComponent } from '@autorender/sdk-angular';
+import { ARVideoComponent } from '@autorender/angular';
 
 @Component({
   selector: 'app-product-video',
@@ -125,8 +125,8 @@ Supports MP4, HLS (`.m3u8`), and DASH (`.mpd`) sources.
 
 ```typescript
 import { Component } from '@angular/core';
-import { ARImageComponent } from '@autorender/sdk-angular';
-import type { TransformOptions } from '@autorender/sdk-core';
+import { ARImageComponent } from '@autorender/angular';
+import type { TransformOptions } from '@autorender/js';
 
 @Component({
   selector: 'app-hero',
@@ -235,8 +235,8 @@ export class HeroComponent {
 
 ```typescript
 import { Component, inject, computed, signal } from '@angular/core';
-import { AutoRenderService } from '@autorender/sdk-angular';
-import type { TransformOptions } from '@autorender/sdk-core';
+import { AutoRenderService } from '@autorender/angular';
+import type { TransformOptions } from '@autorender/js';
 
 @Component({
   selector: 'app-image',
@@ -266,21 +266,6 @@ export class ImageComponent {
   }));
 }
 ```
-
-## Playground
-
-An **Angular** demo lives in [`playground/angular`](../../playground/angular) with `file:../../packages/sdk-angular`. It mirrors the React playground (uploader, `ARImage` grid, `ARVideo` presets).
-
-This library is built with **ng-packagr** (Ivy **partial** compilation) so `ARImageComponent` and `ARVideoComponent` expose `ɵcmp` metadata in typings. That lets you add them to a **standalone** component’s `imports` array in StackBlitz, CodeSandbox, and production apps. A single-file **esbuild/tsup** bundle did not satisfy the Angular compiler and produced `TS-992012` (“imports must be standalone…”) for those symbols.
-
-From the **repository root**:
-
-```bash
-npm install --prefix playground/angular
-npm start --prefix playground/angular
-```
-
-This runs `ng serve`. Main source: `playground/angular/src/app/app.component.ts`, `app.component.html`, and `app.component.scss`.
 
 ## API Reference
 
@@ -336,7 +321,7 @@ Angular component that wraps `<img>` with AutoRender transformations.
 
 ## TransformOptions Reference
 
-All transformation parameters available in the `transformations` input. See [React SDK README](../sdk-react/README.md#transformoptions-reference) for complete reference.
+All transformation parameters available in the `transformations` input. See [full documentation](https://autorender.mintlify.app) for complete reference.
 
 ### Size & Crop
 - `w?: number` - Width in pixels
@@ -390,4 +375,4 @@ All transformation parameters available in the `transformations` input. See [Rea
 
 ## Documentation
 
-See the main [@autorender/sdk-core](../sdk-core/README.md) documentation for full API reference.
+See the main [full documentation](https://autorender.mintlify.app) documentation for full API reference.

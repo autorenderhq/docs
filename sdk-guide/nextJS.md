@@ -1,11 +1,11 @@
-# @autorender/sdk-nextjs
+# @autorender/nextjs
 
 Autorender SDK adapter for Next.js - Upload and ViewTag functionality.
 
 ## Installation
 
 ```bash
-npm install @autorender/sdk-nextjs
+npm install @autorender/nextjs
 ```
 
 ## Next.js configuration
@@ -14,7 +14,7 @@ npm install @autorender/sdk-nextjs
 
 ```ts
 import type { NextConfig } from 'next';
-import { withAutorender } from '@autorender/sdk-nextjs/next-config';
+import { withAutorender } from '@autorender/nextjs/next-config';
 
 const nextConfig: NextConfig = {
   // your other options
@@ -40,8 +40,8 @@ This package provides React components optimized for Next.js. The components are
 ```tsx
 'use client';
 
-import { AutorenderUploader } from '@autorender/sdk-nextjs';
-import '@autorender/sdk-nextjs/styles';
+import { AutorenderUploader } from '@autorender/nextjs';
+import '@autorender/nextjs/styles';
 
 export default function UploadPage() {
   return (
@@ -63,7 +63,7 @@ Set `NEXT_PUBLIC_AUTORENDER_API_KEY` in `.env.local` (and in your hosting provid
 ```tsx
 'use client';
 
-import { AutoRenderProvider } from '@autorender/sdk-nextjs';
+import { AutoRenderProvider } from '@autorender/nextjs';
 
 export default function RootLayout({ children }) {
   return (
@@ -83,8 +83,8 @@ export default function RootLayout({ children }) {
 ```tsx
 'use client';
 
-import { ARImage } from '@autorender/sdk-nextjs';
-import type { TransformOptions } from '@autorender/sdk-core';
+import { ARImage } from '@autorender/nextjs';
+import type { TransformOptions } from '@autorender/js';
 
 export default function ProductPage() {
   return (
@@ -110,7 +110,7 @@ export default function ProductPage() {
 ```tsx
 'use client';
 
-import { ARVideo } from '@autorender/sdk-nextjs';
+import { ARVideo } from '@autorender/nextjs';
 
 export default function ProductVideoPage() {
   return (
@@ -133,8 +133,8 @@ Supports MP4, HLS (`.m3u8`), and DASH (`.mpd`) sources.
 ```tsx
 'use client';
 
-import { ARImage } from '@autorender/sdk-nextjs';
-import type { TransformOptions } from '@autorender/sdk-core';
+import { ARImage } from '@autorender/nextjs';
+import type { TransformOptions } from '@autorender/js';
 
 export default function HeroPage() {
   const transform: TransformOptions = {
@@ -240,7 +240,7 @@ export default function HeroPage() {
 ```tsx
 'use client';
 
-import { useAutoRender } from '@autorender/sdk-nextjs';
+import { useAutoRender } from '@autorender/nextjs';
 
 export default function ImageComponent() {
   const AR = useAutoRender();
@@ -269,24 +269,11 @@ export default function ImageComponent() {
 }
 ```
 
-## Playground
-
-A dedicated Next.js demo lives at **[`playground/nextjs`](../../playground/nextjs)** (generated with `create-next-app`). From the repository root:
-
-```bash
-npm run build:nextjs
-npm install --prefix playground/nextjs
-# Optional: cp playground/nextjs/.env.example playground/nextjs/.env.local
-npm run dev --prefix playground/nextjs
-```
-
-The UI matches **[`playground/react`](../../playground/react)** (`AutoRenderProvider`, uploader, `ARImage` grid, `ARVideo` presets) but imports `@autorender/sdk-nextjs`. If `packages/sdk-nextjs/dist` is missing, run `npm run build:nextjs` before `npm install` in the playground folder. `playground/nextjs/next.config.ts` uses `withAutorender()` from `@autorender/sdk-nextjs/next-config`. Optional env vars are in `playground/nextjs/.env.example`.
-
 ## API Reference
 
 ### Upload SDK
 
-All props from `@autorender/sdk-core` are supported, with the addition of:
+All props from `@autorender/js` are supported, with the addition of:
 - `environment?: 'prod' | 'dev'` - Controls which API endpoint to use (default: `'prod'`)
 - `containerClassName?: string` - Additional CSS class for the container
 
@@ -331,7 +318,7 @@ Hook to access the AR instance from context.
 - `getDPR(): number` - Get device pixel ratio
 ## TransformOptions Reference
 
-All transformation parameters available in the `transformations` prop. See [React SDK README](../sdk-react/README.md#transformoptions-reference) for complete reference.
+All transformation parameters available in the `transformations` prop. See [full documentation](https://autorender.mintlify.app) for complete reference.
 
 ### Size & Crop
 - `w?: number` - Width in pixels
@@ -385,4 +372,4 @@ All transformation parameters available in the `transformations` prop. See [Reac
 
 ## Documentation
 
-See the main [@autorender/sdk-core](../sdk-core/README.md) documentation for full API reference.
+See the main [full documentation](https://autorender.mintlify.app) documentation for full API reference.

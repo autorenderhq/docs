@@ -6,15 +6,15 @@ description: "Autorender SDK adapter for Svelte - Upload and ViewTag functionali
 ## Installation
 
 ```bash
-npm install @autorender/sdk-svelte
+npm install @autorender/svelte
 ```
 
 ## Upload SDK Usage
 
 ```svelte
 <script lang="ts">
-  import { autorenderUploader } from '@autorender/sdk-svelte';
-  import '@autorender/sdk-svelte/styles';
+  import { autorenderUploader } from '@autorender/svelte';
+  import '@autorender/svelte/styles';
 
   const options = {
     apiKey: import.meta.env.VITE_AUTORENDER_KEY,
@@ -33,7 +33,7 @@ npm install @autorender/sdk-svelte
 
 ```svelte
 <script lang="ts">
-  import { AutoRenderProvider, ARImage } from '@autorender/sdk-svelte';
+  import { AutoRenderProvider, ARImage } from '@autorender/svelte';
 </script>
 
 <AutoRenderProvider
@@ -57,7 +57,7 @@ npm install @autorender/sdk-svelte
 
 ```svelte
 <script lang="ts">
-  import { AutoRenderProvider, ARVideo } from '@autorender/sdk-svelte';
+  import { AutoRenderProvider, ARVideo } from '@autorender/svelte';
 </script>
 
 <AutoRenderProvider
@@ -80,8 +80,8 @@ npm install @autorender/sdk-svelte
 
 ```svelte
 <script lang="ts">
-  import { AutoRenderProvider, ARImage } from '@autorender/sdk-svelte';
-  import type { TransformOptions } from '@autorender/sdk-core';
+  import { AutoRenderProvider, ARImage } from '@autorender/svelte';
+  import type { TransformOptions } from '@autorender/js';
 
   const transform: TransformOptions = {
     w: 1200,

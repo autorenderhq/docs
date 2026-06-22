@@ -6,7 +6,7 @@ description: "Autorender SDK adapter for Next.js - Upload and ViewTag functional
 ## Installation
 
 ```bash
-npm install @autorender/sdk-nextjs
+npm install @autorender/nextjs
 ```
 
 ## Next.js configuration
@@ -15,7 +15,7 @@ Wrap your config with `withAutorender` in `next.config.js` or `next.config.ts`:
 
 ```ts
 import type { NextConfig } from 'next';
-import { withAutorender } from '@autorender/sdk-nextjs/next-config';
+import { withAutorender } from '@autorender/nextjs/next-config';
 
 const nextConfig: NextConfig = {
   // your other options
@@ -29,8 +29,8 @@ export default withAutorender(nextConfig);
 ```tsx
 'use client';
 
-import { AutorenderUploader } from '@autorender/sdk-nextjs';
-import '@autorender/sdk-nextjs/styles';
+import { AutorenderUploader } from '@autorender/nextjs';
+import '@autorender/nextjs/styles';
 
 export default function UploadPage() {
   return (
@@ -49,7 +49,7 @@ export default function UploadPage() {
 ```tsx
 'use client';
 
-import { AutoRenderProvider } from '@autorender/sdk-nextjs';
+import { AutoRenderProvider } from '@autorender/nextjs';
 
 export default function RootLayout({ children }) {
   return (
@@ -69,7 +69,7 @@ export default function RootLayout({ children }) {
 ```tsx
 'use client';
 
-import { ARImage } from '@autorender/sdk-nextjs';
+import { ARImage } from '@autorender/nextjs';
 
 export default function ProductPage() {
   return (
@@ -91,7 +91,7 @@ export default function ProductPage() {
 ```tsx
 'use client';
 
-import { ARVideo } from '@autorender/sdk-nextjs';
+import { ARVideo } from '@autorender/nextjs';
 
 export default function ProductVideoPage() {
   return (
@@ -112,8 +112,8 @@ export default function ProductVideoPage() {
 ```tsx
 'use client';
 
-import { ARImage } from '@autorender/sdk-nextjs';
-import type { TransformOptions } from '@autorender/sdk-core';
+import { ARImage } from '@autorender/nextjs';
+import type { TransformOptions } from '@autorender/js';
 
 export default function HeroPage() {
   const transform: TransformOptions = {

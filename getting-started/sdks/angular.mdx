@@ -6,15 +6,15 @@ description: "Autorender SDK adapter for Angular - Upload and ViewTag functional
 ## Installation
 
 ```bash
-npm install @autorender/sdk-angular
+npm install @autorender/angular
 ```
 
 ## Upload SDK Usage
 
 ```typescript
 import { Component, ElementRef, OnInit } from '@angular/core';
-import { bootstrapAutorenderUploader } from '@autorender/sdk-angular';
-import '@autorender/sdk-angular/styles';
+import { bootstrapAutorenderUploader } from '@autorender/angular';
+import '@autorender/angular/styles';
 
 @Component({
   selector: 'app-upload',
@@ -44,8 +44,8 @@ export class UploadComponent implements OnInit {
 
 ```typescript
 import { Component } from '@angular/core';
-import { AutoRenderService, AUTORENDER_CONFIG } from '@autorender/sdk-angular';
-import type { CreateARConfig } from '@autorender/sdk-core';
+import { AutoRenderService, AUTORENDER_CONFIG } from '@autorender/angular';
+import type { CreateARConfig } from '@autorender/js';
 
 @Component({
   selector: 'app-root',
@@ -68,7 +68,7 @@ export class AppComponent {}
 
 ```typescript
 import { Component } from '@angular/core';
-import { ARImageComponent } from '@autorender/sdk-angular';
+import { ARImageComponent } from '@autorender/angular';
 
 @Component({
   selector: 'app-product',
@@ -93,7 +93,7 @@ export class ProductComponent {}
 
 ```typescript
 import { Component } from '@angular/core';
-import { ARVideoComponent } from '@autorender/sdk-angular';
+import { ARVideoComponent } from '@autorender/angular';
 
 @Component({
   selector: 'app-product-video',
@@ -117,8 +117,8 @@ export class ProductVideoComponent {}
 
 ```typescript
 import { Component } from '@angular/core';
-import { ARImageComponent } from '@autorender/sdk-angular';
-import type { TransformOptions } from '@autorender/sdk-core';
+import { ARImageComponent } from '@autorender/angular';
+import type { TransformOptions } from '@autorender/js';
 
 @Component({
   selector: 'app-hero',

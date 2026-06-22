@@ -1,15 +1,15 @@
-# @autorender/sdk-vue
+# @autorender/vue
 
 Autorender SDK adapter for Vue - Upload and ViewTag functionality.
 
 ## Installation
 
 ```bash
-npm install @autorender/sdk-vue
+npm install @autorender/vue
 # or
-pnpm add @autorender/sdk-vue
+pnpm add @autorender/vue
 # or
-yarn add @autorender/sdk-vue
+yarn add @autorender/vue
 ```
 
 > Requires **Vue ≥ 3.0**. The plugin works with **Vite ^4 / ^5 / ^6 / ^7**.
@@ -24,7 +24,7 @@ If you use **`<ARVideo>`** (Video.js / HLS / DASH), add the **`autorenderVue()` 
 // vite.config.ts
 import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
-import { autorenderVue } from '@autorender/sdk-vue/vite';
+import { autorenderVue } from '@autorender/vue/vite';
 
 export default defineConfig({
   plugins: [vue(), autorenderVue()],
@@ -56,7 +56,7 @@ In `nuxt.config.ts` add the plugin via `vite.plugins`:
 
 ```ts
 import { defineNuxtConfig } from 'nuxt/config';
-import { autorenderVue } from '@autorender/sdk-vue/vite';
+import { autorenderVue } from '@autorender/vue/vite';
 
 export default defineNuxtConfig({
   vite: {
@@ -69,13 +69,13 @@ For SSR-sensitive code (the uploader, `<ARVideo>`), wrap usages in `<ClientOnly>
 
 ### CodeSandbox / StackBlitz (pnpm)
 
-These environments use **pnpm** which isolates packages and breaks ad-hoc `resolve.alias` shims. The plugin handles pnpm correctly out of the box — no additional configuration needed. Just `pnpm add @autorender/sdk-vue` and add `autorenderVue()` to `plugins`.
+These environments use **pnpm** which isolates packages and breaks ad-hoc `resolve.alias` shims. The plugin handles pnpm correctly out of the box — no additional configuration needed. Just `pnpm add @autorender/vue` and add `autorenderVue()` to `plugins`.
 
 ### Troubleshooting
 
 | Symptom | Fix |
 |---|---|
-| `Uncaught SyntaxError: ... does not provide an export named 'default'` for `global/window`, `@videojs/xhr`, `videojs-vtt.js`, `mux.js/...`, `@xmldom/xmldom` | Make sure `autorenderVue()` is in your `plugins` array (and that you're on `@autorender/sdk-vue ≥ 0.1.44`). Then restart the dev server and clear the Vite cache: `rm -rf node_modules/.vite && npm run dev`. |
+| `Uncaught SyntaxError: ... does not provide an export named 'default'` for `global/window`, `@videojs/xhr`, `videojs-vtt.js`, `mux.js/...`, `@xmldom/xmldom` | Make sure `autorenderVue()` is in your `plugins` array (and that you're on `@autorender/vue ≥ 0.1.44`). Then restart the dev server and clear the Vite cache: `rm -rf node_modules/.vite && npm run dev`. |
 | Stale errors after upgrading the SDK | Delete `node_modules/.vite` and re-run `npm run dev`. Vite caches pre-bundled deps aggressively. |
 | Upgrading from `< 0.1.44` (legacy `autorenderVueViteResolveAliases` / `autorenderVueViteConfig`) | Replace `mergeConfig({...}, autorenderVueViteConfig(...))` and any custom `resolve.alias` entries with a single `autorenderVue()` plugin entry. The legacy helpers are still exported (deprecated) so existing configs keep working, but they're no-ops now — the plugin does the work. |
 
@@ -93,9 +93,9 @@ These environments use **pnpm** which isolates packages and breaks ad-hoc `resol
 ```vue
 <script setup lang="ts">
 import { onMounted, onUnmounted, ref } from 'vue';
-import { createAutorenderUploader } from '@autorender/sdk-vue';
-import type { UploaderInstance } from '@autorender/sdk-vue';
-import '@autorender/sdk-vue/styles';
+import { createAutorenderUploader } from '@autorender/vue';
+import type { UploaderInstance } from '@autorender/vue';
+import '@autorender/vue/styles';
 
 const containerRef = ref<HTMLDivElement | null>(null);
 let uploader: UploaderInstance | null = null;
@@ -128,8 +128,8 @@ onUnmounted(() => {
 ```vue
 <script setup lang="ts">
 import { ref } from 'vue';
-import { useAutorenderUploader } from '@autorender/sdk-vue';
-import '@autorender/sdk-vue/styles';
+import { useAutorenderUploader } from '@autorender/vue';
+import '@autorender/vue/styles';
 
 const containerRef = ref<HTMLDivElement | null>(null);
 
@@ -151,7 +151,7 @@ const uploader = useAutorenderUploader({
 
 ```vue
 <script setup lang="ts">
-import { useAutoRenderProvider } from '@autorender/sdk-vue';
+import { useAutoRenderProvider } from '@autorender/vue';
 
 useAutoRenderProvider({
   baseUrl: 'https://assets.autorender.io',
@@ -176,7 +176,7 @@ useAutoRenderProvider({
 </template>
 
 <script setup lang="ts">
-import { ARImage } from '@autorender/sdk-vue';
+import { ARImage } from '@autorender/vue';
 </script>
 ```
 
@@ -195,7 +195,7 @@ import { ARImage } from '@autorender/sdk-vue';
 </template>
 
 <script setup lang="ts">
-import { ARVideo } from '@autorender/sdk-vue';
+import { ARVideo } from '@autorender/vue';
 </script>
 ```
 
@@ -220,8 +220,8 @@ Supports MP4, HLS (`.m3u8`), and DASH (`.mpd`) sources.
 
 <script setup lang="ts">
 import { ref } from 'vue';
-import { ARImage } from '@autorender/sdk-vue';
-import type { TransformOptions } from '@autorender/sdk-core';
+import { ARImage } from '@autorender/vue';
+import type { TransformOptions } from '@autorender/js';
 
 const transform = ref<TransformOptions>({
   // Size & Crop
@@ -319,7 +319,7 @@ const transform = ref<TransformOptions>({
 
 <script setup lang="ts">
 import { computed } from 'vue';
-import { useAutoRender } from '@autorender/sdk-vue';
+import { useAutoRender } from '@autorender/vue';
 
 const AR = useAutoRender();
 
@@ -335,21 +335,6 @@ const attrs = computed(() => AR.responsiveImageAttributes({
 }));
 </script>
 ```
-
-## Playground
-
-A **Vue 3 + Vite** demo lives in [`playground/vue`](../../playground/vue) and installs **`@autorender/sdk-vue` from npm** (same as a real app). It mirrors the React playground: upload widget, `ARImage` transformation grid, and `ARVideo` presets. The playground's **`vite.config.ts`** uses the published **`autorenderVue()`** plugin from **`@autorender/sdk-vue/vite` (≥ 0.1.44)** — no manual aliases, no shim files, no `patch-package`.
-
-
-From the **repository root**:
-
-```bash
-npm install --prefix playground/vue
-# Optional: cp playground/vue/.env.example playground/vue/.env
-npm run dev --prefix playground/vue
-```
-
-Main source: `playground/vue/src/App.vue` and `style.css`. Optional env vars are documented in `playground/vue/.env.example`.
 
 ## API Reference
 
@@ -418,7 +403,7 @@ Composable to inject the AR instance from parent provider.
 - `getDPR(): number` - Get device pixel ratio
 ## TransformOptions Reference
 
-All transformation parameters available in the `transformations` prop. See [React SDK README](../sdk-react/README.md#transformoptions-reference) for complete reference.
+All transformation parameters available in the `transformations` prop. See [full documentation](https://autorender.mintlify.app) for complete reference.
 
 ### Size & Crop
 - `w?: number` - Width in pixels
@@ -472,4 +457,4 @@ All transformation parameters available in the `transformations` prop. See [Reac
 
 ## Documentation
 
-See the main [@autorender/sdk-core](../sdk-core/README.md) documentation for full API reference.
+See the main [full documentation](https://autorender.mintlify.app) documentation for full API reference.

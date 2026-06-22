@@ -6,7 +6,7 @@ description: "Core Autorender SDK - shared functionality for upload and view fea
 ## Installation
 
 ```bash
-npm install @autorender/sdk-core
+npm install @autorender/js
 ```
 
 ## Features
@@ -18,8 +18,8 @@ This package contains:
 ## Upload SDK Usage
 
 ```javascript
-import { createUploader } from '@autorender/sdk-core';
-import '@autorender/sdk-core/styles';
+import { createUploader } from '@autorender/js';
+import '@autorender/js/styles';
 
 const uploader = createUploader({
   apiKey: 'your-api-key',
@@ -37,7 +37,7 @@ const uploader = createUploader({
 ### Basic Setup
 
 ```javascript
-import { createAR } from '@autorender/sdk-core';
+import { createAR } from '@autorender/js';
 
 const AR = createAR({
   baseUrl: 'https://assets.autorender.io',

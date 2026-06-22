@@ -1,19 +1,19 @@
-# @autorender/sdk-svelte
+# @autorender/svelte
 
 Autorender SDK adapter for Svelte - Upload and ViewTag functionality.
 
 ## Installation
 
 ```bash
-npm install @autorender/sdk-svelte
+npm install @autorender/svelte
 ```
 
 ## Upload SDK Usage
 
 ```svelte
 <script lang="ts">
-  import { autorenderUploader } from '@autorender/sdk-svelte';
-  import '@autorender/sdk-svelte/styles';
+  import { autorenderUploader } from '@autorender/svelte';
+  import '@autorender/svelte/styles';
 
   const options = {
     apiKey: import.meta.env.VITE_AUTORENDER_KEY,
@@ -34,8 +34,8 @@ npm install @autorender/sdk-svelte
 
 ```svelte
 <script lang="ts">
-  import { AutoRenderProvider, ARImage } from '@autorender/sdk-svelte';
-  import type { TransformOptions } from '@autorender/sdk-core';
+  import { AutoRenderProvider, ARImage } from '@autorender/svelte';
+  import type { TransformOptions } from '@autorender/js';
 </script>
 
 <AutoRenderProvider
@@ -59,7 +59,7 @@ npm install @autorender/sdk-svelte
 
 ```svelte
 <script lang="ts">
-  import { AutoRenderProvider, ARVideo } from '@autorender/sdk-svelte';
+  import { AutoRenderProvider, ARVideo } from '@autorender/svelte';
 </script>
 
 <AutoRenderProvider
@@ -84,8 +84,8 @@ Supports MP4, HLS (`.m3u8`), and DASH (`.mpd`) sources.
 
 ```svelte
 <script lang="ts">
-  import { AutoRenderProvider, ARImage } from '@autorender/sdk-svelte';
-  import type { TransformOptions } from '@autorender/sdk-core';
+  import { AutoRenderProvider, ARImage } from '@autorender/svelte';
+  import type { TransformOptions } from '@autorender/js';
 
   const transform: TransformOptions = {
     // Size & Crop
@@ -194,7 +194,7 @@ Supports MP4, HLS (`.m3u8`), and DASH (`.mpd`) sources.
 ```svelte
 <script lang="ts">
   import { getContext } from 'svelte';
-  import type { ARInstance, TransformOptions } from '@autorender/sdk-core';
+  import type { ARInstance, TransformOptions } from '@autorender/js';
   
   const AR: ARInstance = getContext('autorender');
   
@@ -218,19 +218,6 @@ Supports MP4, HLS (`.m3u8`), and DASH (`.mpd`) sources.
   alt="Image" 
 />
 ```
-
-## Playground
-
-A **Svelte + Vite** demo lives in [`playground/svelte`](../../playground/svelte) using `file:../../packages/sdk-svelte`. It mirrors the React playground (uploader, `ARImage` grid, `ARVideo` presets).
-
-From the **repository root**:
-
-```bash
-npm install --prefix playground/svelte
-npm run dev --prefix playground/svelte
-```
-
-Main source: `playground/svelte/src/App.svelte` and `app.css`.
 
 ## API Reference
 
@@ -285,7 +272,7 @@ Access the AR instance via Svelte's `getContext('autorender')`.
 - `getDPR(): number` - Get device pixel ratio
 ## TransformOptions Reference
 
-All transformation parameters available in the `transformations` prop. See [React SDK README](../sdk-react/README.md#transformoptions-reference) for complete reference.
+All transformation parameters available in the `transformations` prop. See [full documentation](https://autorender.mintlify.app) for complete reference.
 
 ### Size & Crop
 - `w?: number` - Width in pixels
@@ -339,4 +326,4 @@ All transformation parameters available in the `transformations` prop. See [Reac
 
 ## Documentation
 
-See the main [@autorender/sdk-core](../sdk-core/README.md) documentation for full API reference.
+See the main [full documentation](https://autorender.mintlify.app) documentation for full API reference.

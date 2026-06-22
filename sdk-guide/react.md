@@ -1,18 +1,18 @@
-# @autorender/sdk-react
+# @autorender/react
 
 Autorender SDK adapter for React - Upload and ViewTag functionality.
 
 ## Installation
 
 ```bash
-npm install @autorender/sdk-react
+npm install @autorender/react
 ```
 
 ## Upload SDK Usage
 
 ```tsx
-import { AutorenderUploader } from '@autorender/sdk-react';
-import '@autorender/sdk-react/styles';
+import { AutorenderUploader } from '@autorender/react';
+import '@autorender/react/styles';
 
 function App() {
   return (
@@ -33,7 +33,7 @@ function App() {
 ### Setup Provider
 
 ```tsx
-import { AutoRenderProvider } from '@autorender/sdk-react';
+import { AutoRenderProvider } from '@autorender/react';
 
 function App() {
   return (
@@ -51,7 +51,7 @@ function App() {
 ### Use ARImage Component
 
 ```tsx
-import { ARImage } from '@autorender/sdk-react';
+import { ARImage } from '@autorender/react';
 
 function ProductImage() {
   return (
@@ -75,7 +75,7 @@ function ProductImage() {
 ### Use ARVideo Component (Video.js)
 
 ```tsx
-import { ARVideo } from '@autorender/sdk-react';
+import { ARVideo } from '@autorender/react';
 
 function ProductVideo() {
   return (
@@ -96,7 +96,7 @@ Supports MP4, HLS (`.m3u8`), and DASH (`.mpd`) sources.
 ### Complete Transform Example
 
 ```tsx
-import { ARImage } from '@autorender/sdk-react';
+import { ARImage } from '@autorender/react';
 
 function AdvancedImage() {
   return (
@@ -211,7 +211,7 @@ function AdvancedImage() {
 ### Use AR Instance Directly
 
 ```tsx
-import { useAutoRender } from '@autorender/sdk-react';
+import { useAutoRender } from '@autorender/react';
 
 function MyComponent() {
   const AR = useAutoRender();
@@ -239,23 +239,6 @@ function MyComponent() {
   );
 }
 ```
-
-## Playground
-
-This monorepo ships a **React + Vite** demo in [`playground/react`](../../playground/react) that depends on `@autorender/sdk-react` via `file:../../packages/sdk-react`. It covers:
-
-- `AutorenderUploader` (inline, multi-file)
-- `AutoRenderProvider` with an `ARImage` transformation grid (shared `filterTransformPresets.json`)
-- `ARVideo` with a demo asset and per-preset transformations
-
-From the **repository root**:
-
-```bash
-npm install --prefix playground/react
-npm run dev --prefix playground/react
-```
-
-Open the printed URL (often `http://localhost:5173`). Main source: `playground/react/src/App.tsx` and `App.css`.
 
 ## API Reference
 
@@ -432,4 +415,4 @@ All transformation parameters available in the `transformations` prop:
 
 ## Documentation
 
-See the main [@autorender/sdk-core](../sdk-core/README.md) documentation for full API reference.
+See the main [full documentation](https://autorender.mintlify.app) documentation for full API reference.
